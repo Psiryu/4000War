@@ -27,12 +27,15 @@ public class Map extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(600, 400));
         setResizable(false);
 
         jLabel1.setText("Winning.");
+
+        jLabel2.setText("Scenario: " + String.valueOf(Global.scenario));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -41,12 +44,18 @@ public class Map extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(280, 280, 280)
                 .addComponent(jLabel1)
-                .addContainerGap(277, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(272, Short.MAX_VALUE)
+                .addComponent(jLabel2)
+                .addGap(261, 261, 261))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(182, 182, 182)
+                .addGap(79, 79, 79)
+                .addComponent(jLabel2)
+                .addGap(89, 89, 89)
                 .addComponent(jLabel1)
                 .addContainerGap(199, Short.MAX_VALUE))
         );
@@ -57,7 +66,7 @@ public class Map extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -83,13 +92,18 @@ public class Map extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new Map().setVisible(true);
             }
+            
         });
+        
     }
 
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
 }
