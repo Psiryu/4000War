@@ -10,4 +10,5 @@
  */
 public class Global {
     public static int scenario;
+    public static int opponent; //if 1, against player. 0 means AI
 }
