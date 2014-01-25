@@ -15,6 +15,13 @@ public class Map extends javax.swing.JFrame {
      */
     public Map() {
         initComponents();
+        
+        if((Global.opponent) == 1)
+            labelOpponent.setText("Against Player");
+        else
+            labelOpponent.setText("Against AI");
+        
+        labelScenario.setText("Scenario: " + Global.scenario);
     }
 
     /**
@@ -26,16 +33,39 @@ public class Map extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        labelWinning = new javax.swing.JLabel();
+        labelScenario = new javax.swing.JLabel();
+        labelOpponent = new javax.swing.JLabel();
+        buttonMenu = new javax.swing.JToggleButton();
+        buttonExit = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(600, 400));
         setResizable(false);
 
-        jLabel1.setText("Winning.");
+        labelWinning.setText("Winning.");
 
-        jLabel2.setText("Scenario: " + String.valueOf(Global.scenario));
+        labelScenario.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        labelScenario.setText("text");
+
+        labelOpponent.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        labelOpponent.setText("text");
+        labelOpponent.setName("labelOpponent"); // NOI18N
+
+        buttonMenu.setText("Main Menu");
+        buttonMenu.setToolTipText("");
+        buttonMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonMenuActionPerformed(evt);
+            }
+        });
+
+        buttonExit.setText("End Game");
+        buttonExit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonExitActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -43,25 +73,45 @@ public class Map extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(280, 280, 280)
-                .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(272, Short.MAX_VALUE)
-                .addComponent(jLabel2)
-                .addGap(261, 261, 261))
+                .addComponent(labelWinning)
+                .addContainerGap(277, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(buttonMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(buttonExit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labelScenario, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(labelOpponent, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(79, 79, 79)
-                .addComponent(jLabel2)
-                .addGap(89, 89, 89)
-                .addComponent(jLabel1)
-                .addContainerGap(199, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(buttonMenu)
+                            .addComponent(labelScenario))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(labelOpponent))
+                    .addComponent(buttonExit))
+                .addGap(147, 147, 147)
+                .addComponent(labelWinning)
+                .addContainerGap(191, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void buttonMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonMenuActionPerformed
+        new MainMenu().setVisible(true);
+        Map.this.dispose();
+    }//GEN-LAST:event_buttonMenuActionPerformed
+
+    private void buttonExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonExitActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_buttonExitActionPerformed
 
     /**
      * @param args the command line arguments
@@ -103,7 +153,10 @@ public class Map extends javax.swing.JFrame {
 
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JButton buttonExit;
+    private javax.swing.JToggleButton buttonMenu;
+    private javax.swing.JLabel labelOpponent;
+    private javax.swing.JLabel labelScenario;
+    private javax.swing.JLabel labelWinning;
     // End of variables declaration//GEN-END:variables
 }
