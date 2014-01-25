@@ -33,6 +33,7 @@ public class MainMenu extends javax.swing.JFrame {
         buttonScenario3 = new javax.swing.JButton();
         radioAI = new javax.swing.JRadioButton();
         radioPlayer = new javax.swing.JRadioButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -83,24 +84,36 @@ public class MainMenu extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setText("End Game");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(labelTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(labelTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 370, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(buttonScenario1, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(buttonScenario2, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(buttonScenario3)
+                            .addComponent(radioAI)
+                            .addComponent(radioPlayer))
+                        .addGap(137, 137, 137))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(radioPlayer)
-                    .addComponent(radioAI)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(buttonScenario1, javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(buttonScenario2, javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(buttonScenario3)))
-                .addGap(137, 137, 137))
+                .addComponent(jButton1)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -117,37 +130,43 @@ public class MainMenu extends javax.swing.JFrame {
                 .addComponent(radioAI)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(radioPlayer)
-                .addContainerGap(36, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jButton1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void buttonScenario1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonScenario1ActionPerformed
-        Global.scenario = 1;
+        Global.intScenario = 1;
         new Map().setVisible(true);
         MainMenu.this.dispose();
     }//GEN-LAST:event_buttonScenario1ActionPerformed
 
     private void buttonScenario2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonScenario2ActionPerformed
-        Global.scenario = 2;
+        Global.intScenario = 2;
         new Map().setVisible(true);
         MainMenu.this.dispose();
     }//GEN-LAST:event_buttonScenario2ActionPerformed
 
     private void buttonScenario3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonScenario3ActionPerformed
-        Global.scenario = 3;
+        Global.intScenario = 3;
         new Map().setVisible(true);
         MainMenu.this.dispose();
     }//GEN-LAST:event_buttonScenario3ActionPerformed
 
     private void radioAIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioAIActionPerformed
-        Global.opponent = 0;
+        Global.intOpponent = 0;
     }//GEN-LAST:event_radioAIActionPerformed
 
     private void radioPlayerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioPlayerActionPerformed
-        Global.opponent = 1;
+        Global.intOpponent = 1;
     }//GEN-LAST:event_radioPlayerActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -189,6 +208,7 @@ public class MainMenu extends javax.swing.JFrame {
     private javax.swing.JButton buttonScenario1;
     private javax.swing.JButton buttonScenario2;
     private javax.swing.JButton buttonScenario3;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel labelTitle;
     private javax.swing.JRadioButton radioAI;
     private javax.swing.JRadioButton radioPlayer;

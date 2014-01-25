@@ -16,12 +16,12 @@ public class Map extends javax.swing.JFrame {
     public Map() {
         initComponents();
         
-        if((Global.opponent) == 1)
+        if((Global.intOpponent) == 1)
             labelOpponent.setText("Against Player");
         else
             labelOpponent.setText("Against AI");
         
-        labelScenario.setText("Scenario: " + Global.scenario);
+        labelScenario.setText("Scenario: " + Global.intScenario);
     }
 
     /**
