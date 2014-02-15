@@ -15,6 +15,7 @@ public class MainMenu extends javax.swing.JFrame {
      */
     public MainMenu() {
         initComponents();
+        Global.intOpponent = 0;
     }
 
     /**
@@ -33,7 +34,8 @@ public class MainMenu extends javax.swing.JFrame {
         buttonScenario3 = new javax.swing.JButton();
         radioAI = new javax.swing.JRadioButton();
         radioPlayer = new javax.swing.JRadioButton();
-        jButton1 = new javax.swing.JButton();
+        buttonEnd = new javax.swing.JButton();
+        buttonHowTo = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -84,10 +86,17 @@ public class MainMenu extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("End Game");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        buttonEnd.setText("End Game");
+        buttonEnd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                buttonEndActionPerformed(evt);
+            }
+        });
+
+        buttonHowTo.setText("How to Play");
+        buttonHowTo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonHowToActionPerformed(evt);
             }
         });
 
@@ -112,7 +121,9 @@ public class MainMenu extends javax.swing.JFrame {
                         .addGap(137, 137, 137))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(buttonHowTo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(buttonEnd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -129,9 +140,12 @@ public class MainMenu extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(radioAI)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(radioPlayer)
-                .addGap(18, 18, 18)
-                .addComponent(jButton1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(radioPlayer)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(buttonHowTo)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(buttonEnd)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -164,9 +178,14 @@ public class MainMenu extends javax.swing.JFrame {
         Global.intOpponent = 1;
     }//GEN-LAST:event_radioPlayerActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void buttonEndActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonEndActionPerformed
         System.exit(0);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_buttonEndActionPerformed
+
+    private void buttonHowToActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonHowToActionPerformed
+        new HowToPlay().setVisible(true);
+        MainMenu.this.dispose();
+    }//GEN-LAST:event_buttonHowToActionPerformed
 
     /**
      * @param args the command line arguments
@@ -204,11 +223,12 @@ public class MainMenu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton buttonEnd;
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JButton buttonHowTo;
     private javax.swing.JButton buttonScenario1;
     private javax.swing.JButton buttonScenario2;
     private javax.swing.JButton buttonScenario3;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel labelTitle;
     private javax.swing.JRadioButton radioAI;
     private javax.swing.JRadioButton radioPlayer;
