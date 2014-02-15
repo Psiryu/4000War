@@ -14,7 +14,7 @@ public class Player
         Node Capital;
         CombatUnit[] listOfCombatUnits;
         int politicalPower;
-        bool isComp;
+        boolean isComp;
         int  playerID;
         
         

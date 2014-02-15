@@ -8,6 +8,19 @@
  *
  * @author Fearless Jay
  */
-public class Node {
+public class Node 
+
+{
+    int terrainHeight; /*Out Of XX*/
+    boolean isCity;
+    Road[] listOfRoads;
+    int distanceFromCapitalRed;
+    int distanceFromCapitalBlue;
+    int coordinateX;
+    int coordinateY;
+    
+    
+    
+    
     
 }

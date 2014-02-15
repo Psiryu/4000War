@@ -8,14 +8,10 @@
  *
  * @author Fearless Jay
  */
-public class CombatUnit 
+public class Maps 
 {
-    int cUnitID;
-    int size;
-    int healthRating; /*OUT OF XX*/
-    int distanceFromCapital; /*Possible can FUNCTION*/
-    Node location;
-    int size;
+    Node[] listOFNodes;
+    Road[] listOfRoads;
     
     
 }

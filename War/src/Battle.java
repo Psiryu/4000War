@@ -8,14 +8,9 @@
  *
  * @author Fearless Jay
  */
-public class CombatUnit 
+public class Battle 
 {
-    int cUnitID;
-    int size;
-    int healthRating; /*OUT OF XX*/
-    int distanceFromCapital; /*Possible can FUNCTION*/
-    Node location;
-    int size;
-    
+    CombatUnit[] Red;
+    CombatUnit[] Blue;
     
 }
