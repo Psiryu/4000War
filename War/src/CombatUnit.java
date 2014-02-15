@@ -8,14 +8,24 @@
  *
  * @author Fearless Jay
  */
-public class CombatUnit 
+public class CombatUnit extends Player
 {
     int cUnitID;
     int size;
     int healthRating; /*OUT OF XX*/
     int distanceFromCapital; /*Possible can FUNCTION*/
     Node location;
-    int size;
+    
+    
+    
+    int GetBattleStrengh()
+    {
+        int strength = 0;
+        
+        /*strength = size + politicalPower*/
+        
+        return strength;
+    }
     
     
 }
