@@ -74,7 +74,7 @@ public class Map extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(280, 280, 280)
                 .addComponent(labelWinning)
-                .addContainerGap(274, Short.MAX_VALUE))
+                .addContainerGap(278, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(buttonMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -98,7 +98,7 @@ public class Map extends javax.swing.JFrame {
                     .addComponent(buttonExit))
                 .addGap(147, 147, 147)
                 .addComponent(labelWinning)
-                .addContainerGap(191, Short.MAX_VALUE))
+                .addContainerGap(196, Short.MAX_VALUE))
         );
 
         pack();

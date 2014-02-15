@@ -68,8 +68,8 @@ public class HowToPlay extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(buttonMenu)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 255, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 246, Short.MAX_VALUE)
+                .addGap(25, 25, 25))
         );
 
         pack();
