@@ -34,8 +34,13 @@ public class CombatUnit extends Game
         
         
         /*strength = size + politicalPower*/
+        int metricOne= distanceFromCapital;
+        if (distanceFromCapital >20)
+        {
+            metricOne = 0;
+        }
         
-        strength = (20 - distanceFromCapital) + (faction.politicalPower / 100) *10 + size - (healthRating / 100)*20;
+        strength = metricOne + (faction.politicalPower / 100) *10 + size - (healthRating / 100)*20;
         
         return strength;
     }
