@@ -46,6 +46,20 @@ public class Map extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
+        nodePlaceholder1 = new javax.swing.JLabel();
+        nodePlaceholder2 = new javax.swing.JLabel();
+        nodePlaceholder3 = new javax.swing.JLabel();
+        nodePlaceholder4 = new javax.swing.JLabel();
+        nodePlaceholder5 = new javax.swing.JLabel();
+        nodePlaceholder6 = new javax.swing.JLabel();
+        nodePlaceholder7 = new javax.swing.JLabel();
+        nodePlaceholder8 = new javax.swing.JLabel();
+        nodePlaceholder9 = new javax.swing.JLabel();
+        nodePlaceholder10 = new javax.swing.JLabel();
+        nodePlaceholder11 = new javax.swing.JLabel();
+        nodePlaceholder12 = new javax.swing.JLabel();
+        nodePlaceholder13 = new javax.swing.JLabel();
+        nodePlaceholder14 = new javax.swing.JLabel();
         scenarioMap = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -53,13 +67,16 @@ public class Map extends javax.swing.JFrame {
         setMinimumSize(new java.awt.Dimension(900, 600));
         setPreferredSize(new java.awt.Dimension(900, 600));
         setResizable(false);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         labelScenario.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         labelScenario.setText("text");
+        getContentPane().add(labelScenario, new org.netbeans.lib.awtextra.AbsoluteConstraints(815, 9, -1, -1));
 
         labelOpponent.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         labelOpponent.setText("text");
         labelOpponent.setName("labelOpponent"); // NOI18N
+        getContentPane().add(labelOpponent, new org.netbeans.lib.awtextra.AbsoluteConstraints(757, 9, -1, -1));
 
         buttonMenu.setText("Main Menu");
         buttonMenu.setToolTipText("");
@@ -68,6 +85,7 @@ public class Map extends javax.swing.JFrame {
                 buttonMenuActionPerformed(evt);
             }
         });
+        getContentPane().add(buttonMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 5, -1, -1));
 
         buttonExit.setText("End Game");
         buttonExit.setMaximumSize(new java.awt.Dimension(83, 23));
@@ -77,6 +95,7 @@ public class Map extends javax.swing.JFrame {
                 buttonExitActionPerformed(evt);
             }
         });
+        getContentPane().add(buttonExit, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 5, 90, -1));
 
         menuInfo.setMaximumSize(new java.awt.Dimension(700, 70));
         menuInfo.setMinimumSize(new java.awt.Dimension(700, 70));
@@ -138,51 +157,85 @@ public class Map extends javax.swing.JFrame {
                 .addContainerGap(13, Short.MAX_VALUE))
         );
 
+        getContentPane().add(menuInfo, new org.netbeans.lib.awtextra.AbsoluteConstraints(65, 519, -1, -1));
+
+        nodePlaceholder1.setText("NODES BITCHES");
+        nodePlaceholder1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 5));
+        nodePlaceholder1.setName(""); // NOI18N
+        getContentPane().add(nodePlaceholder1, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 290, 60, 40));
+
+        nodePlaceholder2.setText("NODES BITCHES");
+        nodePlaceholder2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 5));
+        nodePlaceholder2.setName(""); // NOI18N
+        getContentPane().add(nodePlaceholder2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 90, 60, 40));
+
+        nodePlaceholder3.setText("NODES BITCHES");
+        nodePlaceholder3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 5));
+        nodePlaceholder3.setName(""); // NOI18N
+        getContentPane().add(nodePlaceholder3, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 300, 60, 40));
+
+        nodePlaceholder4.setText("NODES BITCHES");
+        nodePlaceholder4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 5));
+        nodePlaceholder4.setName(""); // NOI18N
+        getContentPane().add(nodePlaceholder4, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 310, 60, 40));
+
+        nodePlaceholder5.setText("NODES BITCHES");
+        nodePlaceholder5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 5));
+        nodePlaceholder5.setName(""); // NOI18N
+        getContentPane().add(nodePlaceholder5, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 300, 60, 40));
+
+        nodePlaceholder6.setText("NODES BITCHES");
+        nodePlaceholder6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 5));
+        nodePlaceholder6.setName(""); // NOI18N
+        getContentPane().add(nodePlaceholder6, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 290, 60, 40));
+
+        nodePlaceholder7.setText("NODES BITCHES");
+        nodePlaceholder7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 5));
+        nodePlaceholder7.setName(""); // NOI18N
+        getContentPane().add(nodePlaceholder7, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 190, 60, 40));
+
+        nodePlaceholder8.setText("NODES BITCHES");
+        nodePlaceholder8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 5));
+        nodePlaceholder8.setName(""); // NOI18N
+        getContentPane().add(nodePlaceholder8, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 160, 60, 40));
+
+        nodePlaceholder9.setText("NODES BITCHES");
+        nodePlaceholder9.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 5));
+        nodePlaceholder9.setName(""); // NOI18N
+        getContentPane().add(nodePlaceholder9, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 200, 60, 30));
+
+        nodePlaceholder10.setText("NODES BITCHES");
+        nodePlaceholder10.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 5));
+        nodePlaceholder10.setName(""); // NOI18N
+        getContentPane().add(nodePlaceholder10, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 220, 60, 30));
+
+        nodePlaceholder11.setText("NODES BITCHES");
+        nodePlaceholder11.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 5));
+        nodePlaceholder11.setName(""); // NOI18N
+        getContentPane().add(nodePlaceholder11, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 250, 60, 40));
+
+        nodePlaceholder12.setText("NODES BITCHES");
+        nodePlaceholder12.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 5));
+        nodePlaceholder12.setName(""); // NOI18N
+        getContentPane().add(nodePlaceholder12, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 240, 60, 40));
+
+        nodePlaceholder13.setText("NODES BITCHES");
+        nodePlaceholder13.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 5));
+        nodePlaceholder13.setName(""); // NOI18N
+        getContentPane().add(nodePlaceholder13, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 430, 60, 40));
+
+        nodePlaceholder14.setText("NODES BITCHES");
+        nodePlaceholder14.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 5));
+        nodePlaceholder14.setName(""); // NOI18N
+        getContentPane().add(nodePlaceholder14, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 110, 60, 40));
+
         scenarioMap.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Map1_Sulla.png"))); // NOI18N
         scenarioMap.setText("jLabel1");
         scenarioMap.setMaximumSize(new java.awt.Dimension(800, 450));
         scenarioMap.setMinimumSize(new java.awt.Dimension(800, 450));
         scenarioMap.setName(""); // NOI18N
         scenarioMap.setPreferredSize(new java.awt.Dimension(800, 450));
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addGap(35, 35, 35)
-                            .addComponent(scenarioMap, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(buttonMenu)
-                            .addGap(7, 7, 7)
-                            .addComponent(buttonExit, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(labelOpponent)
-                            .addGap(38, 38, 38)
-                            .addComponent(labelScenario)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(65, 65, 65)
-                        .addComponent(menuInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(34, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(buttonMenu)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(buttonExit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(labelScenario)
-                        .addComponent(labelOpponent)))
-                .addGap(20, 20, 20)
-                .addComponent(scenarioMap, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
-                .addComponent(menuInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
+        getContentPane().add(scenarioMap, new org.netbeans.lib.awtextra.AbsoluteConstraints(35, 39, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -249,6 +302,20 @@ public class Map extends javax.swing.JFrame {
     private javax.swing.JLabel labelOpponent;
     private javax.swing.JLabel labelScenario;
     private javax.swing.JPanel menuInfo;
+    private javax.swing.JLabel nodePlaceholder1;
+    private javax.swing.JLabel nodePlaceholder10;
+    private javax.swing.JLabel nodePlaceholder11;
+    private javax.swing.JLabel nodePlaceholder12;
+    private javax.swing.JLabel nodePlaceholder13;
+    private javax.swing.JLabel nodePlaceholder14;
+    private javax.swing.JLabel nodePlaceholder2;
+    private javax.swing.JLabel nodePlaceholder3;
+    private javax.swing.JLabel nodePlaceholder4;
+    private javax.swing.JLabel nodePlaceholder5;
+    private javax.swing.JLabel nodePlaceholder6;
+    private javax.swing.JLabel nodePlaceholder7;
+    private javax.swing.JLabel nodePlaceholder8;
+    private javax.swing.JLabel nodePlaceholder9;
     private javax.swing.JLabel scenarioMap;
     // End of variables declaration//GEN-END:variables
 }
