@@ -30,9 +30,9 @@ public class HowToPlay extends javax.swing.JFrame {
         buttonMenu = new javax.swing.JToggleButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         textHelp = new javax.swing.JTextArea();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        jRadioButton3 = new javax.swing.JRadioButton();
+        radioBasics = new javax.swing.JRadioButton();
+        radioBattles = new javax.swing.JRadioButton();
+        radioVictory = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -54,25 +54,30 @@ public class HowToPlay extends javax.swing.JFrame {
         textHelp.setMaximumSize(new java.awt.Dimension(3676, 22));
         jScrollPane1.setViewportView(textHelp);
 
-        groupHelpTypes.add(jRadioButton1);
-        jRadioButton1.setSelected(true);
-        jRadioButton1.setText("The Basics");
-        jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
+        groupHelpTypes.add(radioBasics);
+        radioBasics.setSelected(true);
+        radioBasics.setText("The Basics");
+        radioBasics.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton1ActionPerformed(evt);
+                radioBasicsActionPerformed(evt);
             }
         });
 
-        groupHelpTypes.add(jRadioButton2);
-        jRadioButton2.setText("Battles");
-        jRadioButton2.addActionListener(new java.awt.event.ActionListener() {
+        groupHelpTypes.add(radioBattles);
+        radioBattles.setText("Battles");
+        radioBattles.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton2ActionPerformed(evt);
+                radioBattlesActionPerformed(evt);
             }
         });
 
-        groupHelpTypes.add(jRadioButton3);
-        jRadioButton3.setText("Victory");
+        groupHelpTypes.add(radioVictory);
+        radioVictory.setText("Victory");
+        radioVictory.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radioVictoryActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -81,17 +86,15 @@ public class HowToPlay extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(buttonMenu)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(buttonMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(307, 307, 307))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jRadioButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jRadioButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jRadioButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(radioBasics, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(radioBattles, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(radioVictory, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(44, Short.MAX_VALUE))))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(44, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -101,15 +104,13 @@ public class HowToPlay extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 246, Short.MAX_VALUE)
-                        .addGap(25, 25, 25))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jRadioButton1)
+                        .addComponent(radioBasics)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jRadioButton2)
+                        .addComponent(radioBattles)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jRadioButton3)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addComponent(radioVictory))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         pack();
@@ -120,13 +121,28 @@ public class HowToPlay extends javax.swing.JFrame {
         HowToPlay.this.dispose();
     }//GEN-LAST:event_buttonMenuActionPerformed
 
-    private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton2ActionPerformed
+    private void radioBattlesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioBattlesActionPerformed
+        textHelp.setText("Hello. My name is Inigo Montoya. "
+                + "You killed my father. Prepare to die. ");
+    }//GEN-LAST:event_radioBattlesActionPerformed
 
-    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
-        
-    }//GEN-LAST:event_jRadioButton1ActionPerformed
+    private void radioBasicsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioBasicsActionPerformed
+        textHelp.setText("I don't know who you are. I don't know what "
+                + "you want. If you are looking for ransom, I can tell "
+                + "you I don't have money. But what I do have are a very "
+                + "particular set of skills; skills I have acquired over "
+                + "a very long career. Skills that make me a nightmare "
+                + "for people like you. If you let my daughter go now, "
+                + "that'll be the end of it. I will not look for you, I "
+                + "will not pursue you. But if you don't, I will look for "
+                + "you, I will find you, and I will kill you. ");
+    }//GEN-LAST:event_radioBasicsActionPerformed
+
+    private void radioVictoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioVictoryActionPerformed
+        textHelp.setText("I don't know half of you half as well as "
+                + "I should like; and I like less than half of you "
+                + "half as well as you deserve....");
+    }//GEN-LAST:event_radioVictoryActionPerformed
 
     /**
      * @param args the command line arguments
@@ -166,10 +182,10 @@ public class HowToPlay extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToggleButton buttonMenu;
     private javax.swing.ButtonGroup groupHelpTypes;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JRadioButton jRadioButton3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JRadioButton radioBasics;
+    private javax.swing.JRadioButton radioBattles;
+    private javax.swing.JRadioButton radioVictory;
     private javax.swing.JTextArea textHelp;
     // End of variables declaration//GEN-END:variables
 }
