@@ -138,7 +138,7 @@ public class Map extends javax.swing.JFrame {
                 .addContainerGap(13, Short.MAX_VALUE))
         );
 
-        scenarioMap.setIcon(new javax.swing.ImageIcon("C:\\Users\\Prem\\Documents\\4000\\source code\\4000War\\Design Elements\\Scenario-0-Map.jpg")); // NOI18N
+        scenarioMap.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Map1_Sulla.png"))); // NOI18N
         scenarioMap.setText("jLabel1");
         scenarioMap.setMaximumSize(new java.awt.Dimension(800, 450));
         scenarioMap.setMinimumSize(new java.awt.Dimension(800, 450));

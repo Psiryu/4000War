@@ -222,7 +222,7 @@
     <Component class="javax.swing.JLabel" name="scenarioMap">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="C:\Users\Prem\Documents\4000\source code\4000War\Design Elements\Scenario-0-Map.jpg"/>
+          <Image iconType="3" name="/Images/Map1_Sulla.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="jLabel1"/>
         <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
