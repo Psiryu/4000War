@@ -8,16 +8,21 @@ import java.util.ArrayList;
  *
  * @author Fearless Jay
  */
-public class Player 
+public class Player extends Game
 {
         
     
     
-        Node capital;
-        ArrayList CombatUnit[];
-        int politicalPower;
-        boolean isComp;
-        int  playerID;
+        protected Node capital;
+        protected ArrayList combatUnitList;
+        protected int politicalPower;
+        protected boolean isComp;
+        protected int playerID;
+        
+        protected int aggregateDistanceFromCapital;
+        protected int totalInitialArmy;
+        protected int totalCurrentArmy;
+        
         
         
         /*Constructor*/
@@ -52,13 +57,28 @@ public class Player
             isComp = x;
         }
         
-        public CombatUnit[] getlistOfCombatUnits()
+        public int AdjustPoliticalPower()
         {
-            return listOfCombatUnits;
-        }
-        public void listOfCombatUnits(CombatUnit[] x)
-        {
-            listOfCombatUnits = x;
+            
+            int metricOne = aggregateDistanceFromCapital;
+            
+            if (metricOne > 20)
+            {
+                metricOne = 20;
+            }
+            
+            int metricTwo = turnCount;
+            if (metricTwo > 30)
+            {
+                metricTwo = 30;
+            }
+            
+            politicalPower = 100 - metricOne - (50-(totalCurrentArmy/totalInitialArmy)*50) - metricTwo;
+            
+            return politicalPower;
+            
+            
+            
         }
         
         

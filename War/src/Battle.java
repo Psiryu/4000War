@@ -20,9 +20,11 @@ public class Battle
     public int getTotalBattleStrength(CombatUnit[] cUnit)
     {
         int total = 0;
-        for(int i = 0 ; i < cUnit.length; i++)
+        for (int i = 0 ; i < cUnit.length; i++)
         {
             total += cUnit[i].GetBattleStrengh();
+            /*add weather effects*/
+            
         }
         return total;
         
