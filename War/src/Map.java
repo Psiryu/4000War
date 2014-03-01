@@ -46,23 +46,25 @@ public class Map extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        nodePlaceholder1 = new javax.swing.JLabel();
-        nodePlaceholder2 = new javax.swing.JLabel();
-        nodePlaceholder3 = new javax.swing.JLabel();
-        nodePlaceholder4 = new javax.swing.JLabel();
-        nodePlaceholder5 = new javax.swing.JLabel();
-        nodePlaceholder6 = new javax.swing.JLabel();
-        nodePlaceholder7 = new javax.swing.JLabel();
-        nodePlaceholder8 = new javax.swing.JLabel();
-        nodePlaceholder9 = new javax.swing.JLabel();
-        nodePlaceholder10 = new javax.swing.JLabel();
-        nodePlaceholder11 = new javax.swing.JLabel();
-        nodePlaceholder12 = new javax.swing.JLabel();
-        nodePlaceholder13 = new javax.swing.JLabel();
-        nodePlaceholder14 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        nodePlaceholder1 = new javax.swing.JButton();
+        nodePlaceholder2 = new javax.swing.JButton();
+        nodePlaceholder3 = new javax.swing.JButton();
+        nodePlaceholder4 = new javax.swing.JButton();
+        nodePlaceholder5 = new javax.swing.JButton();
+        nodePlaceholder6 = new javax.swing.JButton();
+        nodePlaceholder7 = new javax.swing.JButton();
+        nodePlaceholder8 = new javax.swing.JButton();
+        nodePlaceholder9 = new javax.swing.JButton();
+        nodePlaceholder10 = new javax.swing.JButton();
+        nodePlaceholder11 = new javax.swing.JButton();
+        nodePlaceholder12 = new javax.swing.JButton();
+        nodePlaceholder13 = new javax.swing.JButton();
+        nodePlaceholder14 = new javax.swing.JButton();
         scenarioMap = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(204, 255, 255));
         setMaximumSize(new java.awt.Dimension(900, 600));
         setMinimumSize(new java.awt.Dimension(900, 600));
         setPreferredSize(new java.awt.Dimension(900, 600));
@@ -157,77 +159,150 @@ public class Map extends javax.swing.JFrame {
                 .addContainerGap(13, Short.MAX_VALUE))
         );
 
-        getContentPane().add(menuInfo, new org.netbeans.lib.awtextra.AbsoluteConstraints(65, 519, -1, -1));
+        getContentPane().add(menuInfo, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 500, -1, -1));
 
-        nodePlaceholder1.setText("NODES BITCHES");
-        nodePlaceholder1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 5));
-        nodePlaceholder1.setName(""); // NOI18N
-        getContentPane().add(nodePlaceholder1, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 290, 60, 40));
+        jLabel9.setText("jLabel9");
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 10, -1, -1));
 
-        nodePlaceholder2.setText("NODES BITCHES");
-        nodePlaceholder2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 5));
-        nodePlaceholder2.setName(""); // NOI18N
-        getContentPane().add(nodePlaceholder2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 90, 60, 40));
+        nodePlaceholder1.setBackground(new java.awt.Color(0, 0, 0));
+        nodePlaceholder1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Node-Button.jpg"))); // NOI18N
+        nodePlaceholder1.setOpaque(false);
+        nodePlaceholder1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nodePlaceholder1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(nodePlaceholder1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 100, 30, 30));
 
-        nodePlaceholder3.setText("NODES BITCHES");
-        nodePlaceholder3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 5));
-        nodePlaceholder3.setName(""); // NOI18N
-        getContentPane().add(nodePlaceholder3, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 300, 60, 40));
+        nodePlaceholder2.setBackground(new java.awt.Color(0, 0, 0));
+        nodePlaceholder2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Node-Button.jpg"))); // NOI18N
+        nodePlaceholder2.setOpaque(false);
+        nodePlaceholder2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nodePlaceholder2ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(nodePlaceholder2, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 120, 30, 30));
 
-        nodePlaceholder4.setText("NODES BITCHES");
-        nodePlaceholder4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 5));
-        nodePlaceholder4.setName(""); // NOI18N
-        getContentPane().add(nodePlaceholder4, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 310, 60, 40));
+        nodePlaceholder3.setBackground(new java.awt.Color(0, 0, 0));
+        nodePlaceholder3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Node-Button.jpg"))); // NOI18N
+        nodePlaceholder3.setOpaque(false);
+        nodePlaceholder3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nodePlaceholder3ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(nodePlaceholder3, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 170, 30, 30));
 
-        nodePlaceholder5.setText("NODES BITCHES");
-        nodePlaceholder5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 5));
-        nodePlaceholder5.setName(""); // NOI18N
-        getContentPane().add(nodePlaceholder5, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 300, 60, 40));
+        nodePlaceholder4.setBackground(new java.awt.Color(0, 0, 0));
+        nodePlaceholder4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Node-Button.jpg"))); // NOI18N
+        nodePlaceholder4.setOpaque(false);
+        nodePlaceholder4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nodePlaceholder4ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(nodePlaceholder4, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 200, 30, 30));
 
-        nodePlaceholder6.setText("NODES BITCHES");
-        nodePlaceholder6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 5));
-        nodePlaceholder6.setName(""); // NOI18N
-        getContentPane().add(nodePlaceholder6, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 290, 60, 40));
+        nodePlaceholder5.setBackground(new java.awt.Color(0, 0, 0));
+        nodePlaceholder5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Node-Button.jpg"))); // NOI18N
+        nodePlaceholder5.setOpaque(false);
+        nodePlaceholder5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nodePlaceholder5ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(nodePlaceholder5, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 210, 30, 30));
 
-        nodePlaceholder7.setText("NODES BITCHES");
-        nodePlaceholder7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 5));
-        nodePlaceholder7.setName(""); // NOI18N
-        getContentPane().add(nodePlaceholder7, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 190, 60, 40));
+        nodePlaceholder6.setBackground(new java.awt.Color(0, 0, 0));
+        nodePlaceholder6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Node-Button.jpg"))); // NOI18N
+        nodePlaceholder6.setOpaque(false);
+        nodePlaceholder6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nodePlaceholder6ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(nodePlaceholder6, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 220, 30, 30));
 
-        nodePlaceholder8.setText("NODES BITCHES");
-        nodePlaceholder8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 5));
-        nodePlaceholder8.setName(""); // NOI18N
-        getContentPane().add(nodePlaceholder8, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 160, 60, 40));
+        nodePlaceholder7.setBackground(new java.awt.Color(0, 0, 0));
+        nodePlaceholder7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Node-Button.jpg"))); // NOI18N
+        nodePlaceholder7.setOpaque(false);
+        nodePlaceholder7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nodePlaceholder7ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(nodePlaceholder7, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 250, 30, 30));
 
-        nodePlaceholder9.setText("NODES BITCHES");
-        nodePlaceholder9.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 5));
-        nodePlaceholder9.setName(""); // NOI18N
-        getContentPane().add(nodePlaceholder9, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 200, 60, 30));
+        nodePlaceholder8.setBackground(new java.awt.Color(0, 0, 0));
+        nodePlaceholder8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Node-Button.jpg"))); // NOI18N
+        nodePlaceholder8.setOpaque(false);
+        nodePlaceholder8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nodePlaceholder8ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(nodePlaceholder8, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 240, 30, 30));
 
-        nodePlaceholder10.setText("NODES BITCHES");
-        nodePlaceholder10.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 5));
-        nodePlaceholder10.setName(""); // NOI18N
-        getContentPane().add(nodePlaceholder10, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 220, 60, 30));
+        nodePlaceholder9.setBackground(new java.awt.Color(0, 0, 0));
+        nodePlaceholder9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Node-Button.jpg"))); // NOI18N
+        nodePlaceholder9.setOpaque(false);
+        nodePlaceholder9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nodePlaceholder9ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(nodePlaceholder9, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 290, 30, 30));
 
-        nodePlaceholder11.setText("NODES BITCHES");
-        nodePlaceholder11.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 5));
-        nodePlaceholder11.setName(""); // NOI18N
-        getContentPane().add(nodePlaceholder11, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 250, 60, 40));
+        nodePlaceholder10.setBackground(new java.awt.Color(0, 0, 0));
+        nodePlaceholder10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Node-Button.jpg"))); // NOI18N
+        nodePlaceholder10.setOpaque(false);
+        nodePlaceholder10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nodePlaceholder10ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(nodePlaceholder10, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 310, 30, 30));
 
-        nodePlaceholder12.setText("NODES BITCHES");
-        nodePlaceholder12.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 5));
-        nodePlaceholder12.setName(""); // NOI18N
-        getContentPane().add(nodePlaceholder12, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 240, 60, 40));
+        nodePlaceholder11.setBackground(new java.awt.Color(0, 0, 0));
+        nodePlaceholder11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Node-Button.jpg"))); // NOI18N
+        nodePlaceholder11.setOpaque(false);
+        nodePlaceholder11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nodePlaceholder11ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(nodePlaceholder11, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 320, 30, 30));
 
-        nodePlaceholder13.setText("NODES BITCHES");
-        nodePlaceholder13.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 5));
-        nodePlaceholder13.setName(""); // NOI18N
-        getContentPane().add(nodePlaceholder13, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 430, 60, 40));
+        nodePlaceholder12.setBackground(new java.awt.Color(0, 0, 0));
+        nodePlaceholder12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Node-Button.jpg"))); // NOI18N
+        nodePlaceholder12.setOpaque(false);
+        nodePlaceholder12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nodePlaceholder12ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(nodePlaceholder12, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 300, 30, 30));
 
-        nodePlaceholder14.setText("NODES BITCHES");
-        nodePlaceholder14.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 5));
-        nodePlaceholder14.setName(""); // NOI18N
-        getContentPane().add(nodePlaceholder14, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 110, 60, 40));
+        nodePlaceholder13.setBackground(new java.awt.Color(0, 0, 0));
+        nodePlaceholder13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Node-Button.jpg"))); // NOI18N
+        nodePlaceholder13.setOpaque(false);
+        nodePlaceholder13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nodePlaceholder13ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(nodePlaceholder13, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 300, 30, 30));
+
+        nodePlaceholder14.setBackground(new java.awt.Color(0, 0, 0));
+        nodePlaceholder14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Node-Button.jpg"))); // NOI18N
+        nodePlaceholder14.setOpaque(false);
+        nodePlaceholder14.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nodePlaceholder14ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(nodePlaceholder14, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 440, 30, 30));
 
         scenarioMap.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Map1_Sulla.png"))); // NOI18N
         scenarioMap.setText("jLabel1");
@@ -244,10 +319,66 @@ public class Map extends javax.swing.JFrame {
         new MainMenu().setVisible(true);
         Map.this.dispose();
     }//GEN-LAST:event_buttonMenuActionPerformed
-
+        
     private void buttonExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonExitActionPerformed
         System.exit(0);
     }//GEN-LAST:event_buttonExitActionPerformed
+
+    private void nodePlaceholder1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nodePlaceholder1ActionPerformed
+        jLabel9.setText("Derpedy WINNING.");
+    }//GEN-LAST:event_nodePlaceholder1ActionPerformed
+
+    private void nodePlaceholder2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nodePlaceholder2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nodePlaceholder2ActionPerformed
+
+    private void nodePlaceholder3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nodePlaceholder3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nodePlaceholder3ActionPerformed
+
+    private void nodePlaceholder4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nodePlaceholder4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nodePlaceholder4ActionPerformed
+
+    private void nodePlaceholder5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nodePlaceholder5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nodePlaceholder5ActionPerformed
+
+    private void nodePlaceholder6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nodePlaceholder6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nodePlaceholder6ActionPerformed
+
+    private void nodePlaceholder7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nodePlaceholder7ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nodePlaceholder7ActionPerformed
+
+    private void nodePlaceholder8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nodePlaceholder8ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nodePlaceholder8ActionPerformed
+
+    private void nodePlaceholder9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nodePlaceholder9ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nodePlaceholder9ActionPerformed
+
+    private void nodePlaceholder10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nodePlaceholder10ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nodePlaceholder10ActionPerformed
+
+    private void nodePlaceholder11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nodePlaceholder11ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nodePlaceholder11ActionPerformed
+
+    private void nodePlaceholder12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nodePlaceholder12ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nodePlaceholder12ActionPerformed
+
+    private void nodePlaceholder13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nodePlaceholder13ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nodePlaceholder13ActionPerformed
+
+    private void nodePlaceholder14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nodePlaceholder14ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nodePlaceholder14ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -299,23 +430,24 @@ public class Map extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel labelOpponent;
     private javax.swing.JLabel labelScenario;
     private javax.swing.JPanel menuInfo;
-    private javax.swing.JLabel nodePlaceholder1;
-    private javax.swing.JLabel nodePlaceholder10;
-    private javax.swing.JLabel nodePlaceholder11;
-    private javax.swing.JLabel nodePlaceholder12;
-    private javax.swing.JLabel nodePlaceholder13;
-    private javax.swing.JLabel nodePlaceholder14;
-    private javax.swing.JLabel nodePlaceholder2;
-    private javax.swing.JLabel nodePlaceholder3;
-    private javax.swing.JLabel nodePlaceholder4;
-    private javax.swing.JLabel nodePlaceholder5;
-    private javax.swing.JLabel nodePlaceholder6;
-    private javax.swing.JLabel nodePlaceholder7;
-    private javax.swing.JLabel nodePlaceholder8;
-    private javax.swing.JLabel nodePlaceholder9;
+    private javax.swing.JButton nodePlaceholder1;
+    private javax.swing.JButton nodePlaceholder10;
+    private javax.swing.JButton nodePlaceholder11;
+    private javax.swing.JButton nodePlaceholder12;
+    private javax.swing.JButton nodePlaceholder13;
+    private javax.swing.JButton nodePlaceholder14;
+    private javax.swing.JButton nodePlaceholder2;
+    private javax.swing.JButton nodePlaceholder3;
+    private javax.swing.JButton nodePlaceholder4;
+    private javax.swing.JButton nodePlaceholder5;
+    private javax.swing.JButton nodePlaceholder6;
+    private javax.swing.JButton nodePlaceholder7;
+    private javax.swing.JButton nodePlaceholder8;
+    private javax.swing.JButton nodePlaceholder9;
     private javax.swing.JLabel scenarioMap;
     // End of variables declaration//GEN-END:variables
 }
