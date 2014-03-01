@@ -18,6 +18,7 @@ public class CombatUnit extends Game
     int timeStationary;
     Node previousLocation;
     Node location;
+    int checkToggle = 0;
     
     public CombatUnit(int _cUnitID, int _size, int _healthRating, int distance, int _playerID, Player _faction)
     {
@@ -49,13 +50,20 @@ public class CombatUnit extends Game
     
     void setSize()
     {
-        
+        checkToggle = healthRating + faction.getPoliticalPowerDecrease();
+        if (checkToggle > 30)
+            size--;
     }
     
     void setTimeStationary()
     {
-        timeStationary++;
-        if (timeStationary > 3)
-            timeStationary = 3;
+        if (location == previousLocation)
+        {
+            timeStationary++;
+            if (timeStationary > 3)
+                timeStationary = 3;
+        }
+        else
+            timeStationary = 0;
     }
 }
