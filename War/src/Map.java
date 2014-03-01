@@ -1,3 +1,5 @@
+
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -22,6 +24,8 @@ public class Map extends javax.swing.JFrame {
             labelOpponent.setText("Against AI");
         
         labelScenario.setText("Scenario: " + Global.intScenario);
+        
+        panelActions.setVisible(false);
     }
 
     /**
@@ -33,6 +37,17 @@ public class Map extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        panelActions = new javax.swing.JPanel();
+        buttonHidePanel = new javax.swing.JButton();
+        buttonElement1 = new javax.swing.JButton();
+        buttonElement2 = new javax.swing.JButton();
+        buttonElement3 = new javax.swing.JButton();
+        buttonElement4 = new javax.swing.JButton();
+        buttonElement5 = new javax.swing.JButton();
+        buttonElement6 = new javax.swing.JButton();
+        buttonElement7 = new javax.swing.JButton();
+        buttonElement8 = new javax.swing.JButton();
+        buttonElement9 = new javax.swing.JButton();
         labelScenario = new javax.swing.JLabel();
         labelOpponent = new javax.swing.JLabel();
         buttonMenu = new javax.swing.JToggleButton();
@@ -62,6 +77,7 @@ public class Map extends javax.swing.JFrame {
         nodePlaceholder13 = new javax.swing.JButton();
         nodePlaceholder14 = new javax.swing.JButton();
         scenarioMap = new javax.swing.JLabel();
+        buttonFinishTurn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(204, 255, 255));
@@ -71,14 +87,78 @@ public class Map extends javax.swing.JFrame {
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        panelActions.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        panelActions.setEnabled(false);
+        panelActions.setOpaque(false);
+
+        buttonHidePanel.setText("Hide Menu");
+        buttonHidePanel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonHidePanelActionPerformed(evt);
+            }
+        });
+
+        buttonElement1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonElement1ActionPerformed(evt);
+            }
+        });
+
+        buttonElement6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonElement6ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout panelActionsLayout = new javax.swing.GroupLayout(panelActions);
+        panelActions.setLayout(panelActionsLayout);
+        panelActionsLayout.setHorizontalGroup(
+            panelActionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(buttonElement1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(buttonHidePanel, javax.swing.GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE)
+            .addComponent(buttonElement2, javax.swing.GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE)
+            .addComponent(buttonElement3, javax.swing.GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE)
+            .addComponent(buttonElement5, javax.swing.GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE)
+            .addComponent(buttonElement7, javax.swing.GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE)
+            .addComponent(buttonElement8, javax.swing.GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE)
+            .addComponent(buttonElement9, javax.swing.GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE)
+            .addComponent(buttonElement4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(buttonElement6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        panelActionsLayout.setVerticalGroup(
+            panelActionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelActionsLayout.createSequentialGroup()
+                .addComponent(buttonHidePanel, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(buttonElement1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(buttonElement2, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(buttonElement3, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(buttonElement4, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(buttonElement5, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(buttonElement6, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(buttonElement7, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(buttonElement8, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(buttonElement9, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE))
+        );
+
+        getContentPane().add(panelActions, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 20, 130, 480));
+
         labelScenario.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         labelScenario.setText("text");
-        getContentPane().add(labelScenario, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 10, -1, -1));
+        getContentPane().add(labelScenario, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 10, -1, -1));
 
         labelOpponent.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         labelOpponent.setText("text");
         labelOpponent.setName("labelOpponent"); // NOI18N
-        getContentPane().add(labelOpponent, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 10, -1, -1));
+        getContentPane().add(labelOpponent, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 10, -1, -1));
 
         buttonMenu.setText("Main Menu");
         buttonMenu.setToolTipText("");
@@ -162,7 +242,7 @@ public class Map extends javax.swing.JFrame {
         getContentPane().add(menuInfo, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 490, -1, -1));
 
         jLabel9.setText("jLabel9");
-        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 10, -1, -1));
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 10, -1, -1));
 
         nodePlaceholder1.setBackground(new java.awt.Color(0, 0, 0));
         nodePlaceholder1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Node-Button.jpg"))); // NOI18N
@@ -312,6 +392,9 @@ public class Map extends javax.swing.JFrame {
         scenarioMap.setPreferredSize(new java.awt.Dimension(800, 450));
         getContentPane().add(scenarioMap, new org.netbeans.lib.awtextra.AbsoluteConstraints(35, 39, -1, -1));
 
+        buttonFinishTurn.setText("Finish Turn");
+        getContentPane().add(buttonFinishTurn, new org.netbeans.lib.awtextra.AbsoluteConstraints(753, 3, 110, 30));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -326,7 +409,10 @@ public class Map extends javax.swing.JFrame {
 
     private void nodePlaceholder1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nodePlaceholder1ActionPerformed
         jLabel9.setText("Derpedy WINNING.");
+        panelActions.setVisible(true);
+        panelActions.setEnabled(true);
     }//GEN-LAST:event_nodePlaceholder1ActionPerformed
+ 
 
     private void nodePlaceholder2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nodePlaceholder2ActionPerformed
         // TODO add your handling code here:
@@ -380,6 +466,19 @@ public class Map extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_nodePlaceholder14ActionPerformed
 
+    private void buttonElement1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonElement1ActionPerformed
+
+    }//GEN-LAST:event_buttonElement1ActionPerformed
+
+    private void buttonHidePanelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonHidePanelActionPerformed
+        panelActions.setVisible(false);
+        panelActions.setEnabled(false);
+    }//GEN-LAST:event_buttonHidePanelActionPerformed
+
+    private void buttonElement6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonElement6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_buttonElement6ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -420,7 +519,18 @@ public class Map extends javax.swing.JFrame {
 
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton buttonElement1;
+    private javax.swing.JButton buttonElement2;
+    private javax.swing.JButton buttonElement3;
+    private javax.swing.JButton buttonElement4;
+    private javax.swing.JButton buttonElement5;
+    private javax.swing.JButton buttonElement6;
+    private javax.swing.JButton buttonElement7;
+    private javax.swing.JButton buttonElement8;
+    private javax.swing.JButton buttonElement9;
     private javax.swing.JButton buttonExit;
+    private javax.swing.JButton buttonFinishTurn;
+    private javax.swing.JButton buttonHidePanel;
     private javax.swing.JToggleButton buttonMenu;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -448,6 +558,7 @@ public class Map extends javax.swing.JFrame {
     private javax.swing.JButton nodePlaceholder7;
     private javax.swing.JButton nodePlaceholder8;
     private javax.swing.JButton nodePlaceholder9;
+    private javax.swing.JPanel panelActions;
     private javax.swing.JLabel scenarioMap;
     // End of variables declaration//GEN-END:variables
 }

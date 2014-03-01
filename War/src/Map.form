@@ -38,6 +38,98 @@
     <Property name="useNullLayout" type="boolean" value="false"/>
   </Layout>
   <SubComponents>
+    <Container class="javax.swing.JPanel" name="panelActions">
+      <Properties>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
+            <EtchetBorder/>
+          </Border>
+        </Property>
+        <Property name="enabled" type="boolean" value="false"/>
+        <Property name="opaque" type="boolean" value="false"/>
+      </Properties>
+      <Constraints>
+        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+          <AbsoluteConstraints x="730" y="20" width="130" height="480"/>
+        </Constraint>
+      </Constraints>
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Component id="buttonElement1" max="32767" attributes="0"/>
+              <Component id="buttonHidePanel" pref="126" max="32767" attributes="0"/>
+              <Component id="buttonElement2" alignment="0" pref="126" max="32767" attributes="0"/>
+              <Component id="buttonElement3" alignment="0" pref="126" max="32767" attributes="0"/>
+              <Component id="buttonElement5" alignment="0" pref="126" max="32767" attributes="0"/>
+              <Component id="buttonElement7" alignment="0" pref="126" max="32767" attributes="0"/>
+              <Component id="buttonElement8" alignment="0" pref="126" max="32767" attributes="0"/>
+              <Component id="buttonElement9" alignment="0" pref="126" max="32767" attributes="0"/>
+              <Component id="buttonElement4" alignment="0" max="32767" attributes="0"/>
+              <Component id="buttonElement6" alignment="0" max="32767" attributes="0"/>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <Component id="buttonHidePanel" min="-2" pref="42" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="buttonElement1" min="-2" pref="42" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="buttonElement2" min="-2" pref="42" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="buttonElement3" min="-2" pref="42" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="buttonElement4" min="-2" pref="42" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="buttonElement5" min="-2" pref="42" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="buttonElement6" min="-2" pref="42" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="buttonElement7" min="-2" pref="42" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="buttonElement8" min="-2" pref="42" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="buttonElement9" pref="44" max="32767" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+      </Layout>
+      <SubComponents>
+        <Component class="javax.swing.JButton" name="buttonHidePanel">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Hide Menu"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonHidePanelActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="buttonElement1">
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonElement1ActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="buttonElement2">
+        </Component>
+        <Component class="javax.swing.JButton" name="buttonElement3">
+        </Component>
+        <Component class="javax.swing.JButton" name="buttonElement4">
+        </Component>
+        <Component class="javax.swing.JButton" name="buttonElement5">
+        </Component>
+        <Component class="javax.swing.JButton" name="buttonElement6">
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonElement6ActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="buttonElement7">
+        </Component>
+        <Component class="javax.swing.JButton" name="buttonElement8">
+        </Component>
+        <Component class="javax.swing.JButton" name="buttonElement9">
+        </Component>
+      </SubComponents>
+    </Container>
     <Component class="javax.swing.JLabel" name="labelScenario">
       <Properties>
         <Property name="horizontalAlignment" type="int" value="4"/>
@@ -45,7 +137,7 @@
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="770" y="10" width="-1" height="-1"/>
+          <AbsoluteConstraints x="600" y="10" width="-1" height="-1"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -57,7 +149,7 @@
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="700" y="10" width="-1" height="-1"/>
+          <AbsoluteConstraints x="530" y="10" width="-1" height="-1"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -208,7 +300,7 @@
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="480" y="10" width="-1" height="-1"/>
+          <AbsoluteConstraints x="370" y="10" width="-1" height="-1"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -498,6 +590,16 @@
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
           <AbsoluteConstraints x="35" y="39" width="-1" height="-1"/>
+        </Constraint>
+      </Constraints>
+    </Component>
+    <Component class="javax.swing.JButton" name="buttonFinishTurn">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Finish Turn"/>
+      </Properties>
+      <Constraints>
+        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+          <AbsoluteConstraints x="753" y="3" width="110" height="30"/>
         </Constraint>
       </Constraints>
     </Component>
