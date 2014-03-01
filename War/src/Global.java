@@ -11,4 +11,5 @@
 public class Global {
     public static int intScenario = 1;
     public static int intOpponent = 0; //if 1, against player. 0 means AI
+    public static int weather = 0;
 }
