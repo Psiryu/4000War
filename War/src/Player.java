@@ -16,6 +16,7 @@ public class Player extends Game
         protected Node capital;
         protected ArrayList combatUnitList;
         protected int politicalPower;
+        protected int politicalPowerPreviousState;
         protected boolean isComp;
         protected int playerID;
         

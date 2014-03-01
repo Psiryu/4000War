@@ -27,4 +27,13 @@ public class Game
         Global.weather = (int) (5 * random.nextDouble());
     }
     
+    void setSeason(int season)
+    {
+        Global.season = season;
+    }
+    
+    int getSeason()
+    {
+        return Global.season;
+    }
 }

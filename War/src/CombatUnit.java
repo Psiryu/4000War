@@ -15,6 +15,8 @@ public class CombatUnit extends Game
     int size;
     int healthRating; /*OUT OF XX*/
     int distanceFromCapital; /*Possible can FUNCTION*/
+    int timeStationary;
+    Node previousLocation;
     Node location;
     
     public CombatUnit(int _cUnitID, int _size, int _healthRating, int distance, int _playerID, Player _faction)
@@ -24,26 +26,36 @@ public class CombatUnit extends Game
         healthRating = _healthRating;
         distanceFromCapital = distance;    /*probably have to get distance from node class*/
         faction = _faction;
-
     }
-    
-    
+        
     int GetBattleStrengh()
     {
-        int strength;
-        
+        int strength;        
         
         /*strength = size + politicalPower*/
         int metricOne= distanceFromCapital;
         if (distanceFromCapital >20)
         {
             metricOne = 0;
-        }
-        
-        strength = metricOne + (faction.politicalPower / 100) *10 + size - (healthRating / 100)*20;
-        
+        }        
+        strength = metricOne + (faction.politicalPower / 100) *10 + size - (healthRating / 100)*20;        
         return strength;
     }
     
+    void setHealthRating()
+    {
+        healthRating = timeStationary + Global.season + Global.weather;
+    }
     
+    void setSize()
+    {
+        
+    }
+    
+    void setTimeStationary()
+    {
+        timeStationary++;
+        if (timeStationary > 3)
+            timeStationary = 3;
+    }
 }

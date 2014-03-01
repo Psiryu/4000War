@@ -17,9 +17,9 @@ public class Map extends javax.swing.JFrame {
         initComponents();
         
         if((Global.intOpponent) == 1)
-            labelOpponent.setText("Against Player");
+            labelOpponent.setText("Player");
         else
-            labelOpponent.setText("Against AI");
+            labelOpponent.setText("AI");
         
         labelScenario.setText("Scenario: " + Global.intScenario);
     }
