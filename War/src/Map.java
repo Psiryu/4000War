@@ -48,6 +48,19 @@ public class Map extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         nodePlaceholder1 = new javax.swing.JButton();
+        nodePlaceholder2 = new javax.swing.JButton();
+        nodePlaceholder3 = new javax.swing.JButton();
+        nodePlaceholder4 = new javax.swing.JButton();
+        nodePlaceholder5 = new javax.swing.JButton();
+        nodePlaceholder6 = new javax.swing.JButton();
+        nodePlaceholder7 = new javax.swing.JButton();
+        nodePlaceholder8 = new javax.swing.JButton();
+        nodePlaceholder9 = new javax.swing.JButton();
+        nodePlaceholder10 = new javax.swing.JButton();
+        nodePlaceholder11 = new javax.swing.JButton();
+        nodePlaceholder12 = new javax.swing.JButton();
+        nodePlaceholder13 = new javax.swing.JButton();
+        nodePlaceholder14 = new javax.swing.JButton();
         scenarioMap = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -60,12 +73,12 @@ public class Map extends javax.swing.JFrame {
 
         labelScenario.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         labelScenario.setText("text");
-        getContentPane().add(labelScenario, new org.netbeans.lib.awtextra.AbsoluteConstraints(815, 9, -1, -1));
+        getContentPane().add(labelScenario, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 10, -1, -1));
 
         labelOpponent.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         labelOpponent.setText("text");
         labelOpponent.setName("labelOpponent"); // NOI18N
-        getContentPane().add(labelOpponent, new org.netbeans.lib.awtextra.AbsoluteConstraints(757, 9, -1, -1));
+        getContentPane().add(labelOpponent, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 10, -1, -1));
 
         buttonMenu.setText("Main Menu");
         buttonMenu.setToolTipText("");
@@ -146,7 +159,7 @@ public class Map extends javax.swing.JFrame {
                 .addContainerGap(13, Short.MAX_VALUE))
         );
 
-        getContentPane().add(menuInfo, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 500, -1, -1));
+        getContentPane().add(menuInfo, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 490, -1, -1));
 
         jLabel9.setText("jLabel9");
         getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 10, -1, -1));
@@ -159,7 +172,137 @@ public class Map extends javax.swing.JFrame {
                 nodePlaceholder1ActionPerformed(evt);
             }
         });
-        getContentPane().add(nodePlaceholder1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 100, 30, 30));
+        getContentPane().add(nodePlaceholder1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 200, 30, 30));
+
+        nodePlaceholder2.setBackground(new java.awt.Color(0, 0, 0));
+        nodePlaceholder2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Node-Button.jpg"))); // NOI18N
+        nodePlaceholder2.setOpaque(false);
+        nodePlaceholder2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nodePlaceholder2ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(nodePlaceholder2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 100, 30, 30));
+
+        nodePlaceholder3.setBackground(new java.awt.Color(0, 0, 0));
+        nodePlaceholder3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Node-Button.jpg"))); // NOI18N
+        nodePlaceholder3.setOpaque(false);
+        nodePlaceholder3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nodePlaceholder3ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(nodePlaceholder3, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 120, 30, 30));
+
+        nodePlaceholder4.setBackground(new java.awt.Color(0, 0, 0));
+        nodePlaceholder4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Node-Button.jpg"))); // NOI18N
+        nodePlaceholder4.setOpaque(false);
+        nodePlaceholder4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nodePlaceholder4ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(nodePlaceholder4, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 160, 30, 30));
+
+        nodePlaceholder5.setBackground(new java.awt.Color(0, 0, 0));
+        nodePlaceholder5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Node-Button.jpg"))); // NOI18N
+        nodePlaceholder5.setOpaque(false);
+        nodePlaceholder5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nodePlaceholder5ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(nodePlaceholder5, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 220, 30, 30));
+
+        nodePlaceholder6.setBackground(new java.awt.Color(0, 0, 0));
+        nodePlaceholder6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Node-Button.jpg"))); // NOI18N
+        nodePlaceholder6.setOpaque(false);
+        nodePlaceholder6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nodePlaceholder6ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(nodePlaceholder6, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 250, 30, 30));
+
+        nodePlaceholder7.setBackground(new java.awt.Color(0, 0, 0));
+        nodePlaceholder7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Node-Button.jpg"))); // NOI18N
+        nodePlaceholder7.setOpaque(false);
+        nodePlaceholder7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nodePlaceholder7ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(nodePlaceholder7, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 250, 30, 30));
+
+        nodePlaceholder8.setBackground(new java.awt.Color(0, 0, 0));
+        nodePlaceholder8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Node-Button.jpg"))); // NOI18N
+        nodePlaceholder8.setOpaque(false);
+        nodePlaceholder8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nodePlaceholder8ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(nodePlaceholder8, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 290, 30, 30));
+
+        nodePlaceholder9.setBackground(new java.awt.Color(0, 0, 0));
+        nodePlaceholder9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Node-Button.jpg"))); // NOI18N
+        nodePlaceholder9.setOpaque(false);
+        nodePlaceholder9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nodePlaceholder9ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(nodePlaceholder9, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 310, 30, 30));
+
+        nodePlaceholder10.setBackground(new java.awt.Color(0, 0, 0));
+        nodePlaceholder10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Node-Button.jpg"))); // NOI18N
+        nodePlaceholder10.setOpaque(false);
+        nodePlaceholder10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nodePlaceholder10ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(nodePlaceholder10, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 320, 30, 30));
+
+        nodePlaceholder11.setBackground(new java.awt.Color(0, 0, 0));
+        nodePlaceholder11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Node-Button.jpg"))); // NOI18N
+        nodePlaceholder11.setOpaque(false);
+        nodePlaceholder11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nodePlaceholder11ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(nodePlaceholder11, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 300, 30, 30));
+
+        nodePlaceholder12.setBackground(new java.awt.Color(0, 0, 0));
+        nodePlaceholder12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Node-Button.jpg"))); // NOI18N
+        nodePlaceholder12.setOpaque(false);
+        nodePlaceholder12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nodePlaceholder12ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(nodePlaceholder12, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 300, 30, 30));
+
+        nodePlaceholder13.setBackground(new java.awt.Color(0, 0, 0));
+        nodePlaceholder13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Node-Button.jpg"))); // NOI18N
+        nodePlaceholder13.setOpaque(false);
+        nodePlaceholder13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nodePlaceholder13ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(nodePlaceholder13, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 440, 30, 30));
+
+        nodePlaceholder14.setBackground(new java.awt.Color(0, 0, 0));
+        nodePlaceholder14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Node-Button.jpg"))); // NOI18N
+        nodePlaceholder14.setOpaque(false);
+        nodePlaceholder14.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nodePlaceholder14ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(nodePlaceholder14, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 200, 30, 30));
 
         scenarioMap.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Map1_Sulla.png"))); // NOI18N
         scenarioMap.setText("jLabel1");
@@ -292,6 +435,19 @@ public class Map extends javax.swing.JFrame {
     private javax.swing.JLabel labelScenario;
     private javax.swing.JPanel menuInfo;
     private javax.swing.JButton nodePlaceholder1;
+    private javax.swing.JButton nodePlaceholder10;
+    private javax.swing.JButton nodePlaceholder11;
+    private javax.swing.JButton nodePlaceholder12;
+    private javax.swing.JButton nodePlaceholder13;
+    private javax.swing.JButton nodePlaceholder14;
+    private javax.swing.JButton nodePlaceholder2;
+    private javax.swing.JButton nodePlaceholder3;
+    private javax.swing.JButton nodePlaceholder4;
+    private javax.swing.JButton nodePlaceholder5;
+    private javax.swing.JButton nodePlaceholder6;
+    private javax.swing.JButton nodePlaceholder7;
+    private javax.swing.JButton nodePlaceholder8;
+    private javax.swing.JButton nodePlaceholder9;
     private javax.swing.JLabel scenarioMap;
     // End of variables declaration//GEN-END:variables
 }
