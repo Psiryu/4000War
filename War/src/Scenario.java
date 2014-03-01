@@ -27,9 +27,9 @@ public class Scenario
                     listOfNodes[i].name = names[i];
                     listOfNodes[i].distanceFromCapitalBlue = capitalDistances[i][0];
                     listOfNodes[i].distanceFromCapitalRed = capitalDistances[i][1];
-                    if (names[i] == "Roma")
+                    if ("Roma".equals(names[i]))
                         listOfNodes[i].isCapitalBlue = true;
-                    else if (names[i] == "Brindis")
+                    else if ("Brindis".equals(names[i]))
                         listOfNodes[i].isCapitalRed = true;
                 }
                 
