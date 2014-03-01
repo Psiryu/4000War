@@ -10,21 +10,17 @@ import java.util.ArrayList;
  */
 public class Player extends Game
 {
-        
-    
-    
         protected Node capital;
         protected ArrayList combatUnitList;
         protected int politicalPower;
         protected int politicalPowerPreviousState;
+        protected int politicalPowerDecrease;
         protected boolean isComp;
         protected int playerID;
         
         protected int aggregateDistanceFromCapital;
         protected int totalInitialArmy;
         protected int totalCurrentArmy;
-        
-        
         
         /*Constructor*/
         public Player(boolean _isComp,Node _capital, int id)
@@ -35,9 +31,7 @@ public class Player extends Game
             capital = _capital;
             /*NOW We place the COMBATS UNIT ACCORDING TO SCENARIO SPECIFICATIONS*/
             
-        }
-        
-        
+        }  
         
         /*GETS AND SETS*/
         public int getPolitcalPower()
@@ -46,7 +40,14 @@ public class Player extends Game
         }
         public void setPoliticalPower(int x)
         {
+            politicalPowerPreviousState = politicalPower;
             politicalPower = x;
+            if (politicalPower < politicalPowerPreviousState)
+                politicalPowerDecrease = politicalPower - politicalPowerPreviousState;
+        }
+        public int getPoliticalPowerDecrease()
+        {
+            return politicalPowerDecrease;
         }
         
         public boolean getIsComp()
@@ -59,8 +60,7 @@ public class Player extends Game
         }
         
         public int AdjustPoliticalPower()
-        {
-            
+        {            
             int metricOne = aggregateDistanceFromCapital;
             
             if (metricOne > 20)
@@ -76,12 +76,15 @@ public class Player extends Game
             
             politicalPower = 100 - metricOne - (50-(totalCurrentArmy/totalInitialArmy)*50) - metricTwo;
             
-            return politicalPower;
-            
-            
-            
+            return politicalPower;        
         }
         
+        public void setAggDistance()
+        {
+            int calculated = 0;
+            
+            aggregateDistanceFromCapital = calculated;
+        }
         
     
     

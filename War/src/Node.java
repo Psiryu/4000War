@@ -8,19 +8,15 @@
  *
  * @author Fearless Jay
  */
-public class Node 
-
+public class Node
 {
     int terrainHeight; /*Out Of XX*/
-    boolean isCity;
+    boolean isCapitalRed;
+    boolean isCapitalBlue;
     Road[] listOfRoads;
     int distanceFromCapitalRed;
     int distanceFromCapitalBlue;
     int coordinateX;
     int coordinateY;
-    
-    
-    
-    
-    
+    String name;
 }
