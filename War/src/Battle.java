@@ -1,3 +1,6 @@
+
+import java.util.Random;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -30,20 +33,26 @@ public class Battle
         
     }
     
-    public void doBattle()
+    public int doBattle()
     {
         if(getTotalBattleStrength(Red)< getTotalBattleStrength(Blue))
         {
-            /*Blue Wins*/
+            return 0;
         }
         else if(getTotalBattleStrength(Red)> getTotalBattleStrength(Blue))
         {
-            /*Red Wins*/
+            return 1;
         }
         else
         {
-            /*Tie Condition*/
+            Random random = new Random();
+            if (random.nextDouble() <= 0.01)
+                if(random.nextDouble() > 0.5)
+                    return 2;
+                else
+                    return 3;
         }
+        return 4;
     }
     
     

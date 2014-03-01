@@ -31,9 +31,7 @@ public class Player extends Game
             capital = _capital;
             /*NOW We place the COMBATS UNIT ACCORDING TO SCENARIO SPECIFICATIONS*/
             
-        }
-        
-        
+        }  
         
         /*GETS AND SETS*/
         public int getPolitcalPower()
@@ -81,7 +79,12 @@ public class Player extends Game
             return politicalPower;        
         }
         
-        
+        public void setAggDistance()
+        {
+            int calculated = 0;
+            
+            aggregateDistanceFromCapital = calculated;
+        }
         
     
     
