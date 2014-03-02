@@ -14,4 +14,6 @@ public class Global {
     public static Boolean chosenCharacter = false; // toggle for the character player 1 choses 
     public static int weather;
     public static int season;
+    public static String teamOne = "Sparta";
+    public static String teamTwo = "Persia";
 }

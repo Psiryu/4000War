@@ -38,7 +38,7 @@ public class MainMenu extends javax.swing.JFrame {
         buttonHowTo = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setBackground(new java.awt.Color(255, 255, 255));
+        setBackground(new java.awt.Color(204, 204, 204));
         setMaximumSize(new java.awt.Dimension(362, 253));
         setMinimumSize(new java.awt.Dimension(362, 253));
         setResizable(false);
@@ -159,19 +159,19 @@ public class MainMenu extends javax.swing.JFrame {
 
     private void buttonScenario1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonScenario1ActionPerformed
         Global.intScenario = 1;
-        new Map().setVisible(true);
+        new Teams().setVisible(true);
         MainMenu.this.dispose();
     }//GEN-LAST:event_buttonScenario1ActionPerformed
 
     private void buttonScenario2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonScenario2ActionPerformed
         Global.intScenario = 2;
-        new Map().setVisible(true);
+        new Teams().setVisible(true);
         MainMenu.this.dispose();
     }//GEN-LAST:event_buttonScenario2ActionPerformed
 
     private void buttonScenario3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonScenario3ActionPerformed
         Global.intScenario = 3;
-        new Map().setVisible(true);
+        new Teams().setVisible(true);
         MainMenu.this.dispose();
     }//GEN-LAST:event_buttonScenario3ActionPerformed
 
@@ -221,6 +221,7 @@ public class MainMenu extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new MainMenu().setVisible(true);
             }
