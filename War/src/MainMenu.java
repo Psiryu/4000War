@@ -15,7 +15,7 @@ public class MainMenu extends javax.swing.JFrame {
      */
     public MainMenu() {
         initComponents();
-        Global.intOpponent = 0;
+        Global.opponent = false;
     }
 
     /**
@@ -176,11 +176,11 @@ public class MainMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonScenario3ActionPerformed
 
     private void radioAIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioAIActionPerformed
-        Global.intOpponent = 0;
+        Global.opponent = false;
     }//GEN-LAST:event_radioAIActionPerformed
 
     private void radioPlayerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioPlayerActionPerformed
-        Global.intOpponent = 1;
+        Global.opponent = true;
     }//GEN-LAST:event_radioPlayerActionPerformed
 
     private void buttonEndActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonEndActionPerformed

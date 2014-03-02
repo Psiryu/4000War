@@ -18,6 +18,8 @@ public class Teams extends javax.swing.JFrame {
         
         radioTeam1.setText(Global.teamOne);
         radioTeam2.setText(Global.teamTwo);
+        
+        Global.chosenTeam = false;
     }
 
     /**
@@ -52,6 +54,11 @@ public class Teams extends javax.swing.JFrame {
         radioTeam1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         radioTeam1.setSelected(true);
         radioTeam1.setText("jRadioButton1");
+        radioTeam1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radioTeam1ActionPerformed(evt);
+            }
+        });
 
         buttongroupTeam.add(radioTeam2);
         radioTeam2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -68,26 +75,26 @@ public class Teams extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(36, 36, 36)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(labelSubtitle)
-                            .addComponent(labelTitle)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(70, 70, 70)
-                                .addComponent(labelOr))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(67, 67, 67)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(radioTeam2)
-                            .addComponent(radioTeam1))))
-                .addContainerGap(58, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addGap(84, 84, 84))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(106, 106, 106)
+                        .addComponent(labelOr))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(67, 67, 67)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(radioTeam2)
+                            .addComponent(radioTeam1)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(50, 50, 50)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(labelSubtitle)
+                            .addComponent(labelTitle))))
+                .addContainerGap(58, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -114,6 +121,10 @@ public class Teams extends javax.swing.JFrame {
         new Map().setVisible(true);
         Teams.this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void radioTeam1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioTeam1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_radioTeam1ActionPerformed
 
     /**
      * @param args the command line arguments

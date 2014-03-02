@@ -32,7 +32,7 @@ public class Scenario {
 
     void setPlayers() {
         if (Global.opponent) {
-            if (Global.chosenCharacter) {
+            if (Global.chosenTeam) {
                 redPlayer = new Player(false, listOfNodes[13], 0);
                 bluePlayer = new Player(false, listOfNodes[10], 1);
             } else {
@@ -40,7 +40,7 @@ public class Scenario {
                 redPlayer = new Player(false, listOfNodes[10], 1);
             }
         } else {
-            if (Global.chosenCharacter) {
+            if (Global.chosenTeam) {
                 redPlayer = new Player(false, listOfNodes[13], 0);
                 bluePlayer = new Player(true, listOfNodes[10], 1);
             } else {
