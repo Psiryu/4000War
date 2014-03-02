@@ -11,7 +11,7 @@
 public class Road 
 {
     int roadID;
-    int timeToTransverse;
+    Boolean isNaval;
     Node locationA;
     Node locationB;
     int capacity; 
