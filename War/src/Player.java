@@ -11,7 +11,7 @@ import java.util.ArrayList;
 public class Player extends Game
 {
         protected Node capital;
-        protected ArrayList combatUnitList;
+        protected ArrayList<CombatUnit> combatUnits = new ArrayList<CombatUnit>();
         protected int politicalPower;
         protected int politicalPowerPreviousState;
         protected int politicalPowerDecrease;
@@ -86,6 +86,9 @@ public class Player extends Game
             aggregateDistanceFromCapital = calculated;
         }
         
-    
+        public void addUnit (CombatUnit addition)
+        {
+            combatUnits.add(addition);
+        }
     
 }

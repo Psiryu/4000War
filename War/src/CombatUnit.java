@@ -19,14 +19,16 @@ public class CombatUnit extends Game
     Node previousLocation;
     Node location;
     int checkToggle = 0;
+    Boolean isFleet;
     
-    public CombatUnit(int _cUnitID, int _size, int _healthRating, int distance, int _playerID, Player _faction)
+    public CombatUnit(Boolean _isFleet, int _cUnitID, int _size, int _healthRating, Node _location, Player _faction)
     {
         cUnitID = _cUnitID;
         size = _size;
         healthRating = _healthRating;
-        distanceFromCapital = distance;    /*probably have to get distance from node class*/
+        location = _location;
         faction = _faction;
+        isFleet = _isFleet;
     }
         
     int GetBattleStrengh()

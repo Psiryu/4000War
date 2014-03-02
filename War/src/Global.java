@@ -10,7 +10,8 @@
  */
 public class Global {
     public static int intScenario = 1;
-    public static int intOpponent = 0; //if 1, against player. 0 means AI
+    public static Boolean opponent = false; //if true, against player. false means AI
+    public static Boolean chosenCharacter = false; // toggle for the character player 1 choses 
     public static int weather;
     public static int season;
 }

@@ -36,4 +36,14 @@ public class Game
     {
         return Global.season;
     }
+    
+    void increaseTurnCount ()
+    {
+        turnCount++;
+    }
+    
+    int getTurnCount()
+    {
+        return turnCount;
+    }
 }
