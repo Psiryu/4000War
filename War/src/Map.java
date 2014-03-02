@@ -87,9 +87,9 @@ public class Map extends javax.swing.JFrame {
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        panelActions.setBackground(new java.awt.Color(255, 255, 255));
         panelActions.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         panelActions.setEnabled(false);
-        panelActions.setOpaque(false);
 
         buttonHidePanel.setText("Hide Menu");
         buttonHidePanel.addActionListener(new java.awt.event.ActionListener() {
@@ -116,12 +116,12 @@ public class Map extends javax.swing.JFrame {
             panelActionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(buttonElement1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(buttonHidePanel, javax.swing.GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE)
-            .addComponent(buttonElement2, javax.swing.GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE)
-            .addComponent(buttonElement3, javax.swing.GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE)
-            .addComponent(buttonElement5, javax.swing.GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE)
-            .addComponent(buttonElement7, javax.swing.GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE)
-            .addComponent(buttonElement8, javax.swing.GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE)
-            .addComponent(buttonElement9, javax.swing.GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE)
+            .addComponent(buttonElement2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(buttonElement3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(buttonElement5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(buttonElement7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(buttonElement8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(buttonElement9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(buttonElement4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(buttonElement6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
@@ -215,7 +215,7 @@ public class Map extends javax.swing.JFrame {
                 .addGroup(menuInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel3)
                     .addComponent(jLabel5))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 154, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(menuInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING))
@@ -412,10 +412,9 @@ public class Map extends javax.swing.JFrame {
         panelActions.setVisible(true);
         panelActions.setEnabled(true);
     }//GEN-LAST:event_nodePlaceholder1ActionPerformed
- 
 
     private void nodePlaceholder2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nodePlaceholder2ActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_nodePlaceholder2ActionPerformed
 
     private void nodePlaceholder3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nodePlaceholder3ActionPerformed
