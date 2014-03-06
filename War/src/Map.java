@@ -408,7 +408,7 @@ public class Map extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonExitActionPerformed
 
     private void nodePlaceholder1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nodePlaceholder1ActionPerformed
-        jLabel9.setText("Derpedy WINNING.");
+        jLabel9.setText(Scenario.listOfNodes[2].name);
         panelActions.setVisible(true);
         panelActions.setEnabled(true);
     }//GEN-LAST:event_nodePlaceholder1ActionPerformed
@@ -422,7 +422,7 @@ public class Map extends javax.swing.JFrame {
     }//GEN-LAST:event_nodePlaceholder3ActionPerformed
 
     private void nodePlaceholder4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nodePlaceholder4ActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_nodePlaceholder4ActionPerformed
 
     private void nodePlaceholder5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nodePlaceholder5ActionPerformed
