@@ -19,9 +19,11 @@ public class Node
     Road[] listOfRoads;
     int coordinateY;*/
     String name;
+    int id;
     
-    public Node (boolean _isCapitalRed, boolean _isCapitalBlue, int _distanceFromCapitalRed, int _distanceFromCapitalBlue, String _name)
+    public Node (int _id, boolean _isCapitalRed, boolean _isCapitalBlue, int _distanceFromCapitalRed, int _distanceFromCapitalBlue, String _name)
     {
+        id = _id;
         isCapitalRed = _isCapitalRed;
         isCapitalBlue = _isCapitalBlue;
         distanceFromCapitalRed = _distanceFromCapitalRed;

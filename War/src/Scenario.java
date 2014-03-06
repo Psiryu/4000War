@@ -53,7 +53,7 @@ public class Scenario {
 
     void setMapParameters() {
         String[] names = {"Utica", "Fidenza", "Faenza", "Volterra", "Saturnia", "Senigalia", "Clusium", "Palestrina", "Naples", "Nola", "Brindis", "Dyrrhachulum", "Kavala", "Roma"};
-        // storage of the distance to capitol of Blue and Red respectively
+        // storage of the distance to capital of Blue and Red respectively
         int[][] capitalDistances = {{1, 5}, {3, 6}, {2, 5}, {2, 5}, {2, 5}, {1, 4}, {1, 4}, {1, 4}, {1, 2}, {2, 1}, {3, 0}, {4, 1}, {5, 2}, {0, 3}};
         // storage of road capacity {0..2}, location a, and location b respectively
         int[][] locations = {{2, 0, 13}, {2, 1, 3}, {2, 2, 5}, {1, 3, 5}, {2, 3, 4}, {2, 4, 6}, {2, 7, 13}, {0, 5, 13}, {1, 7, 13}, {2, 8, 13}, {2, 8, 9}, {2, 9, 10}, {2, 10, 11}, {2, 11, 12}};
@@ -73,7 +73,7 @@ public class Scenario {
                     redCapital = true;
                     break;
             }
-            listOfNodes[i] = new Node(redCapital, blueCapital, capitalDistances[i][1], capitalDistances[i][0], names[i]);
+            listOfNodes[i] = new Node(i, redCapital, blueCapital, capitalDistances[i][1], capitalDistances[i][0], names[i]);
         }
         /*for (int i = 0; i < 14; i++) {
             listOfNodes[i].name = names[i];
