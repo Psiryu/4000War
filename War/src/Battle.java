@@ -6,55 +6,41 @@ import java.util.Random;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author Fearless Jay
  */
-public class Battle 
-{
+public class Battle {
+
     CombatUnit[] Red;
     CombatUnit[] Blue;
-    
+
     String[] report;
     Node battleLocation;
     int turnNo;
-    
-    public int getTotalBattleStrength(CombatUnit[] cUnit)
-    {
+
+    public int getTotalBattleStrength(CombatUnit[] cUnit) {
         int total = 0;
-        for (int i = 0 ; i < cUnit.length; i++)
-        {
+        for (int i = 0; i < cUnit.length; i++) {
             total += cUnit[i].GetBattleStrengh();
             /*add weather effects*/
-            
+
         }
         return total;
-        
+
     }
-    
-    public int doBattle()
-    {
-        if(getTotalBattleStrength(Red)< getTotalBattleStrength(Blue))
-        {
+
+    public int doBattle(CombatUnit[] red, CombatUnit[] blue) {
+        if (getTotalBattleStrength(red) > getTotalBattleStrength(blue)) {
+            /*red wins*/
             return 0;
-        }
-        else if(getTotalBattleStrength(Red)> getTotalBattleStrength(Blue))
-        {
+        } else if (getTotalBattleStrength(red) < getTotalBattleStrength(blue)) {
+            /*blue wins*/
             return 1;
+        } else {
+            /*tie*/
+            return 2;
         }
-        else
-        {
-            Random random = new Random();
-            if (random.nextDouble() <= 0.01)
-                if(random.nextDouble() > 0.5)
-                    return 2;
-                else
-                    return 3;
-        }
-        return 4;
     }
-    
-    
-    
+
 }
