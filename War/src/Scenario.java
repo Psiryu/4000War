@@ -16,15 +16,16 @@ public class Scenario {
     public static Road[] listOfRoads;
     public static CombatUnit[] listOfUnits;
     //int scenarioID = 0;
-    public static Player redPlayer, bluePlayer;
+    public static Player redPlayer;
+    public static Player bluePlayer;
     public static Random random = new Random();
     public static int[] randomNums = new int[2];
 
     public void Initialize(int _scenarioID) {
         switch (_scenarioID) {
             case 0:
-                setPlayers();
                 setMapParameters();
+                setPlayers();
                 setCombatUnits();
                 break;
         }
@@ -60,7 +61,21 @@ public class Scenario {
         listOfNodes = new Node[14];
         listOfUnits = new CombatUnit[8];
         // for each of the cities
-        for (int i = 0; i < 14; i++) {
+        for (int i =0; i < 14 ;i++)
+        {
+            boolean redCapital = false;
+            boolean blueCapital = false;
+            switch (names[i]) {
+                case "Roma":
+                    blueCapital = true;
+                    break;
+                case "Brindis":
+                    redCapital = true;
+                    break;
+            }
+            listOfNodes[i] = new Node(redCapital, blueCapital, capitalDistances[i][1], capitalDistances[i][0], names[i]);
+        }
+        /*for (int i = 0; i < 14; i++) {
             listOfNodes[i].name = names[i];
             listOfNodes[i].distanceFromCapitalBlue = capitalDistances[i][0];
             listOfNodes[i].distanceFromCapitalRed = capitalDistances[i][1];
@@ -73,15 +88,20 @@ public class Scenario {
                     listOfNodes[i].isCapitalRed = true;
                     break;
             }
-        }
+        }*/
         // for each of the roads
         for (int j = 0; j < 14; j++) {
-            listOfRoads[j].capacity = locations[j][0];
+            boolean isNaval = false;
+            if (j == 0 || j == 12) {
+                isNaval = true;
+            }
+            listOfRoads[j] = new Road(j,locations[j][0], listOfNodes[locations[j][1]], listOfNodes[locations[j][2]], isNaval);
+            /*listOfRoads[j].capacity = locations[j][0];
             listOfRoads[j].locationA = listOfNodes[locations[j][1]];
             listOfRoads[j].locationB = listOfNodes[locations[j][2]];
             if (j == 0 || j == 12) {
                 listOfRoads[j].isNaval = true;
-            }
+            }*/
         }
     }
 

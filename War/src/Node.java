@@ -13,15 +13,19 @@ public class Node
     int terrainHeight; /*Out Of XX*/
     boolean isCapitalRed;
     boolean isCapitalBlue;
-    Road[] listOfRoads;
     int distanceFromCapitalRed;
     int distanceFromCapitalBlue;
-    int coordinateX;
-    int coordinateY;
+    /*int coordinateX;
+    Road[] listOfRoads;
+    int coordinateY;*/
     String name;
     
-    public Node ()
+    public Node (boolean _isCapitalRed, boolean _isCapitalBlue, int _distanceFromCapitalRed, int _distanceFromCapitalBlue, String _name)
     {
-        
+        isCapitalRed = _isCapitalRed;
+        isCapitalBlue = _isCapitalBlue;
+        distanceFromCapitalRed = _distanceFromCapitalRed;
+        distanceFromCapitalBlue = _distanceFromCapitalBlue;
+        name = _name;
     }
 }

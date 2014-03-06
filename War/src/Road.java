@@ -11,11 +11,19 @@
 public class Road 
 {
     int roadID;
-    Boolean isNaval;
+    boolean isNaval;
     Node locationA;
     Node locationB;
     int capacity; 
     
+    Road(int _roadID,int _capacity, Node _locationA, Node _locationB, boolean _isNaval)
+    {
+        roadID = _roadID;
+        isNaval = _isNaval;
+        locationA = _locationA;
+        locationB = _locationB;
+        capacity = _capacity;
+    }
     
     Node GetTOLocation(Node FromLocation)    /* used to find out the destined NODE from FROM location*/
         {
