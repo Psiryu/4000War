@@ -12,16 +12,16 @@ import java.util.Random;
  */
 public class Scenario {
 
-    Node[] listOfNodes;
-    Road[] listOfRoads;
-    CombatUnit[] listOfUnits;
-    int scenarioID = 0;
-    Player redPlayer, bluePlayer;
-    Random random = new Random();
-    int[] randomNums = new int[2];
+    public static Node[] listOfNodes;
+    public static Road[] listOfRoads;
+    public static CombatUnit[] listOfUnits;
+    //int scenarioID = 0;
+    public static Player redPlayer, bluePlayer;
+    public static Random random = new Random();
+    public static int[] randomNums = new int[2];
 
-    void Initialize() {
-        switch (scenarioID) {
+    public void Initialize(int _scenarioID) {
+        switch (_scenarioID) {
             case 0:
                 setPlayers();
                 setMapParameters();

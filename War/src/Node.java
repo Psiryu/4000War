@@ -19,4 +19,9 @@ public class Node
     int coordinateX;
     int coordinateY;
     String name;
+    
+    public Node ()
+    {
+        
+    }
 }
