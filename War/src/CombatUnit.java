@@ -8,64 +8,62 @@
  *
  * @author Fearless Jay
  */
-public class CombatUnit extends Game
-{
+public class CombatUnit extends Game {
+
     Player faction; /**/
+
     int cUnitID;
     int size;
-    int healthRating; /*OUT OF XX*/
+    int illnessRating; /*OUT OF XX*/
+
     int distanceFromCapital; /*Possible can FUNCTION*/
+
     int timeStationary;
     Node previousLocation;
     Node location;
     int checkToggle = 0;
     Boolean isFleet;
-    
-    public CombatUnit(Boolean _isFleet, int _cUnitID, int _size, int _healthRating, Node _location, Player _faction)
-    {
+
+    public CombatUnit(Boolean _isFleet, int _cUnitID, int _size, int _healthRating, Node _location, Player _faction) {
         cUnitID = _cUnitID;
         size = _size;
-        healthRating = _healthRating;
+        illnessRating = _healthRating;
         location = _location;
         faction = _faction;
         isFleet = _isFleet;
     }
-        
-    int GetBattleStrengh()
-    {
-        int strength;        
-        
+
+    int GetBattleStrengh() {
+        int strength;
+
         /*strength = size + politicalPower*/
-        int metricOne= distanceFromCapital;
-        if (distanceFromCapital >20)
-        {
-            metricOne = 0;
-        }        
-        strength = metricOne + (faction.politicalPower / 100) *10 + size - (healthRating / 100)*20;        
+        int metricOne = distanceFromCapital;
+        if (distanceFromCapital > 20) {
+            metricOne = 20;
+        }
+        strength = (faction.politicalPower / 100) * 25 + size - (illnessRating / 100) * 20 - metricOne;
         return strength;
     }
-    
-    void setHealthRating()
-    {
-        healthRating = timeStationary + Global.season + Global.weather;
+
+    void setHealthRating() {
+        illnessRating = timeStationary + Global.season + Global.weather;
     }
-    
-    void setSize()
-    {
-        checkToggle = healthRating + faction.getPoliticalPowerDecrease();
-        if (checkToggle > 30)
+
+    void setSize() {
+        checkToggle = illnessRating + faction.getPoliticalPowerDecrease();
+        if (checkToggle > 30) {
             size--;
-    }
-    
-    void setTimeStationary()
-    {
-        if (location == previousLocation)
-        {
-            timeStationary++;
-            if (timeStationary > 3)
-                timeStationary = 3;
         }
-        else
+    }
+
+    void setTimeStationary() {
+        if (location == previousLocation) {
+            timeStationary++;
+            if (timeStationary > 3) {
+                timeStationary = 3;
+            }
+        } else {
             timeStationary = 0;
+        }
     }
 }
