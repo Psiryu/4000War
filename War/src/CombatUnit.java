@@ -18,7 +18,7 @@ public class CombatUnit extends Game {
 
     int distanceFromCapital; /*Possible can FUNCTION*/
 
-    int timeStationary;
+    int timeStationary; // use as indicator of attacker/defender
     Node previousLocation;
     Node location;
     int checkToggle = 0;
