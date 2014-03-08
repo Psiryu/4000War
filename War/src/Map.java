@@ -53,14 +53,16 @@ public class Map extends javax.swing.JFrame {
         buttonElement8 = new javax.swing.JButton();
         buttonElement9 = new javax.swing.JButton();
         menuInfo = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
+        labelInfo1 = new javax.swing.JLabel();
+        labelInfo2 = new javax.swing.JLabel();
+        labelInfo3 = new javax.swing.JLabel();
+        labelInfo4 = new javax.swing.JLabel();
+        labelInfo5 = new javax.swing.JLabel();
+        labelInfo6 = new javax.swing.JLabel();
+        labelInfo7 = new javax.swing.JLabel();
+        labelInfo8 = new javax.swing.JLabel();
+        buttonFinishTurn = new javax.swing.JButton();
+        panelMap = new javax.swing.JPanel();
         nodePlaceholder1 = new javax.swing.JButton();
         nodePlaceholder2 = new javax.swing.JButton();
         nodePlaceholder3 = new javax.swing.JButton();
@@ -76,7 +78,6 @@ public class Map extends javax.swing.JFrame {
         nodePlaceholder13 = new javax.swing.JButton();
         nodePlaceholder14 = new javax.swing.JButton();
         scenarioMap = new javax.swing.JLabel();
-        buttonFinishTurn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(204, 255, 255));
@@ -182,47 +183,53 @@ public class Map extends javax.swing.JFrame {
         menuInfo.setMinimumSize(new java.awt.Dimension(700, 70));
         menuInfo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel1.setText("These");
-        menuInfo.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, -1, -1));
+        labelInfo1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        labelInfo1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        labelInfo1.setText("These");
+        menuInfo.add(labelInfo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, -1, -1));
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel2.setText("Labels");
-        menuInfo.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 10, -1, -1));
+        labelInfo2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        labelInfo2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        labelInfo2.setText("Labels");
+        menuInfo.add(labelInfo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 10, -1, -1));
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel3.setText("Will");
-        menuInfo.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 10, -1, -1));
+        labelInfo3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        labelInfo3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        labelInfo3.setText("Will");
+        menuInfo.add(labelInfo3, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 10, -1, -1));
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel4.setText("Readjust");
-        menuInfo.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 10, -1, -1));
+        labelInfo4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        labelInfo4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        labelInfo4.setText("Readjust");
+        menuInfo.add(labelInfo4, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 10, -1, -1));
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel5.setText("are");
-        menuInfo.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 40, -1, -1));
+        labelInfo5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        labelInfo5.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        labelInfo5.setText("as");
+        menuInfo.add(labelInfo5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, -1, -1));
 
-        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel6.setText("needed");
-        menuInfo.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 40, -1, -1));
+        labelInfo6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        labelInfo6.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        labelInfo6.setText("they");
+        menuInfo.add(labelInfo6, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 40, -1, -1));
 
-        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel7.setText("as");
-        menuInfo.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, -1, -1));
+        labelInfo7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        labelInfo7.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        labelInfo7.setText("are");
+        menuInfo.add(labelInfo7, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 40, -1, -1));
 
-        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel8.setText("they");
-        menuInfo.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 40, -1, -1));
+        labelInfo8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        labelInfo8.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        labelInfo8.setText("needed");
+        menuInfo.add(labelInfo8, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 40, -1, -1));
 
         getContentPane().add(menuInfo, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 490, -1, -1));
+
+        buttonFinishTurn.setText("Finish Turn");
+        getContentPane().add(buttonFinishTurn, new org.netbeans.lib.awtextra.AbsoluteConstraints(753, 3, 110, 30));
+
+        panelMap.setMaximumSize(new java.awt.Dimension(820, 470));
+        panelMap.setMinimumSize(new java.awt.Dimension(820, 470));
 
         nodePlaceholder1.setBackground(new java.awt.Color(0, 0, 0));
         nodePlaceholder1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Node-Button.jpg"))); // NOI18N
@@ -232,7 +239,6 @@ public class Map extends javax.swing.JFrame {
                 nodePlaceholder1ActionPerformed(evt);
             }
         });
-        getContentPane().add(nodePlaceholder1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 440, 30, 30));
 
         nodePlaceholder2.setBackground(new java.awt.Color(0, 0, 0));
         nodePlaceholder2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Node-Button.jpg"))); // NOI18N
@@ -242,7 +248,6 @@ public class Map extends javax.swing.JFrame {
                 nodePlaceholder2ActionPerformed(evt);
             }
         });
-        getContentPane().add(nodePlaceholder2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 100, 30, 30));
 
         nodePlaceholder3.setBackground(new java.awt.Color(0, 0, 0));
         nodePlaceholder3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Node-Button.jpg"))); // NOI18N
@@ -252,7 +257,6 @@ public class Map extends javax.swing.JFrame {
                 nodePlaceholder3ActionPerformed(evt);
             }
         });
-        getContentPane().add(nodePlaceholder3, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 120, 30, 30));
 
         nodePlaceholder4.setBackground(new java.awt.Color(0, 0, 0));
         nodePlaceholder4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Node-Button.jpg"))); // NOI18N
@@ -262,7 +266,6 @@ public class Map extends javax.swing.JFrame {
                 nodePlaceholder4ActionPerformed(evt);
             }
         });
-        getContentPane().add(nodePlaceholder4, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 160, 30, 30));
 
         nodePlaceholder5.setBackground(new java.awt.Color(0, 0, 0));
         nodePlaceholder5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Node-Button.jpg"))); // NOI18N
@@ -272,7 +275,6 @@ public class Map extends javax.swing.JFrame {
                 nodePlaceholder5ActionPerformed(evt);
             }
         });
-        getContentPane().add(nodePlaceholder5, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 200, 30, 30));
 
         nodePlaceholder6.setBackground(new java.awt.Color(0, 0, 0));
         nodePlaceholder6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Node-Button.jpg"))); // NOI18N
@@ -282,7 +284,6 @@ public class Map extends javax.swing.JFrame {
                 nodePlaceholder6ActionPerformed(evt);
             }
         });
-        getContentPane().add(nodePlaceholder6, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 210, 30, 30));
 
         nodePlaceholder7.setBackground(new java.awt.Color(0, 0, 0));
         nodePlaceholder7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Node-Button.jpg"))); // NOI18N
@@ -292,7 +293,6 @@ public class Map extends javax.swing.JFrame {
                 nodePlaceholder7ActionPerformed(evt);
             }
         });
-        getContentPane().add(nodePlaceholder7, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 220, 30, 30));
 
         nodePlaceholder8.setBackground(new java.awt.Color(0, 0, 0));
         nodePlaceholder8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Node-Button.jpg"))); // NOI18N
@@ -302,7 +302,6 @@ public class Map extends javax.swing.JFrame {
                 nodePlaceholder8ActionPerformed(evt);
             }
         });
-        getContentPane().add(nodePlaceholder8, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 250, 30, 30));
 
         nodePlaceholder9.setBackground(new java.awt.Color(0, 0, 0));
         nodePlaceholder9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Node-Button.jpg"))); // NOI18N
@@ -312,7 +311,6 @@ public class Map extends javax.swing.JFrame {
                 nodePlaceholder9ActionPerformed(evt);
             }
         });
-        getContentPane().add(nodePlaceholder9, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 290, 30, 30));
 
         nodePlaceholder10.setBackground(new java.awt.Color(0, 0, 0));
         nodePlaceholder10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Node-Button.jpg"))); // NOI18N
@@ -322,7 +320,6 @@ public class Map extends javax.swing.JFrame {
                 nodePlaceholder10ActionPerformed(evt);
             }
         });
-        getContentPane().add(nodePlaceholder10, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 310, 30, 30));
 
         nodePlaceholder11.setBackground(new java.awt.Color(0, 0, 0));
         nodePlaceholder11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Node-Button.jpg"))); // NOI18N
@@ -332,7 +329,6 @@ public class Map extends javax.swing.JFrame {
                 nodePlaceholder11ActionPerformed(evt);
             }
         });
-        getContentPane().add(nodePlaceholder11, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 320, 30, 30));
 
         nodePlaceholder12.setBackground(new java.awt.Color(0, 0, 0));
         nodePlaceholder12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Node-Button.jpg"))); // NOI18N
@@ -342,7 +338,6 @@ public class Map extends javax.swing.JFrame {
                 nodePlaceholder12ActionPerformed(evt);
             }
         });
-        getContentPane().add(nodePlaceholder12, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 300, 30, 30));
 
         nodePlaceholder13.setBackground(new java.awt.Color(0, 0, 0));
         nodePlaceholder13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Node-Button.jpg"))); // NOI18N
@@ -352,7 +347,6 @@ public class Map extends javax.swing.JFrame {
                 nodePlaceholder13ActionPerformed(evt);
             }
         });
-        getContentPane().add(nodePlaceholder13, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 300, 30, 30));
 
         nodePlaceholder14.setBackground(new java.awt.Color(0, 0, 0));
         nodePlaceholder14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Node-Button.jpg"))); // NOI18N
@@ -362,7 +356,6 @@ public class Map extends javax.swing.JFrame {
                 nodePlaceholder14ActionPerformed(evt);
             }
         });
-        getContentPane().add(nodePlaceholder14, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 250, 30, 30));
 
         scenarioMap.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Map1_Sulla.png"))); // NOI18N
         scenarioMap.setText("jLabel1");
@@ -370,19 +363,111 @@ public class Map extends javax.swing.JFrame {
         scenarioMap.setMinimumSize(new java.awt.Dimension(800, 450));
         scenarioMap.setName(""); // NOI18N
         scenarioMap.setPreferredSize(new java.awt.Dimension(800, 450));
-        getContentPane().add(scenarioMap, new org.netbeans.lib.awtextra.AbsoluteConstraints(35, 39, -1, -1));
 
-        buttonFinishTurn.setText("Finish Turn");
-        getContentPane().add(buttonFinishTurn, new org.netbeans.lib.awtextra.AbsoluteConstraints(753, 3, 110, 30));
+        javax.swing.GroupLayout panelMapLayout = new javax.swing.GroupLayout(panelMap);
+        panelMap.setLayout(panelMapLayout);
+        panelMapLayout.setHorizontalGroup(
+            panelMapLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 820, Short.MAX_VALUE)
+            .addGroup(panelMapLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panelMapLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addGroup(panelMapLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(panelMapLayout.createSequentialGroup()
+                            .addGap(145, 145, 145)
+                            .addComponent(nodePlaceholder2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(40, 40, 40)
+                            .addComponent(nodePlaceholder3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(panelMapLayout.createSequentialGroup()
+                            .addGap(185, 185, 185)
+                            .addComponent(nodePlaceholder4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(panelMapLayout.createSequentialGroup()
+                            .addGap(195, 195, 195)
+                            .addComponent(nodePlaceholder5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(0, 0, 0)
+                            .addComponent(nodePlaceholder7, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(30, 30, 30)
+                            .addComponent(nodePlaceholder6, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(panelMapLayout.createSequentialGroup()
+                            .addGap(225, 225, 225)
+                            .addComponent(nodePlaceholder14, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(10, 10, 10)
+                            .addComponent(nodePlaceholder8, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(panelMapLayout.createSequentialGroup()
+                            .addGap(305, 305, 305)
+                            .addComponent(nodePlaceholder9, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(0, 0, 0)
+                            .addComponent(nodePlaceholder10, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(90, 90, 90)
+                            .addComponent(nodePlaceholder11, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(40, 40, 40)
+                            .addComponent(nodePlaceholder12, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(160, 160, 160)
+                            .addComponent(nodePlaceholder13, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(panelMapLayout.createSequentialGroup()
+                            .addGap(75, 75, 75)
+                            .addComponent(nodePlaceholder1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(scenarioMap, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+        panelMapLayout.setVerticalGroup(
+            panelMapLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 470, Short.MAX_VALUE)
+            .addGroup(panelMapLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panelMapLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addGroup(panelMapLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(panelMapLayout.createSequentialGroup()
+                            .addGap(61, 61, 61)
+                            .addGroup(panelMapLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(nodePlaceholder2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(panelMapLayout.createSequentialGroup()
+                                    .addGap(20, 20, 20)
+                                    .addComponent(nodePlaceholder3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGap(10, 10, 10)
+                            .addComponent(nodePlaceholder4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(10, 10, 10)
+                            .addGroup(panelMapLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(nodePlaceholder5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(panelMapLayout.createSequentialGroup()
+                                    .addGap(20, 20, 20)
+                                    .addComponent(nodePlaceholder7, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(panelMapLayout.createSequentialGroup()
+                                    .addGap(10, 10, 10)
+                                    .addComponent(nodePlaceholder6, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(panelMapLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(nodePlaceholder14, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(nodePlaceholder8, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(10, 10, 10)
+                            .addGroup(panelMapLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(nodePlaceholder9, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(panelMapLayout.createSequentialGroup()
+                                    .addGap(20, 20, 20)
+                                    .addComponent(nodePlaceholder10, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(panelMapLayout.createSequentialGroup()
+                                    .addGap(30, 30, 30)
+                                    .addComponent(nodePlaceholder11, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(panelMapLayout.createSequentialGroup()
+                                    .addGap(10, 10, 10)
+                                    .addComponent(nodePlaceholder12, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(panelMapLayout.createSequentialGroup()
+                                    .addGap(10, 10, 10)
+                                    .addComponent(nodePlaceholder13, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGap(90, 90, 90)
+                            .addComponent(nodePlaceholder1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(scenarioMap, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+
+        getContentPane().add(panelMap, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 //nodeSelection is used for selecting a node
     public int nodeSelected = 0;
 //Action will control all node-based actions
-    public void Action()
-    {
-        jLabel1.setText(Scenario.listOfNodes[nodeSelected].name);
+    public void Action() {
+        labelInfo1.setText(Scenario.listOfNodes[nodeSelected].name);
         panelActions.setVisible(true);
         panelActions.setEnabled(true);
     }
@@ -533,14 +618,14 @@ public class Map extends javax.swing.JFrame {
     private javax.swing.JButton buttonFinishTurn;
     private javax.swing.JButton buttonHidePanel;
     private javax.swing.JToggleButton buttonMenu;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel labelInfo1;
+    private javax.swing.JLabel labelInfo2;
+    private javax.swing.JLabel labelInfo3;
+    private javax.swing.JLabel labelInfo4;
+    private javax.swing.JLabel labelInfo5;
+    private javax.swing.JLabel labelInfo6;
+    private javax.swing.JLabel labelInfo7;
+    private javax.swing.JLabel labelInfo8;
     private javax.swing.JLabel labelOpponent;
     private javax.swing.JLabel labelScenario;
     private javax.swing.JPanel menuInfo;
@@ -559,6 +644,7 @@ public class Map extends javax.swing.JFrame {
     private javax.swing.JButton nodePlaceholder8;
     private javax.swing.JButton nodePlaceholder9;
     private javax.swing.JPanel panelActions;
+    private javax.swing.JPanel panelMap;
     private javax.swing.JLabel scenarioMap;
     // End of variables declaration//GEN-END:variables
 }
