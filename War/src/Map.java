@@ -12,6 +12,9 @@
  */
 public class Map extends javax.swing.JFrame {
 
+    //variable for keeping track of the current players' turns;
+    public int curPlayer = 0;
+    
     /**
      * Creates new form Map
      */
@@ -26,6 +29,8 @@ public class Map extends javax.swing.JFrame {
         labelScenario.setText("Scenario: " + Global.intScenario);
         
         panelActions.setVisible(false);
+        
+        labelCurPlayer.setText("Player One's turn");
     }
 
     /**
@@ -39,6 +44,7 @@ public class Map extends javax.swing.JFrame {
 
         labelScenario = new javax.swing.JLabel();
         labelOpponent = new javax.swing.JLabel();
+        labelCurPlayer = new javax.swing.JLabel();
         buttonMenu = new javax.swing.JToggleButton();
         buttonExit = new javax.swing.JButton();
         panelActions = new javax.swing.JPanel();
@@ -89,12 +95,15 @@ public class Map extends javax.swing.JFrame {
 
         labelScenario.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         labelScenario.setText("text");
-        getContentPane().add(labelScenario, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 10, -1, -1));
+        getContentPane().add(labelScenario, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 10, -1, -1));
 
         labelOpponent.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         labelOpponent.setText("text");
         labelOpponent.setName("labelOpponent"); // NOI18N
-        getContentPane().add(labelOpponent, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 10, -1, -1));
+        getContentPane().add(labelOpponent, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 10, -1, -1));
+
+        labelCurPlayer.setText("text");
+        getContentPane().add(labelCurPlayer, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 10, -1, -1));
 
         buttonMenu.setText("Main Menu");
         buttonMenu.setToolTipText("");
@@ -226,6 +235,11 @@ public class Map extends javax.swing.JFrame {
         getContentPane().add(menuInfo, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 490, -1, -1));
 
         buttonFinishTurn.setText("Finish Turn");
+        buttonFinishTurn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonFinishTurnActionPerformed(evt);
+            }
+        });
         getContentPane().add(buttonFinishTurn, new org.netbeans.lib.awtextra.AbsoluteConstraints(753, 3, 110, 30));
 
         panelMap.setMaximumSize(new java.awt.Dimension(820, 470));
@@ -565,6 +579,19 @@ public class Map extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_buttonElement6ActionPerformed
 
+    private void buttonFinishTurnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonFinishTurnActionPerformed
+        if(curPlayer == 0)
+        {
+            curPlayer = 1;
+            labelCurPlayer.setText("Player Two's turn");
+            //more shit happens here
+        } else {
+            curPlayer = 0;
+            labelCurPlayer.setText("Player One's turn");
+            //more shit happens here
+        }
+    }//GEN-LAST:event_buttonFinishTurnActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -618,6 +645,7 @@ public class Map extends javax.swing.JFrame {
     private javax.swing.JButton buttonFinishTurn;
     private javax.swing.JButton buttonHidePanel;
     private javax.swing.JToggleButton buttonMenu;
+    private javax.swing.JLabel labelCurPlayer;
     private javax.swing.JLabel labelInfo1;
     private javax.swing.JLabel labelInfo2;
     private javax.swing.JLabel labelInfo3;

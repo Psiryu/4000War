@@ -74,7 +74,7 @@ public class Player extends Game
                 metricTwo = 30;
             }
             
-            politicalPower = 100 - metricOne - (50-(totalCurrentArmy/totalInitialArmy)*50) - metricTwo;
+            politicalPower = 100 - metricOne - (int)(50-((double)totalCurrentArmy/(double)totalInitialArmy)*50) - metricTwo;
             
             return politicalPower;        
         }
