@@ -1,8 +1,4 @@
 
-import java.util.Iterator;
-
-
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -478,28 +474,28 @@ public class Map extends javax.swing.JFrame {
         int[] armies;
         //10 spots rectangular
         armies = new int[10];
-        ArmiesHere(armies); 
+        String armiesHere = "";
+        ArmiesHere(armies, armiesHere); 
 //        ShowArmiesHere(armies);
         
         panelActions.setVisible(true);
         
     }
     
-    public void ArmiesHere(int[] armies) {
+    public void ArmiesHere(int[] armies, String armiesHere) {
         int indexer = 0;
-        String armiesHere = "dicks. dicks everywhere. ";
         if(curPlayer == 0)
         {
-            armiesHere += " Here, too. ";
             int length = Scenario.redPlayer.combatUnits.size();
             for(int i = 0; i < length; i++) {
                 if(Scenario.redPlayer.combatUnits.get(i).GetLocation().id == nodeSelected)
                 {
                     armies[indexer] = i;
                     indexer++;
-                    armiesHere = armiesHere + Scenario.redPlayer.combatUnits.get(i).size + " bleh.";
-                } else {
-                    armiesHere+= "nope ";
+                    if(Scenario.redPlayer.combatUnits.get(i).isFleet == true)
+                        armiesHere+= "Fleet ";
+                    else
+                        armiesHere+= ConvertSize(Scenario.redPlayer.combatUnits.get(i).size);
                 }
             }
         } else {
@@ -509,7 +505,10 @@ public class Map extends javax.swing.JFrame {
                 {
                     armies[indexer] = i;
                     indexer++;
-                    armiesHere+= Scenario.bluePlayer.combatUnits.get(i).size + " ";
+                    if(Scenario.bluePlayer.combatUnits.get(i).isFleet == true)
+                        armiesHere+= "Fleet ";
+                    else
+                        armiesHere+= ConvertSize(Scenario.redPlayer.combatUnits.get(i).size);
                 }
             }
         }
@@ -517,14 +516,17 @@ public class Map extends javax.swing.JFrame {
         labelInfo5.setText(armiesHere);
         labelInfo6.setText("size: " + Scenario.redPlayer.combatUnits.size());
     }
-    //Displays which armies a player has located on the present node
-//    private void ShowArmiesHere(String[][] armies) {
-//        if(curPlayer == 0) {
-//            labelInfo5.setText("Armies here: " + Scenario.redPlayer.combatUnits.get(1).size);
-//        } else {
-//            
-//        }
-//    }
+    //converts the army size integer into real words.
+    private String ConvertSize(int armies) {
+        String size;
+        if(armies > 10)
+            size = "Large ";
+         else if (armies >5)
+            size = "Medium ";
+        else
+            size = "Small ";
+        return size;
+    }
     
     public void ClearMenuInfo() {
         labelInfo1.setText("");
