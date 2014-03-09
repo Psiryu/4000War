@@ -36,16 +36,19 @@ public class MainMenu extends javax.swing.JFrame {
         radioPlayer = new javax.swing.JRadioButton();
         buttonEnd = new javax.swing.JButton();
         buttonHowTo = new javax.swing.JButton();
+        labelBackgroundImage = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(204, 204, 204));
         setMaximumSize(new java.awt.Dimension(362, 253));
         setMinimumSize(new java.awt.Dimension(362, 253));
         setResizable(false);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        labelTitle.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
+        labelTitle.setFont(new java.awt.Font("Times New Roman", 3, 36)); // NOI18N
         labelTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelTitle.setText("Roman Civil War");
+        getContentPane().add(labelTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 368, -1));
 
         buttonScenario1.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         buttonScenario1.setText("Scenario 1");
@@ -54,6 +57,7 @@ public class MainMenu extends javax.swing.JFrame {
                 buttonScenario1ActionPerformed(evt);
             }
         });
+        getContentPane().add(buttonScenario1, new org.netbeans.lib.awtextra.AbsoluteConstraints(29, 93, -1, -1));
 
         buttonScenario2.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         buttonScenario2.setText("Scenario 2");
@@ -62,6 +66,7 @@ public class MainMenu extends javax.swing.JFrame {
                 buttonScenario2ActionPerformed(evt);
             }
         });
+        getContentPane().add(buttonScenario2, new org.netbeans.lib.awtextra.AbsoluteConstraints(29, 142, -1, -1));
 
         buttonScenario3.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         buttonScenario3.setText("Scenario 3");
@@ -70,6 +75,7 @@ public class MainMenu extends javax.swing.JFrame {
                 buttonScenario3ActionPerformed(evt);
             }
         });
+        getContentPane().add(buttonScenario3, new org.netbeans.lib.awtextra.AbsoluteConstraints(29, 191, -1, -1));
 
         buttonGroup1.add(radioAI);
         radioAI.setSelected(true);
@@ -79,6 +85,7 @@ public class MainMenu extends javax.swing.JFrame {
                 radioAIActionPerformed(evt);
             }
         });
+        getContentPane().add(radioAI, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 103, -1, -1));
 
         buttonGroup1.add(radioPlayer);
         radioPlayer.setText("Against Player");
@@ -87,6 +94,7 @@ public class MainMenu extends javax.swing.JFrame {
                 radioPlayerActionPerformed(evt);
             }
         });
+        getContentPane().add(radioPlayer, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 137, -1, -1));
 
         buttonEnd.setText("End Game");
         buttonEnd.addActionListener(new java.awt.event.ActionListener() {
@@ -94,6 +102,7 @@ public class MainMenu extends javax.swing.JFrame {
                 buttonEndActionPerformed(evt);
             }
         });
+        getContentPane().add(buttonEnd, new org.netbeans.lib.awtextra.AbsoluteConstraints(263, 197, 89, -1));
 
         buttonHowTo.setText("How to Play");
         buttonHowTo.addActionListener(new java.awt.event.ActionListener() {
@@ -101,58 +110,11 @@ public class MainMenu extends javax.swing.JFrame {
                 buttonHowToActionPerformed(evt);
             }
         });
+        getContentPane().add(buttonHowTo, new org.netbeans.lib.awtextra.AbsoluteConstraints(168, 197, -1, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(29, 29, 29)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(buttonScenario1)
-                    .addComponent(buttonScenario2)
-                    .addComponent(buttonScenario3))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addComponent(buttonHowTo)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(buttonEnd, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(52, 52, 52)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(radioAI)
-                            .addComponent(radioPlayer))))
-                .addGap(28, 36, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(labelTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(labelTitle)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(31, 31, 31)
-                        .addComponent(buttonScenario1)
-                        .addGap(18, 18, 18)
-                        .addComponent(buttonScenario2)
-                        .addGap(18, 18, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(radioAI)
-                        .addGap(11, 11, 11)
-                        .addComponent(radioPlayer)
-                        .addGap(31, 31, 31)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(buttonScenario3)
-                    .addComponent(buttonHowTo)
-                    .addComponent(buttonEnd))
-                .addContainerGap(31, Short.MAX_VALUE))
-        );
+        labelBackgroundImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/MainMenu-Backdrop.jpg"))); // NOI18N
+        labelBackgroundImage.setToolTipText("");
+        getContentPane().add(labelBackgroundImage, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 390, 260));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -235,6 +197,7 @@ public class MainMenu extends javax.swing.JFrame {
     private javax.swing.JButton buttonScenario1;
     private javax.swing.JButton buttonScenario2;
     private javax.swing.JButton buttonScenario3;
+    private javax.swing.JLabel labelBackgroundImage;
     private javax.swing.JLabel labelTitle;
     private javax.swing.JRadioButton radioAI;
     private javax.swing.JRadioButton radioPlayer;
