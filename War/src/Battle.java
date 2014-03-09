@@ -12,16 +12,21 @@ import java.util.Random;
  */
 public class Battle {
 
+    // Placeholders for combat units partaking in battle
     CombatUnit[] Red;
     CombatUnit[] Blue;
 
+    /*
     String[] report;
     Node battleLocation;
     int turnNo;
-
+    */
+    
+    // calculate the total strength of all armies on one side of the battle
     public int getTotalBattleStrength(CombatUnit[] cUnit) {
-        int total = 0;
-        for (int i = 0; i < cUnit.length; i++) {
+        int total = 0; // initialize the total value
+        
+        for (int i = 0; i < cUnit.length; i++) { // sum all battle strengths
             total += cUnit[i].GetBattleStrengh();
             /*add weather effects*/
         }
@@ -29,15 +34,16 @@ public class Battle {
 
     }
     
-    /*
-        addCombatUnits to consider the temporary merging of units during team combat
-    */
-    
+    // for the case of battle occuring on a node
     public void doBattleOnNode ()
     {
+        /*
+        add logic
+        */
         
     }
     
+    // for the case of a collision battle on a road
     public void doBattleOnRoad (boolean preemptiveRed, boolean preemptiveBlue)
     {
         // decides how many people were engaging in combat
@@ -65,6 +71,7 @@ public class Battle {
         */
     }
 
+    // general do battle method
     public int doBattle(CombatUnit[] red, CombatUnit[] blue) {
         if (getTotalBattleStrength(red) > getTotalBattleStrength(blue)) {
             /*red wins*/

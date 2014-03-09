@@ -10,20 +10,20 @@
  */
 public class CombatUnit extends Game {
 
-    Player faction; /**/
+    Player faction; // the faction(player) the unit belongs to
 
-    int cUnitID;
-    int size;
-    int illnessRating; /*OUT OF XX*/
+    int cUnitID; // unit id
+    int size; // total size of the army {0..15}
+    int illnessRating; // total illness rating
 
-    int distanceFromCapital; /*Possible can FUNCTION*/
+    int distanceFromCapital; // distance from capital given by node value
 
-    int timeStationary; // use as indicator of attacker/defender
-    Node previousLocation;
-    Node location;
-    int checkIllnessToggle = 0;
-    Boolean isFleet;
-    int supplyLevel;
+    int timeStationary; // total number of turns the unit does not move
+    Node previousLocation; // the previous location occupied by the unit
+    Node location; // the current location of the unit
+    int checkIllnessToggle = 0; // the value corresponding to a possible size decrease
+    Boolean isFleet; // if the unit is a fleet
+    int supplyLevel; // supply level held by the unit
 
     public CombatUnit(Boolean _isFleet, int _cUnitID, int _size, int _healthRating, Node _location, Player _faction) {
         cUnitID = _cUnitID;
@@ -82,5 +82,17 @@ public class CombatUnit extends Game {
     Node GetLocation()
     {
         return location;
+    }
+    
+    void setDistanceFromCapital()
+    {
+        if (faction.playerName.equals("red"))
+        {
+            distanceFromCapital = location.distanceFromCapitalRed;
+        }
+        else
+        {
+            distanceFromCapital = location.distanceFromCapitalBlue;
+        }
     }
 }
