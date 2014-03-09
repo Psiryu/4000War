@@ -24,7 +24,6 @@ public class Battle {
         for (int i = 0; i < cUnit.length; i++) {
             total += cUnit[i].GetBattleStrengh();
             /*add weather effects*/
-
         }
         return total;
 
