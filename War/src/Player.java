@@ -17,18 +17,19 @@ public class Player extends Game
         protected int politicalPowerDecrease;
         protected boolean isComp;
         protected int playerID;
-        
+        protected String playerName;
         protected int aggregateDistanceFromCapital;
         protected int totalInitialArmy;
         protected int totalCurrentArmy;
         
         /*Constructor*/
-        public Player(boolean _isComp,Node _capital, int id)
+        public Player(boolean _isComp,Node _capital, int id, String _playerName)
         {
             playerID = id;
             politicalPower = 100;
             isComp = _isComp;
             capital = _capital;
+            playerName = _playerName;
             /*NOW We place the COMBATS UNIT ACCORDING TO SCENARIO SPECIFICATIONS*/
             
         }  
@@ -81,9 +82,21 @@ public class Player extends Game
         
         public void setAggDistance()
         {
-            int calculated = 0;
+            int calculatedDistance = 0;
             
-            aggregateDistanceFromCapital = calculated;
+            for (int i = 0; i < combatUnits.size(); i++)
+            {
+                if (playerName.equals("red"))
+                {
+                    calculatedDistance += combatUnits.get(i).location.distanceFromCapitalRed;
+                }
+                else
+                {
+                    calculatedDistance += combatUnits.get(i).location.distanceFromCapitalBlue;
+                }
+            }                
+            
+            aggregateDistanceFromCapital = calculatedDistance;
         }
         
         public void addUnit (CombatUnit addition)

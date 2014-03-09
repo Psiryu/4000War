@@ -37,19 +37,19 @@ public class Scenario {
     void setPlayers() {
         if (Global.opponent) {
             if (Global.chosenTeam) {
-                redPlayer = new Player(false, listOfNodes[13], 0);
-                bluePlayer = new Player(false, listOfNodes[10], 1);
+                redPlayer = new Player(false, listOfNodes[13], 0, "red");
+                bluePlayer = new Player(false, listOfNodes[10], 1, "blue");
             } else {
-                bluePlayer = new Player(false, listOfNodes[13], 0);
-                redPlayer = new Player(false, listOfNodes[10], 1);
+                bluePlayer = new Player(false, listOfNodes[13], 0, "blue");
+                redPlayer = new Player(false, listOfNodes[10], 1, "red");
             }
         } else {
             if (Global.chosenTeam) {
-                redPlayer = new Player(false, listOfNodes[13], 0);
-                bluePlayer = new Player(true, listOfNodes[10], 1);
+                redPlayer = new Player(false, listOfNodes[13], 0, "red");
+                bluePlayer = new Player(true, listOfNodes[10], 1, "blue");
             } else {
-                bluePlayer = new Player(false, listOfNodes[13], 0);
-                redPlayer = new Player(true, listOfNodes[10], 1);
+                bluePlayer = new Player(false, listOfNodes[13], 0, "blue");
+                redPlayer = new Player(true, listOfNodes[10], 1, "red");
             }
         }
     }
