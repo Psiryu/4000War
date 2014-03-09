@@ -20,8 +20,10 @@ public class Node
     int coordinateY;*/
     String name;
     int id;
+    int suppliesAvailable;
+    boolean isAnnexable;
     
-    public Node (int _id, boolean _isCapitalRed, boolean _isCapitalBlue, int _distanceFromCapitalRed, int _distanceFromCapitalBlue, String _name)
+    public Node (int _id, boolean _isCapitalRed, boolean _isCapitalBlue, int _distanceFromCapitalRed, int _distanceFromCapitalBlue, String _name, int supply, boolean _isAnnexable)
     {
         id = _id;
         isCapitalRed = _isCapitalRed;
@@ -29,5 +31,18 @@ public class Node
         distanceFromCapitalRed = _distanceFromCapitalRed;
         distanceFromCapitalBlue = _distanceFromCapitalBlue;
         name = _name;
+        suppliesAvailable = supply;
+        isAnnexable = _isAnnexable;
+    }
+    
+    void addSupplies()
+    {
+        suppliesAvailable++;
+        suppliesAvailable = suppliesAvailable%5;
+    }
+    
+    void removeSupplies()
+    {
+        suppliesAvailable = 0;
     }
 }

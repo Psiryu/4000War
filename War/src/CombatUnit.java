@@ -21,8 +21,9 @@ public class CombatUnit extends Game {
     int timeStationary; // use as indicator of attacker/defender
     Node previousLocation;
     Node location;
-    int checkToggle = 0;
+    int checkIllnessToggle = 0;
     Boolean isFleet;
+    int supplyLevel;
 
     public CombatUnit(Boolean _isFleet, int _cUnitID, int _size, int _healthRating, Node _location, Player _faction) {
         cUnitID = _cUnitID;
@@ -50,8 +51,8 @@ public class CombatUnit extends Game {
     }
 
     void setSize() {
-        checkToggle = illnessRating + faction.getPoliticalPowerDecrease();
-        if (checkToggle > 30) {
+        checkIllnessToggle = illnessRating + faction.getPoliticalPowerDecrease();
+        if (checkIllnessToggle > 30) {
             size--;
         }
     }
@@ -65,5 +66,16 @@ public class CombatUnit extends Game {
         } else {
             timeStationary = 0;
         }
+    }
+    
+    void addSupplies()
+    {
+        supplyLevel += location.suppliesAvailable;
+        location.suppliesAvailable = 0;
+    }
+    
+    void removeSupplies()
+    {
+        supplyLevel--;
     }
 }

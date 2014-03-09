@@ -12,6 +12,7 @@ import java.util.Random;
  */
 public class Scenario {
 
+    public static String[] factionNamesOne = {"Populares","Optimates"}; // blue player, red player
     public static Node[] listOfNodes;
     public static Road[] listOfRoads;
     public static CombatUnit[] listOfUnits;
@@ -63,6 +64,7 @@ public class Scenario {
         // for each of the cities
         for (int i =0; i < 14 ;i++)
         {
+            int supply = (int) (4 * random.nextDouble());
             boolean redCapital = false;
             boolean blueCapital = false;
             switch (names[i]) {
@@ -73,7 +75,7 @@ public class Scenario {
                     redCapital = true;
                     break;
             }
-            listOfNodes[i] = new Node(i, redCapital, blueCapital, capitalDistances[i][1], capitalDistances[i][0], names[i]);
+            listOfNodes[i] = new Node(i, redCapital, blueCapital, capitalDistances[i][1], capitalDistances[i][0], names[i], supply, true);
         }
         /*for (int i = 0; i < 14; i++) {
             listOfNodes[i].name = names[i];
