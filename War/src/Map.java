@@ -1,4 +1,7 @@
 
+import java.util.Iterator;
+
+
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -42,11 +45,6 @@ public class Map extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        labelScenario = new javax.swing.JLabel();
-        labelOpponent = new javax.swing.JLabel();
-        labelCurPlayer = new javax.swing.JLabel();
-        buttonMenu = new javax.swing.JToggleButton();
-        buttonExit = new javax.swing.JButton();
         panelActions = new javax.swing.JPanel();
         buttonHidePanel = new javax.swing.JButton();
         buttonElement1 = new javax.swing.JButton();
@@ -58,6 +56,11 @@ public class Map extends javax.swing.JFrame {
         buttonElement7 = new javax.swing.JButton();
         buttonElement8 = new javax.swing.JButton();
         buttonElement9 = new javax.swing.JButton();
+        labelScenario = new javax.swing.JLabel();
+        labelOpponent = new javax.swing.JLabel();
+        labelCurPlayer = new javax.swing.JLabel();
+        buttonMenu = new javax.swing.JToggleButton();
+        buttonExit = new javax.swing.JButton();
         menuInfo = new javax.swing.JPanel();
         labelInfo1 = new javax.swing.JLabel();
         labelInfo2 = new javax.swing.JLabel();
@@ -65,8 +68,6 @@ public class Map extends javax.swing.JFrame {
         labelInfo4 = new javax.swing.JLabel();
         labelInfo5 = new javax.swing.JLabel();
         labelInfo6 = new javax.swing.JLabel();
-        labelInfo7 = new javax.swing.JLabel();
-        labelInfo8 = new javax.swing.JLabel();
         buttonFinishTurn = new javax.swing.JButton();
         panelMap = new javax.swing.JPanel();
         nodePlaceholder1 = new javax.swing.JButton();
@@ -92,37 +93,6 @@ public class Map extends javax.swing.JFrame {
         setPreferredSize(new java.awt.Dimension(900, 600));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        labelScenario.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        labelScenario.setText("text");
-        getContentPane().add(labelScenario, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 10, -1, -1));
-
-        labelOpponent.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        labelOpponent.setText("text");
-        labelOpponent.setName("labelOpponent"); // NOI18N
-        getContentPane().add(labelOpponent, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 10, -1, -1));
-
-        labelCurPlayer.setText("text");
-        getContentPane().add(labelCurPlayer, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 10, -1, -1));
-
-        buttonMenu.setText("Main Menu");
-        buttonMenu.setToolTipText("");
-        buttonMenu.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonMenuActionPerformed(evt);
-            }
-        });
-        getContentPane().add(buttonMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 5, -1, -1));
-
-        buttonExit.setText("End Game");
-        buttonExit.setMaximumSize(new java.awt.Dimension(83, 23));
-        buttonExit.setMinimumSize(new java.awt.Dimension(83, 23));
-        buttonExit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonExitActionPerformed(evt);
-            }
-        });
-        getContentPane().add(buttonExit, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 5, 90, -1));
 
         panelActions.setBackground(new java.awt.Color(255, 255, 255));
         panelActions.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -188,49 +158,70 @@ public class Map extends javax.swing.JFrame {
 
         getContentPane().add(panelActions, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 30, 130, 480));
 
+        labelScenario.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        labelScenario.setText("text");
+        getContentPane().add(labelScenario, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 10, -1, -1));
+
+        labelOpponent.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        labelOpponent.setText("text");
+        labelOpponent.setName("labelOpponent"); // NOI18N
+        getContentPane().add(labelOpponent, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 10, -1, -1));
+
+        labelCurPlayer.setText("text");
+        getContentPane().add(labelCurPlayer, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 10, -1, -1));
+
+        buttonMenu.setText("Main Menu");
+        buttonMenu.setToolTipText("");
+        buttonMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonMenuActionPerformed(evt);
+            }
+        });
+        getContentPane().add(buttonMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 5, -1, -1));
+
+        buttonExit.setText("End Game");
+        buttonExit.setMaximumSize(new java.awt.Dimension(83, 23));
+        buttonExit.setMinimumSize(new java.awt.Dimension(83, 23));
+        buttonExit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonExitActionPerformed(evt);
+            }
+        });
+        getContentPane().add(buttonExit, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 5, 90, -1));
+
         menuInfo.setMaximumSize(new java.awt.Dimension(700, 70));
         menuInfo.setMinimumSize(new java.awt.Dimension(700, 70));
         menuInfo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         labelInfo1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         labelInfo1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        labelInfo1.setText("These");
+        labelInfo1.setText("city name");
         menuInfo.add(labelInfo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, -1, -1));
 
         labelInfo2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         labelInfo2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        labelInfo2.setText("Labels");
+        labelInfo2.setText("seasons");
         menuInfo.add(labelInfo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 10, -1, -1));
 
         labelInfo3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         labelInfo3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        labelInfo3.setText("Will");
+        labelInfo3.setText("turn/turns left");
         menuInfo.add(labelInfo3, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 10, -1, -1));
 
         labelInfo4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         labelInfo4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        labelInfo4.setText("Readjust");
+        labelInfo4.setText("political power?");
         menuInfo.add(labelInfo4, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 10, -1, -1));
 
         labelInfo5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         labelInfo5.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        labelInfo5.setText("as");
+        labelInfo5.setText("player's armies");
         menuInfo.add(labelInfo5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, -1, -1));
 
         labelInfo6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         labelInfo6.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        labelInfo6.setText("they");
-        menuInfo.add(labelInfo6, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 40, -1, -1));
-
-        labelInfo7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        labelInfo7.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        labelInfo7.setText("are");
-        menuInfo.add(labelInfo7, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 40, -1, -1));
-
-        labelInfo8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        labelInfo8.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        labelInfo8.setText("needed");
-        menuInfo.add(labelInfo8, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 40, -1, -1));
+        labelInfo6.setText("enemy's armies");
+        menuInfo.add(labelInfo6, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 40, -1, -1));
 
         getContentPane().add(menuInfo, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 490, -1, -1));
 
@@ -479,13 +470,70 @@ public class Map extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 //nodeSelection is used for selecting a node
     public int nodeSelected = 0;
-//Action will control all node-based actions
+//Action will control all node-based actions. Dimmed public because no need
+//for hidden values, and allows information to be passed more easily
     public void Action() {
         labelInfo1.setText(Scenario.listOfNodes[nodeSelected].name);
-        panelActions.setVisible(true);
         panelActions.setEnabled(true);
+        int[] armies;
+        //10 spots rectangular
+        armies = new int[10];
+        ArmiesHere(armies); 
+//        ShowArmiesHere(armies);
+        
+        panelActions.setVisible(true);
+        
     }
     
+    public void ArmiesHere(int[] armies) {
+        int indexer = 0;
+        String armiesHere = "dicks. dicks everywhere. ";
+        if(curPlayer == 0)
+        {
+            armiesHere += " Here, too. ";
+            int length = Scenario.redPlayer.combatUnits.size();
+            for(int i = 0; i < length; i++) {
+                if(Scenario.redPlayer.combatUnits.get(i).GetLocation().id == nodeSelected)
+                {
+                    armies[indexer] = i;
+                    indexer++;
+                    armiesHere = armiesHere + Scenario.redPlayer.combatUnits.get(i).size + " bleh.";
+                } else {
+                    armiesHere+= "nope ";
+                }
+            }
+        } else {
+            int length = Scenario.bluePlayer.combatUnits.size();
+            for(int i = 0; i < length; i++) {
+                if(Scenario.bluePlayer.combatUnits.get(i).GetLocation().id == nodeSelected)
+                {
+                    armies[indexer] = i;
+                    indexer++;
+                    armiesHere+= Scenario.bluePlayer.combatUnits.get(i).size + " ";
+                }
+            }
+        }
+        
+        labelInfo5.setText(armiesHere);
+        labelInfo6.setText("size: " + Scenario.redPlayer.combatUnits.size());
+    }
+    //Displays which armies a player has located on the present node
+//    private void ShowArmiesHere(String[][] armies) {
+//        if(curPlayer == 0) {
+//            labelInfo5.setText("Armies here: " + Scenario.redPlayer.combatUnits.get(1).size);
+//        } else {
+//            
+//        }
+//    }
+    
+    public void ClearMenuInfo() {
+        labelInfo1.setText("");
+        labelInfo2.setText("");
+        labelInfo3.setText("");
+        labelInfo4.setText("");
+        labelInfo5.setText("");
+        labelInfo6.setText("");
+    }
     private void buttonMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonMenuActionPerformed
         new MainMenu().setVisible(true);
         Map.this.dispose();
@@ -590,6 +638,10 @@ public class Map extends javax.swing.JFrame {
             labelCurPlayer.setText("Player One's turn");
             //more shit happens here
         }
+        
+        panelActions.setEnabled(false);
+        panelActions.setVisible(false);
+        ClearMenuInfo();
     }//GEN-LAST:event_buttonFinishTurnActionPerformed
 
     /**
@@ -652,8 +704,6 @@ public class Map extends javax.swing.JFrame {
     private javax.swing.JLabel labelInfo4;
     private javax.swing.JLabel labelInfo5;
     private javax.swing.JLabel labelInfo6;
-    private javax.swing.JLabel labelInfo7;
-    private javax.swing.JLabel labelInfo8;
     private javax.swing.JLabel labelOpponent;
     private javax.swing.JLabel labelScenario;
     private javax.swing.JPanel menuInfo;
