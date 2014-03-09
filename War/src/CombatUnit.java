@@ -78,4 +78,9 @@ public class CombatUnit extends Game {
     {
         supplyLevel--;
     }
+    
+    Node GetLocation()
+    {
+        return location;
+    }
 }
