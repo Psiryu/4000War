@@ -12,8 +12,13 @@ import java.util.Random;
  */
 public class Game {
 
-    public static int turnCount = 0;
+    public static int turnCount;
 
+    public Game()
+    {
+        turnCount = 0;
+    }
+    
     int getWeather() {
         return Global.weather;
     }
@@ -21,18 +26,6 @@ public class Game {
     void updateWeather() {
         Random random = new Random();
         Global.weather = (int) (5 * random.nextDouble());
-    }
-
-    void setSeason(int season) {
-        Global.season = season;
-    }
-
-    int getSeason() {
-        return Global.season;
-    }
-
-    void increaseTurnCount() {
-        turnCount++;
     }
 
     int getTurnCount() {
@@ -56,5 +49,23 @@ public class Game {
                 }
             }
         }
+    }
+    
+    void endTurn(){
+        turnCount++;
+        Scenario.redPlayer.AdjustPoliticalPower();
+        Scenario.bluePlayer.AdjustPoliticalPower();
+        for (int i = 0; i < Scenario.redPlayer.combatUnits.size(); i++)
+        {
+            Scenario.redPlayer.combatUnits.get(i).setHealthRating();
+            Scenario.redPlayer.combatUnits.get(i).setSize();
+        }
+        for (int i = 0; i < Scenario.bluePlayer.combatUnits.size(); i++)
+        {
+            Scenario.bluePlayer.combatUnits.get(i).setHealthRating();
+            Scenario.bluePlayer.combatUnits.get(i).setSize();
+        }
+        updateWeather();
+        Global.season = (Global.season+1)%4;
     }
 }

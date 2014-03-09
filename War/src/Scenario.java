@@ -21,10 +21,12 @@ public class Scenario {
     public static Player bluePlayer;
     public static Random random = new Random();
     public static int[] randomNums = new int[2];
+    public static Game game;
 
     public void Initialize(int _scenarioID) {
         switch (_scenarioID) {
             case 0:
+                game = new Game();
                 setMapParameters();
                 setPlayers();
                 setCombatUnits();
@@ -124,5 +126,14 @@ public class Scenario {
         listOfUnits[5] = new CombatUnit(false, 0, 10, 0, listOfNodes[12], redPlayer);
         listOfUnits[6] = new CombatUnit(false, 0, 5, 0, listOfNodes[randomNums[1]], redPlayer);
         listOfUnits[7] = new CombatUnit(true, 0, 5, 0, listOfNodes[11], redPlayer);
+        // add the units to their respective players
+        for (int i = 0; i < 4; i++)
+        {
+            bluePlayer.addUnit(listOfUnits[i]);
+        }
+        for (int i = 4; i < 8; i++)
+        {
+            redPlayer.addUnit(listOfUnits[i]);
+        }
     }
 }
