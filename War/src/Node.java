@@ -1,3 +1,6 @@
+
+import java.util.Random;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -19,6 +22,8 @@ public class Node
     int id; // the node ID
     int suppliesAvailable; // supply level
     boolean isAnnexable; // if the node is a city, therefor annexable
+    int fogValue; // value assigned to location for fog of war
+    Random random = new Random();
     
     // Constructor of the nodes
     public Node (int _id, boolean _isCapitalRed, boolean _isCapitalBlue, int _distanceFromCapitalRed, int _distanceFromCapitalBlue, String _name, int supply, boolean _isAnnexable)
@@ -32,6 +37,7 @@ public class Node
         name = _name;
         suppliesAvailable = supply;
         isAnnexable = _isAnnexable;
+        fogValue = random.nextInt(10);
     }
     
     // Method to refresh supplies

@@ -1,3 +1,6 @@
+
+import java.util.Random;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -15,6 +18,8 @@ public class Road {
     Node locationA; // start location of the road
     Node locationB; // end location of the road
     int capacity; // size of unit able to traverse the road, simulation of terrain
+    int fogValue; // value attributed to the route for use in fog of war calculation
+    Random random = new Random();
 
     // Constructor for the road object
     Road(int _roadID, int _capacity, Node _locationA, Node _locationB, boolean _isNaval) {
@@ -24,6 +29,7 @@ public class Road {
         locationA = _locationA;
         locationB = _locationB;
         capacity = _capacity;
+        fogValue = random.nextInt(4);
     }
 
     // Method used to find out the destination NODE from FROM location
