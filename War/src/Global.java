@@ -15,5 +15,5 @@ public class Global {
     public static int season; // storage for the season value
     public static String teamOne = "Sparta"; // team name 1
     public static String teamTwo = "Persia"; // team name 2
-    public static int intScenario;
+    public static int intScenario; // scenario number
 }

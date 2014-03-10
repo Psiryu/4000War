@@ -8,33 +8,31 @@
  *
  * @author Fearless Jay
  */
-public class Road 
-{
-    int roadID;
-    boolean isNaval;
-    Node locationA;
-    Node locationB;
-    int capacity; 
-    
-    Road(int _roadID,int _capacity, Node _locationA, Node _locationB, boolean _isNaval)
-    {
+public class Road {
+
+    int roadID; // road ID
+    boolean isNaval; // true if the road is located as a naval route
+    Node locationA; // start location of the road
+    Node locationB; // end location of the road
+    int capacity; // size of unit able to traverse the road, simulation of terrain
+
+    // Constructor for the road object
+    Road(int _roadID, int _capacity, Node _locationA, Node _locationB, boolean _isNaval) {
+        // set each of the properties of the road
         roadID = _roadID;
         isNaval = _isNaval;
         locationA = _locationA;
         locationB = _locationB;
         capacity = _capacity;
     }
-    
-    Node GetTOLocation(Node FromLocation)    /* used to find out the destined NODE from FROM location*/
-        {
-            if (locationA == FromLocation)
-            {
-                return locationB;
-            }
-            else
-            {
-                return locationA;
-            }
+
+    // Method used to find out the destination NODE from FROM location
+    Node GetTOLocation(Node FromLocation) {
+        if (locationA == FromLocation) {
+            return locationB;
+        } else {
+            return locationA;
         }
-    
+    }
+
 }
