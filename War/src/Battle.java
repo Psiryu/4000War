@@ -35,11 +35,52 @@ public class Battle {
     }
     
     // for the case of battle occuring on a node
-    public void doBattleOnNode ()
-    {
-        /*
-        add logic
-        */
+    public void PVPdoCampBattleOnNode (Node node,CombatUnit[] red, CombatUnit[] blue)
+    { /*THE DECISION MAKER FUNCTION FOR COLLISIONS ON A NODE*/
+        
+        boolean redDecisionToFight;
+        boolean blueDecisionToFight;
+        
+        /*POINT TO WHERE THE COLLISION IS ON THE MAP*/
+            /*UI CONTROL*/
+        
+        /*IF RED MOVEMENT IS CATAGORIZED AS PRE EMPTIVE*/
+            
+            /*RED IS FORCED TO SELECT ATTACK*/
+        
+            /*CODE redDecisionToFight = true; */
+        
+        /*ELSE*/
+            /*ASK RED IF THEY WANT TO FLEE */
+            
+                /*IF FIGHT*/
+                /*CODE redDecisionToFight = true; */
+
+                /*ELSE*/
+                /*CODE redDecisionToFight = false; */
+
+        
+        
+        /*IF BLUE MOVEMENT IS CATAGORIZED AS PRE EMPTIVE*/
+        
+            /*BLUE IS FORCED TO ATTACK*/
+
+            /*CODE blueDecisionToFight = true; */
+
+        
+        /*ELSE*/
+            
+            /*ASK BLUE IF THEY WANT TO FLEE OR FIGHT*/
+            
+                /*IF FIGHT*/
+                /*CODE blueDecisionToFight = true; */
+                
+                /*IF FLEE*/
+            
+        
+        
+        
+        
         
     }
     
