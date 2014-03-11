@@ -12,7 +12,7 @@ import java.util.Random;
  */
 public class Scenario {
 
-    public static String[] factionNamesOne = {"Populares","Optimates"}; // blue player, red player
+    public static String[] factionNamesOne = {"Populares", "Optimates"}; // blue player, red player
     public static Node[] listOfNodes; // list of all nodes in the scenario
     public static Road[] listOfRoads; // list of all the roads in the scenario
     public static CombatUnit[] listOfUnits; // list of all the units in the scenario
@@ -46,12 +46,11 @@ public class Scenario {
         // set up the arrays for roads and nodes
         listOfRoads = new Road[14];
         listOfNodes = new Node[14];
-        
+
         // for each of the cities
-        for (int i =0; i < 14 ;i++)
-        {
+        for (int i = 0; i < 14; i++) {
             int supply = (int) (4 * random.nextDouble()); // determine the supply level
-            
+
             // determine capital offiliation
             boolean redCapital = false;
             boolean blueCapital = false;
@@ -66,7 +65,7 @@ public class Scenario {
             // initialize each of the new nodes based on the scenario data
             listOfNodes[i] = new Node(i, redCapital, blueCapital, capitalDistances[i][1], capitalDistances[i][0], names[i], supply, true);
         }
-        
+
         // for each of the roads
         for (int j = 0; j < 14; j++) {
             // determine which roads should be registered as naval only
@@ -75,7 +74,7 @@ public class Scenario {
                 isNaval = true;
             }
             // initialize each of the new roads
-            listOfRoads[j] = new Road(j,locations[j][0], listOfNodes[locations[j][1]], listOfNodes[locations[j][2]], isNaval);
+            listOfRoads[j] = new Road(j, locations[j][0], listOfNodes[locations[j][1]], listOfNodes[locations[j][2]], isNaval);
         }
     }
 
@@ -99,17 +98,16 @@ public class Scenario {
             }
         }
     }
-    
+
     // Method to set up the units
     void setCombatUnits() {
         listOfUnits = new CombatUnit[8]; // establish array of units
-        
+
         // select two random starting points for the small armies
-        randomNums[0] = (int) (13 * random.nextDouble());
-        randomNums[1] = (int) (13 * random.nextDouble());
-        while (randomNums[0] == randomNums[1]) {
-            randomNums[1] = (int) (13 * random.nextDouble());
-        }
+        randomNums[0] = random.nextInt(13);
+        do {
+            randomNums[1] = random.nextInt(13);
+        } while (randomNums[0] == randomNums[1]);
 
         // initialize the combat units as per scenario parameters
         listOfUnits[0] = new CombatUnit(false, 0, 15, 0, listOfNodes[13], bluePlayer);
@@ -121,15 +119,13 @@ public class Scenario {
         listOfUnits[6] = new CombatUnit(false, 0, 5, 0, listOfNodes[randomNums[1]], redPlayer);
         listOfUnits[7] = new CombatUnit(true, 0, 5, 0, listOfNodes[11], redPlayer);
         // add the units to their respective players
-        for (int i = 0; i < 4; i++)
-        {
+        for (int i = 0; i < 4; i++) {
             bluePlayer.addUnit(listOfUnits[i]);
         }
-        for (int i = 4; i < 8; i++)
-        {
+        for (int i = 4; i < 8; i++) {
             redPlayer.addUnit(listOfUnits[i]);
         }
-        
+
         // establish the current/initial armysize for each faction
         redPlayer.setCurrentArmyLevel();
         redPlayer.setInitialArmyLevel();
