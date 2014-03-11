@@ -22,6 +22,8 @@ public class Map extends javax.swing.JFrame {
     public Map() {
         initComponents();  
         
+        ClearMenuInfo();
+        
         if((Global.opponent) == true)
             labelOpponent.setText("Against Player");
         else
@@ -584,20 +586,20 @@ public class Map extends javax.swing.JFrame {
     private String ConvertSize(int armieSize, int isFleet) {
         String size;
         if(isFleet == 1)
-            size = "Fleet";
+            size = "F ";
         else
         {
             if(armieSize > 10)
-                size = "Large ";
+                size = "L ";
             else if (armieSize > 5)
-                size = "Medium ";
+                size = "M ";
             else
-                size = "Small ";
+                size = "S ";
         }
         return size;
     }
     
-    public void ClearMenuInfo() {
+    private void ClearMenuInfo() {
         /* This method clears all of the visible information presented to
             the player, to end their turn and ensure the next player is
             not given any of their information.                   */
@@ -758,6 +760,7 @@ public class Map extends javax.swing.JFrame {
 
     private void menuItemCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemCloseActionPerformed
         ClearPopupMenu();
+        ClearMenuInfo();
     }//GEN-LAST:event_menuItemCloseActionPerformed
 
     private void popupMenuFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_popupMenuFocusLost
