@@ -38,8 +38,8 @@ public class Battle {
     public void PVPdoCampBattleOnNode (Node node,CombatUnit[] red, CombatUnit[] blue)
     { /*THE DECISION MAKER FUNCTION FOR COLLISIONS ON A NODE*/
         
-        boolean redDecisionToFight;
-        boolean blueDecisionToFight;
+        boolean redDecisionToFight= false;
+        boolean blueDecisionToFight = false;
         
         /*POINT TO WHERE THE COLLISION IS ON THE MAP*/
             /*UI CONTROL*/
@@ -76,13 +76,64 @@ public class Battle {
                 /*CODE blueDecisionToFight = true; */
                 
                 /*IF FLEE*/
-            
+                /*CODE blueDecisionToFight = false; */
+
         
-        
-        
-        
-        
+        if(blueDecisionToFight && redDecisionToFight)
+        {
+            /*Both armies commit to battle*/
+            PVPCommitedBattle(node, red, blue);
+        }
+        else if (!blueDecisionToFight && redDecisionToFight)
+        {
+            /*if Red wants to figh but blue does not*/
+            PVPHalfCommitedBattle(node,red, blue);
+        }
+        else if (blueDecisionToFight && !redDecisionToFight)
+        {
+           /*if Blue wants to figh but Red does not*/
+            PVPHalfCommitedBattle(node,blue, red);
+        }
+        else 
+        {
+            /*When No one wants to fight*/
+            PVPNonCommitedBattle(node,red,blue);
+        }
     }
+    
+    public void PVPCommitedBattle(Node node, CombatUnit[] red , CombatUnit[] blue)
+    {
+    
+    }
+    
+    public void PVPHalfCommitedBattle(Node node, CombatUnit[] attackers, CombatUnit[] cowards)
+    {
+        int retreatLocationCount;
+        Road[] fleeingRoads=  new Road[100];
+        Node[] fleeingNodes = new Node[100];
+        Random randNum = new Random();
+        
+        /*FOR EACH ROAD CONNECTING TO NODE*/
+        
+            /*IF LOCATION IS FLEEABLE(), possible opportunity for funtion*/
+                /*CODE: retreatLocationCount++; */
+        /*End For*/
+        
+        
+            
+    
+    }
+    
+    public void PVPNonCommitedBattle(Node node, CombatUnit[] red, CombatUnit[] blue)
+    {
+    
+    }
+    
+    public void PVPChaseBattle(Node node, CombatUnit[] attackers, CombatUnit[] cowards)
+    {
+    
+    }
+    
     
     // for the case of a collision battle on a road
     public void doBattleOnRoad (boolean preemptiveRed, boolean preemptiveBlue)
