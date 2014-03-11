@@ -15,11 +15,12 @@ public class Map extends javax.swing.JFrame {
     public int curPlayer = 0;
     public int x, y;
     
+    
     /**
      * Creates new form Map
      */
     public Map() {
-        initComponents();
+        initComponents();  
         
         if((Global.opponent) == true)
             labelOpponent.setText("Against Player");
@@ -31,6 +32,7 @@ public class Map extends javax.swing.JFrame {
         panelActions.setVisible(false);
         
         labelCurPlayer.setText("Player One's turn");
+        
     }
 
     /**
@@ -44,6 +46,10 @@ public class Map extends javax.swing.JFrame {
 
         popupMenu = new javax.swing.JPopupMenu();
         menuItemClose = new javax.swing.JMenuItem();
+        menuMovement = new javax.swing.JMenu();
+        menuItemMovementLocation = new javax.swing.JMenuItem();
+        menuItemMerge = new javax.swing.JMenuItem();
+        menuItemSplit = new javax.swing.JMenuItem();
         labelScenario = new javax.swing.JLabel();
         labelOpponent = new javax.swing.JLabel();
         labelCurPlayer = new javax.swing.JLabel();
@@ -87,6 +93,11 @@ public class Map extends javax.swing.JFrame {
         buttonElement9 = new javax.swing.JButton();
 
         popupMenu.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        popupMenu.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                popupMenuFocusLost(evt);
+            }
+        });
 
         menuItemClose.setText("Close Menu");
         menuItemClose.addActionListener(new java.awt.event.ActionListener() {
@@ -95,6 +106,19 @@ public class Map extends javax.swing.JFrame {
             }
         });
         popupMenu.add(menuItemClose);
+
+        menuMovement.setText("jMenu1");
+
+        menuItemMovementLocation.setText("jMenuItem4");
+        menuMovement.add(menuItemMovementLocation);
+
+        popupMenu.add(menuMovement);
+
+        menuItemMerge.setText("jMenuItem1");
+        popupMenu.add(menuItemMerge);
+
+        menuItemSplit.setText("jMenuItem1");
+        popupMenu.add(menuItemSplit);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(204, 255, 255));
@@ -492,12 +516,12 @@ public class Map extends javax.swing.JFrame {
     public void Action() {
         labelInfo1.setText(Scenario.listOfNodes[nodeSelected].name);
         //panelActions.setEnabled(true);
-        int[] armies;
-        //10 spots rectangular
-        armies = new int[10];
-        String armiesHere = "";
-        ArmiesHere(armies, armiesHere); 
-        
+        int[][] armies = null;
+        armies = ObtainArmies(armies);
+        ArmiesHere(armies);
+        //first clears the popup menu (in case another node was clicked
+        //while the menu was still active. Then displays and repopulates it.
+        ClearPopupMenu();
         popupMenu.setVisible(true);
         popupMenu.setLocation(x, y);
         
@@ -505,52 +529,71 @@ public class Map extends javax.swing.JFrame {
         
     }
     
-    public void ArmiesHere(int[] armies, String armiesHere) {
-        int indexer = 0;
+    public int[][] ObtainArmies(int[][] listArmy) {
+        //creates list to use to keep track of armies.
+        //first portion of rectangular array represents the differnt armies
+        //within the list. Second portion is [id, size, location].  
+
         if(curPlayer == 0)
         {
-            int length = Scenario.redPlayer.combatUnits.size();
-            for(int i = 0; i < length; i++) {
-                if(Scenario.redPlayer.combatUnits.get(i).GetLocation().id == nodeSelected)
-                {
-                    armies[indexer] = i;
-                    indexer++;
-                    if(Scenario.redPlayer.combatUnits.get(i).isFleet == true)
-                    {
-                        armiesHere+= "Fleet ";
-                        //popupMenu.add();
-                    }
-                    else
-                        armiesHere+= ConvertSize(Scenario.redPlayer.combatUnits.get(i).size);
-                }
+            listArmy = new int[Scenario.redPlayer.combatUnits.size()][4];
+            for(int i = 0; i < Scenario.redPlayer.combatUnits.size(); i++) {
+                listArmy[i][0] = Scenario.redPlayer.combatUnits.get(i).cUnitID;
+                listArmy[i][1] = Scenario.redPlayer.combatUnits.get(i).size;
+                listArmy[i][2] = Scenario.redPlayer.combatUnits.get(i).GetLocation().id;
+                if (Scenario.redPlayer.combatUnits.get(i).isFleet == true)
+                    listArmy[i][3] = 1;
+                else
+                    listArmy[i][3] = 0;
             }
         } else {
-            int length = Scenario.bluePlayer.combatUnits.size();
-            for(int i = 0; i < length; i++) {
-                if(Scenario.bluePlayer.combatUnits.get(i).GetLocation().id == nodeSelected)
-                {
-                    armies[indexer] = i;
-                    indexer++;
-                    if(Scenario.bluePlayer.combatUnits.get(i).isFleet == true)
-                        armiesHere+= "Fleet ";
-                    else
-                        armiesHere+= ConvertSize(Scenario.redPlayer.combatUnits.get(i).size);
-                }
+            listArmy = new int[Scenario.bluePlayer.combatUnits.size()][4];
+            for(int i = 0; i < Scenario.bluePlayer.combatUnits.size(); i++) {
+                listArmy[i][0] = Scenario.bluePlayer.combatUnits.get(i).cUnitID;
+                listArmy[i][1] = Scenario.bluePlayer.combatUnits.get(i).size;
+                listArmy[i][2] = Scenario.bluePlayer.combatUnits.get(i).GetLocation().id;
+                if (Scenario.bluePlayer.combatUnits.get(i).isFleet == true)
+                    listArmy[i][3] = 1;
+                else
+                    listArmy[i][3] = 0;
             }
         }
-        
-        labelInfo5.setText(armiesHere);
-        labelInfo6.setText("size: " + Scenario.redPlayer.combatUnits.size());
+
+        return listArmy;
     }
+    
+    public void ArmiesHere(int[][] armies)
+    {
+        String sizes = "";
+        int i = 0;
+        for (int[] armie : armies) {
+            if (nodeSelected == armies[i][2])
+                sizes += (ConvertSize(armies[i][1], armies[i][3]) + " ");
+            i++;
+        }
+        
+        if(sizes.equals(""))
+            sizes = "none";
+        
+        labelInfo5.setText("Your armies here: " + sizes);
+        
+        //popupMenu.add(null)
+    }
+    
     //converts the army size integer into real words.
-    private String ConvertSize(int armies) {
+    private String ConvertSize(int armieSize, int isFleet) {
         String size;
-        if(armies > 10)
-            size = "Large ";
-         else if (armies >5)
-            size = "Medium ";
+        if(isFleet == 1)
+            size = "Fleet";
         else
-            size = "Small ";
+        {
+            if(armieSize > 10)
+                size = "Large ";
+            else if (armieSize > 5)
+                size = "Medium ";
+            else
+                size = "Small ";
+        }
         return size;
     }
     
@@ -566,12 +609,14 @@ public class Map extends javax.swing.JFrame {
         labelInfo4.setText("");
         labelInfo5.setText("");
         labelInfo6.setText("");
-        
+    }
+    public void ClearPopupMenu() {
         //empties and hides the popup menu
         popupMenu.setVisible(false);
         popupMenu.removeAll();
         popupMenu.add(menuItemClose);
     }
+    
     private void buttonMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonMenuActionPerformed
         new MainMenu().setVisible(true);
         Map.this.dispose();
@@ -712,8 +757,12 @@ public class Map extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonFinishTurnActionPerformed
 
     private void menuItemCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemCloseActionPerformed
-        popupMenu.setVisible(false);
+        ClearPopupMenu();
     }//GEN-LAST:event_menuItemCloseActionPerformed
+
+    private void popupMenuFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_popupMenuFocusLost
+        // TODO add your handling code here:
+    }//GEN-LAST:event_popupMenuFocusLost
 
     /**
      * @param args the command line arguments
@@ -780,6 +829,10 @@ public class Map extends javax.swing.JFrame {
     private javax.swing.JLabel labelTurnCount;
     private javax.swing.JPanel menuInfo;
     private javax.swing.JMenuItem menuItemClose;
+    private javax.swing.JMenuItem menuItemMerge;
+    private javax.swing.JMenuItem menuItemMovementLocation;
+    private javax.swing.JMenuItem menuItemSplit;
+    private javax.swing.JMenu menuMovement;
     private javax.swing.JButton nodePlaceholder1;
     private javax.swing.JButton nodePlaceholder10;
     private javax.swing.JButton nodePlaceholder11;
