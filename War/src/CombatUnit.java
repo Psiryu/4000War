@@ -11,7 +11,6 @@
 public class CombatUnit extends Game {
 
     Player faction; // the faction(player) the unit belongs to
-
     int cUnitID; // unit id
     int size; // total size of the army {0..15}
     int illnessRating; // total illness rating
