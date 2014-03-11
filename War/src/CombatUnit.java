@@ -15,9 +15,7 @@ public class CombatUnit extends Game {
     int cUnitID; // unit id
     int size; // total size of the army {0..15}
     int illnessRating; // total illness rating
-
     int distanceFromCapital; // distance from capital given by node value
-
     int timeStationary; // total number of turns the unit does not move
     Node previousLocation; // the previous location occupied by the unit
     Node location; // the current location of the unit

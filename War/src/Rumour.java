@@ -41,5 +41,56 @@ public class Rumour {
         PoliticalPower {0..30}
         random {-100..100}
         0 < FogOfWar < 100
+    
+     public void ArmiesHere(int[][] armies)
+    {
+        String sizes = "";
+        int i = 0;
+        for (int[] armie : armies) {
+            if (nodeSelected == armies[i][2])
+                sizes += (ConvertSize(armies[i][1], armies[i][3]) + " ");
+            i++;
+        }
+        
+        if(sizes.equals(""))
+            sizes = "none";
+        
+        labelInfo5.setText("Your armies here: " + sizes);
+        
+        //popupMenu.add(null)
+    }
+    
+    public int[][] ObtainArmies(int[][] listArmy) {
+        //creates list to use to keep track of armies.
+        //first portion of rectangular array represents the differnt armies
+        //within the list. Second portion is [id, size, location].  
+
+        if(curPlayer == 0)
+        {
+            listArmy = new int[Scenario.redPlayer.combatUnits.size()][4];
+            for(int i = 0; i < Scenario.redPlayer.combatUnits.size(); i++) {
+                listArmy[i][0] = Scenario.redPlayer.combatUnits.get(i).cUnitID;
+                listArmy[i][1] = Scenario.redPlayer.combatUnits.get(i).size;
+                listArmy[i][2] = Scenario.redPlayer.combatUnits.get(i).GetLocation().id;
+                if (Scenario.redPlayer.combatUnits.get(i).isFleet == true)
+                    listArmy[i][3] = 1;
+                else
+                    listArmy[i][3] = 0;
+            }
+        } else {
+            listArmy = new int[Scenario.bluePlayer.combatUnits.size()][4];
+            for(int i = 0; i < Scenario.bluePlayer.combatUnits.size(); i++) {
+                listArmy[i][0] = Scenario.bluePlayer.combatUnits.get(i).cUnitID;
+                listArmy[i][1] = Scenario.bluePlayer.combatUnits.get(i).size;
+                listArmy[i][2] = Scenario.bluePlayer.combatUnits.get(i).GetLocation().id;
+                if (Scenario.bluePlayer.combatUnits.get(i).isFleet == true)
+                    listArmy[i][3] = 1;
+                else
+                    listArmy[i][3] = 0;
+            }
+        }
+
+        return listArmy;
+    }
     */
 }
