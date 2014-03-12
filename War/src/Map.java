@@ -1,4 +1,9 @@
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.JMenuItem;
+
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -14,6 +19,7 @@ public class Map extends javax.swing.JFrame {
     //variable for keeping track of the current players' turns;
     public int curPlayer = 0;
     public int x, y;
+    public Boolean armyHere = false;
     
     
     /**
@@ -22,17 +28,17 @@ public class Map extends javax.swing.JFrame {
     public Map() {
         initComponents();  
         
+        //clears off the information panel
         ClearMenuInfo();
         
+        //sets a label that informs you whom you are versing.
         if((Global.opponent) == true)
             labelOpponent.setText("Against Player");
         else
             labelOpponent.setText("Against AI");
         
-        labelScenario.setText("Scenario: " + Global.intScenario);
-        
-        panelActions.setVisible(false);
-        
+        //sets labels for scenario selected, and that it is player 1's turn
+        labelScenario.setText("Scenario: " + Global.intScenario);        
         labelCurPlayer.setText("Player One's turn");
         
     }
@@ -48,10 +54,9 @@ public class Map extends javax.swing.JFrame {
 
         popupMenu = new javax.swing.JPopupMenu();
         menuItemClose = new javax.swing.JMenuItem();
-        menuMovement = new javax.swing.JMenu();
-        menuItemMovementLocation = new javax.swing.JMenuItem();
-        menuItemMerge = new javax.swing.JMenuItem();
-        menuItemSplit = new javax.swing.JMenuItem();
+        jMenu1 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
         labelScenario = new javax.swing.JLabel();
         labelOpponent = new javax.swing.JLabel();
         labelCurPlayer = new javax.swing.JLabel();
@@ -82,17 +87,6 @@ public class Map extends javax.swing.JFrame {
         nodePlaceholder13 = new javax.swing.JButton();
         nodePlaceholder14 = new javax.swing.JButton();
         scenarioMap = new javax.swing.JLabel();
-        panelActions = new javax.swing.JPanel();
-        buttonHidePanel = new javax.swing.JButton();
-        buttonElement1 = new javax.swing.JButton();
-        buttonElement2 = new javax.swing.JButton();
-        buttonElement3 = new javax.swing.JButton();
-        buttonElement4 = new javax.swing.JButton();
-        buttonElement5 = new javax.swing.JButton();
-        buttonElement6 = new javax.swing.JButton();
-        buttonElement7 = new javax.swing.JButton();
-        buttonElement8 = new javax.swing.JButton();
-        buttonElement9 = new javax.swing.JButton();
 
         popupMenu.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         popupMenu.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -109,18 +103,15 @@ public class Map extends javax.swing.JFrame {
         });
         popupMenu.add(menuItemClose);
 
-        menuMovement.setText("jMenu1");
+        jMenu1.setText("jMenu1");
 
-        menuItemMovementLocation.setText("jMenuItem4");
-        menuMovement.add(menuItemMovementLocation);
+        jMenuItem1.setText("jMenuItem1");
+        jMenu1.add(jMenuItem1);
 
-        popupMenu.add(menuMovement);
+        jMenuItem2.setText("jMenuItem2");
+        jMenu1.add(jMenuItem2);
 
-        menuItemMerge.setText("jMenuItem1");
-        popupMenu.add(menuItemMerge);
-
-        menuItemSplit.setText("jMenuItem1");
-        popupMenu.add(menuItemSplit);
+        popupMenu.add(jMenu1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(204, 255, 255));
@@ -342,11 +333,8 @@ public class Map extends javax.swing.JFrame {
         });
 
         scenarioMap.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Map1_Sulla.png"))); // NOI18N
-        scenarioMap.setText("jLabel1");
-        scenarioMap.setMaximumSize(new java.awt.Dimension(800, 450));
-        scenarioMap.setMinimumSize(new java.awt.Dimension(800, 450));
+        scenarioMap.setToolTipText("");
         scenarioMap.setName(""); // NOI18N
-        scenarioMap.setPreferredSize(new java.awt.Dimension(800, 450));
 
         javax.swing.GroupLayout panelMapLayout = new javax.swing.GroupLayout(panelMap);
         panelMap.setLayout(panelMapLayout);
@@ -391,7 +379,7 @@ public class Map extends javax.swing.JFrame {
                         .addGroup(panelMapLayout.createSequentialGroup()
                             .addGap(75, 75, 75)
                             .addComponent(nodePlaceholder1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(scenarioMap, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(scenarioMap))
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
         panelMapLayout.setVerticalGroup(
@@ -439,93 +427,35 @@ public class Map extends javax.swing.JFrame {
                                     .addComponent(nodePlaceholder13, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGap(90, 90, 90)
                             .addComponent(nodePlaceholder1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(scenarioMap, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(scenarioMap))
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
 
         getContentPane().add(panelMap, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, -1, -1));
 
-        panelActions.setBackground(new java.awt.Color(255, 255, 255));
-        panelActions.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        panelActions.setEnabled(false);
-
-        buttonHidePanel.setText("Hide Menu");
-        buttonHidePanel.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonHidePanelActionPerformed(evt);
-            }
-        });
-
-        buttonElement1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonElement1ActionPerformed(evt);
-            }
-        });
-
-        buttonElement6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonElement6ActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout panelActionsLayout = new javax.swing.GroupLayout(panelActions);
-        panelActions.setLayout(panelActionsLayout);
-        panelActionsLayout.setHorizontalGroup(
-            panelActionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(buttonElement1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(buttonHidePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(buttonElement2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(buttonElement3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(buttonElement5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(buttonElement7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(buttonElement8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(buttonElement9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(buttonElement4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(buttonElement6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        panelActionsLayout.setVerticalGroup(
-            panelActionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelActionsLayout.createSequentialGroup()
-                .addComponent(buttonHidePanel, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(buttonElement1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(buttonElement2, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(buttonElement3, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(buttonElement4, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(buttonElement5, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(buttonElement6, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(buttonElement7, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(buttonElement8, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(buttonElement9, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE))
-        );
-
-        getContentPane().add(panelActions, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 30, 130, 480));
-
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+
 //nodeSelection is used for selecting a node
     public int nodeSelected = 0;
 //Action will control all node-based actions. Dimmed public because no need
 //for hidden values, and allows information to be passed more easily
     public void Action() {
         labelInfo1.setText(Scenario.listOfNodes[nodeSelected].name);
-        //panelActions.setEnabled(true);
+        armyHere = false;
+        
+        //establishes an army array of all player controlled armies
         int[][] armies = null;
+        //calls to fill the array
         armies = ObtainArmies(armies);
+        
+        //displays if any of your armies are at the selected node
         ArmiesHere(armies);
-        //first clears the popup menu (in case another node was clicked
-        //while the menu was still active. Then displays and repopulates it.
-        ClearPopupMenu();
-        popupMenu.setVisible(true);
-        popupMenu.setLocation(x, y);
+        
+        //creates the popup menu to be displayed, containing all actions
+        //the user can do at the selected node
+        OpenPopup(armies);
         
         //panelActions.setVisible(true);
         
@@ -534,15 +464,24 @@ public class Map extends javax.swing.JFrame {
     public int[][] ObtainArmies(int[][] listArmy) {
         //creates list to use to keep track of armies.
         //first portion of rectangular array represents the differnt armies
-        //within the list. Second portion is [id, size, location].  
+        //within the list. Second portion is [id, size, location, fleet bool].  
 
+        //first sets player 1's armies (red team), then does the same
+        //for player 2 (blue team). Commented first half only, both sets
+        //are exactly identical, just "redPlayer" changed to "bluePlayer"
         if(curPlayer == 0)
         {
+            //sets the array to be the size of player's total army count
             listArmy = new int[Scenario.redPlayer.combatUnits.size()][4];
+            //loops for each army in the array
             for(int i = 0; i < Scenario.redPlayer.combatUnits.size(); i++) {
+                //sets each army's id
                 listArmy[i][0] = Scenario.redPlayer.combatUnits.get(i).cUnitID;
+                //sets each army's size
                 listArmy[i][1] = Scenario.redPlayer.combatUnits.get(i).size;
+                //sets each army's location
                 listArmy[i][2] = Scenario.redPlayer.combatUnits.get(i).GetLocation().id;
+                //sets an int value for the isFleet bool (1 for if true)
                 if (Scenario.redPlayer.combatUnits.get(i).isFleet == true)
                     listArmy[i][3] = 1;
                 else
@@ -566,34 +505,124 @@ public class Map extends javax.swing.JFrame {
     
     public void ArmiesHere(int[][] armies)
     {
+        //creates a string for user display
         String sizes = "";
+        //indexer i
         int i = 0;
         for (int[] armie : armies) {
-            if (nodeSelected == armies[i][2])
+            //checks if current army in array at index is located at this node
+            if (nodeSelected == armies[i][2]) {
+                //adds army size to user output string and sets "armyHere"
+                //to true, for later use. Multiple looped true sets are fine.
                 sizes += (ConvertSize(armies[i][1], armies[i][3]) + " ");
+                armyHere = true;
+            }
             i++;
         }
         
+        //check for if no armies here, for user output
         if(sizes.equals(""))
             sizes = "none";
         
         labelInfo5.setText("Your armies here: " + sizes);
+    }
+    
+    private void OpenPopup(final int[][] armies) {
+        //first clears the popup menu (in case another node was clicked
+        //while the menu was still active. Then displays and repopulates it.
+        ClearPopupMenu();
         
-        //popupMenu.add(null)
+        //checks if there are armies on the selected node with armyHere
+        if(armyHere.equals(true))
+        {
+            //creates the menu item for movement
+            JMenuItem menuItemMove = new JMenuItem("Movement");
+            //adds the action for when this item is clicked
+            menuItemMove.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent event) {
+                    //sends the army list to InitializeMovement when clicked
+                    InitializeMovement(armies);
+                }
+            });
+            //adds this item to the popup menu
+            popupMenu.add(menuItemMove);
+        }
+    
+        //ensures gui is up to date and then displays it at the selected node
+        popupMenu.updateUI();
+        popupMenu.setVisible(true);
+        popupMenu.setLocation(x, y);
+    }
+    
+    private void InitializeMovement(final int[][] armies) {
+        //clears menu and readds new items (armies at the node)
+        ClearPopupMenu();
+        
+        //first, it re checks which armies are at this node
+        //then it adds a new menu item for each individual army.
+        //it loops for every item in the array.
+        int i = 0;
+        for (int[] armie : armies) {
+            if (nodeSelected == armies[i][2]) {
+                //obtains army size, because the method call being
+                //within the next line after it caused issues
+                final String armySize = ConvertSize(armies[i][1],armies[i][3]);
+                
+                //creates a new array item to send out, since nested method
+                //can't use the indexing for the array.
+                final int[][] armyToMove = new int[1][4];
+                armyToMove[0] = armies[i];
+                
+                //creates the item for this army unit on this location.
+                //The action is to send current armyToMove to MoveTo method.
+                JMenuItem menuItemMove = new JMenuItem(armySize);
+                menuItemMove.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent event) {
+                        MoveTo(armyToMove);
+                    }
+                });
+                //finally, adds this item to the popup menu.
+                popupMenu.add(menuItemMove);
+            }
+            //increments so the loop can procede with proper indexing.
+            i++;
+        }
+        
+        popupMenu.updateUI();
+        popupMenu.setVisible(true);
+        popupMenu.setLocation(x, y);
+    }
+    
+    private void MoveTo(int[][] armies) {
+        ClearPopupMenu();
+        
+        //shit happens
+        
+        popupMenu.updateUI();
+        popupMenu.setVisible(true);
+        popupMenu.setLocation(x, y);
     }
     
     //converts the army size integer into real words.
     private String ConvertSize(int armieSize, int isFleet) {
+        //creates a string for output
         String size;
+        //checks the size for which letter size it is associated with
         if(isFleet == 1)
+            //if it's a fleet, size is always "F" for "Fleet"
             size = "F ";
         else
         {
             if(armieSize > 10)
+                //if it's in the "Large" range it gets an "L"
                 size = "L ";
             else if (armieSize > 5)
+                //if in "Medium" size range, it gets an "M"
                 size = "M ";
             else
+                //lastly, for anything under size 6, it gets an "S" for "Small"
                 size = "S ";
         }
         return size;
@@ -620,15 +649,23 @@ public class Map extends javax.swing.JFrame {
     }
     
     private void buttonMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonMenuActionPerformed
+        //button for quitting current scenario and returning to main menu
         new MainMenu().setVisible(true);
         Map.this.dispose();
     }//GEN-LAST:event_buttonMenuActionPerformed
         
     private void buttonExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonExitActionPerformed
+        //button for quitting the game altogether
         System.exit(0);
     }//GEN-LAST:event_buttonExitActionPerformed
 
-    //Placeholder nodes set the nodeSelected value, then call action.
+    
+    
+    /*Placeholder nodes set the nodeSelected value, then call action.
+        all of the nodes do the same actions: set the global value for
+        the selected node's index value, sets the globals for the selected
+        node's x and y values on the gui, then calls to the Action method */
+    
     private void nodePlaceholder1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nodePlaceholder1ActionPerformed
         nodeSelected = 0;
         x = nodePlaceholder1.getX();
@@ -727,21 +764,10 @@ public class Map extends javax.swing.JFrame {
         Action();
     }//GEN-LAST:event_nodePlaceholder14ActionPerformed
 
-    private void buttonElement1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonElement1ActionPerformed
-
-    }//GEN-LAST:event_buttonElement1ActionPerformed
-
-    private void buttonHidePanelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonHidePanelActionPerformed
-        panelActions.setVisible(false);
-        panelActions.setEnabled(false);
-    }//GEN-LAST:event_buttonHidePanelActionPerformed
-
-    private void buttonElement6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonElement6ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_buttonElement6ActionPerformed
-
     private void buttonFinishTurnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonFinishTurnActionPerformed
 
+        //This button end's the current player's turn and starts the turn
+        //for the next player
         if(curPlayer == 0)
         {
             curPlayer = 1;
@@ -752,13 +778,13 @@ public class Map extends javax.swing.JFrame {
             labelCurPlayer.setText("Player One's turn");
             //more shit happens here
         }
-        
-        panelActions.setEnabled(false);
-        panelActions.setVisible(false);
+
         ClearMenuInfo();
     }//GEN-LAST:event_buttonFinishTurnActionPerformed
 
     private void menuItemCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemCloseActionPerformed
+        //a base menu item always added to the popup menu that, when clicked,
+        //clears and closes the popup menu.
         ClearPopupMenu();
         ClearMenuInfo();
     }//GEN-LAST:event_menuItemCloseActionPerformed
@@ -807,19 +833,12 @@ public class Map extends javax.swing.JFrame {
 
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton buttonElement1;
-    private javax.swing.JButton buttonElement2;
-    private javax.swing.JButton buttonElement3;
-    private javax.swing.JButton buttonElement4;
-    private javax.swing.JButton buttonElement5;
-    private javax.swing.JButton buttonElement6;
-    private javax.swing.JButton buttonElement7;
-    private javax.swing.JButton buttonElement8;
-    private javax.swing.JButton buttonElement9;
     private javax.swing.JButton buttonExit;
     private javax.swing.JButton buttonFinishTurn;
-    private javax.swing.JButton buttonHidePanel;
     private javax.swing.JToggleButton buttonMenu;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JLabel labelCurPlayer;
     private javax.swing.JLabel labelInfo1;
     private javax.swing.JLabel labelInfo2;
@@ -832,10 +851,6 @@ public class Map extends javax.swing.JFrame {
     private javax.swing.JLabel labelTurnCount;
     private javax.swing.JPanel menuInfo;
     private javax.swing.JMenuItem menuItemClose;
-    private javax.swing.JMenuItem menuItemMerge;
-    private javax.swing.JMenuItem menuItemMovementLocation;
-    private javax.swing.JMenuItem menuItemSplit;
-    private javax.swing.JMenu menuMovement;
     private javax.swing.JButton nodePlaceholder1;
     private javax.swing.JButton nodePlaceholder10;
     private javax.swing.JButton nodePlaceholder11;
@@ -850,7 +865,6 @@ public class Map extends javax.swing.JFrame {
     private javax.swing.JButton nodePlaceholder7;
     private javax.swing.JButton nodePlaceholder8;
     private javax.swing.JButton nodePlaceholder9;
-    private javax.swing.JPanel panelActions;
     private javax.swing.JPanel panelMap;
     private javax.swing.JPopupMenu popupMenu;
     private javax.swing.JLabel scenarioMap;
