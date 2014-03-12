@@ -1,6 +1,8 @@
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
 import javax.swing.JMenuItem;
 
 
@@ -19,7 +21,11 @@ public class Map extends javax.swing.JFrame {
     //variable for keeping track of the current players' turns;
     public int curPlayer = 0;
     public int x, y;
+    //variables for if an army is on the selected node, and if it can be split
     public Boolean armyHere = false;
+    public Boolean divisableArmy = false;
+    //nodeSelection is used for selecting a node
+    public int nodeSelected = 0;
     
     
     /**
@@ -436,13 +442,12 @@ public class Map extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-
-//nodeSelection is used for selecting a node
-    public int nodeSelected = 0;
 //Action will control all node-based actions. Dimmed public because no need
 //for hidden values, and allows information to be passed more easily
     public void Action() {
+        ClearMenuInfo();
         labelInfo1.setText(Scenario.listOfNodes[nodeSelected].name);
+        divisableArmy = false;
         armyHere = false;
         
         //establishes an army array of all player controlled armies
@@ -516,6 +521,10 @@ public class Map extends javax.swing.JFrame {
                 //to true, for later use. Multiple looped true sets are fine.
                 sizes += (ConvertSize(armies[i][1], armies[i][3]) + " ");
                 armyHere = true;
+                //checks if at least one medium army or higher exists on the
+                //selected node, for later use
+                if(armies[i][1] > 5)
+                    divisableArmy = true;
             }
             i++;
         }
@@ -535,8 +544,9 @@ public class Map extends javax.swing.JFrame {
         //checks if there are armies on the selected node with armyHere
         if(armyHere.equals(true))
         {
-            //creates the menu item for movement
-            JMenuItem menuItemMove = new JMenuItem("Movement");
+            //creates the menu item for movement, as only one army being
+            //present is the only requirement for it
+            final JMenuItem menuItemMove = new JMenuItem("Movement");
             //adds the action for when this item is clicked
             menuItemMove.addActionListener(new ActionListener() {
                 @Override
@@ -545,8 +555,23 @@ public class Map extends javax.swing.JFrame {
                     InitializeMovement(armies);
                 }
             });
+
             //adds this item to the popup menu
             popupMenu.add(menuItemMove);
+        }
+        if(divisableArmy.equals(true)) {
+                        //creates the menu item for movement, as only one army being
+            //present is the only requirement for it
+            final JMenuItem menuItemDivide = new JMenuItem("Divide");
+            //adds the action for when this item is clicked
+            menuItemDivide.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent event) {
+                    //sends the army list to InitializeMovement when clicked
+                    DividingArmies(armies);
+                }
+            });
+            popupMenu.add(menuItemDivide);
         }
     
         //ensures gui is up to date and then displays it at the selected node
@@ -595,16 +620,82 @@ public class Map extends javax.swing.JFrame {
         popupMenu.setLocation(x, y);
     }
     
-    private void MoveTo(int[][] armies) {
+    private void MoveTo(final int[][] army) {
         ClearPopupMenu();
+
+        //loops for every road in the list of roads in Scenario
+        for (Road roads: Scenario.listOfRoads) {
+            //checks if current locaion in array at index is the selected city
+            //first it checks if locationA on the road is the current node,
+            //then it will do the same commands for if it is locationB
+            if (roads.locationA.id == army[0][2]) {
+                //adds locationB name to a final string
+                final String movingTo = roads.locationB.name;
+                //creates the menu item for this road
+                JMenuItem menuItemMove = new JMenuItem(movingTo);
+                menuItemMove.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent event) {
+                        labelInfo6.setText(army[0][1] + " is moving to " + movingTo);
+                        //then it closes the menu, as it is done
+                        ClearPopupMenu();
+                    }
+                });
+                //finally, adds this item to the popup menu.
+                popupMenu.add(menuItemMove);
+                
+            } else if (roads.locationB.id == army[0][2]) {
+                //adds locationB name to a final string
+                final String movingTo = roads.locationA.name;
+                //creates the menu item for this road
+                JMenuItem menuItemMove = new JMenuItem(movingTo);
+                menuItemMove.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent event) {
+                        labelInfo6.setText(army[0][1] + " is moving to " + movingTo);
+                        ClearPopupMenu();
+                    }
+                });
+                //finally, adds this item to the popup menu.
+                popupMenu.add(menuItemMove);
+                
+            }
+        }
         
-        //shit happens
-        
+        //re-sets the popupmenu as updated and visible
         popupMenu.updateUI();
         popupMenu.setVisible(true);
         popupMenu.setLocation(x, y);
     }
     
+    private void DividingArmies(final int[][] army) {
+        ClearPopupMenu();
+        //indexer
+        int i = 0;
+        for (int[] army2 : army) {
+            if(army[i][2] == nodeSelected) {
+                if(army[i][1] > 5) {
+                    //creates the menu item for this army to divide
+                    JMenuItem menuItemMove = new JMenuItem(ConvertSize(army[i][1], army[i][3]));
+                    menuItemMove.addActionListener(new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent event) {
+                            labelInfo6.setText(army[0][1] + " is dividing");
+                            ClearPopupMenu();
+                        }
+                    });
+                    //finally, adds this item to the popup menu.
+                    popupMenu.add(menuItemMove);
+                }
+            i++;
+            }
+        }
+
+        //re-sets the popupmenu as updated and visible
+        popupMenu.updateUI();
+        popupMenu.setVisible(true);
+        popupMenu.setLocation(x, y);
+    }
     //converts the army size integer into real words.
     private String ConvertSize(int armieSize, int isFleet) {
         //creates a string for output
