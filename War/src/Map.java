@@ -1,8 +1,6 @@
 
-import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
 import javax.swing.JMenuItem;
 
 
@@ -462,8 +460,6 @@ public class Map extends javax.swing.JFrame {
         //the user can do at the selected node
         OpenPopup(armies);
         
-        //panelActions.setVisible(true);
-        
     }
     
     public int[][] ObtainArmies(int[][] listArmy) {
@@ -559,15 +555,16 @@ public class Map extends javax.swing.JFrame {
             //adds this item to the popup menu
             popupMenu.add(menuItemMove);
         }
+        //checks if divisableArmy (bool for if an army of medium or higher
+        //exists on selected node) is true
         if(divisableArmy.equals(true)) {
-                        //creates the menu item for movement, as only one army being
-            //present is the only requirement for it
+             //creates the menu item for dividing
             final JMenuItem menuItemDivide = new JMenuItem("Divide");
             //adds the action for when this item is clicked
             menuItemDivide.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent event) {
-                    //sends the army list to InitializeMovement when clicked
+                    //sends the army list to DividingArmies when clicked
                     DividingArmies(armies);
                 }
             });
@@ -672,14 +669,18 @@ public class Map extends javax.swing.JFrame {
         ClearPopupMenu();
         //indexer
         int i = 0;
+        //loops for every army in the list
         for (int[] army2 : army) {
+            //checks if army on loop index is stationed on selected node
             if(army[i][2] == nodeSelected) {
+                //checks to make sure the army is at least an M size
                 if(army[i][1] > 5) {
                     //creates the menu item for this army to divide
                     JMenuItem menuItemMove = new JMenuItem(ConvertSize(army[i][1], army[i][3]));
                     menuItemMove.addActionListener(new ActionListener() {
                         @Override
                         public void actionPerformed(ActionEvent event) {
+                            //temporary actions. will change to send to Temp once Temp is done.
                             labelInfo6.setText(army[0][1] + " is dividing");
                             ClearPopupMenu();
                         }
