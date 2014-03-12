@@ -103,12 +103,15 @@ public class Battle {
     
     public void PVPCommitedBattle(Node node, CombatUnit[] red , CombatUnit[] blue)
     {
+        
+        /*STANDARD BATTLE*/
+        /*WINNER MOVES TO HIS DESIRED LOCATION*/
     
     }
     
     public void PVPHalfCommitedBattle(Node node, CombatUnit[] attackers, CombatUnit[] cowards)
     {
-        int retreatLocationCount;
+        int retreatLocationCount=0;
         Road[] fleeingRoads=  new Road[100];
         Node[] fleeingNodes = new Node[100];
         Random randNum = new Random();
@@ -117,20 +120,47 @@ public class Battle {
         
             /*IF LOCATION IS FLEEABLE(), possible opportunity for funtion*/
                 /*CODE: retreatLocationCount++; */
+                /*ADD ROAD AND NODE TO RESPECTIVE ARRAY WITH SAME INDEX*/
+                
         /*End For*/
         
-        
+        if (retreatLocationCount>0)
+        {
+            /*COWARDS RETREAT TO RAMDOM LOCATION*/
+            /*APPLY PENALTIES TO COWARDS*/
             
+        }
+        else
+        {
+            /*COWARDS DIE*/
+        }
+        
+        /* ATTACKERS MOVE INTO POSTITION*/
+        
+       
     
     }
     
     public void PVPNonCommitedBattle(Node node, CombatUnit[] red, CombatUnit[] blue)
     {
+        /*This where no battle happens and all CombatUnits return to previous node*/
+        
+        
+        /*Not very complicated*/
     
     }
     
     public void PVPChaseBattle(Node node, CombatUnit[] attackers, CombatUnit[] cowards)
     {
+        /*This happpens when the play collide on Road and one should flee*/
+        int attackerStrengh= 0;
+        int cowardsStrength= 0;
+        
+        /*Gather combat strength from ATTACKERS and COWARDS*/
+        /*USE GET COMBAT STRENGTH*/
+        /*APPLY PENALTY TO COWARD*/
+        
+        /*THEY DO BATTLE*/
     
     }
     
@@ -141,22 +171,36 @@ public class Battle {
         // decides how many people were engaging in combat
         if (preemptiveRed == true && preemptiveBlue == true)
         {
-            // simply do battle
+            // simply do battle  
+            /*call PVPHalfCommitedBattle*/
         }
         else if (preemptiveRed == true && preemptiveBlue == false)
         {
-            // team red would waits
+            // team red would wait unitll
             // team blue makes choice to retreat or proceed to battle
+            
+                /*if blue selects fight */
+                /*call PVPHalfCommitedBattle*/
+                /*else*/
+                /*call PVPChaseBattle*/
+            
         }
         else if (preemptiveRed == false && preemptiveBlue == true)
         {
-            // team blue would waits
+            // team ble would wait unitll
             // team red makes choice to retreat or proceed to battle
+            
+                /*if red selects fight */
+                /*call PVPHalfCommitedBattle*/
+                /*else*/
+                /*call PVPChaseBattle*/
         }
         else if (preemptiveRed == false && preemptiveBlue == false)
         {
             // both teams makes choice to retreat or proceed to battle
-            // do battle based on the outcome of choices
+            // if one should should not attack call PVPChaseBattle with the non
+            // attacker as the COWARD
+            // If both do not attack call  PVPNonCommitedBattle
         }
         /*
         
@@ -164,11 +208,13 @@ public class Battle {
     }
 
     // general do battle method
-    public int doBattle(CombatUnit[] red, CombatUnit[] blue) {
-        if (getTotalBattleStrength(red) > getTotalBattleStrength(blue)) {
+    public int doBattle(CombatUnit[] red, CombatUnit[] blue, int redPenalty, int bluePenalty) {
+        if ((getTotalBattleStrength(red)-redPenalty) > (getTotalBattleStrength(blue)-bluePenalty))
+        {
             /*red wins*/
             return 0;
-        } else if (getTotalBattleStrength(red) < getTotalBattleStrength(blue)) {
+        } else if ((getTotalBattleStrength(red)-redPenalty) < (getTotalBattleStrength(blue)-bluePenalty)) 
+        {
             /*blue wins*/
             return 1;
         } else {
