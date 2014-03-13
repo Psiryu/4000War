@@ -211,7 +211,7 @@ public class Map extends javax.swing.JFrame {
         panelMap.setMinimumSize(new java.awt.Dimension(820, 470));
 
         nodePlaceholder1.setBackground(new java.awt.Color(0, 0, 0));
-        nodePlaceholder1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Node-Button.jpg"))); // NOI18N
+        nodePlaceholder1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/map-node-town.png"))); // NOI18N
         nodePlaceholder1.setOpaque(false);
         nodePlaceholder1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -220,7 +220,7 @@ public class Map extends javax.swing.JFrame {
         });
 
         nodePlaceholder2.setBackground(new java.awt.Color(0, 0, 0));
-        nodePlaceholder2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Node-Button.jpg"))); // NOI18N
+        nodePlaceholder2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/map-node-town.png"))); // NOI18N
         nodePlaceholder2.setOpaque(false);
         nodePlaceholder2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -229,7 +229,7 @@ public class Map extends javax.swing.JFrame {
         });
 
         nodePlaceholder3.setBackground(new java.awt.Color(0, 0, 0));
-        nodePlaceholder3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Node-Button.jpg"))); // NOI18N
+        nodePlaceholder3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/map-node-town.png"))); // NOI18N
         nodePlaceholder3.setOpaque(false);
         nodePlaceholder3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -238,7 +238,7 @@ public class Map extends javax.swing.JFrame {
         });
 
         nodePlaceholder4.setBackground(new java.awt.Color(0, 0, 0));
-        nodePlaceholder4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Node-Button.jpg"))); // NOI18N
+        nodePlaceholder4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/map-node-town.png"))); // NOI18N
         nodePlaceholder4.setOpaque(false);
         nodePlaceholder4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -247,7 +247,7 @@ public class Map extends javax.swing.JFrame {
         });
 
         nodePlaceholder5.setBackground(new java.awt.Color(0, 0, 0));
-        nodePlaceholder5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Node-Button.jpg"))); // NOI18N
+        nodePlaceholder5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/map-node-town.png"))); // NOI18N
         nodePlaceholder5.setOpaque(false);
         nodePlaceholder5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -256,7 +256,7 @@ public class Map extends javax.swing.JFrame {
         });
 
         nodePlaceholder6.setBackground(new java.awt.Color(0, 0, 0));
-        nodePlaceholder6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Node-Button.jpg"))); // NOI18N
+        nodePlaceholder6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/map-node-town.png"))); // NOI18N
         nodePlaceholder6.setOpaque(false);
         nodePlaceholder6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -265,7 +265,7 @@ public class Map extends javax.swing.JFrame {
         });
 
         nodePlaceholder7.setBackground(new java.awt.Color(0, 0, 0));
-        nodePlaceholder7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Node-Button.jpg"))); // NOI18N
+        nodePlaceholder7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/map-node-town.png"))); // NOI18N
         nodePlaceholder7.setOpaque(false);
         nodePlaceholder7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -274,7 +274,7 @@ public class Map extends javax.swing.JFrame {
         });
 
         nodePlaceholder8.setBackground(new java.awt.Color(0, 0, 0));
-        nodePlaceholder8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Node-Button.jpg"))); // NOI18N
+        nodePlaceholder8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/map-node-town.png"))); // NOI18N
         nodePlaceholder8.setOpaque(false);
         nodePlaceholder8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -283,7 +283,7 @@ public class Map extends javax.swing.JFrame {
         });
 
         nodePlaceholder9.setBackground(new java.awt.Color(0, 0, 0));
-        nodePlaceholder9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Node-Button.jpg"))); // NOI18N
+        nodePlaceholder9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/map-node-town.png"))); // NOI18N
         nodePlaceholder9.setOpaque(false);
         nodePlaceholder9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -292,7 +292,7 @@ public class Map extends javax.swing.JFrame {
         });
 
         nodePlaceholder10.setBackground(new java.awt.Color(0, 0, 0));
-        nodePlaceholder10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Node-Button.jpg"))); // NOI18N
+        nodePlaceholder10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/map-node-town.png"))); // NOI18N
         nodePlaceholder10.setOpaque(false);
         nodePlaceholder10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -301,7 +301,7 @@ public class Map extends javax.swing.JFrame {
         });
 
         nodePlaceholder11.setBackground(new java.awt.Color(0, 0, 0));
-        nodePlaceholder11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Node-Button.jpg"))); // NOI18N
+        nodePlaceholder11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/map-node-town.png"))); // NOI18N
         nodePlaceholder11.setOpaque(false);
         nodePlaceholder11.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -310,7 +310,7 @@ public class Map extends javax.swing.JFrame {
         });
 
         nodePlaceholder12.setBackground(new java.awt.Color(0, 0, 0));
-        nodePlaceholder12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Node-Button.jpg"))); // NOI18N
+        nodePlaceholder12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/map-node-town.png"))); // NOI18N
         nodePlaceholder12.setOpaque(false);
         nodePlaceholder12.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -319,7 +319,7 @@ public class Map extends javax.swing.JFrame {
         });
 
         nodePlaceholder13.setBackground(new java.awt.Color(0, 0, 0));
-        nodePlaceholder13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Node-Button.jpg"))); // NOI18N
+        nodePlaceholder13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/map-node-town.png"))); // NOI18N
         nodePlaceholder13.setOpaque(false);
         nodePlaceholder13.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -328,7 +328,7 @@ public class Map extends javax.swing.JFrame {
         });
 
         nodePlaceholder14.setBackground(new java.awt.Color(0, 0, 0));
-        nodePlaceholder14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Node-Button.jpg"))); // NOI18N
+        nodePlaceholder14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/map-node-town.png"))); // NOI18N
         nodePlaceholder14.setOpaque(false);
         nodePlaceholder14.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -344,15 +344,16 @@ public class Map extends javax.swing.JFrame {
         panelMap.setLayout(panelMapLayout);
         panelMapLayout.setHorizontalGroup(
             panelMapLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 820, Short.MAX_VALUE)
+            .addGroup(panelMapLayout.createSequentialGroup()
+                .addGap(148, 148, 148)
+                .addComponent(nodePlaceholder2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(642, Short.MAX_VALUE))
             .addGroup(panelMapLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(panelMapLayout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
                     .addGroup(panelMapLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(panelMapLayout.createSequentialGroup()
-                            .addGap(145, 145, 145)
-                            .addComponent(nodePlaceholder2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(40, 40, 40)
+                            .addGap(215, 215, 215)
                             .addComponent(nodePlaceholder3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(panelMapLayout.createSequentialGroup()
                             .addGap(185, 185, 185)
@@ -388,18 +389,17 @@ public class Map extends javax.swing.JFrame {
         );
         panelMapLayout.setVerticalGroup(
             panelMapLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 470, Short.MAX_VALUE)
+            .addGroup(panelMapLayout.createSequentialGroup()
+                .addGap(72, 72, 72)
+                .addComponent(nodePlaceholder2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(368, Short.MAX_VALUE))
             .addGroup(panelMapLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(panelMapLayout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
                     .addGroup(panelMapLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(panelMapLayout.createSequentialGroup()
-                            .addGap(61, 61, 61)
-                            .addGroup(panelMapLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(nodePlaceholder2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(panelMapLayout.createSequentialGroup()
-                                    .addGap(20, 20, 20)
-                                    .addComponent(nodePlaceholder3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGap(81, 81, 81)
+                            .addComponent(nodePlaceholder3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(10, 10, 10)
                             .addComponent(nodePlaceholder4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(10, 10, 10)
