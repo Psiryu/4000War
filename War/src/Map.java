@@ -667,8 +667,7 @@ public class Map extends javax.swing.JFrame {
                 menuItemMove.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent event) {
-                        labelInfo6.setText(army[0][1] + " is moving to " + movingTo);
-                        //then it closes the menu, as it is done
+                        MapEvent.addMovement(army[0][0], roads, roads.locationB.id);
                         ClearPopupMenu();
                     }
                 });
@@ -683,7 +682,7 @@ public class Map extends javax.swing.JFrame {
                 menuItemMove.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent event) {
-                        labelInfo6.setText(army[0][1] + " is moving to " + movingTo);
+                        MapEvent.addMovement(army[0][0], roads, roads.locationA.id);
                         ClearPopupMenu();
                     }
                 });
@@ -801,6 +800,7 @@ public class Map extends javax.swing.JFrame {
                         public void actionPerformed(ActionEvent event) {
                             //prepared to send to Temp
                             labelInfo6.setText("merge " + armyToMerge [0] + " with " + armies[i2][1]);
+                            ClearPopupMenu();
                         }
                     });
                 }
