@@ -256,7 +256,7 @@ public class Map extends javax.swing.JFrame {
         });
 
         nodePlaceholder6.setBackground(new java.awt.Color(0, 0, 0));
-        nodePlaceholder6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/map-node-town.png"))); // NOI18N
+        nodePlaceholder6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/map-node-port.png"))); // NOI18N
         nodePlaceholder6.setOpaque(false);
         nodePlaceholder6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -301,7 +301,7 @@ public class Map extends javax.swing.JFrame {
         });
 
         nodePlaceholder11.setBackground(new java.awt.Color(0, 0, 0));
-        nodePlaceholder11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/map-node-town.png"))); // NOI18N
+        nodePlaceholder11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/map-node-port.png"))); // NOI18N
         nodePlaceholder11.setOpaque(false);
         nodePlaceholder11.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -310,7 +310,7 @@ public class Map extends javax.swing.JFrame {
         });
 
         nodePlaceholder12.setBackground(new java.awt.Color(0, 0, 0));
-        nodePlaceholder12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/map-node-town.png"))); // NOI18N
+        nodePlaceholder12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/map-node-port.png"))); // NOI18N
         nodePlaceholder12.setOpaque(false);
         nodePlaceholder12.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -328,7 +328,7 @@ public class Map extends javax.swing.JFrame {
         });
 
         nodePlaceholder14.setBackground(new java.awt.Color(0, 0, 0));
-        nodePlaceholder14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/map-node-town.png"))); // NOI18N
+        nodePlaceholder14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/map-node-port.png"))); // NOI18N
         nodePlaceholder14.setOpaque(false);
         nodePlaceholder14.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
