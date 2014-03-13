@@ -208,7 +208,8 @@ public class Battle {
     }
 
     // general do battle method
-    public int doBattle(CombatUnit[] red, CombatUnit[] blue, int redPenalty, int bluePenalty) {
+    public int doBattle(CombatUnit[] red, CombatUnit[] blue, int redPenalty, int bluePenalty) 
+    {
         if ((getTotalBattleStrength(red)-redPenalty) > (getTotalBattleStrength(blue)-bluePenalty))
         {
             /*red wins*/
@@ -222,5 +223,8 @@ public class Battle {
             return 2;
         }
     }
-
+    public boolean isFleeable(Node node, CombatUnit[] red, CombatUnit[] blue)
+    {
+        
+    }
 }
