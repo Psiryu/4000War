@@ -225,6 +225,7 @@ public class Battle {
     }
     public boolean isFleeable(Node node, CombatUnit[] red, CombatUnit[] blue)
     {
-        
+        for (int i = 0 ; i < Scenario.listOfNodes.length;i++)
+            if (Scenario.listOfNodes[i].id)
     }
 }

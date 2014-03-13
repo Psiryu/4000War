@@ -734,7 +734,7 @@ public class Map extends javax.swing.JFrame {
         labelInfo6.setText("");
     }
     public void ClearPopupMenu() {
-        //empties and hides the popup menu
+        //empties and hides the popup menu.
         popupMenu.setVisible(false);
         popupMenu.removeAll();
         popupMenu.add(menuItemClose);
