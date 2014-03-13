@@ -223,9 +223,20 @@ public class Battle {
             return 2;
         }
     }
-    public boolean isFleeable(Node node, CombatUnit[] red, CombatUnit[] blue)
+    public boolean isFleeable(Node node, CombatUnit[] red, CombatUnit[] blue)/***********NOTDONE*************/
     {
-        for (int i = 0 ; i < Scenario.listOfNodes.length;i++)
-            if (Scenario.listOfNodes[i].id)
+        for (int i = 0 ; i < Scenario.listOfRoads.length;i++)
+            if (Scenario.listOfRoads[i].locationA.id == node.id) /*if roads location A is node in question*/
+            {
+                /*check locationB*/
+                for(int j = 0; j < red.length;j++)
+                {
+                    /**/
+                }
+            
+            }
+        
+        return true;
+        /*************************NOT DONE***********************/
     }
 }
