@@ -987,6 +987,7 @@ public class Map extends javax.swing.JFrame {
         }
 
         ClearMenuInfo();
+        ClearPopupMenu();
     }//GEN-LAST:event_buttonFinishTurnActionPerformed
 
     private void menuItemCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemCloseActionPerformed
