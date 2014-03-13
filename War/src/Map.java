@@ -16,15 +16,15 @@ import javax.swing.JMenuItem;
  */
 public class Map extends javax.swing.JFrame {
 
-    //variable for keeping track of the current players' turns;
+   //variable for keeping track of the current players' turns;
     public int curPlayer = 0;
     public int x, y;
-    //variables for if an army is on the selected node, and if it can be split
+    //variables for if an army is on the selected node, and if it can be split/merged
     public Boolean armyHere = false;
     public Boolean divisableArmy = false;
+    public Boolean mergableArmy = false;
     //nodeSelection is used for selecting a node
     public int nodeSelected = 0;
-    
     
     /**
      * Creates new form Map
@@ -445,6 +445,7 @@ public class Map extends javax.swing.JFrame {
     public void Action() {
         ClearMenuInfo();
         labelInfo1.setText(Scenario.listOfNodes[nodeSelected].name);
+        mergableArmy = false;
         divisableArmy = false;
         armyHere = false;
         
@@ -508,6 +509,12 @@ public class Map extends javax.swing.JFrame {
     {
         //creates a string for user display
         String sizes = "";
+        //a counter for if armies can merge (mergable[0] counts small armies,
+        //while mergable[1] counts mediums.
+        int[] mergable = new int[2];
+        mergable[0] = 0;
+        mergable[1] = 0;
+        
         //indexer i
         int i = 0;
         for (int[] armie : armies) {
@@ -521,6 +528,16 @@ public class Map extends javax.swing.JFrame {
                 //selected node, for later use
                 if(armies[i][1] > 5)
                     divisableArmy = true;
+                //checks if at least two smalls (that aren't fleets) exist here
+                if(armies[i][1] < 6 && armies[i][3] == 0)
+                    mergable[0]++;
+                //checks if two or more mediums exist here
+                if(armies[i][1] > 5 && armies[i][1] < 11)
+                    mergable[1]++;
+                //sets public boolean mergableArmy to true if either values in
+                //the array are greater than 1
+                if(mergable[0] > 1 || mergable[1] > 1)
+                    mergableArmy = true;
             }
             i++;
         }
@@ -532,7 +549,8 @@ public class Map extends javax.swing.JFrame {
         labelInfo5.setText("Your armies here: " + sizes);
     }
     
-    private void OpenPopup(final int[][] armies) {
+    
+     private void OpenPopup(final int[][] armies) {
         //first clears the popup menu (in case another node was clicked
         //while the menu was still active. Then displays and repopulates it.
         ClearPopupMenu();
@@ -570,12 +588,28 @@ public class Map extends javax.swing.JFrame {
             });
             popupMenu.add(menuItemDivide);
         }
+         //checks if mergableArmy (bool for if two or more mediums or smalls
+        //exists on selected node) is true
+        if(mergableArmy.equals(true)) {
+             //creates the menu item for merging
+            final JMenuItem menuItemMerge = new JMenuItem("Merge");
+            //adds the action for when this item is clicked
+            menuItemMerge.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent event) {
+                    //sends the army list to DividingArmies when clicked
+                    BeginMergingArmies(armies);
+                }
+            });
+            popupMenu.add(menuItemMerge);
+        }
     
         //ensures gui is up to date and then displays it at the selected node
         popupMenu.updateUI();
         popupMenu.setVisible(true);
         popupMenu.setLocation(x, y);
     }
+   
     
     private void InitializeMovement(final int[][] armies) {
         //clears menu and readds new items (armies at the node)
@@ -697,6 +731,87 @@ public class Map extends javax.swing.JFrame {
         popupMenu.setVisible(true);
         popupMenu.setLocation(x, y);
     }
+    
+    private void BeginMergingArmies(final int[][] armies) {
+        ClearPopupMenu();
+        
+        //first, it re checks which armies are at this node
+        //then it adds a new menu item for each medium or small army so long
+        //as there are at least two of that size. x is a secondary indexer.
+        int i = 0; int i2 = 0;
+        for (int[] armie : armies) {
+            //checks if army on loop index is stationed on selected node
+            if(armies[i][2] == nodeSelected) {
+                for (int[] armie2 : armies) {
+                    if(armies[i][1] == armies[i2][1] && armies[i][0] != armies[i2][0])
+                    {
+                        //creating indexer z as a variable dimmed 'final' is required
+                        final int z = i;
+                        //creates the menu item for this army to merge
+                        JMenuItem menuItemMerges = new JMenuItem(ConvertSize(armies[i][1], armies[i][3]));
+                        menuItemMerges.addActionListener(new ActionListener() {
+                            @Override
+                            public void actionPerformed(ActionEvent event) {
+                                //sends current array item to MergeArmy method
+                                MergeArmy(armies, z);
+                            }
+                        });
+                        //finally, adds this item to the popup menu.
+                        popupMenu.add(menuItemMerges);
+                    }
+                    i2++;
+                }
+            }
+            i++;
+        }
+        
+        
+        popupMenu.updateUI();
+        popupMenu.setVisible(true);
+        popupMenu.setLocation(x, y);
+    }
+    
+    //MergeArmy is sent the full list of armies, and the index location of which army to merge
+    private void MergeArmy(final int[][] armies, int z) {
+        ClearPopupMenu();
+        
+        //sets up an array, first variable being an indexer, second containing
+        //[0] = id, [1] = size, [2] = location
+        final int[] armyToMerge = new int[3];
+        armyToMerge[0] = armies[z][0];
+        armyToMerge[1] = armies[z][1];
+        armyToMerge[2] = armies[z][2];
+        
+        
+        int i = 0;
+        for (int[] armie : armies) {
+            //checks if army on loop index is stationed on selected node
+            if(armies[i][2] == nodeSelected) {
+                //checks if army at index is same size as and not same id as 
+                //the selected army to merge
+                if(armies[i][0] != armyToMerge[0] && armies[i][1] == armyToMerge[1])
+                {
+                    //creates the menu item to merge 
+                        //creates Final declared int for inside next component
+                    final int i2 = i;
+                    
+                    JMenuItem menuItemMerges = new JMenuItem(ConvertSize(armies[i][1], armies[i][3]));
+                    menuItemMerges.addActionListener(new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent event) {
+                            //prepared to send to Temp
+                            labelInfo6.setText("merge " + armyToMerge [0] + " with " + armies[i2][1]);
+                        }
+                    });
+                }
+                
+            }
+        }
+        
+        popupMenu.updateUI();
+        popupMenu.setVisible(true);
+        popupMenu.setLocation(x, y);
+    }
     //converts the army size integer into real words.
     private String ConvertSize(int armieSize, int isFleet) {
         //creates a string for output
@@ -719,7 +834,7 @@ public class Map extends javax.swing.JFrame {
         }
         return size;
     }
-    
+ 
     private void ClearMenuInfo() {
         /* This method clears all of the visible information presented to
             the player, to end their turn and ensure the next player is
