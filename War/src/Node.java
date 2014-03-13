@@ -22,11 +22,12 @@ public class Node
     int id; // the node ID
     int suppliesAvailable; // supply level
     boolean isAnnexable; // if the node is a city, therefor annexable
+    boolean isPort; // if the node is a coastal location with a port
     int fogValue; // value assigned to location for fog of war
     Random random = new Random();
     
     // Constructor of the nodes
-    public Node (int _id, boolean _isCapitalRed, boolean _isCapitalBlue, int _distanceFromCapitalRed, int _distanceFromCapitalBlue, String _name, int supply, boolean _isAnnexable)
+    public Node (int _id, boolean _isCapitalRed, boolean _isCapitalBlue, int _distanceFromCapitalRed, int _distanceFromCapitalBlue, String _name, int supply, boolean _isAnnexable, boolean _isPort)
     {
         // assign the values of the nodes
         id = _id;
@@ -38,6 +39,7 @@ public class Node
         suppliesAvailable = supply;
         isAnnexable = _isAnnexable;
         fogValue = random.nextInt(10);
+        isPort = _isPort;
     }
     
     // Method to refresh supplies

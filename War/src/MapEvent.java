@@ -18,10 +18,13 @@ public class MapEvent {
     private ArrayList<Road> blueUnitRoad; // list of roads occupied by blue faction
     private ArrayList<Node> redUnitEnd; // list of node end locations for red
     private ArrayList<Node> blueUnitEnd; // list of node end locations for blue
+    private ArrayList<Node> redUnitStart; // list of node start locations for red
+    private ArrayList<Node> blueUnitStart; // list of node start locations for blue
     private ArrayList<CombatUnit> redCombatListCollision;
     private ArrayList<CombatUnit> blueCombatListCollision;
     private ArrayList<CombatUnit> redCombatListNode;
     private ArrayList<CombatUnit> blueCombatListNode;
+    private Player redPlayer, bluePlayer;
 
     /*
      int[i][j] armies
@@ -45,23 +48,56 @@ public class MapEvent {
         blueCombatListCollision = new ArrayList<CombatUnit>();
         redCombatListNode = new ArrayList<CombatUnit>();
         blueCombatListNode = new ArrayList<CombatUnit>();
+        redUnitStart = new ArrayList<Node>();
+        blueUnitStart = new ArrayList<Node>();
+        redPlayer = Scenario.redPlayer;
+        bluePlayer = Scenario.bluePlayer;
     }
 
     // Method called to to add a movement to the registry
-    public void addMovement(CombatUnit unit, Road road, Node endLocation) {
-        if (unit.faction.playerID == 0) {
-            combatUnitsRed.add(unit);
-            redUnitRoad.add(road);
-            redUnitEnd.add(endLocation);
-        } else {
-            combatUnitsBlue.add(unit);
-            blueUnitRoad.add(road);
-            redUnitEnd.add(endLocation);
+    public void addMovement(int unitNum, Road road, int endLocationNum) {
+        CombatUnit unit = Scenario.listOfUnits[unitNum];
+        Node endLocation = Scenario.listOfNodes[endLocationNum];
+
+        if (combatUnitsRed.contains(unit)){
+            combatUnitsRed.remove(unit);
+            redUnitRoad.remove(road);
+            redUnitEnd.remove(endLocation);
         }
+        else if (combatUnitsBlue.contains(unit)){
+            combatUnitsBlue.remove(unit);
+            blueUnitRoad.remove(road);
+            blueUnitEnd.remove(endLocation);
+        }
+        else{
+            if (unit.faction.playerID == redPlayer.playerID) {
+                combatUnitsRed.add(unit);
+                redUnitRoad.add(road);
+                redUnitEnd.add(endLocation);
+            } else {
+                combatUnitsBlue.add(unit);
+                blueUnitRoad.add(road);
+                redUnitEnd.add(endLocation);
+            }
+        }
+    }
+    
+    public void removeMovement(/*information needed for item identification*/){
+        /*
+        search for the item based on parameter(s)
+        .remove(index) from the lists:
+            combatUnits____
+            ____UnitRoad
+            ____UnitEnd
+        */
     }
 
     // Method called to in order to simulate simutanious movement
     public void processEvents() {
+        
+        /*
+        take into consideration non-interacted units
+        */
         for (int i = 0; i < Scenario.listOfRoads.length; i++) {
             for (int j = 0; j < combatUnitsRed.size(); j++) {
                 if (redUnitRoad.get(i).roadID == i) {
@@ -99,22 +135,22 @@ public class MapEvent {
             }
         }
         for (int j = 0; j < combatUnitsRed.size(); j++) {
-            if (!redCombatListCollision.contains(combatUnitsRed.get(j)) && !redCombatListNode.contains(combatUnitsRed.get(j))){
+            if (!redCombatListCollision.contains(combatUnitsRed.get(j)) && !redCombatListNode.contains(combatUnitsRed.get(j))) {
                 moveUnit(combatUnitsRed.get(j), redUnitEnd.get(j));
             }
         }
         for (int j = 0; j < combatUnitsBlue.size(); j++) {
-            if (!blueCombatListCollision.contains(combatUnitsBlue.get(j)) && !blueCombatListNode.contains(combatUnitsBlue.get(j))){
+            if (!blueCombatListCollision.contains(combatUnitsBlue.get(j)) && !blueCombatListNode.contains(combatUnitsBlue.get(j))) {
                 moveUnit(combatUnitsBlue.get(j), blueUnitEnd.get(j));
             }
         }
     }
 
-    private void moveUnit(CombatUnit unit, Node endLocation){
+    private void moveUnit(CombatUnit unit, Node endLocation) {
         unit.previousLocation = unit.location;
         unit.location = endLocation;
     }
-    
+
     // Method called to in order to handle unit merges
     public void mergeUnits(CombatUnit one, CombatUnit two) {
         int[] scaled = {0, 0, 0};

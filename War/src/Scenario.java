@@ -53,19 +53,28 @@ public class Scenario {
         for (int i = 0; i < 14; i++) {
             int supply = (int) (4 * random.nextDouble()); // determine the supply level
 
-            // determine capital offiliation
+            // determine node properties
             boolean redCapital = false;
             boolean blueCapital = false;
-            switch (names[i]) { // assign capital based on the scenario
+            boolean isPort = false;
+            switch (names[i]) { // assign properties based on the scenario
                 case "Roma":
                     blueCapital = true;
+                    isPort = true;
                     break;
                 case "Brindis":
                     redCapital = true;
+                    isPort = true;
+                    break;
+                case "Senigalia":
+                    isPort = true;
+                    break;
+                case "Dyrrhachulum":
+                    isPort = true;
                     break;
             }
             // initialize each of the new nodes based on the scenario data
-            listOfNodes[i] = new Node(i, redCapital, blueCapital, capitalDistances[i][1], capitalDistances[i][0], names[i], supply, true);
+            listOfNodes[i] = new Node(i, redCapital, blueCapital, capitalDistances[i][1], capitalDistances[i][0], names[i], supply, true, false);
         }
 
         // for each of the roads
