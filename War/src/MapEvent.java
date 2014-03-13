@@ -105,6 +105,13 @@ public class MapEvent {
 
     // Method to reset the arrays at turn's end
     public void clearRegistry() {
-
+        combatUnitsRed = new ArrayList<CombatUnit>();
+        combatUnitsBlue = new ArrayList<CombatUnit>();
+        redUnitRoad = new ArrayList<Road>();
+        blueUnitRoad = new ArrayList<Road>();
+        redUnitEnd = new ArrayList<Node>();
+        blueUnitEnd = new ArrayList<Node>();
+        redCombatList = new ArrayList<CombatUnit>();
+        blueCombatList = new ArrayList<CombatUnit>();
     }
 }
