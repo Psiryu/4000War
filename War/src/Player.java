@@ -84,7 +84,7 @@ public class Player extends Game {
     // Method to calculate the total dispersion of a faction's units
     public void setAggDistance() {
         int calculatedDistance = 0; // temporary storage of caculation
-
+        
         // obtain the distance from capital for each unit based on the location value
         for (int i = 0; i < combatUnits.size(); i++) {
             if (playerName.equals("red")) {
@@ -99,7 +99,7 @@ public class Player extends Game {
     }
 
     // Method to add a unit to a faction
-    public void addUnit(CombatUnit addition) {
+    public void addUnit(int id, CombatUnit addition) {
         combatUnits.add(addition);
     }
 

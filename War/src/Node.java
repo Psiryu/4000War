@@ -21,7 +21,7 @@ public class Node
     String name; // the location name
     int id; // the node ID
     int suppliesAvailable; // supply level
-    boolean isAnnexable; // if the node is a city, therefor annexable
+    boolean isCity; // if the node is a city, therefor annexable
     boolean isPort; // if the node is a coastal location with a port
     int fogValue; // value assigned to location for fog of war
     Random random = new Random();
@@ -37,7 +37,7 @@ public class Node
         distanceFromCapitalBlue = _distanceFromCapitalBlue;
         name = _name;
         suppliesAvailable = supply;
-        isAnnexable = _isAnnexable;
+        isCity = _isAnnexable;
         fogValue = random.nextInt(10);
         isPort = _isPort;
     }

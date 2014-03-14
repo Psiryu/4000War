@@ -56,7 +56,7 @@ public class MapEvent {
 
     // Method called to to add a movement to the registry
     public void addMovement(int unitNum, Road road, int endLocationNum) {
-        CombatUnit unit = Scenario.listOfUnits[unitNum];
+        CombatUnit unit = Scenario.listOfUnits.get(unitNum);
         Node endLocation = Scenario.listOfNodes[endLocationNum];
 
         if (combatUnitsRed.contains(unit)){
