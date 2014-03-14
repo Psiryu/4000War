@@ -56,20 +56,42 @@ public class MapEvent {
 
     // Method called to to add a movement to the registry
     public void addMovement(int unitNum, Road road, int endLocationNum) {
-        CombatUnit unit = Scenario.listOfUnits.get(unitNum);
+        CombatUnit unit = null;
+        //CombatUnit unit = Scenario.listOfUnits.get(unitNum);
         Node endLocation = Scenario.listOfNodes[endLocationNum];
 
-        if (combatUnitsRed.contains(unit)){
+        boolean found = false;
+        int i = 0;
+
+        while (found || i != Scenario.redPlayer.combatUnits.size()) {
+            if (Scenario.redPlayer.combatUnits.get(i).cUnitID == unitNum) {
+                found = true;
+            }
+            i++;
+        }
+        if (found == true) {
+            unit = Scenario.redPlayer.combatUnits.get(i);
+        } else {
+            while (found || i != Scenario.bluePlayer.combatUnits.size()) {
+                if (Scenario.bluePlayer.combatUnits.get(i).cUnitID == unitNum) {
+                    found = true;
+                }
+                i++;
+            }
+            if (found == true) {
+                unit = Scenario.bluePlayer.combatUnits.get(i);
+            }
+        }
+
+        if (combatUnitsRed.contains(unit)) {
             combatUnitsRed.remove(unit);
             redUnitRoad.remove(road);
             redUnitEnd.remove(endLocation);
-        }
-        else if (combatUnitsBlue.contains(unit)){
+        } else if (combatUnitsBlue.contains(unit)) {
             combatUnitsBlue.remove(unit);
             blueUnitRoad.remove(road);
             blueUnitEnd.remove(endLocation);
-        }
-        else{
+        } else {
             if (unit.faction.playerID == redPlayer.playerID) {
                 combatUnitsRed.add(unit);
                 redUnitRoad.add(road);
@@ -81,23 +103,57 @@ public class MapEvent {
             }
         }
     }
-    
-    public void removeMovement(/*information needed for item identification*/){
+
+    public void cleanList() {
+        boolean found = false;
+        int[] redIDs = new int[combatUnitsRed.size()];
+        for (int i = 0; i < combatUnitsRed.size(); i++) {
+            redIDs[i] = combatUnitsRed.get(i).cUnitID;
+        }
+
+        int[] blueIDs = new int[combatUnitsBlue.size()];
+        for (int i = 0; i < combatUnitsBlue.size(); i++) {
+            blueIDs[i] = combatUnitsBlue.get(i).cUnitID;
+        }
+
+        for (int i = 0; i < Scenario.redPlayer.combatUnits.size(); i++) {
+            for (int j = 0; j < combatUnitsRed.size(); j++) {
+                if (Scenario.redPlayer.combatUnits.get(i).cUnitID == redIDs[j]) {
+                    found = true;
+                }
+            }
+            if (found == false) {
+                combatUnitsRed.add(Scenario.redPlayer.combatUnits.get(i));
+                redUnitRoad.add(null);
+                redUnitEnd.add(Scenario.redPlayer.combatUnits.get(i).location);
+            }
+        }
+        for (int i = 0; i < Scenario.bluePlayer.combatUnits.size(); i++) {
+            for (int j = 0; j < combatUnitsBlue.size(); j++) {
+                if (Scenario.bluePlayer.combatUnits.get(i).cUnitID == redIDs[j]) {
+                    found = true;
+                }
+            }
+            if (found == false) {
+                combatUnitsRed.add(Scenario.bluePlayer.combatUnits.get(i));
+                blueUnitRoad.add(null);
+                blueUnitEnd.add(Scenario.bluePlayer.combatUnits.get(i).location);
+            }
+        }
+    }
+
+    public void removeMovement(/*information needed for item identification*/) {
         /*
-        search for the item based on parameter(s)
-        .remove(index) from the lists:
-            combatUnits____
-            ____UnitRoad
-            ____UnitEnd
-        */
+         search for the item based on parameter(s)
+         .remove(index) from the lists:
+         combatUnits____
+         ____UnitRoad
+         ____UnitEnd
+         */
     }
 
     // Method called to in order to simulate simutanious movement
     public void processEvents() {
-        
-        /*
-        take into consideration non-interacted units
-        */
         for (int i = 0; i < Scenario.listOfRoads.length; i++) {
             for (int j = 0; j < combatUnitsRed.size(); j++) {
                 if (redUnitRoad.get(i).roadID == i) {
