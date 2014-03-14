@@ -337,7 +337,7 @@ public class Map extends javax.swing.JFrame {
         });
 
         scenarioMap.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Map1_Sulla.png"))); // NOI18N
-        scenarioMap.setToolTipText("");
+        scenarioMap.setToolTipText("<html>\n<u>Dark Grey circle:</u> city\n<br><u> Light Blue circle:</u> port town\n<br><u> Beige circle:</u> road checkpoint \n<br><u> Red circle:</u> player 1 has an army here\n<br> <u>Blue circle:</u> player 2 has an army here \n</html>");
         scenarioMap.setName(""); // NOI18N
 
         javax.swing.GroupLayout panelMapLayout = new javax.swing.GroupLayout(panelMap);

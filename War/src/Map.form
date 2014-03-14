@@ -624,7 +624,7 @@
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/Images/Map1_Sulla.png"/>
             </Property>
-            <Property name="toolTipText" type="java.lang.String" value=""/>
+            <Property name="toolTipText" type="java.lang.String" value="&lt;html&gt;&#xa;&lt;u&gt;Dark Grey circle:&lt;/u&gt; city&#xa;&lt;br&gt;&lt;u&gt; Light Blue circle:&lt;/u&gt; port town&#xa;&lt;br&gt;&lt;u&gt; Beige circle:&lt;/u&gt; road checkpoint &#xa;&lt;br&gt;&lt;u&gt; Red circle:&lt;/u&gt; player 1 has an army here&#xa;&lt;br&gt; &lt;u&gt;Blue circle:&lt;/u&gt; player 2 has an army here &#xa;&lt;/html&gt;"/>
             <Property name="name" type="java.lang.String" value="" noResource="true"/>
           </Properties>
         </Component>
