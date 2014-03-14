@@ -84,7 +84,7 @@ public class Player extends Game {
     // Method to calculate the total dispersion of a faction's units
     public void setAggDistance() {
         int calculatedDistance = 0; // temporary storage of caculation
-        
+
         // obtain the distance from capital for each unit based on the location value
         for (int i = 0; i < combatUnits.size(); i++) {
             if (playerName.equals("red")) {
@@ -99,19 +99,23 @@ public class Player extends Game {
     }
 
     // Method to add a unit to a faction
-    public void addUnit(int id, CombatUnit addition) {
+    public void addUnit(CombatUnit addition) {
         combatUnits.add(addition);
+    }
+
+    public void removeUnit(CombatUnit removal) {
+        combatUnits.remove(removal);
     }
 
     // Method to set the initial army size
     public void setInitialArmyLevel() {
         int sumSize = 0; // temporary storage of the sum of all unit sizes
-        
+
         // obtain the size of each of the faction's units
         for (int i = 0; i < combatUnits.size(); i++) {
             sumSize += combatUnits.get(i).size;
         }
-        
+
         // set the total army size based on calculation
         totalInitialArmy = sumSize;
     }
@@ -119,12 +123,12 @@ public class Player extends Game {
     // Method to set the ongoing army size
     public void setCurrentArmyLevel() {
         int sumSize = 0; // temporary storage of the sum of all unit sizes
-        
+
         // obtain the size of each of the faction's units
         for (int i = 0; i < combatUnits.size(); i++) {
             sumSize += combatUnits.get(i).size;
         }
-        
+
         // set the current army size based on calculation
         totalCurrentArmy = sumSize;
     }

@@ -143,10 +143,10 @@ public class Scenario {
         listOfUnits.add(new CombatUnit(true, 7, 5, 0, listOfNodes[unitLocations.get(5)], redPlayer));
         // add the units to their respective players
         for (int i = 0; i < 4; i++) {
-            bluePlayer.addUnit(i, listOfUnits.get(i));
+            bluePlayer.addUnit(listOfUnits.get(i));
         }
         for (int i = 4; i < 8; i++) {
-            redPlayer.addUnit(i, listOfUnits.get(i));
+            redPlayer.addUnit(listOfUnits.get(i));
         }
 
         // establish the current/initial armysize for each faction

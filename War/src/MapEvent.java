@@ -106,6 +106,7 @@ public class MapEvent {
 
     public void cleanList() {
         boolean found = false;
+
         int[] redIDs = new int[combatUnitsRed.size()];
         for (int i = 0; i < combatUnitsRed.size(); i++) {
             redIDs[i] = combatUnitsRed.get(i).cUnitID;
@@ -209,9 +210,15 @@ public class MapEvent {
 
     // Method called to in order to handle unit merges
     public void mergeUnits(CombatUnit one, CombatUnit two) {
+        CombatUnit temp;
         int[] scaled = {0, 0, 0};
         int sumSize = one.size + two.size;
         int[] sizes = {one.size, two.size, sumSize};
+        int health = (one.illnessRating + two.illnessRating) / 2;
+
+        if (sumSize > 15) {
+            sumSize = 15;
+        }
 
         for (int i = 0; i < 3; i++) {
             if (sizes[i] < 6) {
@@ -223,13 +230,51 @@ public class MapEvent {
             }
         }
 
-        /*
-         scale the backend army size to account for variance in unit size ranges
-         */
+        // assume sanitization
+        // works for case S+S only
+        if (scaled[2] == scaled[0] || scaled[2] == scaled[1]) {
+            if (sumSize < 6) {
+                sumSize = 5;
+            } else if (sumSize < 11) {
+                sumSize = 10;
+            } else {
+                sumSize = 15;
+            }
+        }
+
+        temp = new CombatUnit(false, one.cUnitID, sumSize, health, one.location, one.faction);
+
+        temp.faction.removeUnit(one);
+        temp.faction.removeUnit(two);
+        temp.faction.addUnit(temp);
+
     }
 
     public void divideUnits(CombatUnit unit) {
-
+        CombatUnit one, two;
+        int divSize = unit.size / 2;
+        boolean idFind = false;
+        int checker = 0;
+        int id = 0;
+        
+        while(idFind){
+            for (int j = 0; j < unit.faction.combatUnits.size();j++){
+                if (unit.faction.combatUnits.get(j).cUnitID == i){
+                    checker++;
+                }
+            }
+            if (checker != 0){
+                idFind = true;
+            }
+            id++;
+        }
+        
+        one = new CombatUnit(false, unit.cUnitID, divSize, unit.illnessRating, unit.location, unit.faction);
+        two = new CombatUnit(false, id, divSize, unit.illnessRating, unit.location, unit.faction);
+        
+        one.faction.removeUnit(unit);
+        one.faction.addUnit(one);
+        one.faction.addUnit(two);
     }
 
     // Method to reset the arrays at turn's end
