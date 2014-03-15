@@ -13,8 +13,8 @@ public class Global {
     public static Boolean chosenTeam = false; // toggle for the character player 1 choses, false means player 1 is team 1
     public static int weather; // storage for the weather value
     public static int season; // storage for the season value
-    public static String teamOne = "Sparta"; // team name 1
-    public static String teamTwo = "Persia"; // team name 2
+    public static String teamOne; // team name 1
+    public static String teamTwo; // team name 2
     public static int intScenario; // scenario number
     
     public static int curPlayer = 0; //global variable for keeping track of whos turn it is
