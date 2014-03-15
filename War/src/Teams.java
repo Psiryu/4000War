@@ -118,9 +118,10 @@ public class Teams extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        new Map().setVisible(true);
         Scenario scenario = new Scenario();
         scenario.Initialize(0);
+        
+        new Map().setVisible(true);
         Teams.this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 

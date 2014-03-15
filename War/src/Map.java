@@ -1,6 +1,13 @@
 
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JMenuItem;
 
 
@@ -44,6 +51,7 @@ public class Map extends javax.swing.JFrame {
         labelScenario.setText("Scenario: " + Global.intScenario);        
         labelCurPlayer.setText("Player One's turn");
         
+        GameStart();
     }
 
     /**
@@ -439,6 +447,19 @@ public class Map extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public final void GameStart() {
+        //this method applies values that are required at the very start of the
+        //game for player 1. (essentially "finish turn" button aftereffects
+        //that need to happen for th every first turn).
+        
+        try {
+            SetDefaultColours();
+        } catch (IOException ex) {
+            Logger.getLogger(Map.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        SetColours();
+    }
+    
 //Action will control all node-based actions. Dimmed public because no need
 //for hidden values, and allows information to be passed more easily
     public void Action() {
@@ -856,6 +877,80 @@ public class Map extends javax.swing.JFrame {
         popupMenu.add(menuItemClose);
     }
     
+    public void SetDefaultColours() throws IOException {
+        //this method resets the node colours to default
+        Image img;
+        //indexer i, which is used as the curent node id in the loop
+        int i = 0;
+        for (Node nodes : Scenario.listOfNodes) {
+            //creates the base image variable
+            
+            //checks which player's turn it is
+            if(nodes.isPort == true) {
+                //sets the image to be a port town node
+                img = ImageIO.read(getClass().getResource("Images/map-node-port.png"));
+            }else if (nodes.isCity == true) {
+                //sets image for cities
+                img = ImageIO.read(getClass().getResource("Images/map-node-town.png"));
+            } else {
+                //else catches the remainder, which are checkpoint locations
+                img = ImageIO.read(getClass().getResource("Images/map-node-road.png"));
+            }
+            
+            //casts the image to an icon
+            ImageIcon img2 = new ImageIcon(img);
+            
+            //switch case for current indexed button object to change
+            switch (i) {
+                case 0: 
+                    nodePlaceholder1.setIcon(img2);
+                    break;
+                case 1:
+                    nodePlaceholder2.setIcon(img2);
+                    break;
+                case 2:
+                    nodePlaceholder3.setIcon(img2);
+                    break;
+                case 3:
+                    nodePlaceholder4.setIcon(img2);
+                    break;
+                case 4:
+                    nodePlaceholder5.setIcon(img2);
+                    break;
+                case 5:
+                    nodePlaceholder6.setIcon(img2);
+                    break;
+                case 6:
+                    nodePlaceholder7.setIcon(img2);
+                    break;
+                case 7:
+                    nodePlaceholder8.setIcon(img2);
+                    break;
+                case 8:
+                    nodePlaceholder9.setIcon(img2);
+                    break;
+                case 9:
+                    nodePlaceholder10.setIcon(img2);
+                    break;
+                case 10:
+                    nodePlaceholder11.setIcon(img2);
+                    break;
+                case 11:
+                    nodePlaceholder12.setIcon(img2);
+                    break;
+                case 12:
+                    nodePlaceholder13.setIcon(img2);
+                    break;
+                case 13:
+                    nodePlaceholder14.setIcon(img2);
+                    break;
+            }
+            
+            //increments i at end of loop
+            i++;
+        }
+    }
+    
     public void SetColours() {
         //this method sets the node colours at the start of each turn.
         
@@ -864,9 +959,6 @@ public class Map extends javax.swing.JFrame {
         int[][] armies = null;
         //calls to fill the array
         armies = ObtainArmies(armies);
-        
-        //creates an array for storing which nodes have an army
-        int[] armedNode = new int[Scenario.listOfNodes.length];
         
         //indexer i, which is used as the curent node id in the loop, 
         //followed by a loop for every node (indexer i2) in the list of nodes
@@ -877,8 +969,12 @@ public class Map extends javax.swing.JFrame {
             //nested loop for going through each army in the army array
             for (int[] armie : armies) {
                 //checks if current army in array at index is located at this node
-                if (nodeSelected == armies[i2][2]) {
-                    armedNode[i] = 1;
+                if (i == armies[i2][2]) {
+                    try {
+                        SetPlayerNodeColour(i);
+                    } catch (IOException ex) {
+                        Logger.getLogger(Map.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                 }
                 i2++;
             }
@@ -886,21 +982,112 @@ public class Map extends javax.swing.JFrame {
             i++;
         }
         
-        for (int indexer : armedNode) {
-            if(indexer == 1)
-                SetNodeColour(indexer);
-        }
-        
     }
     
     //SetNodeColour houses the switch statement for setting a node colour
-    private void SetNodeColour(int indexer) {
+    private void SetPlayerNodeColour(int indexer) throws IOException {
+        //creates the base image variable
+        Image img;
+        //checks which player's turn it is
         if(Global.curPlayer == 0) {
-            
+            //sets the image to be red or blue, depending on the player
+            img = ImageIO.read(getClass().getResource("Images/map-node-red.png"));
+            //casts the image to an icon
+            ImageIcon img2 = new ImageIcon(img);
+            //switch to change the node at index selected
+            switch (indexer) {
+                case 0: 
+                    nodePlaceholder1.setIcon(img2);
+                    break;
+                case 1:
+                    nodePlaceholder2.setIcon(img2);
+                    break;
+                case 2:
+                    nodePlaceholder3.setIcon(img2);
+                    break;
+                case 3:
+                    nodePlaceholder4.setIcon(img2);
+                    break;
+                case 4:
+                    nodePlaceholder5.setIcon(img2);
+                    break;
+                case 5:
+                    nodePlaceholder6.setIcon(img2);
+                    break;
+                case 6:
+                    nodePlaceholder7.setIcon(img2);
+                    break;
+                case 7:
+                    nodePlaceholder8.setIcon(img2);
+                    break;
+                case 8:
+                    nodePlaceholder9.setIcon(img2);
+                    break;
+                case 9:
+                    nodePlaceholder10.setIcon(img2);
+                    break;
+                case 10:
+                    nodePlaceholder11.setIcon(img2);
+                    break;
+                case 11:
+                    nodePlaceholder12.setIcon(img2);
+                    break;
+                case 12:
+                    nodePlaceholder13.setIcon(img2);
+                    break;
+                case 13:
+                    nodePlaceholder14.setIcon(img2);
+                    break;
+            }
         } else if(Global.curPlayer == 1) {
-            
+            //exact same as above but with blue team png called to
+            img = ImageIO.read(getClass().getResource("Images/map-node-blue.png"));
+            ImageIcon img2 = new ImageIcon(img);
+            switch (indexer) {
+                case 0: 
+                    nodePlaceholder1.setIcon(img2);
+                    break;
+                case 1:
+                    nodePlaceholder2.setIcon(img2);
+                    break;
+                case 2:
+                    nodePlaceholder3.setIcon(img2);
+                    break;
+                case 3:
+                    nodePlaceholder4.setIcon(img2);
+                    break;
+                case 4:
+                    nodePlaceholder5.setIcon(img2);
+                    break;
+                case 5:
+                    nodePlaceholder6.setIcon(img2);
+                    break;
+                case 6:
+                    nodePlaceholder7.setIcon(img2);
+                    break;
+                case 7:
+                    nodePlaceholder8.setIcon(img2);
+                    break;
+                case 8:
+                    nodePlaceholder9.setIcon(img2);
+                    break;
+                case 9:
+                    nodePlaceholder10.setIcon(img2);
+                    break;
+                case 10:
+                    nodePlaceholder11.setIcon(img2);
+                    break;
+                case 11:
+                    nodePlaceholder12.setIcon(img2);
+                    break;
+                case 12:
+                    nodePlaceholder13.setIcon(img2);
+                    break;
+                case 13:
+                    nodePlaceholder14.setIcon(img2);
+                    break;
+            }
         }
-        
     }
     
     private void buttonMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonMenuActionPerformed
@@ -1033,7 +1220,15 @@ public class Map extends javax.swing.JFrame {
             labelCurPlayer.setText("Player One's turn");
             //more shit happens here
         }
-
+        //try catch for setting default node colours
+        try {
+            SetDefaultColours();
+        } catch (IOException ex) {
+            Logger.getLogger(Map.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        //sets colours of nodes with current player's armies
+        SetColours();
+        
         ClearMenuInfo();
         ClearPopupMenu();
     }//GEN-LAST:event_buttonFinishTurnActionPerformed
