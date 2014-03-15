@@ -92,6 +92,9 @@ public class Scenario {
 
     // Method to set the factions
     void setPlayers() {
+        Global.teamOne = "Optimates";
+        Global.teamTwo = "Populares";
+        
         if (Global.opponent) { // if player vs player is chosen
             if (Global.chosenTeam) { // if player one selected red faction
                 redPlayer = new Player(false, listOfNodes[10], 0, "red");
