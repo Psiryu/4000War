@@ -675,7 +675,8 @@ public class Map extends javax.swing.JFrame {
                         @Override
                         public void actionPerformed(ActionEvent event) {
                             //temporary actions. will change to send to Temp once Temp is done.
-                            labelInfo6.setText(army[0][1] + " is dividing");
+                            //labelInfo6.setText(army[0][1] + " is dividing");
+                            MapEvent.divideUnit(army[i][0]);
                             ClearPopupMenu();
                         }
                     });
@@ -760,7 +761,8 @@ public class Map extends javax.swing.JFrame {
                         @Override
                         public void actionPerformed(ActionEvent event) {
                             //prepared to send to Temp
-                            labelInfo6.setText("merge " + armyToMerge [0] + " with " + armies[i2][1]);
+                            //labelInfo6.setText("merge " + armyToMerge [0] + " with " + armies[i2][1]);
+                            MapEvent.mergeUnits(armyToMerge[0], armies[i2][0]);
                             ClearPopupMenu();
                         }
                     });
