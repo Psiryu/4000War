@@ -126,11 +126,12 @@ public class Scenario {
         };
 
         // select two random starting points for the small armies
-        unitLocations.add(random.nextInt(13));
-        do {
-            temp = random.nextInt(13);
-        } while (unitLocations.contains(temp));
-        unitLocations.add(temp);
+        for (int i = 0; i < 2; i++) {
+            do {
+                temp = random.nextInt(13);
+            } while (unitLocations.contains(temp));
+            unitLocations.add(temp);
+        }
 
         // initialize the combat units as per scenario parameters
         listOfUnits.add(new CombatUnit(false, 0, 15, 0, listOfNodes[unitLocations.get(0)], bluePlayer));
