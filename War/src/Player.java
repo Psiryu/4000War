@@ -40,9 +40,9 @@ public class Player extends Game {
     }
 
     // Method to set the political power level
-    public void setPoliticalPower(int x) {
+    public void setPoliticalPower(double x) {
         politicalPowerPreviousState = politicalPower; // store the previous state
-        politicalPower = x; // update the current level
+        politicalPower = (int)x; // update the current level
 
         if (politicalPower < politicalPowerPreviousState) // if a difference between previous and current states is found
         {
@@ -62,7 +62,7 @@ public class Player extends Game {
 
     // Method to calculate the current political power level
     public void AdjustPoliticalPower() {
-        int calculatedPoliticalPower = 0; // temporary value to store the calculated current state
+        double calculatedPoliticalPower = 0; // temporary value to store the calculated current state
 
         // store the current total distance and cap at 20
         int totalDistance = aggregateDistanceFromCapital;
@@ -71,7 +71,7 @@ public class Player extends Game {
         }
 
         // store the current number of game turns and cap at 30
-        int numTurns = turnCount;
+        double numTurns = turnCount;
         if (numTurns > 30) {
             numTurns = 30;
         }
