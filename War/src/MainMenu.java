@@ -45,10 +45,10 @@ public class MainMenu extends javax.swing.JFrame {
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        labelTitle.setFont(new java.awt.Font("Times New Roman", 3, 36)); // NOI18N
+        labelTitle.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
         labelTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelTitle.setText("Roman Civil War");
-        getContentPane().add(labelTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 368, -1));
+        getContentPane().add(labelTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 10, 290, 50));
 
         buttonScenario1.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         buttonScenario1.setText("Scenario 1");
@@ -57,7 +57,7 @@ public class MainMenu extends javax.swing.JFrame {
                 buttonScenario1ActionPerformed(evt);
             }
         });
-        getContentPane().add(buttonScenario1, new org.netbeans.lib.awtextra.AbsoluteConstraints(29, 93, -1, -1));
+        getContentPane().add(buttonScenario1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, 150, 60));
 
         buttonScenario2.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         buttonScenario2.setText("Scenario 2");
@@ -66,7 +66,7 @@ public class MainMenu extends javax.swing.JFrame {
                 buttonScenario2ActionPerformed(evt);
             }
         });
-        getContentPane().add(buttonScenario2, new org.netbeans.lib.awtextra.AbsoluteConstraints(29, 142, -1, -1));
+        getContentPane().add(buttonScenario2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, 150, 60));
 
         buttonScenario3.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         buttonScenario3.setText("Scenario 3");
@@ -75,9 +75,10 @@ public class MainMenu extends javax.swing.JFrame {
                 buttonScenario3ActionPerformed(evt);
             }
         });
-        getContentPane().add(buttonScenario3, new org.netbeans.lib.awtextra.AbsoluteConstraints(29, 191, -1, -1));
+        getContentPane().add(buttonScenario3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 210, 150, 60));
 
         buttonGroup1.add(radioAI);
+        radioAI.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         radioAI.setSelected(true);
         radioAI.setText("Against AI");
         radioAI.addActionListener(new java.awt.event.ActionListener() {
@@ -85,16 +86,17 @@ public class MainMenu extends javax.swing.JFrame {
                 radioAIActionPerformed(evt);
             }
         });
-        getContentPane().add(radioAI, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 103, -1, -1));
+        getContentPane().add(radioAI, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 90, -1, -1));
 
         buttonGroup1.add(radioPlayer);
+        radioPlayer.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         radioPlayer.setText("Against Player");
         radioPlayer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 radioPlayerActionPerformed(evt);
             }
         });
-        getContentPane().add(radioPlayer, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 137, -1, -1));
+        getContentPane().add(radioPlayer, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 130, -1, -1));
 
         buttonEnd.setText("End Game");
         buttonEnd.addActionListener(new java.awt.event.ActionListener() {
@@ -102,7 +104,7 @@ public class MainMenu extends javax.swing.JFrame {
                 buttonEndActionPerformed(evt);
             }
         });
-        getContentPane().add(buttonEnd, new org.netbeans.lib.awtextra.AbsoluteConstraints(263, 197, 89, -1));
+        getContentPane().add(buttonEnd, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 240, 150, 40));
 
         buttonHowTo.setText("How to Play");
         buttonHowTo.addActionListener(new java.awt.event.ActionListener() {
@@ -110,11 +112,11 @@ public class MainMenu extends javax.swing.JFrame {
                 buttonHowToActionPerformed(evt);
             }
         });
-        getContentPane().add(buttonHowTo, new org.netbeans.lib.awtextra.AbsoluteConstraints(168, 197, -1, -1));
+        getContentPane().add(buttonHowTo, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 200, 150, 40));
 
-        labelBackgroundImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/MainMenu-Backdrop.jpg"))); // NOI18N
+        labelBackgroundImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/MainMenu-Backdrop.png"))); // NOI18N
         labelBackgroundImage.setToolTipText("");
-        getContentPane().add(labelBackgroundImage, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 390, 260));
+        getContentPane().add(labelBackgroundImage, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 390, 300));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

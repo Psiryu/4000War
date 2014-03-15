@@ -38,20 +38,25 @@ public class Teams extends javax.swing.JFrame {
         radioTeam1 = new javax.swing.JRadioButton();
         radioTeam2 = new javax.swing.JRadioButton();
         jButton1 = new javax.swing.JButton();
+        labelBackground = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(260, 310));
-        setMinimumSize(new java.awt.Dimension(260, 310));
-        setPreferredSize(new java.awt.Dimension(260, 310));
+        setMaximumSize(new java.awt.Dimension(265, 330));
+        setMinimumSize(new java.awt.Dimension(265, 330));
+        setPreferredSize(new java.awt.Dimension(265, 330));
         setResizable(false);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         labelTitle.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         labelTitle.setText("Player 1,");
+        getContentPane().add(labelTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, -1, -1));
 
         labelSubtitle.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         labelSubtitle.setText("select your team:");
+        getContentPane().add(labelSubtitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 40, -1, -1));
 
         labelOr.setText("Or");
+        getContentPane().add(labelOr, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 140, -1, -1));
 
         buttongroupTeam.add(radioTeam1);
         radioTeam1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -62,60 +67,25 @@ public class Teams extends javax.swing.JFrame {
                 radioTeam1ActionPerformed(evt);
             }
         });
+        getContentPane().add(radioTeam1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 100, -1, -1));
 
         buttongroupTeam.add(radioTeam2);
         radioTeam2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         radioTeam2.setText("jRadioButton2");
+        getContentPane().add(radioTeam2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 180, -1, -1));
 
+        jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton1.setText("Begin Match");
+        jButton1.setContentAreaFilled(false);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 240, 250, 60));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(84, 84, 84))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(106, 106, 106)
-                        .addComponent(labelOr))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(67, 67, 67)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(radioTeam2)
-                            .addComponent(radioTeam1)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(50, 50, 50)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(labelSubtitle)
-                            .addComponent(labelTitle))))
-                .addContainerGap(58, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(labelTitle)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(labelSubtitle)
-                .addGap(40, 40, 40)
-                .addComponent(radioTeam1)
-                .addGap(18, 18, 18)
-                .addComponent(labelOr)
-                .addGap(18, 18, 18)
-                .addComponent(radioTeam2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(19, 19, 19))
-        );
+        labelBackground.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/TeamSelect-backdrop.png"))); // NOI18N
+        getContentPane().add(labelBackground, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 260, 310));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -171,6 +141,7 @@ public class Teams extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttongroupTeam;
     private javax.swing.JButton jButton1;
+    private javax.swing.JLabel labelBackground;
     private javax.swing.JLabel labelOr;
     private javax.swing.JLabel labelSubtitle;
     private javax.swing.JLabel labelTitle;

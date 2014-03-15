@@ -33,19 +33,24 @@ public class HowToPlay extends javax.swing.JFrame {
         radioBasics = new javax.swing.JRadioButton();
         radioBattles = new javax.swing.JRadioButton();
         radioVictory = new javax.swing.JRadioButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(475, 275));
-        setMinimumSize(new java.awt.Dimension(475, 275));
-        setPreferredSize(new java.awt.Dimension(475, 275));
+        setMaximumSize(new java.awt.Dimension(485, 300));
+        setMinimumSize(new java.awt.Dimension(485, 300));
+        setPreferredSize(new java.awt.Dimension(485, 300));
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         buttonMenu.setText("Main Menu");
         buttonMenu.setToolTipText("");
+        buttonMenu.setBorder(null);
+        buttonMenu.setContentAreaFilled(false);
         buttonMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonMenuActionPerformed(evt);
             }
         });
+        getContentPane().add(buttonMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 1, 110, 50));
 
         textHelp.setEditable(false);
         textHelp.setColumns(20);
@@ -54,67 +59,47 @@ public class HowToPlay extends javax.swing.JFrame {
         textHelp.setText("I don't know who you are. I don't know what you want. If you are looking for ransom, I can tell you I don't have money. But what I do have are a very particular set of skills; skills I have acquired over a very long career. Skills that make me a nightmare for people like you. If you let my daughter go now, that'll be the end of it. I will not look for you, I will not pursue you. But if you don't, I will look for you, I will find you, and I will kill you. ");
         textHelp.setToolTipText("");
         textHelp.setWrapStyleWord(true);
-        textHelp.setMaximumSize(new java.awt.Dimension(3676, 22));
+        textHelp.setBorder(null);
+        textHelp.setMaximumSize(new java.awt.Dimension(160, 90));
+        textHelp.setMinimumSize(new java.awt.Dimension(160, 90));
+        textHelp.setOpaque(false);
         jScrollPane1.setViewportView(textHelp);
+
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(151, 63, 310, 180));
 
         groupHelpTypes.add(radioBasics);
         radioBasics.setSelected(true);
         radioBasics.setText("The Basics");
+        radioBasics.setContentAreaFilled(false);
         radioBasics.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 radioBasicsActionPerformed(evt);
             }
         });
+        getContentPane().add(radioBasics, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 100, -1));
 
         groupHelpTypes.add(radioBattles);
         radioBattles.setText("Battles");
+        radioBattles.setContentAreaFilled(false);
         radioBattles.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 radioBattlesActionPerformed(evt);
             }
         });
+        getContentPane().add(radioBattles, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 100, -1));
 
         groupHelpTypes.add(radioVictory);
         radioVictory.setText("Victory");
+        radioVictory.setContentAreaFilled(false);
         radioVictory.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 radioVictoryActionPerformed(evt);
             }
         });
+        getContentPane().add(radioVictory, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 100, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(buttonMenu)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(radioBasics, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(radioBattles, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(radioVictory, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(44, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(buttonMenu)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(radioBasics)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(radioBattles)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(radioVictory))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(20, Short.MAX_VALUE))
-        );
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/HelpScreen-backdrop.png"))); // NOI18N
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 470, 270));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -186,6 +171,7 @@ public class HowToPlay extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToggleButton buttonMenu;
     private javax.swing.ButtonGroup groupHelpTypes;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JRadioButton radioBasics;
     private javax.swing.JRadioButton radioBattles;
