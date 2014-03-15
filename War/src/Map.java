@@ -40,6 +40,9 @@ public class Map extends javax.swing.JFrame {
         //clears off the information panel
         ClearMenuInfo();
         
+        //resets turn count to 0;
+        Game.turnCount = 0;
+        
         //sets a label that informs you whom you are versing.
         if((Global.opponent) == true)
             labelOpponent.setText("Against Player");
@@ -1120,7 +1123,7 @@ public class Map extends javax.swing.JFrame {
         }
     }
     
-    final private void SetCurrentColour() throws IOException {
+    private void SetCurrentColour() throws IOException {
         //sets the node selected to a white background
         Image img;
         img = ImageIO.read(getClass().getResource("Images/map-node-selected.png"));
@@ -1300,6 +1303,13 @@ public class Map extends javax.swing.JFrame {
             labelCurPlayer.setText("Player One's turn");
             //more shit happens here
         }
+        
+        //actions to finish the turn on th ebackend
+        //Game.turnCount += 0.5;
+        Scenario.game.endTurn();
+
+        labelTurnCount.setText("Turn: " + ((int)Game.turnCount + 1) );
+        
         //try catch for setting default node colours
         try {
             SetDefaultColours();

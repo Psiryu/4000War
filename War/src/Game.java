@@ -62,7 +62,7 @@ public class Game {
     // Method to handle the end turn calculations
     void endTurn(){
         MapEvent.processEvents();
-        turnCount++; // increase the turn count
+        turnCount+=0.5; // increase the turn count
         
         // update the political power levels of each faction
         Scenario.redPlayer.AdjustPoliticalPower();
