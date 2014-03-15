@@ -125,7 +125,7 @@ public class MapEvent {
         } else {
             currentPlayer = bluePlayer;
         }
-        
+
         // determine which units have not been added to the lists
         for (int i = 0; i < currentPlayer.combatUnits.size(); i++) { // for each possible unit in the faction
             for (int j = 0; j < combatUnitsRed.size(); j++) { // for each unit accounted for in the faction
@@ -156,9 +156,9 @@ public class MapEvent {
         // storage of all the red and blue units participating in a battle
         ArrayList<CombatUnit> redList = new ArrayList<CombatUnit>();
         ArrayList<CombatUnit> blueList = new ArrayList<CombatUnit>();
-        
+
         cleanList(); // first clean up the list
-        
+
         // for each of the possible roads, search for possible collisions
         for (int i = 0; i < Scenario.listOfRoads.length; i++) {
             for (int j = 0; j < combatUnitsRed.size(); j++) { // find the red units on this road
@@ -175,7 +175,7 @@ public class MapEvent {
                     blueCombatUnitEndLocation.add(blueUnitEnd.get(i));
                 }
             }
-            
+
             // if there are both red and blue units on this road, activate a collision on road battle
             if (redCombatListCollision.size() > 0 && blueCombatListCollision.size() > 0) {
                 redList.addAll(redCombatListCollision);
@@ -183,7 +183,7 @@ public class MapEvent {
                 battle.doBattleOnRoad(redCombatListCollision, redCombatUnitPreviousLocation, redCombatUnitEndLocation,
                         blueCombatListCollision, blueCombatUnitPreviousLocation, blueCombatUnitEndLocation);
             }
-            
+
             // clear the lists for use in the next road case
             redCombatListCollision.clear();
             redCombatUnitPreviousLocation.clear();
@@ -192,7 +192,7 @@ public class MapEvent {
             blueCombatUnitPreviousLocation.clear();
             blueCombatUnitEndLocation.clear();
         }
-        
+
         // for each of the possible nodes/locations, check if two opposing units collided
         for (int i = 0; i < Scenario.listOfNodes.length; i++) {
             for (int j = 0; j < redUnitEnd.size(); j++) { // find red units on this node
@@ -209,7 +209,7 @@ public class MapEvent {
                     blueCombatUnitEndLocation.add(blueUnitEnd.get(i));
                 }
             }
-            
+
             // if both red and blue units were found on this node, then activate a battle on node
             if (redCombatListNode.size() > 0 && blueCombatListNode.size() > 0) {
                 redList.addAll(redCombatListCollision);
@@ -217,7 +217,7 @@ public class MapEvent {
                 battle.PVPdoCampBattleOnNode(redCombatListNode, redCombatUnitPreviousLocation, redCombatUnitEndLocation,
                         blueCombatListNode, blueCombatUnitPreviousLocation, blueCombatUnitEndLocation);
             }
-            
+
             // clear the lists for use in the next node case
             redCombatListCollision.clear();
             redCombatUnitPreviousLocation.clear();
@@ -226,7 +226,7 @@ public class MapEvent {
             blueCombatUnitPreviousLocation.clear();
             blueCombatUnitEndLocation.clear();
         }
-        
+
         // check for red units that are not participating in combat
         for (int j = 0; j < combatUnitsRed.size(); j++) { // for each of the possible red units
             // check if the unit is present in either node or road conflicts
@@ -236,7 +236,7 @@ public class MapEvent {
                 combatUnitsRed.get(j).location = redUnitEnd.get(j);
             }
         }
-        
+
         // check for blue units that are not participating in combat
         for (int j = 0; j < combatUnitsBlue.size(); j++) { // for each of the possible blue units
             // check if the unit is present in either node or road conflict
@@ -249,12 +249,40 @@ public class MapEvent {
     }
 
     // Method called to in order to handle unit merges
-    public void mergeUnits(CombatUnit one, CombatUnit two) {
-        CombatUnit temp;
+    public void mergeUnits(int oneNum, int twoNum) {
+        int[] nums = {oneNum, twoNum};
+        CombatUnit[] unit = new CombatUnit[2];
+        CombatUnit temp; // temporary unit to store new unit
+        boolean found = false; // flag for use in the unit search
+        int c = -1; // initialize the counter value for use in the unit search
+
+        // determine the player to be used
+        if (redPlayer.playerID == Global.curPlayer) {
+            currentPlayer = redPlayer;
+        } else {
+            currentPlayer = bluePlayer;
+        }
+
+        for (int j = 0; j < 2; j++) {
+            // search for the unit in order to obtain reference and values
+            while (!found || c != currentPlayer.combatUnits.size()) { // while unit not found
+                c++; // increase the counter
+                if (currentPlayer.combatUnits.get(c).cUnitID == nums[j]) { // for each unit id held by player, check is match to passed unit id
+                    found = true;
+                }
+                if (found == true) { // if the unit has been found
+                /*
+                     out of bounds error on i
+                     */
+                    unit[j] = currentPlayer.combatUnits.get(c); // set the reference to the correct unit
+                }
+            }
+        }
+        
         int[] scaled = {0, 0, 0};
-        int sumSize = one.size + two.size;
-        int[] sizes = {one.size, two.size, sumSize};
-        int health = (one.illnessRating + two.illnessRating) / 2;
+        int sumSize = unit[0].size + unit[1].size;
+        int[] sizes = {unit[0].size, unit[1].size, sumSize};
+        int health = (unit[0].illnessRating + unit[1].illnessRating) / 2;
 
         if (sumSize > 15) {
             sumSize = 15;
@@ -282,20 +310,44 @@ public class MapEvent {
             }
         }
 
-        temp = new CombatUnit(false, one.cUnitID, sumSize, health, one.location, one.faction);
+        temp = new CombatUnit(false, unit[0].cUnitID, sumSize, health, unit[0].location, unit[0].faction);
 
-        temp.faction.removeUnit(one);
-        temp.faction.removeUnit(two);
+        temp.faction.removeUnit(unit[0]);
+        temp.faction.removeUnit(unit[1]);
         temp.faction.addUnit(temp);
 
     }
 
-    public void divideUnits(CombatUnit unit) {
+    public void divideUnit(int unitNum) {
+        CombatUnit unit = null; // initialize the unit for consideraton
+        boolean found = false; // flag for use in the unit search
+        int i = -1; // initialize the counter value for use in the unit search
         CombatUnit one, two;
         int divSize = unit.size / 2;
         boolean idFind = false;
         int checker = 0;
         int id = 0;
+
+        // determine the player to be used
+        if (redPlayer.playerID == Global.curPlayer) {
+            currentPlayer = redPlayer;
+        } else {
+            currentPlayer = bluePlayer;
+        }
+
+        // search for the unit in order to obtain reference and values
+        while (!found || i != currentPlayer.combatUnits.size()) { // while unit not found
+            i++; // increase the counter
+            if (currentPlayer.combatUnits.get(i).cUnitID == unitNum) { // for each unit id held by player, check is match to passed unit id
+                found = true;
+            }
+            if (found == true) { // if the unit has been found
+                /*
+                 out of bounds error on i
+                 */
+                unit = currentPlayer.combatUnits.get(i); // set the reference to the correct unit
+            }
+        }
 
         while (idFind) {
             for (int j = 0; j < unit.faction.combatUnits.size(); j++) {
