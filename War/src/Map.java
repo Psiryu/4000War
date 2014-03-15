@@ -97,7 +97,7 @@ public class Map extends javax.swing.JFrame {
         nodePlaceholder12 = new javax.swing.JButton();
         nodePlaceholder13 = new javax.swing.JButton();
         nodePlaceholder14 = new javax.swing.JButton();
-        scenarioMap = new javax.swing.JLabel();
+        buttonMapImage = new javax.swing.JButton();
 
         popupMenu.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         popupMenu.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -216,6 +216,7 @@ public class Map extends javax.swing.JFrame {
 
         panelMap.setMaximumSize(new java.awt.Dimension(820, 470));
         panelMap.setMinimumSize(new java.awt.Dimension(820, 470));
+        panelMap.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         nodePlaceholder1.setBackground(new java.awt.Color(0, 0, 0));
         nodePlaceholder1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/map-node-town.png"))); // NOI18N
@@ -225,6 +226,7 @@ public class Map extends javax.swing.JFrame {
                 nodePlaceholder1ActionPerformed(evt);
             }
         });
+        panelMap.add(nodePlaceholder1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 410, 30, 30));
 
         nodePlaceholder2.setBackground(new java.awt.Color(0, 0, 0));
         nodePlaceholder2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/map-node-town.png"))); // NOI18N
@@ -234,6 +236,7 @@ public class Map extends javax.swing.JFrame {
                 nodePlaceholder2ActionPerformed(evt);
             }
         });
+        panelMap.add(nodePlaceholder2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 70, 30, 30));
 
         nodePlaceholder3.setBackground(new java.awt.Color(0, 0, 0));
         nodePlaceholder3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/map-node-town.png"))); // NOI18N
@@ -243,6 +246,7 @@ public class Map extends javax.swing.JFrame {
                 nodePlaceholder3ActionPerformed(evt);
             }
         });
+        panelMap.add(nodePlaceholder3, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 90, 30, 30));
 
         nodePlaceholder4.setBackground(new java.awt.Color(0, 0, 0));
         nodePlaceholder4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/map-node-town.png"))); // NOI18N
@@ -252,6 +256,7 @@ public class Map extends javax.swing.JFrame {
                 nodePlaceholder4ActionPerformed(evt);
             }
         });
+        panelMap.add(nodePlaceholder4, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 140, 30, 30));
 
         nodePlaceholder5.setBackground(new java.awt.Color(0, 0, 0));
         nodePlaceholder5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/map-node-town.png"))); // NOI18N
@@ -261,6 +266,7 @@ public class Map extends javax.swing.JFrame {
                 nodePlaceholder5ActionPerformed(evt);
             }
         });
+        panelMap.add(nodePlaceholder5, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 170, 30, 30));
 
         nodePlaceholder6.setBackground(new java.awt.Color(0, 0, 0));
         nodePlaceholder6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/map-node-port.png"))); // NOI18N
@@ -270,6 +276,7 @@ public class Map extends javax.swing.JFrame {
                 nodePlaceholder6ActionPerformed(evt);
             }
         });
+        panelMap.add(nodePlaceholder6, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 180, 30, 30));
 
         nodePlaceholder7.setBackground(new java.awt.Color(0, 0, 0));
         nodePlaceholder7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/map-node-town.png"))); // NOI18N
@@ -279,6 +286,7 @@ public class Map extends javax.swing.JFrame {
                 nodePlaceholder7ActionPerformed(evt);
             }
         });
+        panelMap.add(nodePlaceholder7, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 200, 30, 30));
 
         nodePlaceholder8.setBackground(new java.awt.Color(0, 0, 0));
         nodePlaceholder8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/map-node-town.png"))); // NOI18N
@@ -288,6 +296,7 @@ public class Map extends javax.swing.JFrame {
                 nodePlaceholder8ActionPerformed(evt);
             }
         });
+        panelMap.add(nodePlaceholder8, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 220, 30, 30));
 
         nodePlaceholder9.setBackground(new java.awt.Color(0, 0, 0));
         nodePlaceholder9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/map-node-town.png"))); // NOI18N
@@ -297,6 +306,7 @@ public class Map extends javax.swing.JFrame {
                 nodePlaceholder9ActionPerformed(evt);
             }
         });
+        panelMap.add(nodePlaceholder9, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 260, 30, 30));
 
         nodePlaceholder10.setBackground(new java.awt.Color(0, 0, 0));
         nodePlaceholder10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/map-node-town.png"))); // NOI18N
@@ -306,6 +316,7 @@ public class Map extends javax.swing.JFrame {
                 nodePlaceholder10ActionPerformed(evt);
             }
         });
+        panelMap.add(nodePlaceholder10, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 280, 30, 30));
 
         nodePlaceholder11.setBackground(new java.awt.Color(0, 0, 0));
         nodePlaceholder11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/map-node-port.png"))); // NOI18N
@@ -315,6 +326,7 @@ public class Map extends javax.swing.JFrame {
                 nodePlaceholder11ActionPerformed(evt);
             }
         });
+        panelMap.add(nodePlaceholder11, new org.netbeans.lib.awtextra.AbsoluteConstraints(465, 291, 30, 30));
 
         nodePlaceholder12.setBackground(new java.awt.Color(0, 0, 0));
         nodePlaceholder12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/map-node-port.png"))); // NOI18N
@@ -324,6 +336,7 @@ public class Map extends javax.swing.JFrame {
                 nodePlaceholder12ActionPerformed(evt);
             }
         });
+        panelMap.add(nodePlaceholder12, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 270, 30, 30));
 
         nodePlaceholder13.setBackground(new java.awt.Color(0, 0, 0));
         nodePlaceholder13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/map-node-town.png"))); // NOI18N
@@ -333,6 +346,7 @@ public class Map extends javax.swing.JFrame {
                 nodePlaceholder13ActionPerformed(evt);
             }
         });
+        panelMap.add(nodePlaceholder13, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 270, 30, 30));
 
         nodePlaceholder14.setBackground(new java.awt.Color(0, 0, 0));
         nodePlaceholder14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/map-node-port.png"))); // NOI18N
@@ -342,105 +356,23 @@ public class Map extends javax.swing.JFrame {
                 nodePlaceholder14ActionPerformed(evt);
             }
         });
+        panelMap.add(nodePlaceholder14, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 230, 30, 30));
 
-        scenarioMap.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Map1_Sulla.png"))); // NOI18N
-        scenarioMap.setToolTipText("<html>\n<u>Dark Grey circle:</u> city\n<br><u> Light Blue circle:</u> port town\n<br><u> Beige circle:</u> road checkpoint \n<br><u> Red circle:</u> player 1 has an army here\n<br> <u>Blue circle:</u> player 2 has an army here \n</html>");
-        scenarioMap.setName(""); // NOI18N
-
-        javax.swing.GroupLayout panelMapLayout = new javax.swing.GroupLayout(panelMap);
-        panelMap.setLayout(panelMapLayout);
-        panelMapLayout.setHorizontalGroup(
-            panelMapLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelMapLayout.createSequentialGroup()
-                .addGap(148, 148, 148)
-                .addComponent(nodePlaceholder2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(642, Short.MAX_VALUE))
-            .addGroup(panelMapLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(panelMapLayout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addGroup(panelMapLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(panelMapLayout.createSequentialGroup()
-                            .addGap(215, 215, 215)
-                            .addComponent(nodePlaceholder3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(panelMapLayout.createSequentialGroup()
-                            .addGap(185, 185, 185)
-                            .addComponent(nodePlaceholder4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(panelMapLayout.createSequentialGroup()
-                            .addGap(195, 195, 195)
-                            .addComponent(nodePlaceholder5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(0, 0, 0)
-                            .addComponent(nodePlaceholder7, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(30, 30, 30)
-                            .addComponent(nodePlaceholder6, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(panelMapLayout.createSequentialGroup()
-                            .addGap(225, 225, 225)
-                            .addComponent(nodePlaceholder14, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(10, 10, 10)
-                            .addComponent(nodePlaceholder8, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(panelMapLayout.createSequentialGroup()
-                            .addGap(305, 305, 305)
-                            .addComponent(nodePlaceholder9, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(0, 0, 0)
-                            .addComponent(nodePlaceholder10, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(90, 90, 90)
-                            .addComponent(nodePlaceholder11, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(40, 40, 40)
-                            .addComponent(nodePlaceholder12, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(160, 160, 160)
-                            .addComponent(nodePlaceholder13, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(panelMapLayout.createSequentialGroup()
-                            .addGap(75, 75, 75)
-                            .addComponent(nodePlaceholder1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(scenarioMap))
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
-        panelMapLayout.setVerticalGroup(
-            panelMapLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelMapLayout.createSequentialGroup()
-                .addGap(72, 72, 72)
-                .addComponent(nodePlaceholder2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(368, Short.MAX_VALUE))
-            .addGroup(panelMapLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(panelMapLayout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addGroup(panelMapLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(panelMapLayout.createSequentialGroup()
-                            .addGap(81, 81, 81)
-                            .addComponent(nodePlaceholder3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(10, 10, 10)
-                            .addComponent(nodePlaceholder4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(10, 10, 10)
-                            .addGroup(panelMapLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(nodePlaceholder5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(panelMapLayout.createSequentialGroup()
-                                    .addGap(20, 20, 20)
-                                    .addComponent(nodePlaceholder7, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(panelMapLayout.createSequentialGroup()
-                                    .addGap(10, 10, 10)
-                                    .addComponent(nodePlaceholder6, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(panelMapLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(nodePlaceholder14, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(nodePlaceholder8, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGap(10, 10, 10)
-                            .addGroup(panelMapLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(nodePlaceholder9, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(panelMapLayout.createSequentialGroup()
-                                    .addGap(20, 20, 20)
-                                    .addComponent(nodePlaceholder10, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(panelMapLayout.createSequentialGroup()
-                                    .addGap(30, 30, 30)
-                                    .addComponent(nodePlaceholder11, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(panelMapLayout.createSequentialGroup()
-                                    .addGap(10, 10, 10)
-                                    .addComponent(nodePlaceholder12, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(panelMapLayout.createSequentialGroup()
-                                    .addGap(10, 10, 10)
-                                    .addComponent(nodePlaceholder13, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGap(90, 90, 90)
-                            .addComponent(nodePlaceholder1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(scenarioMap))
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
+        buttonMapImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Map1_Sulla.png"))); // NOI18N
+        buttonMapImage.setText("jButton1");
+        buttonMapImage.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        buttonMapImage.setContentAreaFilled(false);
+        buttonMapImage.setIconTextGap(0);
+        buttonMapImage.setMaximumSize(new java.awt.Dimension(800, 450));
+        buttonMapImage.setMinimumSize(new java.awt.Dimension(800, 450));
+        buttonMapImage.setOpaque(false);
+        buttonMapImage.setPreferredSize(new java.awt.Dimension(800, 450));
+        buttonMapImage.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonMapImageActionPerformed(evt);
+            }
+        });
+        panelMap.add(buttonMapImage, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 11, -1, -1));
 
         getContentPane().add(panelMap, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, -1, -1));
 
@@ -464,6 +396,13 @@ public class Map extends javax.swing.JFrame {
 //for hidden values, and allows information to be passed more easily
     public void Action() {
         ClearMenuInfo();
+        
+        try {
+            SetCurrentColour();
+        } catch (IOException ex) {
+            Logger.getLogger(Map.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
         labelInfo1.setText(Scenario.listOfNodes[nodeSelected].name);
         mergableArmy = false;
         divisableArmy = false;
@@ -1090,6 +1029,56 @@ public class Map extends javax.swing.JFrame {
         }
     }
     
+    final private void SetCurrentColour() throws IOException {
+        //sets the node selected to a white background
+        Image img;
+        img = ImageIO.read(getClass().getResource("Images/map-node-selected.png"));
+        ImageIcon img2 = new ImageIcon(img); 
+        switch (nodeSelected) {
+                case 0: 
+                    nodePlaceholder1.setIcon(img2);
+                    break;
+                case 1:
+                    nodePlaceholder2.setIcon(img2);
+                    break;
+                case 2:
+                    nodePlaceholder3.setIcon(img2);
+                    break;
+                case 3:
+                    nodePlaceholder4.setIcon(img2);
+                    break;
+                case 4:
+                    nodePlaceholder5.setIcon(img2);
+                    break;
+                case 5:
+                    nodePlaceholder6.setIcon(img2);
+                    break;
+                case 6:
+                    nodePlaceholder7.setIcon(img2);
+                    break;
+                case 7:
+                    nodePlaceholder8.setIcon(img2);
+                    break;
+                case 8:
+                    nodePlaceholder9.setIcon(img2);
+                    break;
+                case 9:
+                    nodePlaceholder10.setIcon(img2);
+                    break;
+                case 10:
+                    nodePlaceholder11.setIcon(img2);
+                    break;
+                case 11:
+                    nodePlaceholder12.setIcon(img2);
+                    break;
+                case 12:
+                    nodePlaceholder13.setIcon(img2);
+                    break;
+                case 13:
+                    nodePlaceholder14.setIcon(img2);
+                    break;
+            }
+    }
     private void buttonMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonMenuActionPerformed
         //button for quitting current scenario and returning to main menu
         new MainMenu().setVisible(true);
@@ -1238,11 +1227,28 @@ public class Map extends javax.swing.JFrame {
         //clears and closes the popup menu.
         ClearPopupMenu();
         ClearMenuInfo();
+        try {
+            SetDefaultColours();
+        } catch (IOException ex) {
+            Logger.getLogger(Map.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        SetColours();
     }//GEN-LAST:event_menuItemCloseActionPerformed
 
     private void popupMenuFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_popupMenuFocusLost
         // TODO add your handling code here:
     }//GEN-LAST:event_popupMenuFocusLost
+
+    private void buttonMapImageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonMapImageActionPerformed
+        ClearPopupMenu();
+        ClearMenuInfo();
+        try {
+            SetDefaultColours();
+        } catch (IOException ex) {
+            Logger.getLogger(Map.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        SetColours();
+    }//GEN-LAST:event_buttonMapImageActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1286,6 +1292,7 @@ public class Map extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonExit;
     private javax.swing.JButton buttonFinishTurn;
+    private javax.swing.JButton buttonMapImage;
     private javax.swing.JToggleButton buttonMenu;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuItem jMenuItem1;
@@ -1318,6 +1325,5 @@ public class Map extends javax.swing.JFrame {
     private javax.swing.JButton nodePlaceholder9;
     private javax.swing.JPanel panelMap;
     private javax.swing.JPopupMenu popupMenu;
-    private javax.swing.JLabel scenarioMap;
     // End of variables declaration//GEN-END:variables
 }
