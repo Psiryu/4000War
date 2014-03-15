@@ -12,7 +12,7 @@ import java.util.Random;
  */
 public class Game {
 
-    public static int turnCount; // total number of turns in the game
+    public static double turnCount; // total number of turns in the game
 
     // initialize the game with turn count 0
     public Game()
@@ -32,7 +32,7 @@ public class Game {
     }
 
     // obtain the current turn count
-    int getTurnCount() {
+    double getTurnCount() {
         return turnCount;
     }
 
@@ -61,6 +61,7 @@ public class Game {
     
     // Method to handle the end turn calculations
     void endTurn(){
+        MapEvent.processEvents();
         turnCount++; // increase the turn count
         
         // update the political power levels of each faction
@@ -89,5 +90,6 @@ public class Game {
         }
         updateWeather(); // change the weather conditions
         Global.season = (Global.season+1)%4; // change the season
+        MapEvent.clearRegistry();
     }
 }

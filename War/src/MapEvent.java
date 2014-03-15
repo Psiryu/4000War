@@ -114,7 +114,7 @@ public class MapEvent {
     }
 
     // at turn's end, add units to the list that may have remained stationary
-    private void cleanList() {
+    private static void cleanList() {
         boolean found = false; // flag for whether the unit has been found
 
         // obtain a list of red unit ids for reference
@@ -162,7 +162,7 @@ public class MapEvent {
     }
 
     // Method called to in order to simulate simutanious movement
-    public void processEvents() {
+    public static void processEvents() {
         // storage of all the red and blue units participating in a battle
         ArrayList<CombatUnit> redList = new ArrayList<CombatUnit>();
         ArrayList<CombatUnit> blueList = new ArrayList<CombatUnit>();
@@ -380,16 +380,22 @@ public class MapEvent {
     }
 
     // Method to reset the arrays at turn's end
-    public void clearRegistry() {
-        combatUnitsRed = new ArrayList<CombatUnit>();
-        combatUnitsBlue = new ArrayList<CombatUnit>();
-        redUnitRoad = new ArrayList<Road>();
-        blueUnitRoad = new ArrayList<Road>();
-        redUnitEnd = new ArrayList<Node>();
-        blueUnitEnd = new ArrayList<Node>();
+    public static void clearRegistry() {
+        combatUnitsRed = new ArrayList<CombatUnit>(); // list of all units held by the red faction in motion
+        combatUnitsBlue = new ArrayList<CombatUnit>(); // list of all units held by the blue faction in motion
+        redUnitRoad = new ArrayList<Road>(); // list of roads occupied by red faction
+        blueUnitRoad = new ArrayList<Road>(); // list of roads occupied by blue faction
+        redUnitEnd = new ArrayList<Node>(); // list of node end locations for red
+        blueUnitEnd = new ArrayList<Node>(); // list of node end locations for blue
         redCombatListCollision = new ArrayList<CombatUnit>();
         blueCombatListCollision = new ArrayList<CombatUnit>();
         redCombatListNode = new ArrayList<CombatUnit>();
         blueCombatListNode = new ArrayList<CombatUnit>();
+        redPlayer = Scenario.redPlayer;
+        bluePlayer = Scenario.bluePlayer;
+        redCombatUnitPreviousLocation = new ArrayList<Node>();
+        redCombatUnitEndLocation = new ArrayList<Node>();
+        blueCombatUnitPreviousLocation = new ArrayList<Node>();
+        blueCombatUnitEndLocation = new ArrayList<Node>();
     }
 }
