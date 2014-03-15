@@ -104,7 +104,7 @@ public class MapEvent {
         }
     }
 
-    public void cleanList() {
+    private void cleanList() {
         boolean found = false;
 
         int[] redIDs = new int[combatUnitsRed.size()];
@@ -155,6 +155,7 @@ public class MapEvent {
 
     // Method called to in order to simulate simutanious movement
     public void processEvents() {
+        cleanList();
         for (int i = 0; i < Scenario.listOfRoads.length; i++) {
             for (int j = 0; j < combatUnitsRed.size(); j++) {
                 if (redUnitRoad.get(i).roadID == i) {
@@ -259,7 +260,7 @@ public class MapEvent {
         
         while(idFind){
             for (int j = 0; j < unit.faction.combatUnits.size();j++){
-                if (unit.faction.combatUnits.get(j).cUnitID == i){
+                if (unit.faction.combatUnits.get(j).cUnitID == id){
                     checker++;
                 }
             }
