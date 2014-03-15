@@ -12,19 +12,19 @@ import java.util.ArrayList;
  */
 public class MapEvent {
 
-    private ArrayList<CombatUnit> combatUnitsRed; // list of all units held by the red faction
-    private ArrayList<CombatUnit> combatUnitsBlue; // list of all units held by the blue faction
-    private ArrayList<Road> redUnitRoad; // list of roads occupied by red faction
-    private ArrayList<Road> blueUnitRoad; // list of roads occupied by blue faction
-    private ArrayList<Node> redUnitEnd; // list of node end locations for red
-    private ArrayList<Node> blueUnitEnd; // list of node end locations for blue
-    private ArrayList<Node> redUnitStart; // list of node start locations for red
-    private ArrayList<Node> blueUnitStart; // list of node start locations for blue
-    private ArrayList<CombatUnit> redCombatListCollision;
-    private ArrayList<CombatUnit> blueCombatListCollision;
-    private ArrayList<CombatUnit> redCombatListNode;
-    private ArrayList<CombatUnit> blueCombatListNode;
-    private Player redPlayer, bluePlayer;
+    private static ArrayList<CombatUnit> combatUnitsRed; // list of all units held by the red faction
+    private static ArrayList<CombatUnit> combatUnitsBlue; // list of all units held by the blue faction
+    private static ArrayList<Road> redUnitRoad; // list of roads occupied by red faction
+    private static ArrayList<Road> blueUnitRoad; // list of roads occupied by blue faction
+    private static ArrayList<Node> redUnitEnd; // list of node end locations for red
+    private static ArrayList<Node> blueUnitEnd; // list of node end locations for blue
+    private static ArrayList<Node> redUnitStart; // list of node start locations for red
+    private static ArrayList<Node> blueUnitStart; // list of node start locations for blue
+    private static ArrayList<CombatUnit> redCombatListCollision;
+    private static ArrayList<CombatUnit> blueCombatListCollision;
+    private static ArrayList<CombatUnit> redCombatListNode;
+    private static ArrayList<CombatUnit> blueCombatListNode;
+    private static Player redPlayer, bluePlayer;
 
     /*
      int[i][j] armies
@@ -55,7 +55,7 @@ public class MapEvent {
     }
 
     // Method called to to add a movement to the registry
-    public void addMovement(int unitNum, Road road, int endLocationNum) {
+    public static void addMovement(int unitNum, Road road, int endLocationNum) {
         CombatUnit unit = null;
         //CombatUnit unit = Scenario.listOfUnits.get(unitNum);
         Node endLocation = Scenario.listOfNodes[endLocationNum];
@@ -194,19 +194,16 @@ public class MapEvent {
         }
         for (int j = 0; j < combatUnitsRed.size(); j++) {
             if (!redCombatListCollision.contains(combatUnitsRed.get(j)) && !redCombatListNode.contains(combatUnitsRed.get(j))) {
-                moveUnit(combatUnitsRed.get(j), redUnitEnd.get(j));
+                combatUnitsRed.get(j).previousLocation = combatUnitsRed.get(j).location;
+                combatUnitsRed.get(j).location = redUnitEnd.get(j);
             }
         }
         for (int j = 0; j < combatUnitsBlue.size(); j++) {
             if (!blueCombatListCollision.contains(combatUnitsBlue.get(j)) && !blueCombatListNode.contains(combatUnitsBlue.get(j))) {
-                moveUnit(combatUnitsBlue.get(j), blueUnitEnd.get(j));
+                combatUnitsBlue.get(j).previousLocation = combatUnitsBlue.get(j).location;
+                combatUnitsBlue.get(j).location = blueUnitEnd.get(j);
             }
         }
-    }
-
-    private void moveUnit(CombatUnit unit, Node endLocation) {
-        unit.previousLocation = unit.location;
-        unit.location = endLocation;
     }
 
     // Method called to in order to handle unit merges
@@ -257,22 +254,22 @@ public class MapEvent {
         boolean idFind = false;
         int checker = 0;
         int id = 0;
-        
-        while(idFind){
-            for (int j = 0; j < unit.faction.combatUnits.size();j++){
-                if (unit.faction.combatUnits.get(j).cUnitID == id){
+
+        while (idFind) {
+            for (int j = 0; j < unit.faction.combatUnits.size(); j++) {
+                if (unit.faction.combatUnits.get(j).cUnitID == id) {
                     checker++;
                 }
             }
-            if (checker != 0){
+            if (checker != 0) {
                 idFind = true;
             }
             id++;
         }
-        
+
         one = new CombatUnit(false, unit.cUnitID, divSize, unit.illnessRating, unit.location, unit.faction);
         two = new CombatUnit(false, id, divSize, unit.illnessRating, unit.location, unit.faction);
-        
+
         one.faction.removeUnit(unit);
         one.faction.addUnit(one);
         one.faction.addUnit(two);
