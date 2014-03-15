@@ -38,7 +38,10 @@ public class CombatUnit extends Game {
         int strength; // temp variable to store strength calculation
 
         // get the distance from capital based on node location, max at 20
-        int distance = distanceFromCapital%21; 
+        int distance = distanceFromCapital;
+        if (distance > 20){
+            distance = 20;
+        }
         
         // calculate the cumulative strength of the unit
         // strength is a function of faction political power, size, illness, and distance
