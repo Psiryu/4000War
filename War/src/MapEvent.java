@@ -224,7 +224,7 @@ public class MapEvent {
             if (redCombatListNode.size() > 0 && blueCombatListNode.size() > 0) {
                 redList.addAll(redCombatListCollision);
                 blueList.addAll(blueCombatListCollision);
-                battle.PVPdoCampBattleOnNode(redCombatListNode, redCombatUnitPreviousLocation, redCombatUnitEndLocation,
+                battle.PVPdoCampBattleOnNode(Scenario.listOfNodes[i], redCombatListNode, redCombatUnitPreviousLocation, redCombatUnitEndLocation,
                         blueCombatListNode, blueCombatUnitPreviousLocation, blueCombatUnitEndLocation);
             }
 
