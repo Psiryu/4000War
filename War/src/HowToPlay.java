@@ -35,6 +35,9 @@ public class HowToPlay extends javax.swing.JFrame {
         radioVictory = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMaximumSize(new java.awt.Dimension(475, 275));
+        setMinimumSize(new java.awt.Dimension(475, 275));
+        setPreferredSize(new java.awt.Dimension(475, 275));
 
         buttonMenu.setText("Main Menu");
         buttonMenu.setToolTipText("");

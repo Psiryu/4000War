@@ -365,7 +365,6 @@ public class Map extends javax.swing.JFrame {
         buttonMapImage.setIconTextGap(0);
         buttonMapImage.setMaximumSize(new java.awt.Dimension(800, 450));
         buttonMapImage.setMinimumSize(new java.awt.Dimension(800, 450));
-        buttonMapImage.setOpaque(false);
         buttonMapImage.setPreferredSize(new java.awt.Dimension(800, 450));
         buttonMapImage.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

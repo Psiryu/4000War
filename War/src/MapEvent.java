@@ -5,6 +5,7 @@
  */
 
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -49,6 +50,10 @@ public class MapEvent {
         blueCombatUnitPreviousLocation = new ArrayList<Node>();
         blueCombatUnitEndLocation = new ArrayList<Node>();
         battle = new Battle();
+        
+        combatUnitsRed = Scenario.redPlayer.combatUnits;
+        combatUnitsBlue = Scenario.bluePlayer.combatUnits;
+        
     }
 
     // Method called to to add a movement to the registry
@@ -56,18 +61,24 @@ public class MapEvent {
         CombatUnit unit = null; // initialize the unit for consideraton
         Node endLocation = Scenario.listOfNodes[endLocationNum]; // load the end locations based on provided index
         boolean found = false; // flag for use in the unit search
-        int i = -1; // initialize the counter value for use in the unit search
+        int i = 0; // initialize the counter value for use in the unit search
 
+        combatUnitsRed = Scenario.redPlayer.combatUnits;
+        combatUnitsBlue = Scenario.bluePlayer.combatUnits;
+        
         // determine the player to be used
-        if (redPlayer.playerID == Global.curPlayer) {
-            currentPlayer = redPlayer;
+        if (Global.curPlayer == 0) {
+            currentPlayer = new Player();
+            currentPlayer = Scenario.redPlayer;
         } else {
+            currentPlayer = new Player();
             currentPlayer = bluePlayer;
         }
 
         // search for the unit in order to obtain reference and values
-        while (!found || i != currentPlayer.combatUnits.size()) { // while unit not found
-            i++; // increase the counter
+        while (!found) { // while unit not found
+            //JOptionPane.showMessageDialog(null, currentPlayer.capital.id, "InfoBox: ", JOptionPane.INFORMATION_MESSAGE);
+           
             if (currentPlayer.combatUnits.get(i).cUnitID == unitNum) { // for each unit id held by player, check is match to passed unit id
                 found = true;
             }
@@ -76,6 +87,7 @@ public class MapEvent {
                  out of bounds error on i
                  */
                 unit = currentPlayer.combatUnits.get(i); // set the reference to the correct unit
+            i++; // increase the counter
             }
         }
 

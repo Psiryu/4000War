@@ -40,6 +40,9 @@ public class Teams extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMaximumSize(new java.awt.Dimension(260, 310));
+        setMinimumSize(new java.awt.Dimension(260, 310));
+        setPreferredSize(new java.awt.Dimension(260, 310));
         setResizable(false);
 
         labelTitle.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
