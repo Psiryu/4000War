@@ -63,7 +63,7 @@ public class MapEvent {
         boolean found = false;
         int i = 0;
 
-        while (found || i != Scenario.redPlayer.combatUnits.size()) {
+        while (!found || i != Scenario.redPlayer.combatUnits.size()) {
             if (Scenario.redPlayer.combatUnits.get(i).cUnitID == unitNum) {
                 found = true;
             }
@@ -173,6 +173,8 @@ public class MapEvent {
                  the two arrays redCombatList and blueCombatList contain those involved
                  */
             }
+            redCombatListCollision.clear();
+            blueCombatListCollision.clear();
         }
         for (int i = 0; i < Scenario.listOfNodes.length; i++) {
             for (int j = 0; j < redUnitEnd.size(); j++) {
@@ -191,6 +193,8 @@ public class MapEvent {
                  the two arrays redCombatList and blueCombatList contain those involved
                  */
             }
+            redCombatListNode.clear();
+            blueCombatListNode.clear();
         }
         for (int j = 0; j < combatUnitsRed.size(); j++) {
             if (!redCombatListCollision.contains(combatUnitsRed.get(j)) && !redCombatListNode.contains(combatUnitsRed.get(j))) {
