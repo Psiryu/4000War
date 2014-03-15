@@ -16,4 +16,6 @@ public class Global {
     public static String teamOne = "Sparta"; // team name 1
     public static String teamTwo = "Persia"; // team name 2
     public static int intScenario; // scenario number
+    
+    public static int curPlayer = 0; //global variable for keeping track of whos turn it is
 }

@@ -17,7 +17,6 @@ import javax.swing.JMenuItem;
 public class Map extends javax.swing.JFrame {
 
    //variable for keeping track of the current players' turns;
-    public int curPlayer = 0;
     public int x, y;
     //variables for if an army is on the selected node, and if it can be split/merged
     public Boolean armyHere = false;
@@ -471,7 +470,7 @@ public class Map extends javax.swing.JFrame {
         //first sets player 1's armies (red team), then does the same
         //for player 2 (blue team). Commented first half only, both sets
         //are exactly identical, just "redPlayer" changed to "bluePlayer"
-        if(curPlayer == 0)
+        if(Global.curPlayer == 0)
         {
             //sets the array to be the size of player's total army count
             listArmy = new int[Scenario.redPlayer.combatUnits.size()][4];
@@ -860,16 +859,50 @@ public class Map extends javax.swing.JFrame {
     public void SetColours() {
         //this method sets the node colours at the start of each turn.
         
+        
+        //establishes an army array of all player controlled armies
+        int[][] armies = null;
+        //calls to fill the array
+        armies = ObtainArmies(armies);
+        
+        //creates an array for storing which nodes have an army
+        int[] armedNode = new int[Scenario.listOfNodes.length];
+        
         //indexer i, which is used as the curent node id in the loop, 
-        //followed by a loop for every node in the list of nodes
+        //followed by a loop for every node (indexer i2) in the list of nodes
         int i = 0;
         for (Node nodes : Scenario.listOfNodes) {
             
-            //increments i
+            int i2 = 0;
+            //nested loop for going through each army in the army array
+            for (int[] armie : armies) {
+                //checks if current army in array at index is located at this node
+                if (nodeSelected == armies[i2][2]) {
+                    armedNode[i] = 1;
+                }
+                i2++;
+            }
+
             i++;
         }
         
+        for (int indexer : armedNode) {
+            if(indexer == 1)
+                SetNodeColour(indexer);
+        }
+        
     }
+    
+    //SetNodeColour houses the switch statement for setting a node colour
+    private void SetNodeColour(int indexer) {
+        if(Global.curPlayer == 0) {
+            
+        } else if(Global.curPlayer == 1) {
+            
+        }
+        
+    }
+    
     private void buttonMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonMenuActionPerformed
         //button for quitting current scenario and returning to main menu
         new MainMenu().setVisible(true);
@@ -990,13 +1023,13 @@ public class Map extends javax.swing.JFrame {
 
         //This button end's the current player's turn and starts the turn
         //for the next player
-        if(curPlayer == 0)
+        if(Global.curPlayer == 0)
         {
-            curPlayer = 1;
+            Global.curPlayer = 1;
             labelCurPlayer.setText("Player Two's turn");
             //more shit happens here
         } else {
-            curPlayer = 0;
+            Global.curPlayer = 0;
             labelCurPlayer.setText("Player One's turn");
             //more shit happens here
         }
