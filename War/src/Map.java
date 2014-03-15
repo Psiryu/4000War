@@ -6,7 +6,6 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JMenuItem;
 
@@ -52,6 +51,7 @@ public class Map extends javax.swing.JFrame {
         labelCurPlayer.setText("Player One's turn");
         
         GameStart();
+        jFrame1.setVisible(true);
     }
 
     /**
@@ -68,6 +68,19 @@ public class Map extends javax.swing.JFrame {
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
+        jFrame1 = new javax.swing.JFrame();
+        menuInfo2 = new javax.swing.JPanel();
+        labelInfo13 = new javax.swing.JLabel();
+        labelInfo14 = new javax.swing.JLabel();
+        labelInfo15 = new javax.swing.JLabel();
+        labelInfo16 = new javax.swing.JLabel();
+        labelInfo17 = new javax.swing.JLabel();
+        labelInfo18 = new javax.swing.JLabel();
+        buttonMenu1 = new javax.swing.JToggleButton();
+        buttonExit1 = new javax.swing.JButton();
+        labelOpponent1 = new javax.swing.JLabel();
+        labelScenario1 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
         labelScenario = new javax.swing.JLabel();
         labelOpponent = new javax.swing.JLabel();
         labelCurPlayer = new javax.swing.JLabel();
@@ -123,6 +136,82 @@ public class Map extends javax.swing.JFrame {
         jMenu1.add(jMenuItem2);
 
         popupMenu.add(jMenu1);
+
+        jFrame1.setMaximumSize(new java.awt.Dimension(730, 410));
+        jFrame1.setMinimumSize(new java.awt.Dimension(730, 410));
+        jFrame1.setPreferredSize(new java.awt.Dimension(730, 410));
+        jFrame1.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        menuInfo2.setMaximumSize(new java.awt.Dimension(700, 70));
+        menuInfo2.setMinimumSize(new java.awt.Dimension(700, 70));
+        menuInfo2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        labelInfo13.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        labelInfo13.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        labelInfo13.setText("city name");
+        menuInfo2.add(labelInfo13, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, -1, -1));
+
+        labelInfo14.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        labelInfo14.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        labelInfo14.setText("seasons");
+        menuInfo2.add(labelInfo14, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 10, -1, -1));
+
+        labelInfo15.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        labelInfo15.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        labelInfo15.setText("turn/turns left");
+        menuInfo2.add(labelInfo15, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 10, -1, -1));
+
+        labelInfo16.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        labelInfo16.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        labelInfo16.setText("political power?");
+        menuInfo2.add(labelInfo16, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 10, -1, -1));
+
+        labelInfo17.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        labelInfo17.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        labelInfo17.setText("player's armies");
+        menuInfo2.add(labelInfo17, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, -1, -1));
+
+        labelInfo18.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        labelInfo18.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        labelInfo18.setText("enemy's armies");
+        menuInfo2.add(labelInfo18, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 40, -1, -1));
+
+        jFrame1.getContentPane().add(menuInfo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 290, -1, -1));
+
+        buttonMenu1.setText("Main Menu");
+        buttonMenu1.setToolTipText("");
+        buttonMenu1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonMenu1ActionPerformed(evt);
+            }
+        });
+        jFrame1.getContentPane().add(buttonMenu1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 5, -1, -1));
+
+        buttonExit1.setText("End Game");
+        buttonExit1.setMaximumSize(new java.awt.Dimension(83, 23));
+        buttonExit1.setMinimumSize(new java.awt.Dimension(83, 23));
+        buttonExit1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonExit1ActionPerformed(evt);
+            }
+        });
+        jFrame1.getContentPane().add(buttonExit1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 5, 90, -1));
+
+        labelOpponent1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        labelOpponent1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        labelOpponent1.setText("text");
+        labelOpponent1.setName("labelOpponent"); // NOI18N
+        jFrame1.getContentPane().add(labelOpponent1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 10, -1, -1));
+
+        labelScenario1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        labelScenario1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        labelScenario1.setText("text");
+        jFrame1.getContentPane().add(labelScenario1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 10, -1, -1));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/MapScreen-Side-backdrop.png"))); // NOI18N
+        jFrame1.getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 710, 340));
+
+        jFrame1.getAccessibleContext().setAccessibleParent(jFrame1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(204, 255, 255));
@@ -1252,6 +1341,14 @@ public class Map extends javax.swing.JFrame {
         SetColours();
     }//GEN-LAST:event_buttonMapImageActionPerformed
 
+    private void buttonMenu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonMenu1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_buttonMenu1ActionPerformed
+
+    private void buttonExit1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonExit1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_buttonExit1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1293,23 +1390,36 @@ public class Map extends javax.swing.JFrame {
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonExit;
+    private javax.swing.JButton buttonExit1;
     private javax.swing.JButton buttonFinishTurn;
     private javax.swing.JButton buttonMapImage;
     private javax.swing.JToggleButton buttonMenu;
+    private javax.swing.JToggleButton buttonMenu1;
+    private javax.swing.JFrame jFrame1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JLabel labelCurPlayer;
     private javax.swing.JLabel labelInfo1;
+    private javax.swing.JLabel labelInfo13;
+    private javax.swing.JLabel labelInfo14;
+    private javax.swing.JLabel labelInfo15;
+    private javax.swing.JLabel labelInfo16;
+    private javax.swing.JLabel labelInfo17;
+    private javax.swing.JLabel labelInfo18;
     private javax.swing.JLabel labelInfo2;
     private javax.swing.JLabel labelInfo3;
     private javax.swing.JLabel labelInfo4;
     private javax.swing.JLabel labelInfo5;
     private javax.swing.JLabel labelInfo6;
     private javax.swing.JLabel labelOpponent;
+    private javax.swing.JLabel labelOpponent1;
     private javax.swing.JLabel labelScenario;
+    private javax.swing.JLabel labelScenario1;
     private javax.swing.JLabel labelTurnCount;
     private javax.swing.JPanel menuInfo;
+    private javax.swing.JPanel menuInfo2;
     private javax.swing.JMenuItem menuItemClose;
     private javax.swing.JButton nodePlaceholder1;
     private javax.swing.JButton nodePlaceholder10;
