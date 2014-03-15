@@ -664,10 +664,11 @@ public class Map extends javax.swing.JFrame {
                 final String movingTo = roads.locationB.name;
                 //creates the menu item for this road
                 JMenuItem menuItemMove = new JMenuItem(movingTo);
+                final Road roads2 = roads;
                 menuItemMove.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent event) {
-                        MapEvent.addMovement(army[0][0], roads, roads.locationB.id);
+                        MapEvent.addMovement(army[0][0], roads2, roads2.locationB.id);
                         ClearPopupMenu();
                     }
                 });
@@ -679,10 +680,11 @@ public class Map extends javax.swing.JFrame {
                 final String movingTo = roads.locationA.name;
                 //creates the menu item for this road
                 JMenuItem menuItemMove = new JMenuItem(movingTo);
+                final Road roads2 = roads;
                 menuItemMove.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent event) {
-                        MapEvent.addMovement(army[0][0], roads, roads.locationA.id);
+                        MapEvent.addMovement(army[0][0], roads2, roads2.locationA.id);
                         ClearPopupMenu();
                     }
                 });
@@ -855,6 +857,19 @@ public class Map extends javax.swing.JFrame {
         popupMenu.add(menuItemClose);
     }
     
+    public void SetColours() {
+        //this method sets the node colours at the start of each turn.
+        
+        //indexer i, which is used as the curent node id in the loop, 
+        //followed by a loop for every node in the list of nodes
+        int i = 0;
+        for (Node nodes : Scenario.listOfNodes) {
+            
+            //increments i
+            i++;
+        }
+        
+    }
     private void buttonMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonMenuActionPerformed
         //button for quitting current scenario and returning to main menu
         new MainMenu().setVisible(true);
