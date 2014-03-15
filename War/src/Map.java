@@ -670,12 +670,13 @@ public class Map extends javax.swing.JFrame {
                 if(army[i][1] > 5) {
                     //creates the menu item for this army to divide
                     JMenuItem menuItemMove = new JMenuItem(ConvertSize(army[i][1], army[i][3]));
+                    final int i2 = i;
                     menuItemMove.addActionListener(new ActionListener() {
                         @Override
                         public void actionPerformed(ActionEvent event) {
                             //temporary actions. will change to send to Temp once Temp is done.
                             //labelInfo6.setText(army[0][1] + " is dividing");
-                            MapEvent.divideUnit(army[i][0]);
+                            MapEvent.divideUnit(army[i2][0]);
                             ClearPopupMenu();
                         }
                     });

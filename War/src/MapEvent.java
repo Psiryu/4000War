@@ -13,12 +13,12 @@ import javax.swing.JOptionPane;
  */
 public class MapEvent {
 
-    private static ArrayList<CombatUnit> combatUnitsRed; // list of all units held by the red faction
-    private static ArrayList<CombatUnit> combatUnitsBlue; // list of all units held by the blue faction
-    private static ArrayList<Road> redUnitRoad; // list of roads occupied by red faction
-    private static ArrayList<Road> blueUnitRoad; // list of roads occupied by blue faction
-    private static ArrayList<Node> redUnitEnd; // list of node end locations for red
-    private static ArrayList<Node> blueUnitEnd; // list of node end locations for blue
+    private static ArrayList<CombatUnit> combatUnitsRed = new ArrayList<CombatUnit>(); // list of all units held by the red faction in motion
+    private static ArrayList<CombatUnit> combatUnitsBlue = new ArrayList<CombatUnit>(); // list of all units held by the blue faction in motion
+    private static ArrayList<Road> redUnitRoad = new ArrayList<Road>(); // list of roads occupied by red faction
+    private static ArrayList<Road> blueUnitRoad = new ArrayList<Road>(); // list of roads occupied by blue faction
+    private static ArrayList<Node> redUnitEnd = new ArrayList<Node>(); // list of node end locations for red
+    private static ArrayList<Node> blueUnitEnd = new ArrayList<Node>(); // list of node end locations for blue
     private static ArrayList<CombatUnit> redCombatListCollision; // list of red faction units in combat on road
     private static ArrayList<CombatUnit> blueCombatListCollision; // list of blue faction units in combat on road
     private static ArrayList<CombatUnit> redCombatListNode; // list of red faction units in combat on node
@@ -50,10 +50,6 @@ public class MapEvent {
         blueCombatUnitPreviousLocation = new ArrayList<Node>();
         blueCombatUnitEndLocation = new ArrayList<Node>();
         battle = new Battle();
-        
-        combatUnitsRed = Scenario.redPlayer.combatUnits;
-        combatUnitsBlue = Scenario.bluePlayer.combatUnits;
-        
     }
 
     // Method called to to add a movement to the registry
@@ -63,22 +59,17 @@ public class MapEvent {
         boolean found = false; // flag for use in the unit search
         int i = 0; // initialize the counter value for use in the unit search
 
-        combatUnitsRed = Scenario.redPlayer.combatUnits;
-        combatUnitsBlue = Scenario.bluePlayer.combatUnits;
-        
         // determine the player to be used
         if (Global.curPlayer == 0) {
-            currentPlayer = new Player();
             currentPlayer = Scenario.redPlayer;
         } else {
-            currentPlayer = new Player();
             currentPlayer = bluePlayer;
         }
 
         // search for the unit in order to obtain reference and values
         while (!found) { // while unit not found
             //JOptionPane.showMessageDialog(null, currentPlayer.capital.id, "InfoBox: ", JOptionPane.INFORMATION_MESSAGE);
-           
+
             if (currentPlayer.combatUnits.get(i).cUnitID == unitNum) { // for each unit id held by player, check is match to passed unit id
                 found = true;
             }
@@ -87,30 +78,37 @@ public class MapEvent {
                  out of bounds error on i
                  */
                 unit = currentPlayer.combatUnits.get(i); // set the reference to the correct unit
-            i++; // increase the counter
+                i++; // increase the counter
             }
         }
 
         // check if the unit has already been added to the list
-        // if the unit has already been added, remove the current values 
-        if (combatUnitsRed.contains(unit)) {
-            combatUnitsRed.remove(unit);
-            redUnitRoad.remove(road);
-            redUnitEnd.remove(endLocation);
-        } else if (combatUnitsBlue.contains(unit)) {
-            combatUnitsBlue.remove(unit);
-            blueUnitRoad.remove(road);
-            blueUnitEnd.remove(endLocation);
-        } else { // if the unit has not already been added to the list
-            // add the unit correct lists
-            if (redPlayer.playerID != unit.faction.playerID) {
-                combatUnitsBlue.add(unit);
-                blueUnitRoad.add(road);
-                blueUnitEnd.add(endLocation);
-            } else {
+        // if the unit has already been added, remove the current values
+        if (!combatUnitsRed.isEmpty() && !redUnitEnd.isEmpty()) {
+            if (combatUnitsRed.contains(unit)) {
+                combatUnitsRed.remove(unit);
+                redUnitRoad.remove(combatUnitsRed.indexOf(unit));
+                redUnitEnd.remove(combatUnitsRed.indexOf(unit));
                 combatUnitsRed.add(unit);
                 redUnitRoad.add(road);
                 redUnitEnd.add(endLocation);
+            } else if (combatUnitsBlue.contains(unit)) {
+                combatUnitsBlue.remove(unit);
+                blueUnitRoad.remove(combatUnitsBlue.indexOf(unit));
+                blueUnitEnd.remove(combatUnitsBlue.indexOf(unit));
+                combatUnitsBlue.add(unit);
+                blueUnitRoad.add(road);
+                blueUnitEnd.add(endLocation);
+            }
+        } else {
+            if (currentPlayer.playerID == 0) {
+                combatUnitsRed.add(unit);
+                redUnitRoad.add(road);
+                redUnitEnd.add(endLocation);
+            } else if (currentPlayer.playerID == 1) {
+                combatUnitsBlue.add(unit);
+                blueUnitRoad.add(road);
+                blueUnitEnd.add(endLocation);
             }
         }
     }
@@ -261,7 +259,7 @@ public class MapEvent {
     }
 
     // Method called to in order to handle unit merges
-    public void mergeUnits(int oneNum, int twoNum) {
+    public static void mergeUnits(int oneNum, int twoNum) {
         int[] nums = {oneNum, twoNum};
         CombatUnit[] unit = new CombatUnit[2];
         CombatUnit temp; // temporary unit to store new unit
@@ -290,7 +288,7 @@ public class MapEvent {
                 }
             }
         }
-        
+
         int[] scaled = {0, 0, 0};
         int sumSize = unit[0].size + unit[1].size;
         int[] sizes = {unit[0].size, unit[1].size, sumSize};
@@ -330,7 +328,7 @@ public class MapEvent {
 
     }
 
-    public void divideUnit(int unitNum) {
+    public static void divideUnit(int unitNum) {
         CombatUnit unit = null; // initialize the unit for consideraton
         boolean found = false; // flag for use in the unit search
         int i = -1; // initialize the counter value for use in the unit search

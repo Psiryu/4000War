@@ -85,22 +85,22 @@ public class Battle {
         if(blueDecisionToFight && redDecisionToFight)
         {
             /*Both armies commit to battle*/
-            PVPCommitedBattle(node, red, blue);
+            //PVPCommitedBattle(node, red, blue);
         }
         else if (!blueDecisionToFight && redDecisionToFight)
         {
             /*if Red wants to figh but blue does not*/
-            PVPHalfCommitedBattle(node,red, blue);
+            //PVPHalfCommitedBattle(node,red, blue);
         }
         else if (blueDecisionToFight && !redDecisionToFight)
         {
            /*if Blue wants to figh but Red does not*/
-            PVPHalfCommitedBattle(node,blue, red);
+            //PVPHalfCommitedBattle(node,blue, red);
         }
         else 
         {
             /*When No one wants to fight*/
-            PVPNonCommitedBattle(node,red,blue);
+            //PVPNonCommitedBattle(node,red,blue);
         }
     }
     
@@ -174,42 +174,7 @@ public class Battle {
             ArrayList<Node> blueCombatUnitPreviousLocation, ArrayList<Node> blueCombatUnitEndLocation)
     {
         // decides how many people were engaging in combat
-        if (preemptiveRed == true && preemptiveBlue == true)
-        {
-            // simply do battle  
-            /*call PVPHalfCommitedBattle*/
-        }
-        else if (preemptiveRed == true && preemptiveBlue == false)
-        {
-            // team red would wait unitll
-            // team blue makes choice to retreat or proceed to battle
-            
-                /*if blue selects fight */
-                /*call PVPHalfCommitedBattle*/
-                /*else*/
-                /*call PVPChaseBattle*/
-            
-        }
-        else if (preemptiveRed == false && preemptiveBlue == true)
-        {
-            // team ble would wait unitll
-            // team red makes choice to retreat or proceed to battle
-            
-                /*if red selects fight */
-                /*call PVPHalfCommitedBattle*/
-                /*else*/
-                /*call PVPChaseBattle*/
-        }
-        else if (preemptiveRed == false && preemptiveBlue == false)
-        {
-            // both teams makes choice to retreat or proceed to battle
-            // if one should should not attack call PVPChaseBattle with the non
-            // attacker as the COWARD
-            // If both do not attack call  PVPNonCommitedBattle
-        }
-        /*
-        
-        */
+
     }
 
     // general do battle method
