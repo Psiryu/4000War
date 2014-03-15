@@ -1,4 +1,5 @@
 
+import java.util.ArrayList;
 import java.util.Random;
 
 /*
@@ -35,7 +36,9 @@ public class Battle {
     }
     
     // for the case of battle occuring on a node
-    public void PVPdoCampBattleOnNode (Node node,CombatUnit[] red, CombatUnit[] blue)
+    public void PVPdoCampBattleOnNode (ArrayList<CombatUnit> redCombatListCollision, ArrayList<Node> redCombatUnitPreviousLocation, 
+            ArrayList<Node> redCombatUnitEndLocation, ArrayList<CombatUnit> blueCombatListCollision, 
+            ArrayList<Node> blueCombatUnitPreviousLocation, ArrayList<Node> blueCombatUnitEndLocation)
     { /*THE DECISION MAKER FUNCTION FOR COLLISIONS ON A NODE*/
         
         boolean redDecisionToFight= false;
@@ -166,7 +169,9 @@ public class Battle {
     
     
     // for the case of a collision battle on a road
-    public void doBattleOnRoad (boolean preemptiveRed, boolean preemptiveBlue)
+    public void doBattleOnRoad (ArrayList<CombatUnit> redCombatListNode, ArrayList<Node> redCombatUnitPreviousLocation, 
+            ArrayList<Node> redCombatUnitEndLocation, ArrayList<CombatUnit> blueCombatListNode, 
+            ArrayList<Node> blueCombatUnitPreviousLocation, ArrayList<Node> blueCombatUnitEndLocation)
     {
         // decides how many people were engaging in combat
         if (preemptiveRed == true && preemptiveBlue == true)

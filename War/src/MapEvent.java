@@ -25,6 +25,11 @@ public class MapEvent {
     private static ArrayList<CombatUnit> redCombatListNode;
     private static ArrayList<CombatUnit> blueCombatListNode;
     private static Player redPlayer, bluePlayer;
+    ArrayList<Node> redCombatUnitPreviousLocation;
+    ArrayList<Node> redCombatUnitEndLocation;
+    ArrayList<Node> blueCombatUnitPreviousLocation;
+    ArrayList<Node> blueCombatUnitEndLocation;
+    Battle battle;
 
     /*
      int[i][j] armies
@@ -52,6 +57,11 @@ public class MapEvent {
         blueUnitStart = new ArrayList<Node>();
         redPlayer = Scenario.redPlayer;
         bluePlayer = Scenario.bluePlayer;
+        redCombatUnitPreviousLocation = new ArrayList<Node>();
+        redCombatUnitEndLocation = new ArrayList<Node>();
+        blueCombatUnitPreviousLocation = new ArrayList<Node>();
+        blueCombatUnitEndLocation = new ArrayList<Node>();
+        battle = new Battle();
     }
 
     // Method called to to add a movement to the registry
@@ -61,22 +71,26 @@ public class MapEvent {
         Node endLocation = Scenario.listOfNodes[endLocationNum];
 
         boolean found = false;
-        int i = 0;
+        int i = -1;
 
         while (!found || i != Scenario.redPlayer.combatUnits.size()) {
+            i++;
             if (Scenario.redPlayer.combatUnits.get(i).cUnitID == unitNum) {
                 found = true;
             }
-            i++;
         }
         if (found == true) {
+            /*
+             out of bounds error on i
+             */
             unit = Scenario.redPlayer.combatUnits.get(i);
         } else {
+            i = -1;
             while (found || i != Scenario.bluePlayer.combatUnits.size()) {
+                i++;
                 if (Scenario.bluePlayer.combatUnits.get(i).cUnitID == unitNum) {
                     found = true;
                 }
-                i++;
             }
             if (found == true) {
                 unit = Scenario.bluePlayer.combatUnits.get(i);
@@ -160,31 +174,41 @@ public class MapEvent {
             for (int j = 0; j < combatUnitsRed.size(); j++) {
                 if (redUnitRoad.get(i).roadID == i) {
                     redCombatListCollision.add(combatUnitsRed.get(i));
+                    redCombatUnitPreviousLocation.add(combatUnitsRed.get(i).location);
+                    redCombatUnitEndLocation.add(redUnitEnd.get(i));
                 }
             }
             for (int j = 0; j < combatUnitsBlue.size(); j++) {
                 if (blueUnitRoad.get(i).roadID == i) {
                     blueCombatListCollision.add(combatUnitsBlue.get(i));
+                    blueCombatUnitPreviousLocation.add(combatUnitsBlue.get(i).location);
+                    blueCombatUnitEndLocation.add(blueUnitEnd.get(i));
                 }
             }
             if (redCombatListCollision.size() > 0 && blueCombatListCollision.size() > 0) {
-                /*
-                 There was a collision battle triggered on this road
-                 the two arrays redCombatList and blueCombatList contain those involved
-                 */
+                battle.doBattleOnRoad(redCombatListCollision, redCombatUnitPreviousLocation, redCombatUnitEndLocation,
+                        blueCombatListCollision, blueCombatUnitPreviousLocation, blueCombatUnitEndLocation);
             }
             redCombatListCollision.clear();
+            redCombatUnitPreviousLocation.clear();
+            redCombatUnitEndLocation.clear();
             blueCombatListCollision.clear();
+            blueCombatUnitPreviousLocation.clear();
+            blueCombatUnitEndLocation.clear();
         }
         for (int i = 0; i < Scenario.listOfNodes.length; i++) {
             for (int j = 0; j < redUnitEnd.size(); j++) {
                 if (redUnitEnd.get(i).id == i) {
                     redCombatListNode.add(combatUnitsRed.get(i));
+                    redCombatUnitPreviousLocation.add(combatUnitsRed.get(i).location);
+                    redCombatUnitEndLocation.add(redUnitEnd.get(i));
                 }
             }
             for (int j = 0; j < blueUnitEnd.size(); j++) {
                 if (blueUnitEnd.get(i).id == i) {
                     blueCombatListNode.add(combatUnitsBlue.get(i));
+                    blueCombatUnitPreviousLocation.add(combatUnitsBlue.get(i).location);
+                    blueCombatUnitEndLocation.add(blueUnitEnd.get(i));
                 }
             }
             if (redCombatListNode.size() > 0 && blueCombatListNode.size() > 0) {
@@ -192,9 +216,22 @@ public class MapEvent {
                  There was a  battle triggered on this node
                  the two arrays redCombatList and blueCombatList contain those involved
                  */
+
+                /*
+                 need: previousLocation(ish), where their going, units involved
+                 */
+                /*
+                 public void PVPdoCampBattleOnNode (Node node,CombatUnit[] red, CombatUnit[] blue)
+                 */
+                battle.PVPdoCampBattleOnNode(redCombatListNode, redCombatUnitPreviousLocation, redCombatUnitEndLocation,
+                        blueCombatListNode, blueCombatUnitPreviousLocation, blueCombatUnitEndLocation);
             }
-            redCombatListNode.clear();
-            blueCombatListNode.clear();
+            redCombatListCollision.clear();
+            redCombatUnitPreviousLocation.clear();
+            redCombatUnitEndLocation.clear();
+            blueCombatListCollision.clear();
+            blueCombatUnitPreviousLocation.clear();
+            blueCombatUnitEndLocation.clear();
         }
         for (int j = 0; j < combatUnitsRed.size(); j++) {
             if (!redCombatListCollision.contains(combatUnitsRed.get(j)) && !redCombatListNode.contains(combatUnitsRed.get(j))) {
