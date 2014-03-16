@@ -93,18 +93,22 @@ public class Scenario {
       if (Global.opponent) { // if player vs player is chosen
             if (Global.chosenTeam) { // if player one selected red faction
                 redPlayer = new Player(false, listOfNodes[10], 0, "red");
+                Global.curPlayer = 1;
                 bluePlayer = new Player(false, listOfNodes[13], 1, "blue");
             } else { // if player one selected blue faction
-                bluePlayer = new Player(false, listOfNodes[13], 0, "blue");
-                redPlayer = new Player(false, listOfNodes[10], 1, "red");
+                bluePlayer = new Player(false, listOfNodes[13], 1, "blue");
+                Global.curPlayer = 0;
+                redPlayer = new Player(false, listOfNodes[10], 0, "red");
             }
         } else { // if player vs computer is chosen
             if (Global.chosenTeam) { // if player choses red faction
                 redPlayer = new Player(false, listOfNodes[10], 0, "red");
+                Global.curPlayer = 1;
                 bluePlayer = new Player(true, listOfNodes[13], 1, "blue");
             } else { // if player choses blue faction
-                bluePlayer = new Player(false, listOfNodes[13], 0, "blue");
-                redPlayer = new Player(true, listOfNodes[10], 1, "red");
+                bluePlayer = new Player(false, listOfNodes[13], 1, "blue");
+                Global.curPlayer = 0;
+                redPlayer = new Player(true, listOfNodes[10], 0, "red");
             }
         }
     }
