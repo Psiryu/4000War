@@ -173,17 +173,17 @@ public class MapEvent {
         // for each of the possible roads, search for possible collisions
         for (int i = 0; i < Scenario.listOfRoads.length; i++) {
             for (int j = 0; j < combatUnitsRed.size(); j++) { // find the red units on this road
-                if (redUnitRoad.get(i).roadID == i) {
-                    redCombatListCollision.add(combatUnitsRed.get(i));
-                    redCombatUnitPreviousLocation.add(combatUnitsRed.get(i).location);
-                    redCombatUnitEndLocation.add(redUnitEnd.get(i));
+                if (redUnitRoad.get(j).roadID == i) {
+                    redCombatListCollision.add(combatUnitsRed.get(j));
+                    redCombatUnitPreviousLocation.add(combatUnitsRed.get(j).location);
+                    redCombatUnitEndLocation.add(redUnitEnd.get(j));
                 }
             }
             for (int j = 0; j < combatUnitsBlue.size(); j++) { // find the blue units on this road
-                if (blueUnitRoad.get(i).roadID == i) {
-                    blueCombatListCollision.add(combatUnitsBlue.get(i));
-                    blueCombatUnitPreviousLocation.add(combatUnitsBlue.get(i).location);
-                    blueCombatUnitEndLocation.add(blueUnitEnd.get(i));
+                if (blueUnitRoad.get(j).roadID == i) {
+                    blueCombatListCollision.add(combatUnitsBlue.get(j));
+                    blueCombatUnitPreviousLocation.add(combatUnitsBlue.get(j).location);
+                    blueCombatUnitEndLocation.add(blueUnitEnd.get(j));
                 }
             }
 
@@ -207,17 +207,17 @@ public class MapEvent {
         // for each of the possible nodes/locations, check if two opposing units collided
         for (int i = 0; i < Scenario.listOfNodes.length; i++) {
             for (int j = 0; j < redUnitEnd.size(); j++) { // find red units on this node
-                if (redUnitEnd.get(i).id == i) {
-                    redCombatListNode.add(combatUnitsRed.get(i));
-                    redCombatUnitPreviousLocation.add(combatUnitsRed.get(i).location);
-                    redCombatUnitEndLocation.add(redUnitEnd.get(i));
+                if (redUnitEnd.get(j).id == i) {
+                    redCombatListNode.add(combatUnitsRed.get(j));
+                    redCombatUnitPreviousLocation.add(combatUnitsRed.get(j).location);
+                    redCombatUnitEndLocation.add(redUnitEnd.get(j));
                 }
             }
             for (int j = 0; j < blueUnitEnd.size(); j++) { // find blue units on this node
-                if (blueUnitEnd.get(i).id == i) {
-                    blueCombatListNode.add(combatUnitsBlue.get(i));
-                    blueCombatUnitPreviousLocation.add(combatUnitsBlue.get(i).location);
-                    blueCombatUnitEndLocation.add(blueUnitEnd.get(i));
+                if (blueUnitEnd.get(j).id == i) {
+                    blueCombatListNode.add(combatUnitsBlue.get(j));
+                    blueCombatUnitPreviousLocation.add(combatUnitsBlue.get(j).location);
+                    blueCombatUnitEndLocation.add(blueUnitEnd.get(j));
                 }
             }
 
