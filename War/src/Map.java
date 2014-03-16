@@ -51,7 +51,7 @@ public class Map extends javax.swing.JFrame {
         
         //sets labels for scenario selected, and that it is player 1's turn
         labelScenario.setText("Scenario: " + Global.intScenario);        
-        labelCurPlayer.setText("Player One's turn");
+        labelCurPlayer.setText("Player" + (Global.curPlayer + 1) + "'s turn.");
         
         GameStart();
         jFrame1.setVisible(true);
@@ -1299,11 +1299,11 @@ public class Map extends javax.swing.JFrame {
         if(Global.curPlayer == 0)
         {
             Global.curPlayer = 1;
-            labelCurPlayer.setText("Player Two's turn");
+            labelCurPlayer.setText("Player" + (Global.curPlayer + 1) + "'s turn.");
             //more shit happens here
         } else {
             Global.curPlayer = 0;
-            labelCurPlayer.setText("Player One's turn");
+             labelCurPlayer.setText("Player" + (Global.curPlayer + 1) + "'s turn.");
             //more shit happens here
         }
         
