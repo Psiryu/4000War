@@ -13,8 +13,6 @@ import java.util.Random;
  * @author BotBen
  */
 public class Scenario {
-
-    public static String[] factionNamesOne = {"Populares", "Optimates"}; // blue player, red player
     public static Node[] listOfNodes; // list of all nodes in the scenario
     public static Road[] listOfRoads; // list of all the roads in the scenario
     public static ArrayList<CombatUnit> listOfUnits = new ArrayList<CombatUnit>(); // list of all the units in the scenario
@@ -92,10 +90,7 @@ public class Scenario {
 
     // Method to set the factions
     void setPlayers() {
-        Global.teamOne = "Optimates";
-        Global.teamTwo = "Populares";
-        
-        if (Global.opponent) { // if player vs player is chosen
+      if (Global.opponent) { // if player vs player is chosen
             if (Global.chosenTeam) { // if player one selected red faction
                 redPlayer = new Player(false, listOfNodes[10], 0, "red");
                 bluePlayer = new Player(false, listOfNodes[13], 1, "blue");

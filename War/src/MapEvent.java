@@ -19,12 +19,12 @@ public class MapEvent {
     private static ArrayList<Road> blueUnitRoad = new ArrayList<Road>(); // list of roads occupied by blue faction
     private static ArrayList<Node> redUnitEnd = new ArrayList<Node>(); // list of node end locations for red
     private static ArrayList<Node> blueUnitEnd = new ArrayList<Node>(); // list of node end locations for blue
-    private static ArrayList<CombatUnit> redCombatListCollision; // list of red faction units in combat on road
-    private static ArrayList<CombatUnit> blueCombatListCollision; // list of blue faction units in combat on road
-    private static ArrayList<CombatUnit> redCombatListNode; // list of red faction units in combat on node
-    private static ArrayList<CombatUnit> blueCombatListNode; // list of blue faction units in combat on node
+    private static ArrayList<CombatUnit> redCombatListCollision = new ArrayList<CombatUnit>(); // list of red faction units in combat on road
+    private static ArrayList<CombatUnit> blueCombatListCollision = new ArrayList<CombatUnit>(); // list of blue faction units in combat on road
+    private static ArrayList<CombatUnit> redCombatListNode = new ArrayList<CombatUnit>(); // list of red faction units in combat on node
+    private static ArrayList<CombatUnit> blueCombatListNode = new ArrayList<CombatUnit>(); // list of blue faction units in combat on node
     private static Player redPlayer, bluePlayer, currentPlayer; // player objects for use in the events
-    private static ArrayList<Node> redCombatUnitPreviousLocation; // list of red faction previous locations pre-combat
+    private static ArrayList<Node> redCombatUnitPreviousLocation = new ArrayList<Node>(); // list of red faction previous locations pre-combat
     private static ArrayList<Node> redCombatUnitEndLocation; // list of red faction tentative end locations pre-combat
     private static ArrayList<Node> blueCombatUnitPreviousLocation; // list of blue faction previous locations pre-combat
     private static ArrayList<Node> blueCombatUnitEndLocation; // list of blue faction tentative end locations pre-combat
@@ -63,7 +63,7 @@ public class MapEvent {
         if (Global.curPlayer == 0) {
             currentPlayer = Scenario.redPlayer;
         } else {
-            currentPlayer = bluePlayer;
+            currentPlayer = Scenario.bluePlayer;
         }
 
         // search for the unit in order to obtain reference and values
@@ -130,10 +130,10 @@ public class MapEvent {
         }
 
         // determine the player to be used
-        if (redPlayer.playerID == Global.curPlayer) {
-            currentPlayer = redPlayer;
+        if (Global.curPlayer == 0) {
+            currentPlayer = Scenario.redPlayer;
         } else {
-            currentPlayer = bluePlayer;
+            currentPlayer = Scenario.bluePlayer;
         }
 
         // determine which units have not been added to the lists
@@ -142,12 +142,13 @@ public class MapEvent {
                 if (currentPlayer.combatUnits.get(i).cUnitID == redIDs[j]) { // if the unit id is found in the lists
                     found = true; // indicate that the unit has been found
                 }
+                if (found == false) { // if the unit was not found, add it to the lists
+                    combatUnitsRed.add(currentPlayer.combatUnits.get(i));
+                    redUnitRoad.add(null);
+                    redUnitEnd.add(currentPlayer.combatUnits.get(i).location);
+                }
             }
-            if (found == false) { // if the unit was not found, add it to the lists
-                combatUnitsRed.add(currentPlayer.combatUnits.get(i));
-                redUnitRoad.add(null);
-                redUnitEnd.add(currentPlayer.combatUnits.get(i).location);
-            }
+
         }
     }
 
@@ -266,11 +267,11 @@ public class MapEvent {
         boolean found = false; // flag for use in the unit search
         int c = -1; // initialize the counter value for use in the unit search
 
-        // determine the player to be used
-        if (redPlayer.playerID == Global.curPlayer) {
-            currentPlayer = redPlayer;
+        /// determine the player to be used
+        if (Global.curPlayer == 0) {
+            currentPlayer = Scenario.redPlayer;
         } else {
-            currentPlayer = bluePlayer;
+            currentPlayer = Scenario.bluePlayer;
         }
 
         for (int j = 0; j < 2; j++) {
@@ -339,10 +340,10 @@ public class MapEvent {
         int id = 0;
 
         // determine the player to be used
-        if (redPlayer.playerID == Global.curPlayer) {
-            currentPlayer = redPlayer;
+        if (Global.curPlayer == 0) {
+            currentPlayer = Scenario.redPlayer;
         } else {
-            currentPlayer = bluePlayer;
+            currentPlayer = Scenario.bluePlayer;
         }
 
         // search for the unit in order to obtain reference and values
