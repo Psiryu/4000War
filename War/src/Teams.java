@@ -16,10 +16,12 @@ public class Teams extends javax.swing.JFrame {
     public Teams() {
         initComponents();
         
-        radioTeam1.setText(Global.teamOne);
-        radioTeam2.setText(Global.teamTwo);
-        
         Global.chosenTeam = false;
+        
+        if(Global.intScenario == 1) {
+            radioTeam1.setText("Optimates");
+            radioTeam2.setText("Populares");
+        }
     }
 
     /**
@@ -72,6 +74,11 @@ public class Teams extends javax.swing.JFrame {
         buttongroupTeam.add(radioTeam2);
         radioTeam2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         radioTeam2.setText("jRadioButton2");
+        radioTeam2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radioTeam2ActionPerformed(evt);
+            }
+        });
         getContentPane().add(radioTeam2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 180, -1, -1));
 
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -93,14 +100,18 @@ public class Teams extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         Scenario scenario = new Scenario();
         scenario.Initialize(0);
-        
+        MapEvent mapEvent = new MapEvent();
         new Map().setVisible(true);
         Teams.this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void radioTeam1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioTeam1ActionPerformed
-        // TODO add your handling code here:
+        Global.chosenTeam = false;
     }//GEN-LAST:event_radioTeam1ActionPerformed
+
+    private void radioTeam2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioTeam2ActionPerformed
+        Global.chosenTeam = true;
+    }//GEN-LAST:event_radioTeam2ActionPerformed
 
     /**
      * @param args the command line arguments
