@@ -138,7 +138,7 @@ public class MapEvent {
 
         // determine which units have not been added to the lists
         for (int i = 0; i < currentPlayer.combatUnits.size(); i++) { // for each possible unit in the faction
-            for (int j = 0; j < combatUnitsRed.size(); j++) { // for each unit accounted for in the faction
+            for (int j = 0; j < redIDs.length; j++) { // for each unit accounted for in the faction
                 if (currentPlayer.combatUnits.get(i).cUnitID == redIDs[j]) { // if the unit id is found in the lists
                     found = true; // indicate that the unit has been found
                 }
@@ -146,6 +146,19 @@ public class MapEvent {
                     combatUnitsRed.add(currentPlayer.combatUnits.get(i));
                     redUnitRoad.add(null);
                     redUnitEnd.add(currentPlayer.combatUnits.get(i).location);
+                }
+            }
+        }
+        // determine which units have not been added to the lists
+        for (int i = 0; i < currentPlayer.combatUnits.size(); i++) { // for each possible unit in the faction
+            for (int j = 0; j < blueIDs.length; j++) { // for each unit accounted for in the faction
+                if (currentPlayer.combatUnits.get(i).cUnitID == blueIDs[j]) { // if the unit id is found in the lists
+                    found = true; // indicate that the unit has been found
+                }
+                if (found == false) { // if the unit was not found, add it to the lists
+                    combatUnitsBlue.add(currentPlayer.combatUnits.get(i));
+                    blueUnitRoad.add(null);
+                    blueUnitEnd.add(currentPlayer.combatUnits.get(i).location);
                 }
             }
 
