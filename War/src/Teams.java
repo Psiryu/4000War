@@ -64,6 +64,7 @@ public class Teams extends javax.swing.JFrame {
         radioTeam1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         radioTeam1.setSelected(true);
         radioTeam1.setText("jRadioButton1");
+        radioTeam1.setContentAreaFilled(false);
         radioTeam1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 radioTeam1ActionPerformed(evt);
@@ -74,6 +75,7 @@ public class Teams extends javax.swing.JFrame {
         buttongroupTeam.add(radioTeam2);
         radioTeam2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         radioTeam2.setText("jRadioButton2");
+        radioTeam2.setContentAreaFilled(false);
         radioTeam2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 radioTeam2ActionPerformed(evt);

@@ -858,9 +858,10 @@ public class Map extends javax.swing.JFrame {
                             ClearPopupMenu();
                         }
                     });
+                   
                 }
-                
-            }
+                 
+            }i++;
         }
         
         popupMenu.updateUI();

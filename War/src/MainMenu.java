@@ -50,8 +50,9 @@ public class MainMenu extends javax.swing.JFrame {
         labelTitle.setText("Roman Civil War");
         getContentPane().add(labelTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 10, 290, 50));
 
-        buttonScenario1.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        buttonScenario1.setFont(new java.awt.Font("Times New Roman", 0, 26)); // NOI18N
         buttonScenario1.setText("Scenario 1");
+        buttonScenario1.setContentAreaFilled(false);
         buttonScenario1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonScenario1ActionPerformed(evt);
@@ -59,8 +60,9 @@ public class MainMenu extends javax.swing.JFrame {
         });
         getContentPane().add(buttonScenario1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, 150, 60));
 
-        buttonScenario2.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        buttonScenario2.setFont(new java.awt.Font("Times New Roman", 0, 26)); // NOI18N
         buttonScenario2.setText("Scenario 2");
+        buttonScenario2.setContentAreaFilled(false);
         buttonScenario2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonScenario2ActionPerformed(evt);
@@ -68,8 +70,9 @@ public class MainMenu extends javax.swing.JFrame {
         });
         getContentPane().add(buttonScenario2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, 150, 60));
 
-        buttonScenario3.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        buttonScenario3.setFont(new java.awt.Font("Times New Roman", 0, 26)); // NOI18N
         buttonScenario3.setText("Scenario 3");
+        buttonScenario3.setContentAreaFilled(false);
         buttonScenario3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonScenario3ActionPerformed(evt);
@@ -81,16 +84,18 @@ public class MainMenu extends javax.swing.JFrame {
         radioAI.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         radioAI.setSelected(true);
         radioAI.setText("Against AI");
+        radioAI.setContentAreaFilled(false);
         radioAI.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 radioAIActionPerformed(evt);
             }
         });
-        getContentPane().add(radioAI, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 90, -1, -1));
+        getContentPane().add(radioAI, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 90, 110, -1));
 
         buttonGroup1.add(radioPlayer);
         radioPlayer.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         radioPlayer.setText("Against Player");
+        radioPlayer.setContentAreaFilled(false);
         radioPlayer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 radioPlayerActionPerformed(evt);
@@ -98,7 +103,9 @@ public class MainMenu extends javax.swing.JFrame {
         });
         getContentPane().add(radioPlayer, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 130, -1, -1));
 
+        buttonEnd.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         buttonEnd.setText("End Game");
+        buttonEnd.setContentAreaFilled(false);
         buttonEnd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonEndActionPerformed(evt);
@@ -106,7 +113,9 @@ public class MainMenu extends javax.swing.JFrame {
         });
         getContentPane().add(buttonEnd, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 240, 150, 40));
 
+        buttonHowTo.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         buttonHowTo.setText("How to Play");
+        buttonHowTo.setContentAreaFilled(false);
         buttonHowTo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonHowToActionPerformed(evt);
