@@ -186,6 +186,7 @@ public class MapEvent {
         // for each of the possible roads, search for possible collisions
         for (int i = 0; i < Scenario.listOfRoads.length; i++) {
             for (int j = 0; j < combatUnitsRed.size(); j++) { // find the red units on this road
+                if (redUnitRoad.get(j) != null)
                 if (redUnitRoad.get(j).roadID == i) {
                     redCombatListCollision.add(combatUnitsRed.get(j));
                     redCombatUnitPreviousLocation.add(combatUnitsRed.get(j).location);
@@ -193,6 +194,7 @@ public class MapEvent {
                 }
             }
             for (int j = 0; j < combatUnitsBlue.size(); j++) { // find the blue units on this road
+                if(blueUnitRoad.get(j) != null)
                 if (blueUnitRoad.get(j).roadID == i) {
                     blueCombatListCollision.add(combatUnitsBlue.get(j));
                     blueCombatUnitPreviousLocation.add(combatUnitsBlue.get(j).location);
@@ -343,25 +345,39 @@ public class MapEvent {
     }
 
     public static void divideUnit(int unitNum) {
-        CombatUnit unit = null; // initialize the unit for consideraton
+        CombatUnit unit = null;
         boolean found = false; // flag for use in the unit search
-        int i = -1; // initialize the counter value for use in the unit search
+        int i = 0; // initialize the counter value for use in the unit search
         CombatUnit one, two;
-        int divSize = unit.size / 2;
+        
+        //int divSize = unit.size / 2;
         boolean idFind = false;
         int checker = 0;
         int id = 0;
 
+        int i2 = 0;
         // determine the player to be used
         if (Global.curPlayer == 0) {
             currentPlayer = Scenario.redPlayer;
+            for(CombatUnit army : Scenario.redPlayer.combatUnits) {
+                if(army.cUnitID == unitNum)
+                    unit = currentPlayer.combatUnits.get(i2);
+                i2++;
+            }
         } else {
             currentPlayer = Scenario.bluePlayer;
+            for(CombatUnit army : Scenario.bluePlayer.combatUnits) {
+                if(army.cUnitID == unitNum)
+                    unit = currentPlayer.combatUnits.get(i2);
+                i2++;
+            }
         }
+        
+        int divSize = unit.size / 2;
 
         // search for the unit in order to obtain reference and values
-        while (!found || i != currentPlayer.combatUnits.size()) { // while unit not found
-            i++; // increase the counter
+        while (!found && i != currentPlayer.combatUnits.size()) { // while unit not found
+            
             if (currentPlayer.combatUnits.get(i).cUnitID == unitNum) { // for each unit id held by player, check is match to passed unit id
                 found = true;
             }
@@ -371,6 +387,7 @@ public class MapEvent {
                  */
                 unit = currentPlayer.combatUnits.get(i); // set the reference to the correct unit
             }
+            i++; // increase the counter
         }
 
         while (idFind) {

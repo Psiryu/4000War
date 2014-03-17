@@ -54,7 +54,7 @@ public class Map extends javax.swing.JFrame {
         labelCurPlayer.setText("Player" + (Global.curPlayer + 1) + "'s turn.");
         
         GameStart();
-        jFrame1.setVisible(true);
+        //jFrame1.setVisible(true);
     }
 
     /**
@@ -518,6 +518,8 @@ public class Map extends javax.swing.JFrame {
         //first portion of rectangular array represents the differnt armies
         //within the list. Second portion is [id, size, location, fleet bool].  
 
+        int i = 0;
+        
         //first sets player 1's armies (red team), then does the same
         //for player 2 (blue team). Commented first half only, both sets
         //are exactly identical, just "redPlayer" changed to "bluePlayer"
@@ -526,29 +528,35 @@ public class Map extends javax.swing.JFrame {
             //sets the array to be the size of player's total army count
             listArmy = new int[Scenario.redPlayer.combatUnits.size()][4];
             //loops for each army in the array
-            for(int i = 0; i < Scenario.redPlayer.combatUnits.size(); i++) {
+            for(CombatUnit army : Scenario.redPlayer.combatUnits) {
                 //sets each army's id
-                listArmy[i][0] = Scenario.redPlayer.combatUnits.get(i).cUnitID;
+                listArmy[i][0] = army.cUnitID;
                 //sets each army's size
-                listArmy[i][1] = Scenario.redPlayer.combatUnits.get(i).size;
+                listArmy[i][1] = army.size;
                 //sets each army's location
-                listArmy[i][2] = Scenario.redPlayer.combatUnits.get(i).GetLocation().id;
+                listArmy[i][2] = army.GetLocation().id;
                 //sets an int value for the isFleet bool (1 for if true)
-                if (Scenario.redPlayer.combatUnits.get(i).isFleet == true)
+                if (army.isFleet == true)
                     listArmy[i][3] = 1;
                 else
                     listArmy[i][3] = 0;
+                i++;
             }
-        } else {
+        } else if(Global.curPlayer == 1){
             listArmy = new int[Scenario.bluePlayer.combatUnits.size()][4];
-            for(int i = 0; i < Scenario.bluePlayer.combatUnits.size(); i++) {
-                listArmy[i][0] = Scenario.bluePlayer.combatUnits.get(i).cUnitID;
-                listArmy[i][1] = Scenario.bluePlayer.combatUnits.get(i).size;
-                listArmy[i][2] = Scenario.bluePlayer.combatUnits.get(i).GetLocation().id;
-                if (Scenario.bluePlayer.combatUnits.get(i).isFleet == true)
+            for(CombatUnit army : Scenario.bluePlayer.combatUnits) {
+                //sets each army's id
+                listArmy[i][0] = army.cUnitID;
+                //sets each army's size
+                listArmy[i][1] = army.size;
+                //sets each army's location
+                listArmy[i][2] = army.GetLocation().id;
+                //sets an int value for the isFleet bool (1 for if true)
+                if (army.isFleet == true)
                     listArmy[i][3] = 1;
                 else
                     listArmy[i][3] = 0;
+                i++;
             }
         }
 
@@ -679,6 +687,10 @@ public class Map extends javax.swing.JFrame {
                 //can't use the indexing for the array.
                 final int[][] armyToMove = new int[1][4];
                 armyToMove[0] = armies[i];
+                armyToMove[0][0] = armies[i][0];
+                armyToMove[0][1] = armies[i][1];
+                armyToMove[0][2] = armies[i][2];
+                armyToMove[0][3] = armies[i][3];
                 
                 //creates the item for this army unit on this location.
                 //The action is to send current armyToMove to MoveTo method.
@@ -719,7 +731,17 @@ public class Map extends javax.swing.JFrame {
                     @Override
                     public void actionPerformed(ActionEvent event) {
                         MapEvent.addMovement(army[0][0], roads2, roads2.locationB.id);
-                        ClearPopupMenu();
+                        //try catch for setting default node colours
+                                try {
+                                    SetDefaultColours();
+                                } catch (IOException ex) {
+                                    Logger.getLogger(Map.class.getName()).log(Level.SEVERE, null, ex);
+                                }
+                                //sets colours of nodes with current player's armies
+                                SetColours();
+
+                                ClearMenuInfo();
+                                ClearPopupMenu();
                     }
                 });
                 //finally, adds this item to the popup menu.
@@ -735,7 +757,17 @@ public class Map extends javax.swing.JFrame {
                     @Override
                     public void actionPerformed(ActionEvent event) {
                         MapEvent.addMovement(army[0][0], roads2, roads2.locationA.id);
-                        ClearPopupMenu();
+                        //try catch for setting default node colours
+                                try {
+                                    SetDefaultColours();
+                                } catch (IOException ex) {
+                                    Logger.getLogger(Map.class.getName()).log(Level.SEVERE, null, ex);
+                                }
+                                //sets colours of nodes with current player's armies
+                                SetColours();
+
+                                ClearMenuInfo();
+                                ClearPopupMenu();
                     }
                 });
                 //finally, adds this item to the popup menu.
@@ -769,14 +801,24 @@ public class Map extends javax.swing.JFrame {
                             //temporary actions. will change to send to Temp once Temp is done.
                             //labelInfo6.setText(army[0][1] + " is dividing");
                             MapEvent.divideUnit(army[i2][0]);
-                            ClearPopupMenu();
+                            //try catch for setting default node colours
+                                try {
+                                    SetDefaultColours();
+                                } catch (IOException ex) {
+                                    Logger.getLogger(Map.class.getName()).log(Level.SEVERE, null, ex);
+                                }
+                                //sets colours of nodes with current player's armies
+                                SetColours();
+
+                                ClearMenuInfo();
+                                ClearPopupMenu();
                         }
                     });
                     //finally, adds this item to the popup menu.
                     popupMenu.add(menuItemMove);
                 }
-            i++;
-            }
+            
+            }i++;
         }
 
         //re-sets the popupmenu as updated and visible
@@ -855,7 +897,17 @@ public class Map extends javax.swing.JFrame {
                             //prepared to send to Temp
                             //labelInfo6.setText("merge " + armyToMerge [0] + " with " + armies[i2][1]);
                             MapEvent.mergeUnits(armyToMerge[0], armies[i2][0]);
-                            ClearPopupMenu();
+                                //try catch for setting default node colours
+                                try {
+                                    SetDefaultColours();
+                                } catch (IOException ex) {
+                                    Logger.getLogger(Map.class.getName()).log(Level.SEVERE, null, ex);
+                                }
+                                //sets colours of nodes with current player's armies
+                                SetColours();
+
+                                ClearMenuInfo();
+                                ClearPopupMenu();
                         }
                     });
                    
