@@ -18,4 +18,16 @@ public class Global {
     public static int intScenario; // scenario number
     public static MapEvent mapEvent;
     public static int curPlayer; //global variable for keeping track of whos turn it is
+    
+    public static void ResetGlobals() {
+        opponent = false; //if true, against player. false means AI
+        chosenTeam = false; // toggle for the character player 1 choses, false means player 1 is team 1
+        weather =0; // storage for the weather value
+        season =0; // storage for the season value
+        teamOne =null; // team name 1
+        teamTwo = null; // team name 2
+        intScenario = 0; // scenario number
+        mapEvent = null;
+        curPlayer = 0; //global variable for keeping track of whos turn it is
+    }
 }

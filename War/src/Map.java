@@ -1360,6 +1360,8 @@ public class Map extends javax.swing.JFrame {
     }
     private void buttonMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonMenuActionPerformed
         //button for quitting current scenario and returning to main menu
+        Scenario.killSwitch();
+        
         ClearPopupMenu();
         ClearMenuInfo();
         

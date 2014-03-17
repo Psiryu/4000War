@@ -16,6 +16,7 @@ public class MainMenu extends javax.swing.JFrame {
     public MainMenu() {
         initComponents();
         Global.opponent = false;
+        Global.ResetGlobals();
     }
 
     /**
