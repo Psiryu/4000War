@@ -110,18 +110,21 @@ public class MapEvent {
 
     // at turn's end, add units to the list that may have remained stationary
     private static void cleanList() {
+        JOptionPane.showMessageDialog(null, "Cleaning up");
         boolean found = false; // flag for whether the unit has been found
 
         // obtain a list of red unit ids for reference
         int[] redIDs = new int[combatUnitsRed.size()];
         for (int i = 0; i < combatUnitsRed.size(); i++) {
             redIDs[i] = combatUnitsRed.get(i).cUnitID;
+            JOptionPane.showMessageDialog(null, "RED ID");
         }
 
         // obtain a list of blue unit ids for reference
         int[] blueIDs = new int[combatUnitsBlue.size()];
         for (int i = 0; i < combatUnitsBlue.size(); i++) {
             blueIDs[i] = combatUnitsBlue.get(i).cUnitID;
+            JOptionPane.showMessageDialog(null, "BLUE ID");
         }
 
         // determine the player to be used
@@ -138,6 +141,7 @@ public class MapEvent {
                     found = true; // indicate that the unit has been found
                 }
                 if (found == false) { // if the unit was not found, add it to the lists
+                    JOptionPane.showMessageDialog(null, "ID "+redIDs[j]+" Added");
                     combatUnitsRed.add(currentPlayer.combatUnits.get(i));
                     redUnitRoad.add(null);
                     redUnitEnd.add(currentPlayer.combatUnits.get(i).location);
@@ -151,6 +155,7 @@ public class MapEvent {
                     found = true; // indicate that the unit has been found
                 }
                 if (found == false) { // if the unit was not found, add it to the lists
+                    JOptionPane.showMessageDialog(null, "ID "+blueIDs[j]+" Added");
                     combatUnitsBlue.add(currentPlayer.combatUnits.get(i));
                     blueUnitRoad.add(null);
                     blueUnitEnd.add(currentPlayer.combatUnits.get(i).location);
@@ -201,6 +206,7 @@ public class MapEvent {
 
             // if there are both red and blue units on this road, activate a collision on road battle
             if (redCombatListCollision.size() > 0 && blueCombatListCollision.size() > 0) {
+                JOptionPane.showMessageDialog(null, "Battle on road!");
                 redList.addAll(redCombatListCollision);
                 blueList.addAll(blueCombatListCollision);
                 battle.doBattleOnRoad(redCombatListCollision, redCombatUnitPreviousLocation, redCombatUnitEndLocation,
@@ -235,6 +241,7 @@ public class MapEvent {
 
             // if both red and blue units were found on this node, then activate a battle on node
             if (redCombatListNode.size() > 0 && blueCombatListNode.size() > 0) {
+                JOptionPane.showMessageDialog(null, "Battle on node!");
                 redList.addAll(redCombatListCollision);
                 blueList.addAll(blueCombatListCollision);
                 battle.PVPdoCampBattleOnNode(Scenario.listOfNodes[i], redCombatListNode, redCombatUnitPreviousLocation, redCombatUnitEndLocation,
@@ -282,23 +289,18 @@ public class MapEvent {
         /// determine the player to be used
         if (Global.curPlayer == 0) {
             currentPlayer = Scenario.redPlayer;
-            for (CombatUnit armies : Scenario.redPlayer.combatUnits) {
-                if (armies.cUnitID == oneNum) {
-                    unit[0] = armies;
-                }
-                if (armies.cUnitID == twoNum) {
-                    unit[1] = armies;
-                }
-            }
         } else {
             currentPlayer = Scenario.bluePlayer;
-            for (CombatUnit armies : Scenario.bluePlayer.combatUnits) {
-                if (armies.cUnitID == oneNum) {
-                    unit[0] = armies;
-                }
-                if (armies.cUnitID == twoNum) {
-                    unit[1] = armies;
-                }
+        }
+
+        for (CombatUnit armies : currentPlayer.combatUnits) {
+            if (armies.cUnitID == oneNum) {
+                unit[0] = armies;
+               
+            }
+            if (armies.cUnitID == twoNum) {
+                unit[1] = armies;
+                
             }
         }
 
@@ -348,16 +350,29 @@ public class MapEvent {
             }
         }
 
-        temp = new CombatUnit(false, unit[0].cUnitID, sumSize, health, unit[0].location, unit[0].faction);
-
-        currentPlayer.combatUnits.add(temp);
-        currentPlayer.combatUnits.remove(unit[0]);
-        currentPlayer.combatUnits.remove(unit[1]);
         /*
-        currentPlayer.addUnit(temp);
-        currentPlayer.removeUnit(unit[0]);
-        currentPlayer.removeUnit(unit[1]);
-        */
+         temp = new CombatUnit(false, unit[0].cUnitID, sumSize, health, unit[0].location, unit[0].faction);
+
+         currentPlayer.combatUnits.add(temp);
+         currentPlayer.combatUnits.remove(unit[0]);
+         currentPlayer.combatUnits.remove(unit[1]);
+         */
+        if (Global.curPlayer == 0) {
+            temp = new CombatUnit(false, unit[0].cUnitID, sumSize, health, unit[0].location, redPlayer);
+            redPlayer.combatUnits.add(temp);
+            redPlayer.combatUnits.remove(unit[0]);
+            redPlayer.combatUnits.remove(unit[1]);
+        } else {
+            temp = new CombatUnit(false, unit[0].cUnitID, sumSize, health, unit[0].location, bluePlayer);
+            bluePlayer.combatUnits.add(temp);
+            bluePlayer.combatUnits.remove(unit[0]);
+            bluePlayer.combatUnits.remove(unit[1]);
+        }
+        /*
+         currentPlayer.addUnit(temp);
+         currentPlayer.removeUnit(unit[0]);
+         currentPlayer.removeUnit(unit[1]);
+         */
     }
 
     public static void divideUnit(int unitNum) {
@@ -367,7 +382,7 @@ public class MapEvent {
         CombatUnit one, two;
 
         //int divSize = unit.size / 2;
-        boolean idFind = false;
+        boolean idFind = true;
         int checker = 0;
         int id = 0;
 
@@ -394,19 +409,19 @@ public class MapEvent {
         int divSize = (int) (unit.size / 2);
 
         /*// search for the unit in order to obtain reference and values
-        while (!found && i != currentPlayer.combatUnits.size()) { // while unit not found
+         while (!found && i != currentPlayer.combatUnits.size()) { // while unit not found
 
-            if (currentPlayer.combatUnits.get(i).cUnitID == unitNum) { // for each unit id held by player, check is match to passed unit id
-                found = true;
-            }
-            if (found == true) { // if the unit has been found
+         if (currentPlayer.combatUnits.get(i).cUnitID == unitNum) { // for each unit id held by player, check is match to passed unit id
+         found = true;
+         }
+         if (found == true) { // if the unit has been found
                 
-                unit = currentPlayer.combatUnits.get(i); // set the reference to the correct unit
-            }
-            i++; // increase the counter
-        }*/
-
+         unit = currentPlayer.combatUnits.get(i); // set the reference to the correct unit
+         }
+         i++; // increase the counter
+         }*/
         while (idFind) {
+            checker = 0;
             for (int j = 0; j < Scenario.redPlayer.combatUnits.size(); j++) {
                 if (Scenario.redPlayer.combatUnits.get(j).cUnitID == id) {
                     checker++;
@@ -417,22 +432,41 @@ public class MapEvent {
                     checker++;
                 }
             }
-            if (checker != 0) {
-                idFind = true;
+            if (checker == 0) {
+                idFind = false;
             }
             id++;
         }
 
-        one = new CombatUnit(false, unit.cUnitID, divSize, unit.illnessRating, unit.location, unit.faction);
-        two = new CombatUnit(false, id, divSize, unit.illnessRating, unit.location, unit.faction);
         
-        currentPlayer.combatUnits.remove(unit);
-        currentPlayer.combatUnits.add(one);
-        currentPlayer.combatUnits.add(two);
+
+        /*
+         one = new CombatUnit(false, unit.cUnitID, divSize, unit.illnessRating, unit.location, unit.faction);
+         two = new CombatUnit(false, id, divSize, unit.illnessRating, unit.location, unit.faction);
+
+         currentPlayer.combatUnits.remove(unit);
+         currentPlayer.combatUnits.add(one);
+         currentPlayer.combatUnits.add(two);
+         */
+        if (Global.curPlayer == 0) {
+            one = new CombatUnit(false, unit.cUnitID, divSize, unit.illnessRating, unit.location, redPlayer);
+            two = new CombatUnit(false, id, divSize, unit.illnessRating, unit.location, redPlayer);
+
+            redPlayer.combatUnits.remove(unit);
+            redPlayer.combatUnits.add(one);
+            redPlayer.combatUnits.add(two);
+        } else {
+            one = new CombatUnit(false, unit.cUnitID, divSize, unit.illnessRating, unit.location, bluePlayer);
+            two = new CombatUnit(false, id, divSize, unit.illnessRating, unit.location, bluePlayer);
+
+            bluePlayer.combatUnits.remove(unit);
+            bluePlayer.combatUnits.add(one);
+            bluePlayer.combatUnits.add(two);
+        }
         /*one.faction.removeUnit(unit);
-        one.faction.addUnit(one);
-        one.faction.addUnit(two);
-                */
+         one.faction.addUnit(one);
+         one.faction.addUnit(two);
+         */
 
     }
 

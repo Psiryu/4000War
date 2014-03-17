@@ -1,5 +1,6 @@
 
 import java.util.Random;
+import javax.swing.JOptionPane;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -60,8 +61,12 @@ public class Game {
 
     // Method to handle the end turn calculations
     void endTurn() {
-        MapEvent.processEvents();
+        
         turnCount += 0.5; // increase the turn count
+        JOptionPane.showMessageDialog(null, turnCount%1);
+        if (turnCount%1 == 0){
+            MapEvent.processEvents();
+        }
 
         // update the political power levels of each faction
         Scenario.redPlayer.AdjustPoliticalPower();
