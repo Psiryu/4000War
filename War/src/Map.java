@@ -488,7 +488,13 @@ public class Map extends javax.swing.JFrame {
 //for hidden values, and allows information to be passed more easily
     public void Action() {
         ClearMenuInfo();
-        
+        try {
+                SetDefaultColours();
+            } catch (IOException ex) {
+                Logger.getLogger(Map.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            //sets colours of nodes with current player's armies
+            SetColours();
         try {
             SetCurrentColour();
         } catch (IOException ex) {
