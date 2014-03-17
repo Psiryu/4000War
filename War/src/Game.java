@@ -60,10 +60,8 @@ public class Game {
     }
 
     // Method to handle the end turn calculations
-    void endTurn() {
-        
+    void endTurn() {        
         turnCount += 0.5; // increase the turn count
-        JOptionPane.showMessageDialog(null, turnCount%1);
         if (turnCount%1 == 0){
             MapEvent.processEvents();
         }

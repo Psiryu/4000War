@@ -113,20 +113,6 @@ public class MapEvent {
         JOptionPane.showMessageDialog(null, "Cleaning up");
         boolean found = false; // flag for whether the unit has been found
 
-        // obtain a list of red unit ids for reference
-        int[] redIDs = new int[combatUnitsRed.size()];
-        for (int i = 0; i < combatUnitsRed.size(); i++) {
-            redIDs[i] = combatUnitsRed.get(i).cUnitID;
-            JOptionPane.showMessageDialog(null, "RED ID");
-        }
-
-        // obtain a list of blue unit ids for reference
-        int[] blueIDs = new int[combatUnitsBlue.size()];
-        for (int i = 0; i < combatUnitsBlue.size(); i++) {
-            blueIDs[i] = combatUnitsBlue.get(i).cUnitID;
-            JOptionPane.showMessageDialog(null, "BLUE ID");
-        }
-
         // determine the player to be used
         if (Global.curPlayer == 0) {
             currentPlayer = Scenario.redPlayer;
@@ -134,35 +120,68 @@ public class MapEvent {
             currentPlayer = Scenario.bluePlayer;
         }
 
-        // determine which units have not been added to the lists
-        for (int i = 0; i < currentPlayer.combatUnits.size(); i++) { // for each possible unit in the faction
-            for (int j = 0; j < redIDs.length; j++) { // for each unit accounted for in the faction
-                if (currentPlayer.combatUnits.get(i).cUnitID == redIDs[j]) { // if the unit id is found in the lists
-                    found = true; // indicate that the unit has been found
-                }
-                if (found == false) { // if the unit was not found, add it to the lists
-                    JOptionPane.showMessageDialog(null, "ID "+redIDs[j]+" Added");
-                    combatUnitsRed.add(currentPlayer.combatUnits.get(i));
-                    redUnitRoad.add(null);
-                    redUnitEnd.add(currentPlayer.combatUnits.get(i).location);
+        if (!combatUnitsRed.isEmpty()) {
+            // obtain a list of red unit ids for reference
+            int[] redIDs = new int[combatUnitsRed.size()];
+            for (int i = 0; i < combatUnitsRed.size(); i++) {
+                redIDs[i] = combatUnitsRed.get(i).cUnitID;
+                JOptionPane.showMessageDialog(null, "RED ID");
+            }
+            // determine which units have not been added to the lists
+            for (int i = 0; i < currentPlayer.combatUnits.size(); i++) { // for each possible unit in the faction
+                for (int j = 0; j < redIDs.length; j++) { // for each unit accounted for in the faction
+                    if (currentPlayer.combatUnits.get(i).cUnitID == redIDs[j]) { // if the unit id is found in the lists
+                        found = true; // indicate that the unit has been found
+                    }
+                    if (found == false) { // if the unit was not found, add it to the lists
+                        JOptionPane.showMessageDialog(null, "Missed ID " + redIDs[j] + " Added");
+                        combatUnitsRed.add(currentPlayer.combatUnits.get(i));
+                        redUnitRoad.add(null);
+                        redUnitEnd.add(currentPlayer.combatUnits.get(i).location);
+                    }
                 }
             }
+        } else {
+            for (int i = 0; i < currentPlayer.combatUnits.size(); i++) { // for each possible unit in the faction
+                JOptionPane.showMessageDialog(null, "ID " + i + " Added");
+                combatUnitsRed.add(currentPlayer.combatUnits.get(i));
+                redUnitRoad.add(null);
+                redUnitEnd.add(currentPlayer.combatUnits.get(i).location);
+            }
         }
-        // determine which units have not been added to the lists
-        for (int i = 0; i < currentPlayer.combatUnits.size(); i++) { // for each possible unit in the faction
-            for (int j = 0; j < blueIDs.length; j++) { // for each unit accounted for in the faction
-                if (currentPlayer.combatUnits.get(i).cUnitID == blueIDs[j]) { // if the unit id is found in the lists
-                    found = true; // indicate that the unit has been found
-                }
-                if (found == false) { // if the unit was not found, add it to the lists
-                    JOptionPane.showMessageDialog(null, "ID "+blueIDs[j]+" Added");
-                    combatUnitsBlue.add(currentPlayer.combatUnits.get(i));
-                    blueUnitRoad.add(null);
-                    blueUnitEnd.add(currentPlayer.combatUnits.get(i).location);
-                }
+
+        if (!combatUnitsBlue.isEmpty()) {
+            // obtain a list of blue unit ids for reference
+            int[] blueIDs = new int[combatUnitsBlue.size()];
+            for (int i = 0; i < combatUnitsBlue.size(); i++) {
+                blueIDs[i] = combatUnitsBlue.get(i).cUnitID;
+                JOptionPane.showMessageDialog(null, "BLUE ID");
             }
 
+            // determine which units have not been added to the lists
+            for (int i = 0; i < currentPlayer.combatUnits.size(); i++) { // for each possible unit in the faction
+                for (int j = 0; j < blueIDs.length; j++) { // for each unit accounted for in the faction
+                    if (currentPlayer.combatUnits.get(i).cUnitID == blueIDs[j]) { // if the unit id is found in the lists
+                        found = true; // indicate that the unit has been found
+                    }
+                    if (found == false) { // if the unit was not found, add it to the lists
+                        JOptionPane.showMessageDialog(null, "Missed ID " + blueIDs[j] + " Added");
+                        combatUnitsBlue.add(currentPlayer.combatUnits.get(i));
+                        blueUnitRoad.add(null);
+                        blueUnitEnd.add(currentPlayer.combatUnits.get(i).location);
+                    }
+                }
+
+            }
+        } else {
+            for (int i = 0; i < currentPlayer.combatUnits.size(); i++) { // for each possible unit in the faction
+                JOptionPane.showMessageDialog(null, "ID " + i + " Added");
+                combatUnitsBlue.add(currentPlayer.combatUnits.get(i));
+                blueUnitRoad.add(null);
+                blueUnitEnd.add(currentPlayer.combatUnits.get(i).location);
+            }
         }
+
     }
 
     public void removeMovement(/*information needed for item identification*/) {
@@ -296,11 +315,11 @@ public class MapEvent {
         for (CombatUnit armies : currentPlayer.combatUnits) {
             if (armies.cUnitID == oneNum) {
                 unit[0] = armies;
-               
+
             }
             if (armies.cUnitID == twoNum) {
                 unit[1] = armies;
-                
+
             }
         }
 
@@ -437,8 +456,6 @@ public class MapEvent {
             }
             id++;
         }
-
-        
 
         /*
          one = new CombatUnit(false, unit.cUnitID, divSize, unit.illnessRating, unit.location, unit.faction);
