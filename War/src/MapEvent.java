@@ -56,29 +56,23 @@ public class MapEvent {
     public static void addMovement(int unitNum, Road road, int endLocationNum) {
         CombatUnit unit = null; // initialize the unit for consideraton
         Node endLocation = Scenario.listOfNodes[endLocationNum]; // load the end locations based on provided index
+        
+        
         boolean found = false; // flag for use in the unit search
         int i = 0; // initialize the counter value for use in the unit search
 
         // determine the player to be used
         if (Global.curPlayer == 0) {
             currentPlayer = Scenario.redPlayer;
+            for(CombatUnit CUnits : Scenario.redPlayer.combatUnits) {
+                if(CUnits.cUnitID == unitNum)
+                    unit = CUnits;
+            }
         } else {
             currentPlayer = Scenario.bluePlayer;
-        }
-
-        // search for the unit in order to obtain reference and values
-        while (!found) { // while unit not found
-            //JOptionPane.showMessageDialog(null, currentPlayer.capital.id, "InfoBox: ", JOptionPane.INFORMATION_MESSAGE);
-
-            if (currentPlayer.combatUnits.get(i).cUnitID == unitNum) { // for each unit id held by player, check is match to passed unit id
-                found = true;
-            }
-            if (found == true) { // if the unit has been found
-                /*
-                 out of bounds error on i
-                 */
-                unit = currentPlayer.combatUnits.get(i); // set the reference to the correct unit
-                i++; // increase the counter
+            for(CombatUnit CUnits : Scenario.bluePlayer.combatUnits) {
+                if(CUnits.cUnitID == unitNum)
+                    unit = CUnits;
             }
         }
 
