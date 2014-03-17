@@ -39,7 +39,7 @@ public class Teams extends javax.swing.JFrame {
         labelOr = new javax.swing.JLabel();
         radioTeam1 = new javax.swing.JRadioButton();
         radioTeam2 = new javax.swing.JRadioButton();
-        jButton1 = new javax.swing.JButton();
+        buttonBegin = new javax.swing.JButton();
         labelBackground = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -83,15 +83,15 @@ public class Teams extends javax.swing.JFrame {
         });
         getContentPane().add(radioTeam2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 180, -1, -1));
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jButton1.setText("Begin Match");
-        jButton1.setContentAreaFilled(false);
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        buttonBegin.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        buttonBegin.setText("Begin Match");
+        buttonBegin.setContentAreaFilled(false);
+        buttonBegin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                buttonBeginActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 240, 250, 60));
+        getContentPane().add(buttonBegin, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 240, 250, 60));
 
         labelBackground.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/TeamSelect-backdrop.png"))); // NOI18N
         getContentPane().add(labelBackground, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 260, 310));
@@ -99,13 +99,13 @@ public class Teams extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void buttonBeginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBeginActionPerformed
         Scenario scenario = new Scenario();
         scenario.Initialize(0);
         Global.mapEvent = new MapEvent();
         new Map().setVisible(true);
         Teams.this.dispose();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_buttonBeginActionPerformed
 
     private void radioTeam1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioTeam1ActionPerformed
         Global.chosenTeam = false;
@@ -152,8 +152,8 @@ public class Teams extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton buttonBegin;
     private javax.swing.ButtonGroup buttongroupTeam;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel labelBackground;
     private javax.swing.JLabel labelOr;
     private javax.swing.JLabel labelSubtitle;
