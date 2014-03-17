@@ -36,7 +36,7 @@ public class Scenario {
         }
     }
 
-    public void killSwitch() {
+    public static void killSwitch() {
         Node[] listOfNodes = null;
         Road[] listOfRoads = null;
         ArrayList<CombatUnit> listOfUnits = new ArrayList<CombatUnit>();

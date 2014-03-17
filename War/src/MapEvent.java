@@ -350,15 +350,20 @@ public class MapEvent {
 
         temp = new CombatUnit(false, unit[0].cUnitID, sumSize, health, unit[0].location, unit[0].faction);
 
+        currentPlayer.combatUnits.add(temp);
+        currentPlayer.combatUnits.remove(unit[0]);
+        currentPlayer.combatUnits.remove(unit[1]);
+        /*
         currentPlayer.addUnit(temp);
         currentPlayer.removeUnit(unit[0]);
         currentPlayer.removeUnit(unit[1]);
+        */
     }
 
     public static void divideUnit(int unitNum) {
         CombatUnit unit = null;
-        boolean found = false; // flag for use in the unit search
-        int i = 0; // initialize the counter value for use in the unit search
+        //boolean found = false; // flag for use in the unit search
+        //int i = 0; // initialize the counter value for use in the unit search
         CombatUnit one, two;
 
         //int divSize = unit.size / 2;
@@ -372,7 +377,7 @@ public class MapEvent {
             currentPlayer = Scenario.redPlayer;
             for (CombatUnit army : Scenario.redPlayer.combatUnits) {
                 if (army.cUnitID == unitNum) {
-                    unit = currentPlayer.combatUnits.get(i2);
+                    unit = Scenario.redPlayer.combatUnits.get(i2);
                 }
                 i2++;
             }
@@ -380,7 +385,7 @@ public class MapEvent {
             currentPlayer = Scenario.bluePlayer;
             for (CombatUnit army : Scenario.bluePlayer.combatUnits) {
                 if (army.cUnitID == unitNum) {
-                    unit = currentPlayer.combatUnits.get(i2);
+                    unit = Scenario.bluePlayer.combatUnits.get(i2);
                 }
                 i2++;
             }
@@ -420,9 +425,14 @@ public class MapEvent {
 
         one = new CombatUnit(false, unit.cUnitID, divSize, unit.illnessRating, unit.location, unit.faction);
         two = new CombatUnit(false, id, divSize, unit.illnessRating, unit.location, unit.faction);
-        one.faction.removeUnit(unit);
+        
+        currentPlayer.combatUnits.remove(unit);
+        currentPlayer.combatUnits.add(one);
+        currentPlayer.combatUnits.add(two);
+        /*one.faction.removeUnit(unit);
         one.faction.addUnit(one);
         one.faction.addUnit(two);
+                */
 
     }
 
