@@ -56,23 +56,24 @@ public class MapEvent {
     public static void addMovement(int unitNum, Road road, int endLocationNum) {
         CombatUnit unit = null; // initialize the unit for consideraton
         Node endLocation = Scenario.listOfNodes[endLocationNum]; // load the end locations based on provided index
-        
-        
+
         boolean found = false; // flag for use in the unit search
         int i = 0; // initialize the counter value for use in the unit search
 
         // determine the player to be used
         if (Global.curPlayer == 0) {
             currentPlayer = Scenario.redPlayer;
-            for(CombatUnit CUnits : Scenario.redPlayer.combatUnits) {
-                if(CUnits.cUnitID == unitNum)
+            for (CombatUnit CUnits : Scenario.redPlayer.combatUnits) {
+                if (CUnits.cUnitID == unitNum) {
                     unit = CUnits;
+                }
             }
         } else {
             currentPlayer = Scenario.bluePlayer;
-            for(CombatUnit CUnits : Scenario.bluePlayer.combatUnits) {
-                if(CUnits.cUnitID == unitNum)
+            for (CombatUnit CUnits : Scenario.bluePlayer.combatUnits) {
+                if (CUnits.cUnitID == unitNum) {
                     unit = CUnits;
+                }
             }
         }
 
@@ -180,19 +181,21 @@ public class MapEvent {
         // for each of the possible roads, search for possible collisions
         for (int i = 0; i < Scenario.listOfRoads.length; i++) {
             for (int j = 0; j < combatUnitsRed.size(); j++) { // find the red units on this road
-                if (redUnitRoad.get(j) != null)
-                if (redUnitRoad.get(j).roadID == i) {
-                    redCombatListCollision.add(combatUnitsRed.get(j));
-                    redCombatUnitPreviousLocation.add(combatUnitsRed.get(j).location);
-                    redCombatUnitEndLocation.add(redUnitEnd.get(j));
+                if (redUnitRoad.get(j) != null) {
+                    if (redUnitRoad.get(j).roadID == i) {
+                        redCombatListCollision.add(combatUnitsRed.get(j));
+                        redCombatUnitPreviousLocation.add(combatUnitsRed.get(j).location);
+                        redCombatUnitEndLocation.add(redUnitEnd.get(j));
+                    }
                 }
             }
             for (int j = 0; j < combatUnitsBlue.size(); j++) { // find the blue units on this road
-                if(blueUnitRoad.get(j) != null)
-                if (blueUnitRoad.get(j).roadID == i) {
-                    blueCombatListCollision.add(combatUnitsBlue.get(j));
-                    blueCombatUnitPreviousLocation.add(combatUnitsBlue.get(j).location);
-                    blueCombatUnitEndLocation.add(blueUnitEnd.get(j));
+                if (blueUnitRoad.get(j) != null) {
+                    if (blueUnitRoad.get(j).roadID == i) {
+                        blueCombatListCollision.add(combatUnitsBlue.get(j));
+                        blueCombatUnitPreviousLocation.add(combatUnitsBlue.get(j).location);
+                        blueCombatUnitEndLocation.add(blueUnitEnd.get(j));
+                    }
                 }
             }
 
@@ -273,25 +276,29 @@ public class MapEvent {
         int[] nums = {oneNum, twoNum};
         CombatUnit[] unit = new CombatUnit[2];
         CombatUnit temp; // temporary unit to store new unit
-        boolean found = false; // flag for use in the unit search
-        int c = -1; // initialize the counter value for use in the unit search
+        //boolean found = false; // flag for use in the unit search
+        //int c = -1; // initialize the counter value for use in the unit search
 
         /// determine the player to be used
         if (Global.curPlayer == 0) {
             currentPlayer = Scenario.redPlayer;
-            for(CombatUnit armies : Scenario.redPlayer.combatUnits) {
-                if(armies.cUnitID == oneNum)
+            for (CombatUnit armies : Scenario.redPlayer.combatUnits) {
+                if (armies.cUnitID == oneNum) {
                     unit[0] = armies;
-                if(armies.cUnitID == twoNum)
+                }
+                if (armies.cUnitID == twoNum) {
                     unit[1] = armies;
+                }
             }
         } else {
             currentPlayer = Scenario.bluePlayer;
-            for(CombatUnit armies : Scenario.bluePlayer.combatUnits) {
-                if(armies.cUnitID == oneNum)
+            for (CombatUnit armies : Scenario.bluePlayer.combatUnits) {
+                if (armies.cUnitID == oneNum) {
                     unit[0] = armies;
-                if(armies.cUnitID == twoNum)
+                }
+                if (armies.cUnitID == twoNum) {
                     unit[1] = armies;
+                }
             }
         }
 
@@ -310,7 +317,6 @@ public class MapEvent {
 //                }
 //            }
 //        }
-
         int[] scaled = {0, 0, 0};
         int sumSize = unit[0].size + unit[1].size;
         int[] sizes = {unit[0].size, unit[1].size, sumSize};
@@ -344,10 +350,9 @@ public class MapEvent {
 
         temp = new CombatUnit(false, unit[0].cUnitID, sumSize, health, unit[0].location, unit[0].faction);
 
-        temp.faction.removeUnit(unit[0]);
-        temp.faction.removeUnit(unit[1]);
-        temp.faction.addUnit(temp);
-
+        currentPlayer.addUnit(temp);
+        currentPlayer.removeUnit(unit[0]);
+        currentPlayer.removeUnit(unit[1]);
     }
 
     public static void divideUnit(int unitNum) {
@@ -355,7 +360,7 @@ public class MapEvent {
         boolean found = false; // flag for use in the unit search
         int i = 0; // initialize the counter value for use in the unit search
         CombatUnit one, two;
-        
+
         //int divSize = unit.size / 2;
         boolean idFind = false;
         int checker = 0;
@@ -365,40 +370,45 @@ public class MapEvent {
         // determine the player to be used
         if (Global.curPlayer == 0) {
             currentPlayer = Scenario.redPlayer;
-            for(CombatUnit army : Scenario.redPlayer.combatUnits) {
-                if(army.cUnitID == unitNum)
+            for (CombatUnit army : Scenario.redPlayer.combatUnits) {
+                if (army.cUnitID == unitNum) {
                     unit = currentPlayer.combatUnits.get(i2);
+                }
                 i2++;
             }
         } else {
             currentPlayer = Scenario.bluePlayer;
-            for(CombatUnit army : Scenario.bluePlayer.combatUnits) {
-                if(army.cUnitID == unitNum)
+            for (CombatUnit army : Scenario.bluePlayer.combatUnits) {
+                if (army.cUnitID == unitNum) {
                     unit = currentPlayer.combatUnits.get(i2);
+                }
                 i2++;
             }
         }
-        
-        int divSize = unit.size / 2;
 
-        // search for the unit in order to obtain reference and values
+        int divSize = (int) (unit.size / 2);
+
+        /*// search for the unit in order to obtain reference and values
         while (!found && i != currentPlayer.combatUnits.size()) { // while unit not found
-            
+
             if (currentPlayer.combatUnits.get(i).cUnitID == unitNum) { // for each unit id held by player, check is match to passed unit id
                 found = true;
             }
             if (found == true) { // if the unit has been found
-                /*
-                 out of bounds error on i
-                 */
+                
                 unit = currentPlayer.combatUnits.get(i); // set the reference to the correct unit
             }
             i++; // increase the counter
-        }
+        }*/
 
         while (idFind) {
-            for (int j = 0; j < unit.faction.combatUnits.size(); j++) {
-                if (unit.faction.combatUnits.get(j).cUnitID == id) {
+            for (int j = 0; j < Scenario.redPlayer.combatUnits.size(); j++) {
+                if (Scenario.redPlayer.combatUnits.get(j).cUnitID == id) {
+                    checker++;
+                }
+            }
+            for (int j = 0; j < Scenario.bluePlayer.combatUnits.size(); j++) {
+                if (Scenario.bluePlayer.combatUnits.get(j).cUnitID == id) {
                     checker++;
                 }
             }
@@ -410,10 +420,10 @@ public class MapEvent {
 
         one = new CombatUnit(false, unit.cUnitID, divSize, unit.illnessRating, unit.location, unit.faction);
         two = new CombatUnit(false, id, divSize, unit.illnessRating, unit.location, unit.faction);
-
         one.faction.removeUnit(unit);
         one.faction.addUnit(one);
         one.faction.addUnit(two);
+
     }
 
     // Method to reset the arrays at turn's end

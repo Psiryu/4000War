@@ -13,6 +13,7 @@ import java.util.Random;
  * @author BotBen
  */
 public class Scenario {
+
     public static Node[] listOfNodes; // list of all nodes in the scenario
     public static Road[] listOfRoads; // list of all the roads in the scenario
     public static ArrayList<CombatUnit> listOfUnits = new ArrayList<CombatUnit>(); // list of all the units in the scenario
@@ -35,7 +36,18 @@ public class Scenario {
         }
     }
 
-    // Method to establish the roads and nodes on the map
+    public void killSwitch() {
+        Node[] listOfNodes = null;
+        Road[] listOfRoads = null;
+        ArrayList<CombatUnit> listOfUnits = new ArrayList<CombatUnit>();
+        Player redPlayer = null;
+        Player bluePlayer = null;
+        Random random = new Random();
+        ArrayList<Integer> unitLocations = null;
+        Game game = null;
+    }
+
+// Method to establish the roads and nodes on the map
     void setMapParameters() {
         // array of all the node names
         String[] names = {"Utica", "Fidenza", "Faenza", "Volterra", "Saturnia", "Senigalia", "Clusium", "Palestrina", "Naples", "Nola", "Brindis", "Dyrrhachulum", "Kavala", "Roma"};
@@ -90,7 +102,7 @@ public class Scenario {
 
     // Method to set the factions
     void setPlayers() {
-      if (Global.opponent) { // if player vs player is chosen
+        if (Global.opponent) { // if player vs player is chosen
             if (Global.chosenTeam) { // if player one selected red faction
                 redPlayer = new Player(false, listOfNodes[10], 0, "red");
                 Global.curPlayer = 1;
