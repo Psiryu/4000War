@@ -279,25 +279,37 @@ public class MapEvent {
         /// determine the player to be used
         if (Global.curPlayer == 0) {
             currentPlayer = Scenario.redPlayer;
+            for(CombatUnit armies : Scenario.redPlayer.combatUnits) {
+                if(armies.cUnitID == oneNum)
+                    unit[0] = armies;
+                if(armies.cUnitID == twoNum)
+                    unit[1] = armies;
+            }
         } else {
             currentPlayer = Scenario.bluePlayer;
-        }
-
-        for (int j = 0; j < 2; j++) {
-            // search for the unit in order to obtain reference and values
-            while (!found || c != currentPlayer.combatUnits.size()) { // while unit not found
-                c++; // increase the counter
-                if (currentPlayer.combatUnits.get(c).cUnitID == nums[j]) { // for each unit id held by player, check is match to passed unit id
-                    found = true;
-                }
-                if (found == true) { // if the unit has been found
-                /*
-                     out of bounds error on i
-                     */
-                    unit[j] = currentPlayer.combatUnits.get(c); // set the reference to the correct unit
-                }
+            for(CombatUnit armies : Scenario.bluePlayer.combatUnits) {
+                if(armies.cUnitID == oneNum)
+                    unit[0] = armies;
+                if(armies.cUnitID == twoNum)
+                    unit[1] = armies;
             }
         }
+
+//        for (int j = 0; j < 2; j++) {
+//            // search for the unit in order to obtain reference and values
+//            while (!found || c != currentPlayer.combatUnits.size()) { // while unit not found
+//                c++; // increase the counter
+//                if (currentPlayer.combatUnits.get(c).cUnitID == nums[j]) { // for each unit id held by player, check is match to passed unit id
+//                    found = true;
+//                }
+//                if (found == true) { // if the unit has been found
+//                /*
+//                     out of bounds error on i
+//                     */
+//                    unit[j] = currentPlayer.combatUnits.get(c); // set the reference to the correct unit
+//                }
+//            }
+//        }
 
         int[] scaled = {0, 0, 0};
         int sumSize = unit[0].size + unit[1].size;

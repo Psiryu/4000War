@@ -8,6 +8,7 @@ import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 
 
 /*
@@ -663,9 +664,10 @@ public class Map extends javax.swing.JFrame {
         }
     
         //ensures gui is up to date and then displays it at the selected node
+        popupMenu.setLocation(x, y);
         popupMenu.updateUI();
         popupMenu.setVisible(true);
-        popupMenu.setLocation(x, y);
+
     }
    
     
@@ -707,10 +709,10 @@ public class Map extends javax.swing.JFrame {
             //increments so the loop can procede with proper indexing.
             i++;
         }
-        
+        popupMenu.setLocation(x, y);        
         popupMenu.updateUI();
         popupMenu.setVisible(true);
-        popupMenu.setLocation(x, y);
+
     }
     
     private void MoveTo(final int[][] army) {
@@ -777,9 +779,10 @@ public class Map extends javax.swing.JFrame {
         }
         
         //re-sets the popupmenu as updated and visible
+        popupMenu.setLocation(x, y);
         popupMenu.updateUI();
         popupMenu.setVisible(true);
-        popupMenu.setLocation(x, y);
+
     }
     
     private void DividingArmies(final int[][] army) {
@@ -822,104 +825,209 @@ public class Map extends javax.swing.JFrame {
         }
 
         //re-sets the popupmenu as updated and visible
+        popupMenu.setLocation(x, y);
         popupMenu.updateUI();
         popupMenu.setVisible(true);
-        popupMenu.setLocation(x, y);
+
     }
     
     private void BeginMergingArmies(final int[][] armies) {
         ClearPopupMenu();
-        
+        int isFleet = 0;
         //first, it re checks which armies are at this node
         //then it adds a new menu item for each medium or small army so long
         //as there are at least two of that size. x is a secondary indexer.
-        int i = 0; int i2 = 0;
-        for (int[] armie : armies) {
-            //checks if army on loop index is stationed on selected node
-            if(armies[i][2] == nodeSelected) {
-                for (int[] armie2 : armies) {
-                    if(armies[i][1] == armies[i2][1] && armies[i][0] != armies[i2][0])
-                    {
-                        //creating indexer z as a variable dimmed 'final' is required
-                        final int z = i;
-                        //creates the menu item for this army to merge
-                        JMenuItem menuItemMerges = new JMenuItem(ConvertSize(armies[i][1], armies[i][3]));
-                        menuItemMerges.addActionListener(new ActionListener() {
-                            @Override
-                            public void actionPerformed(ActionEvent event) {
-                                //sends current array item to MergeArmy method
-                                MergeArmy(armies, z);
+        if(Global.curPlayer == 0) {
+            for(CombatUnit army : Scenario.redPlayer.combatUnits) {
+                    if(army.location.id == nodeSelected) {
+                        for(CombatUnit army2 : Scenario.redPlayer.combatUnits) {
+                            if(army2.size <11 && army2.size == army.size)
+                            if(army2.location.id == nodeSelected && army2.cUnitID != army.cUnitID) {
+                                //creates the menu item for this army to merge
+                                if(army.isFleet == true) isFleet = 1;
+                                else isFleet = 0;
+                                final int indexer = army.cUnitID;
+                                final int size = army.size;
+                                
+                                JMenuItem menuItemMerged = new JMenuItem(ConvertSize(army.size, isFleet));
+                                menuItemMerged.addActionListener(new ActionListener() {
+                                    @Override
+                                    public void actionPerformed(ActionEvent event) {
+                                        //sends current array item to MergeArmy method
+                                        MergeArmy(indexer, size);
+                                    }
+                                });
+                                //finally, adds this item to the popup menu.
+                                popupMenu.add(menuItemMerged);
                             }
-                        });
-                        //finally, adds this item to the popup menu.
-                        popupMenu.add(menuItemMerges);
+                        }
                     }
-                    i2++;
-                }
             }
-            i++;
+            
+        } else if(Global.curPlayer == 1) {
+            for(CombatUnit army : Scenario.bluePlayer.combatUnits) {
+                //if(army.location.id == nodeSelected) {
+                    for(CombatUnit army2 : Scenario.bluePlayer.combatUnits) {
+                        if(army2.size < 11 && army2.size == army.size) 
+                        if(army2.location.id == nodeSelected && army2.cUnitID != army.cUnitID) {
+                            //creates the menu item for this army to merge
+                            if(army.isFleet == true) isFleet = 1;
+                            else isFleet = 0;
+                            final int indexer = army.cUnitID;
+                            final int size = army.size;
+
+                            JMenuItem menuItemMerged = new JMenuItem(ConvertSize(army.size, isFleet));
+                            menuItemMerged.addActionListener(new ActionListener() {
+                                @Override
+                                public void actionPerformed(ActionEvent event) {
+                                    //sends current array item to MergeArmy method
+                                    MergeArmy(indexer, size);
+                                }
+                            });
+                            //finally, adds this item to the popup menu.
+                            popupMenu.add(menuItemMerged);
+                        }
+                    }
+                }
+            //}
         }
         
-        
+        popupMenu.setLocation(x, y);        
         popupMenu.updateUI();
         popupMenu.setVisible(true);
-        popupMenu.setLocation(x, y);
+
     }
     
-    //MergeArmy is sent the full list of armies, and the index location of which army to merge
-    private void MergeArmy(final int[][] armies, int z) {
-        ClearPopupMenu();
-        
-        //sets up an array, first variable being an indexer, second containing
-        //[0] = id, [1] = size, [2] = location
-        final int[] armyToMerge = new int[3];
-        armyToMerge[0] = armies[z][0];
-        armyToMerge[1] = armies[z][1];
-        armyToMerge[2] = armies[z][2];
-        
-        
-        int i = 0;
-        for (int[] armie : armies) {
-            //checks if army on loop index is stationed on selected node
-            if(armies[i][2] == nodeSelected) {
-                //checks if army at index is same size as and not same id as 
-                //the selected army to merge
-                if(armies[i][0] != armyToMerge[0] && armies[i][1] == armyToMerge[1])
-                {
-                    //creates the menu item to merge 
-                        //creates Final declared int for inside next component
-                    final int i2 = i;
-                    
-                    JMenuItem menuItemMerges = new JMenuItem(ConvertSize(armies[i][1], armies[i][3]));
-                    menuItemMerges.addActionListener(new ActionListener() {
-                        @Override
-                        public void actionPerformed(ActionEvent event) {
-                            //prepared to send to Temp
-                            //labelInfo6.setText("merge " + armyToMerge [0] + " with " + armies[i2][1]);
-                            MapEvent.mergeUnits(armyToMerge[0], armies[i2][0]);
-                                //try catch for setting default node colours
-                                try {
-                                    SetDefaultColours();
-                                } catch (IOException ex) {
-                                    Logger.getLogger(Map.class.getName()).log(Level.SEVERE, null, ex);
-                                }
-                                //sets colours of nodes with current player's armies
-                                SetColours();
+    private void MergeArmy(int indexer2, int size) {
+        int isFleet = 0;
+        if(Global.curPlayer == 0) {
+            for(final CombatUnit army : Scenario.redPlayer.combatUnits) {
+                if(army.location.id == nodeSelected) {
+                    if(army.cUnitID != indexer2 && army.size == size) {
+                        //creates the menu item for this army to merge
+                            if(army.isFleet == true) isFleet = 1;
+                            else isFleet = 0;
+                            final int indexer = army.cUnitID;
 
-                                ClearMenuInfo();
-                                ClearPopupMenu();
-                        }
-                    });
-                   
+                            JMenuItem menuItemMerge = new JMenuItem(ConvertSize(army.size, isFleet));
+                            menuItemMerge.addActionListener(new ActionListener() {
+                                @Override
+                                public void actionPerformed(ActionEvent event) {
+                                    //sends current array item to MergeArmy method
+                                    MapEvent.mergeUnits(indexer, army.cUnitID);
+                                    try {
+                                        SetDefaultColours();
+                                    } catch (IOException ex) {
+                                        Logger.getLogger(Map.class.getName()).log(Level.SEVERE, null, ex);
+                                    }
+                                    //sets colours of nodes with current player's armies
+                                    SetColours();
+
+                                    ClearMenuInfo();
+                                    ClearPopupMenu();
+                                }
+                            });
+                            //finally, adds this item to the popup menu.
+                            popupMenu.add(menuItemMerge);
+                    }
                 }
-                 
-            }i++;
+            }
+        } else if (Global.curPlayer == 1) {
+            for(final CombatUnit army : Scenario.bluePlayer.combatUnits) {
+                if(army.location.id == nodeSelected) {
+                    if(army.cUnitID != indexer2 && army.size == size) {
+                        //creates the menu item for this army to merge
+                            if(army.isFleet == true) isFleet = 1;
+                            else isFleet = 0;
+                            final int indexer = army.cUnitID;
+
+                            JMenuItem menuItemMerge = new JMenuItem(ConvertSize(army.size, isFleet));
+                            menuItemMerge.addActionListener(new ActionListener() {
+                                @Override
+                                public void actionPerformed(ActionEvent event) {
+                                    //sends current array item to MergeArmy method
+                                    MapEvent.mergeUnits(indexer, army.cUnitID);
+                                    try {
+                                        SetDefaultColours();
+                                    } catch (IOException ex) {
+                                        Logger.getLogger(Map.class.getName()).log(Level.SEVERE, null, ex);
+                                    }
+                                    //sets colours of nodes with current player's armies
+                                    SetColours();
+
+                                    ClearMenuInfo();
+                                    ClearPopupMenu();
+                                }
+                            });
+                            //finally, adds this item to the popup menu.
+                            popupMenu.add(menuItemMerge);
+                    }
+                }
+            }            
         }
         
+        popupMenu.setLocation(x, y);        
         popupMenu.updateUI();
-        popupMenu.setVisible(true);
-        popupMenu.setLocation(x, y);
+        popupMenu.setVisible(true);        
     }
+//        //MergeArmy is sent the full list of armies, and the index location of which army to merge
+//        private void MergeArmy(final int[][] armies, int z) {
+//            ClearPopupMenu();
+//
+//            //sets up an array, first variable being an indexer, second containing
+//            //[0] = id, [1] = size, [2] = location
+//            final int[] armyToMerge = new int[3];
+//            armyToMerge[0] = armies[z][0];
+//            armyToMerge[1] = armies[z][1];
+//            armyToMerge[2] = armies[z][2];
+//
+//
+//            int i = 0;
+//            for (int[] armie : armies) {
+//                //checks if army on loop index is stationed on selected node
+//                if(armies[i][2] == nodeSelected) {
+//                    //checks if army at index is same size as and not same id as 
+//                    //the selected army to merge
+//
+//                    if(armies[i][0] != armyToMerge[0] && armies[i][1] == armyToMerge[1])
+//                    {
+//                        //creates the menu item to merge 
+//                            //creates Final declared int for inside next component
+//                        final int i2 = i;
+//
+//                        JMenuItem menuItemMerges = new JMenuItem(ConvertSize(armies[i][1], armies[i][3]));
+//                        menuItemMerges.addActionListener(new ActionListener() {
+//                            @Override
+//                            public void actionPerformed(ActionEvent event) {
+//                                //prepared to send to Temp
+//                                //labelInfo6.setText("merge " + armyToMerge [0] + " with " + armies[i2][1]);
+//                                MapEvent.mergeUnits(armyToMerge[0], armies[i2][0]);
+//                                    //try catch for setting default node colours
+//                                    try {
+//                                        SetDefaultColours();
+//                                    } catch (IOException ex) {
+//                                        Logger.getLogger(Map.class.getName()).log(Level.SEVERE, null, ex);
+//                                    }
+//                                    //sets colours of nodes with current player's armies
+//                                    SetColours();
+//
+//                                    ClearMenuInfo();
+//                                    ClearPopupMenu();
+//                            }
+//                        });
+//
+//                        //finally, adds this item to the popup menu.
+//                        popupMenu.add(menuItemMerges);
+//                    }
+//
+//                }i++;
+//            }
+//
+//            popupMenu.updateUI();
+//            popupMenu.setVisible(true);
+//            popupMenu.setLocation(x, y);
+//        }
+    
     //converts the army size integer into real words.
     private String ConvertSize(int armieSize, int isFleet) {
         //creates a string for output
