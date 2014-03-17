@@ -80,16 +80,16 @@ public class MapEvent {
         // if the unit has already been added, remove the current values
         if (!combatUnitsRed.isEmpty() && !redUnitEnd.isEmpty()) {
             if (combatUnitsRed.contains(unit)) {
-                combatUnitsRed.remove(unit);
                 redUnitRoad.remove(combatUnitsRed.indexOf(unit));
                 redUnitEnd.remove(combatUnitsRed.indexOf(unit));
+                combatUnitsRed.remove(unit);
                 combatUnitsRed.add(unit);
                 redUnitRoad.add(road);
                 redUnitEnd.add(endLocation);
             } else if (combatUnitsBlue.contains(unit)) {
-                combatUnitsBlue.remove(unit);
                 blueUnitRoad.remove(combatUnitsBlue.indexOf(unit));
                 blueUnitEnd.remove(combatUnitsBlue.indexOf(unit));
+                combatUnitsBlue.remove(unit);
                 combatUnitsBlue.add(unit);
                 blueUnitRoad.add(road);
                 blueUnitEnd.add(endLocation);
