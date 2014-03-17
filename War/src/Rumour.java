@@ -1,5 +1,8 @@
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import static java.util.Arrays.sort;
+import java.util.Collections;
 import java.util.Random;
 
 /*
@@ -17,6 +20,8 @@ public class Rumour {
     public static ArrayList<CombatUnit> listOfUnitsRed; // storage of current red units
     public static ArrayList<CombatUnit> listOfUnitsBlue; // storage of current blue units
     public static Random random = new Random(); // establish a random variable
+    public static int redMaximum;
+    public static int blueMaximum;
 
     // Constructor of the rumour system
     public Rumour() {
@@ -24,6 +29,35 @@ public class Rumour {
         listOfNodes = Scenario.listOfNodes;
         listOfUnitsRed = new ArrayList<CombatUnit>();
         listOfUnitsBlue = new ArrayList<CombatUnit>();
+        redMaximum = (collectedMapFog(Scenario.redPlayer.combatUnits.size())) + 200;
+        blueMaximum = (collectedMapFog(Scenario.bluePlayer.combatUnits.size())) + 200;
+    }
+
+    private int collectedMapFog(int numUnits) {
+        int largestConnections = 0;
+        int[] connections = connectedNodes();
+
+        for (int i = connections.length - 1; i >= connections.length - numUnits; i--) {
+            largestConnections += connections[i] * 10;
+        }
+        return largestConnections;
+    }
+
+    private int[] connectedNodes() {
+        int calculated[] = new int[Scenario.listOfNodes.length];
+        int tempCalc = 0;
+
+        for (int i = 0; i < Scenario.listOfNodes.length; i++) {
+            for (int j = 0; j < Scenario.listOfRoads.length; j++) {
+                if (Scenario.listOfRoads[j].locationA.id == listOfNodes[i].id || Scenario.listOfRoads[j].locationB.id == listOfNodes[i].id) {
+                    tempCalc++;
+                }
+            }
+            calculated[i] = tempCalc * 4;
+            tempCalc = 0;
+        }
+        Arrays.sort(calculated);
+        return calculated;
     }
 
     // Method to update the rumour awareness of current units
@@ -33,7 +67,7 @@ public class Rumour {
         listOfUnitsBlue = Scenario.bluePlayer.combatUnits;
     }
 
-    public void playerFogValueUpdate() {
+    private double playerFogValueUpdate() {
         Player currentPlayer;
         Node currentNode;
         int roadFogSum = 0;
@@ -50,44 +84,124 @@ public class Rumour {
 
         for (int i = 0; i < currentPlayer.combatUnits.size(); i++) {
             currentNode = currentPlayer.combatUnits.get(i).location;
-            
+
             for (int j = 0; j < Scenario.listOfRoads.length; j++) {
                 if (Scenario.listOfRoads[j].locationA.id == currentNode.id || Scenario.listOfRoads[j].locationB.id == currentNode.id) {
                     roadFogSum += Scenario.listOfRoads[j].fogValue;
                 }
             }
-            
+
             nodeFogSum += currentNode.fogValue;
         }
 
-        randomFog = -100 + (int) (random.nextDouble() * 200);
+        randomFog = (int) (random.nextDouble() * 100);
         fogSum = nodeFogSum + roadFogSum + currentPlayer.politicalPower + randomFog;
+
+        if (Scenario.redPlayer.playerID == Global.curPlayer) {
+            fogSum = (fogSum / redMaximum);
+        } else {
+            fogSum = (fogSum / blueMaximum);
+        }
+
+        return fogSum;
     }
 
-    public void reportRumour(int nodeID) {
+    public ArrayList<Integer> reportRumour(int nodeID) {
+        ArrayList<Integer> rumourList = new ArrayList<Integer>();
+        Node currentNode = Scenario.listOfNodes[nodeID];
         ArrayList<Integer> units = nodeOccupancy(nodeID);
-        
+        double mapEffect = 1.0 - playerFogValueUpdate();
+        double sigma;
+        int mean;
+        double rumour;
+        boolean flip;
+        int report;
+
+        if (currentNode.timeUnoccupied > 0) {
+            rumour = random.nextGaussian() * (3 - currentNode.timeUnoccupied);
+            for (int i = 0; i < rumour; i++) {
+                report = (int) (random.nextGaussian() * (3 - currentNode.timeUnoccupied));
+                if (report > 3) {
+                    report = 3;
+                }
+                rumourList.add(report);
+            }
+        } else {
+            for (int i = 0; i < units.size(); i++) {
+                mean = units.get(i);
+                i++;
+                sigma = mapEffect - (3 * units.get(i));
+                if (sigma < 0) {
+                    sigma = 0;
+                }
+                rumour = random.nextGaussian() * sigma;
+                flip = random.nextBoolean();
+                if (flip) {
+                    rumour = rumour * -1;
+                }
+                if (rumour < 0.9 && rumour > -0.9) {
+                    if (rumour > 0.5) {
+                        if (mean == 2) {
+                            report = 1;
+                        } else if (mean == 1) {
+                            report = 2;
+                        } else {
+                            report = 1;
+                        }
+                    } else if (rumour < -0.5) {
+                        if (mean == 2) {
+                            report = 0;
+                        } else if (mean == 1) {
+                            report = 0;
+                        } else {
+                            report = 2;
+                        }
+                    } else {
+                        report = mean;
+                    }
+                    rumourList.add(report);
+                }
+            }
+            if (mapEffect > 0.75) {
+                if (random.nextBoolean()) {
+                    rumourList.add(random.nextInt(2));
+                    rumourList.add(random.nextInt(2));
+                } else {
+                    rumourList.add(random.nextInt(2));
+                }
+            }
+        }
+
+        return rumourList;
     }
-    
-    private ArrayList<Integer> nodeOccupancy (int nodeID){
+
+    private ArrayList<Integer> nodeOccupancy(int nodeID) {
         Node currentNode = Scenario.listOfNodes[nodeID];
         ArrayList<Integer> units = new ArrayList<Integer>();
         Player currentOpponent;
-        
+        int scaledSize;
+
         // determine the player to be used
         if (Scenario.redPlayer.playerID == Global.curPlayer) {
             currentOpponent = Scenario.bluePlayer;
         } else {
             currentOpponent = Scenario.redPlayer;
         }
-        
-        for (int i = 0; i < currentOpponent.combatUnits.size(); i++){
-            if (currentOpponent.combatUnits.get(i).location.id == currentNode.id){
-                units.add(currentOpponent.combatUnits.get(i).size);
+
+        for (int i = 0; i < currentOpponent.combatUnits.size(); i++) {
+            if (currentOpponent.combatUnits.get(i).location.id == currentNode.id) {
+                if (currentOpponent.combatUnits.get(i).size > 10) {
+                    scaledSize = 2;
+                } else if (currentOpponent.combatUnits.get(i).size > 5) {
+                    scaledSize = 1;
+                } else {
+                    scaledSize = 0;
+                }
+                units.add(scaledSize);
                 units.add(currentOpponent.combatUnits.get(i).timeStationary);
             }
         }
-        
+
         return units;
     }
     /*
@@ -98,56 +212,5 @@ public class Rumour {
      PoliticalPower {0..30}
      random {-100..100}
      0 < FogOfWar < 100
-    
-     public void ArmiesHere(int[][] armies)
-     {
-     String sizes = "";
-     int i = 0;
-     for (int[] armie : armies) {
-     if (nodeSelected == armies[i][2])
-     sizes += (ConvertSize(armies[i][1], armies[i][3]) + " ");
-     i++;
-     }
-        
-     if(sizes.equals(""))
-     sizes = "none";
-        
-     labelInfo5.setText("Your armies here: " + sizes);
-        
-     //popupMenu.add(null)
-     }
-    
-     public int[][] ObtainArmies(int[][] listArmy) {
-     //creates list to use to keep track of armies.
-     //first portion of rectangular array represents the differnt armies
-     //within the list. Second portion is [id, size, location].  
-
-     if(curPlayer == 0)
-     {
-     listArmy = new int[Scenario.redPlayer.combatUnits.size()][4];
-     for(int i = 0; i < Scenario.redPlayer.combatUnits.size(); i++) {
-     listArmy[i][0] = Scenario.redPlayer.combatUnits.get(i).cUnitID;
-     listArmy[i][1] = Scenario.redPlayer.combatUnits.get(i).size;
-     listArmy[i][2] = Scenario.redPlayer.combatUnits.get(i).GetLocation().id;
-     if (Scenario.redPlayer.combatUnits.get(i).isFleet == true)
-     listArmy[i][3] = 1;
-     else
-     listArmy[i][3] = 0;
-     }
-     } else {
-     listArmy = new int[Scenario.bluePlayer.combatUnits.size()][4];
-     for(int i = 0; i < Scenario.bluePlayer.combatUnits.size(); i++) {
-     listArmy[i][0] = Scenario.bluePlayer.combatUnits.get(i).cUnitID;
-     listArmy[i][1] = Scenario.bluePlayer.combatUnits.get(i).size;
-     listArmy[i][2] = Scenario.bluePlayer.combatUnits.get(i).GetLocation().id;
-     if (Scenario.bluePlayer.combatUnits.get(i).isFleet == true)
-     listArmy[i][3] = 1;
-     else
-     listArmy[i][3] = 0;
-     }
-     }
-
-     return listArmy;
-     }
      */
 }
