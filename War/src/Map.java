@@ -905,6 +905,7 @@ public class Map extends javax.swing.JFrame {
     }
     
     private void MergeArmy(int indexer2, int size) {
+        ClearPopupMenu();
         int isFleet = 0;
         if(Global.curPlayer == 0) {
             for(final CombatUnit army : Scenario.redPlayer.combatUnits) {
