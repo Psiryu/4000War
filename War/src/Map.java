@@ -732,7 +732,7 @@ public class Map extends javax.swing.JFrame {
             //first it checks if locationA on the road is the current node,
             //then it will do the same commands for if it is locationB
             if (roads.locationA.id == army[0][2]) {
-                if (roads.capacity >= army[0][1]) {
+                if (roads.capacity >= army[0][1] || (roads.capacity == 0 && army[0][3] == 1)) {
                     //adds locationB name to a final string
                     final String movingTo = roads.locationB.name;
                     //creates the menu item for this road
@@ -759,7 +759,7 @@ public class Map extends javax.swing.JFrame {
                     popupMenu.add(menuItemMove);
                 }
             } else if (roads.locationB.id == army[0][2]) {
-                if (roads.capacity >= army[0][1]) {                
+                if (roads.capacity >= army[0][1] || (roads.capacity == 0 && army[0][3] == 1)) {                
                     //adds locationB name to a final string
                     final String movingTo = roads.locationA.name;
                     //creates the menu item for this road
