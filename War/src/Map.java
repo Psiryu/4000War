@@ -732,57 +732,59 @@ public class Map extends javax.swing.JFrame {
             //first it checks if locationA on the road is the current node,
             //then it will do the same commands for if it is locationB
             if (roads.locationA.id == army[0][2]) {
-                //adds locationB name to a final string
-                final String movingTo = roads.locationB.name;
-                //creates the menu item for this road
-                JMenuItem menuItemMove = new JMenuItem(movingTo);
-                final Road roads2 = roads;
-                menuItemMove.addActionListener(new ActionListener() {
-                    @Override
-                    public void actionPerformed(ActionEvent event) {
-                        MapEvent.addMovement(army[0][0], roads2, roads2.locationB.id);
-                        //try catch for setting default node colours
-                        try {
-                            SetDefaultColours();
-                        } catch (IOException ex) {
-                            Logger.getLogger(Map.class.getName()).log(Level.SEVERE, null, ex);
+                if (roads.capacity >= army[0][1]) {
+                    //adds locationB name to a final string
+                    final String movingTo = roads.locationB.name;
+                    //creates the menu item for this road
+                    JMenuItem menuItemMove = new JMenuItem(movingTo);
+                    final Road roads2 = roads;
+                    menuItemMove.addActionListener(new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent event) {
+                            MapEvent.addMovement(army[0][0], roads2, roads2.locationB.id);
+                            //try catch for setting default node colours
+                            try {
+                                SetDefaultColours();
+                            } catch (IOException ex) {
+                                Logger.getLogger(Map.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+                            //sets colours of nodes with current player's armies
+                            SetColours();
+
+                            ClearMenuInfo();
+                            ClearPopupMenu();
                         }
-                        //sets colours of nodes with current player's armies
-                        SetColours();
-
-                        ClearMenuInfo();
-                        ClearPopupMenu();
-                    }
-                });
-                //finally, adds this item to the popup menu.
-                popupMenu.add(menuItemMove);
-
+                    });
+                    //finally, adds this item to the popup menu.
+                    popupMenu.add(menuItemMove);
+                }
             } else if (roads.locationB.id == army[0][2]) {
-                //adds locationB name to a final string
-                final String movingTo = roads.locationA.name;
-                //creates the menu item for this road
-                JMenuItem menuItemMove = new JMenuItem(movingTo);
-                final Road roads2 = roads;
-                menuItemMove.addActionListener(new ActionListener() {
-                    @Override
-                    public void actionPerformed(ActionEvent event) {
-                        MapEvent.addMovement(army[0][0], roads2, roads2.locationA.id);
-                        //try catch for setting default node colours
-                        try {
-                            SetDefaultColours();
-                        } catch (IOException ex) {
-                            Logger.getLogger(Map.class.getName()).log(Level.SEVERE, null, ex);
+                if (roads.capacity >= army[0][1]) {                
+                    //adds locationB name to a final string
+                    final String movingTo = roads.locationA.name;
+                    //creates the menu item for this road
+                    JMenuItem menuItemMove = new JMenuItem(movingTo);
+                    final Road roads2 = roads;
+                    menuItemMove.addActionListener(new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent event) {
+                            MapEvent.addMovement(army[0][0], roads2, roads2.locationA.id);
+                            //try catch for setting default node colours
+                            try {
+                                SetDefaultColours();
+                            } catch (IOException ex) {
+                                Logger.getLogger(Map.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+                            //sets colours of nodes with current player's armies
+                            SetColours();
+
+                            ClearMenuInfo();
+                            ClearPopupMenu();
                         }
-                        //sets colours of nodes with current player's armies
-                        SetColours();
-
-                        ClearMenuInfo();
-                        ClearPopupMenu();
-                    }
-                });
-                //finally, adds this item to the popup menu.
-                popupMenu.add(menuItemMove);
-
+                    });
+                    //finally, adds this item to the popup menu.
+                    popupMenu.add(menuItemMove);
+                }
             }
         }
 
@@ -1011,63 +1013,7 @@ public class Map extends javax.swing.JFrame {
         popupMenu.updateUI();
         popupMenu.setVisible(true);
     }
-//        //MergeArmy is sent the full list of armies, and the index location of which army to merge
-//        private void MergeArmy(final int[][] armies, int z) {
-//            ClearPopupMenu();
-//
-//            //sets up an array, first variable being an indexer, second containing
-//            //[0] = id, [1] = size, [2] = location
-//            final int[] armyToMerge = new int[3];
-//            armyToMerge[0] = armies[z][0];
-//            armyToMerge[1] = armies[z][1];
-//            armyToMerge[2] = armies[z][2];
-//
-//
-//            int i = 0;
-//            for (int[] armie : armies) {
-//                //checks if army on loop index is stationed on selected node
-//                if(armies[i][2] == nodeSelected) {
-//                    //checks if army at index is same size as and not same id as 
-//                    //the selected army to merge
-//
-//                    if(armies[i][0] != armyToMerge[0] && armies[i][1] == armyToMerge[1])
-//                    {
-//                        //creates the menu item to merge 
-//                            //creates Final declared int for inside next component
-//                        final int i2 = i;
-//
-//                        JMenuItem menuItemMerges = new JMenuItem(ConvertSize(armies[i][1], armies[i][3]));
-//                        menuItemMerges.addActionListener(new ActionListener() {
-//                            @Override
-//                            public void actionPerformed(ActionEvent event) {
-//                                //prepared to send to Temp
-//                                //labelInfo6.setText("merge " + armyToMerge [0] + " with " + armies[i2][1]);
-//                                MapEvent.mergeUnits(armyToMerge[0], armies[i2][0]);
-//                                    //try catch for setting default node colours
-//                                    try {
-//                                        SetDefaultColours();
-//                                    } catch (IOException ex) {
-//                                        Logger.getLogger(Map.class.getName()).log(Level.SEVERE, null, ex);
-//                                    }
-//                                    //sets colours of nodes with current player's armies
-//                                    SetColours();
-//
-//                                    ClearMenuInfo();
-//                                    ClearPopupMenu();
-//                            }
-//                        });
-//
-//                        //finally, adds this item to the popup menu.
-//                        popupMenu.add(menuItemMerges);
-//                    }
-//
-//                }i++;
-//            }
-//
-//            popupMenu.updateUI();
-//            popupMenu.setVisible(true);
-//            popupMenu.setLocation(x, y);
-//        }
+
 
     //converts the army size integer into real words.
     private String ConvertSize(int armieSize, int isFleet) {
