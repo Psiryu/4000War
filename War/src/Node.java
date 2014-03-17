@@ -24,6 +24,7 @@ public class Node
     boolean isCity; // if the node is a city, therefor annexable
     boolean isPort; // if the node is a coastal location with a port
     int fogValue; // value assigned to location for fog of war
+    int timeUnoccupied;
     Random random = new Random();
     
     // Constructor of the nodes
@@ -40,6 +41,7 @@ public class Node
         isCity = _isAnnexable;
         fogValue = random.nextInt(10);
         isPort = _isPort;
+        timeUnoccupied = 0;
     }
     
     // Method to refresh supplies
