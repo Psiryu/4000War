@@ -204,24 +204,21 @@ public class Battle {
         int retreatLocationCount = 0;
         Road[] fleeingRoads = new Road[100];
         Node[] fleeingNodes = new Node[100];
-        
+
         String isCowards;
         String isAttackers;
-        
+
         boolean isCowardDefender = false;
         boolean isAttackerDefender = false;
 
         int aggregateAttackersBattleStrength = 0;
         int aggregateCowardsBattleStrength = 0;
-        
-        if(cowards.get(0).faction.playerID == 0)
-        {
-            isCowards ="red";
+
+        if (cowards.get(0).faction.playerID == 0) {
+            isCowards = "red";
             isAttackers = "blue";
-        }
-        else
-        {
-            isCowards = "blue";    
+        } else {
+            isCowards = "blue";
             isAttackers = "red";
         }
 
@@ -256,18 +253,17 @@ public class Battle {
 
             if (randNum.nextDouble() > 0.7) /*30% chance they can flee with no battle*/ {
                 /*COWARDS FLEE TO PREVIOUS LOCATION WITH NO BATTLB*/
-                if (isCowards =="red")
-                {
+                if (isCowards == "red") {
                     for (int i = 0; i < cowards.size(); i++) {
-                        
-                        MapEvent.addMovement(cowards.get(i).cUnitID,Scenario.findRoad(attackerPreviousLocation.get(i),cowardsPreviousLocation.get(i)), cowardsPreviousLocation.get(i).id);
+
+                        MapEvent.addMovement(cowards.get(i).cUnitID, Scenario.findRoad(attackerPreviousLocation.get(i), cowardsPreviousLocation.get(i)), cowardsPreviousLocation.get(i).id);
                     }
-                    
+
                     for (int i = 0; i < attackers.size(); i++) {
-                        
+
                         MapEvent.addMovement(attackers.get(i).cUnitID, null, attackerIntendedLocation.get(i).id);
                     }
-                    
+
                 }
 
             } else {
@@ -425,5 +421,35 @@ public class Battle {
         } else {
             PVPNonCommitedBattle(redCombatUnit, blueCombatUnit, redCombatUnitEndLocation, blueCombatUnitEndLocation);
         }
+    }
+
+    private boolean IsPreemptive(Node location, int playerID) {
+        ArrayList<Integer> nodeValues;
+
+        if (Scenario.redPlayer.playerID == playerID) {
+            for (int i = 0; i < Scenario.redPlayer.enemyIntelligence.size(); i++) {
+                nodeValues = Scenario.redPlayer.enemyIntelligence.get(i);
+                if (nodeValues.get(0) == location.id) {
+                    if (nodeValues.size() > 1) {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                }
+            }
+        } else {
+            for (int i = 0; i < Scenario.bluePlayer.enemyIntelligence.size(); i++) {
+                nodeValues = Scenario.redPlayer.enemyIntelligence.get(i);
+                if (nodeValues.get(0) == location.id) {
+                    if (nodeValues.size() > 1) {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                }
+            }
+        }
+
+        return false;
     }
 }
