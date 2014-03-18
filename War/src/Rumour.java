@@ -14,21 +14,26 @@ import java.util.Random;
  */
 public class Rumour {
 
-    public static Node[] listOfNodes; // storage of available location
-    public static ArrayList<CombatUnit> listOfUnitsRed; // storage of current red units
-    public static ArrayList<CombatUnit> listOfUnitsBlue; // storage of current blue units
+    public static Node[] listOfNodes = Scenario.listOfNodes; // storage of available location
+    public static ArrayList<CombatUnit> listOfUnitsRed = new ArrayList<CombatUnit>(); // storage of current red units
+    public static ArrayList<CombatUnit> listOfUnitsBlue = new ArrayList<CombatUnit>(); // storage of current blue units
     public static Random random = new Random(); // establish a random variable
-    public static int redMaximum;
-    public static int blueMaximum;
+    public static int maximum;
+    public static Player currentPlayer;
 
     // Constructor of the rumour system
-    public Rumour() {
+    public Rumour(int currentPlayerID) {
         // set the necessary parameters
         listOfNodes = Scenario.listOfNodes;
         listOfUnitsRed = new ArrayList<CombatUnit>();
         listOfUnitsBlue = new ArrayList<CombatUnit>();
-        redMaximum = (collectedMapFog(Scenario.redPlayer.combatUnits.size())) + 200;
-        blueMaximum = (collectedMapFog(Scenario.bluePlayer.combatUnits.size())) + 200;
+        // determine the player to be used
+        if (Scenario.redPlayer.playerID == currentPlayerID) {
+            currentPlayer = Scenario.redPlayer;
+        } else {
+            currentPlayer = Scenario.bluePlayer;
+        }
+        maximum = (collectedMapFog(currentPlayer.combatUnits.size())) + 200;
     }
 
     private int collectedMapFog(int numUnits) {
@@ -66,19 +71,11 @@ public class Rumour {
     }
 
     private double playerFogValueUpdate() {
-        Player currentPlayer;
         Node currentNode;
         int roadFogSum = 0;
         int nodeFogSum = 0;
         int fogSum;
         int randomFog;
-
-        // determine the player to be used
-        if (Scenario.redPlayer.playerID == Global.curPlayer) {
-            currentPlayer = Scenario.redPlayer;
-        } else {
-            currentPlayer = Scenario.bluePlayer;
-        }
 
         for (int i = 0; i < currentPlayer.combatUnits.size(); i++) {
             currentNode = currentPlayer.combatUnits.get(i).location;
@@ -95,16 +92,24 @@ public class Rumour {
         randomFog = (int) (random.nextDouble() * 100);
         fogSum = nodeFogSum + roadFogSum + currentPlayer.politicalPower + randomFog;
 
-        if (Scenario.redPlayer.playerID == Global.curPlayer) {
-            fogSum = (fogSum / redMaximum);
-        } else {
-            fogSum = (fogSum / blueMaximum);
-        }
+        fogSum = (fogSum / maximum);
 
         return fogSum;
     }
 
-    public ArrayList<Integer> reportRumour(int nodeID) {
+    public ArrayList<ArrayList<Integer>> playerRumourSummary() {
+        ArrayList<Integer> temp = new ArrayList<Integer>();
+        ArrayList<ArrayList<Integer>> assembled = new ArrayList<ArrayList<Integer>>();
+
+        for (int i = 0; i < Scenario.listOfNodes.length; i++) {
+            temp.add(Scenario.listOfNodes[i].id);
+            temp.addAll(reportRumour(Scenario.listOfNodes[i].id));
+            assembled.add(temp);
+        }
+        return assembled;
+    }
+
+    private ArrayList<Integer> reportRumour(int nodeID) {
         ArrayList<Integer> rumourList = new ArrayList<Integer>();
         Node currentNode = Scenario.listOfNodes[nodeID];
         ArrayList<Integer> units = nodeOccupancy(nodeID);
@@ -180,7 +185,7 @@ public class Rumour {
         int scaledSize;
 
         // determine the player to be used
-        if (Scenario.redPlayer.playerID == Global.curPlayer) {
+        if (currentPlayer.playerID == 0) {
             currentOpponent = Scenario.bluePlayer;
         } else {
             currentOpponent = Scenario.redPlayer;

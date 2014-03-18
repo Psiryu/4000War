@@ -23,6 +23,8 @@ public class Player extends Game {
     protected int aggregateDistanceFromCapital; // distance from capital of all units
     protected int totalInitialArmy; // inital size of all units, sum
     protected int totalCurrentArmy; // current size of all units, sum
+    protected Rumour rumours;
+    protected ArrayList<ArrayList<Integer>> enemyIntelligence;
 
     // Constuctor of the player object
     public Player(boolean _isComp, Node _capital, int id, String _playerName) {
@@ -32,6 +34,15 @@ public class Player extends Game {
         isComp = _isComp;
         capital = _capital;
         playerName = _playerName;
+        
+    }
+    
+    public void setUpRumours(){
+        rumours = new Rumour(playerID);
+    }
+    
+    public void generateRomourList(){
+        enemyIntelligence = rumours.playerRumourSummary();
     }
 
     // Method to get political power level

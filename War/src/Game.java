@@ -60,56 +60,57 @@ public class Game {
     }
 
     // Method to handle the end turn calculations
-    void endTurn() {        
+    void endTurn() {
         turnCount += 0.5; // increase the turn count
-        if (turnCount%1 == 0){
+        if (turnCount % 1 == 0) {
             MapEvent.processEvents();
-        }
 
-        // update the political power levels of each faction
-        Scenario.redPlayer.AdjustPoliticalPower();
-        Scenario.bluePlayer.AdjustPoliticalPower();
+            // update the political power levels of each faction
+            Scenario.redPlayer.AdjustPoliticalPower();
+            Scenario.bluePlayer.AdjustPoliticalPower();
 
-        // update combat unit statistics
-        for (int i = 0; i < Scenario.redPlayer.combatUnits.size(); i++) {
-            // determin the new time spent stationary
-            Scenario.redPlayer.combatUnits.get(i).setTimeStationary();
-            // re-evaluate the illness rating
-            Scenario.redPlayer.combatUnits.get(i).setHealthRating();
-            // determine if a size decrease will occur
-            Scenario.redPlayer.combatUnits.get(i).setSize();
-            // decriment the supply level of the unit
-            Scenario.redPlayer.combatUnits.get(i).removeSupplies();
-        }
-        // repeat the calculations for the blue faction
-        for (int i = 0; i < Scenario.bluePlayer.combatUnits.size(); i++) {
-            Scenario.bluePlayer.combatUnits.get(i).setTimeStationary();
-            Scenario.bluePlayer.combatUnits.get(i).setHealthRating();
-            Scenario.bluePlayer.combatUnits.get(i).setSize();
-            Scenario.bluePlayer.combatUnits.get(i).removeSupplies();
-        }
-        updateWeather(); // change the weather conditions
-        Global.season = (Global.season + 1) % 4; // change the season
-        MapEvent.clearRegistry();
-
-        for (Node listOfNode : Scenario.listOfNodes) {
-            listOfNode.timeUnoccupied++;
-            if (listOfNode.timeUnoccupied > 3) {
-                listOfNode.timeUnoccupied = 3;
+            // update combat unit statistics
+            for (int i = 0; i < Scenario.redPlayer.combatUnits.size(); i++) {
+                // determin the new time spent stationary
+                Scenario.redPlayer.combatUnits.get(i).setTimeStationary();
+                // re-evaluate the illness rating
+                Scenario.redPlayer.combatUnits.get(i).setHealthRating();
+                // determine if a size decrease will occur
+                Scenario.redPlayer.combatUnits.get(i).setSize();
+                // decriment the supply level of the unit
+                Scenario.redPlayer.combatUnits.get(i).removeSupplies();
             }
-        }
+            // repeat the calculations for the blue faction
+            for (int i = 0; i < Scenario.bluePlayer.combatUnits.size(); i++) {
+                Scenario.bluePlayer.combatUnits.get(i).setTimeStationary();
+                Scenario.bluePlayer.combatUnits.get(i).setHealthRating();
+                Scenario.bluePlayer.combatUnits.get(i).setSize();
+                Scenario.bluePlayer.combatUnits.get(i).removeSupplies();
+            }
+            updateWeather(); // change the weather conditions
+            Global.season = (Global.season + 1) % 4; // change the season
+            MapEvent.clearRegistry();
 
-        for (Node listOfNode : Scenario.listOfNodes) {
-            for (int j = 0; j < Scenario.redPlayer.combatUnits.size(); j++) {
-                if (Scenario.redPlayer.combatUnits.get(j).location.id == listOfNode.id) {
-                    listOfNode.timeUnoccupied = 0;
+            for (Node listOfNode : Scenario.listOfNodes) {
+                listOfNode.timeUnoccupied++;
+                if (listOfNode.timeUnoccupied > 3) {
+                    listOfNode.timeUnoccupied = 3;
                 }
             }
-            for (int j = 0; j < Scenario.bluePlayer.combatUnits.size(); j++) {
-                if (Scenario.bluePlayer.combatUnits.get(j).location.id == listOfNode.id) {
-                    listOfNode.timeUnoccupied = 0;
+
+            for (Node listOfNode : Scenario.listOfNodes) {
+                for (int j = 0; j < Scenario.redPlayer.combatUnits.size(); j++) {
+                    if (Scenario.redPlayer.combatUnits.get(j).location.id == listOfNode.id) {
+                        listOfNode.timeUnoccupied = 0;
+                    }
+                }
+                for (int j = 0; j < Scenario.bluePlayer.combatUnits.size(); j++) {
+                    if (Scenario.bluePlayer.combatUnits.get(j).location.id == listOfNode.id) {
+                        listOfNode.timeUnoccupied = 0;
+                    }
                 }
             }
         }
+
     }
 }
