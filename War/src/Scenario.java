@@ -170,4 +170,20 @@ public class Scenario {
         bluePlayer.setCurrentArmyLevel();
         bluePlayer.setInitialArmyLevel();
     }
+
+    public Road findRoad(Node locationA, Node locationB) {
+        Road found = null;
+
+        for (int i = 0; i < listOfRoads.length; i++) {
+            if (locationA.id == listOfRoads[i].locationA.id && locationB.id == listOfRoads[i].locationB.id){
+                found = listOfRoads[i];
+                return found;
+            } else if (locationB.id == listOfRoads[i].locationA.id && locationA.id == listOfRoads[i].locationB.id){
+                found = listOfRoads[i];
+                return found;
+            }
+        }
+        
+        return null;
+    }
 }
