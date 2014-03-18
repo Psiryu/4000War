@@ -28,6 +28,7 @@ public class Battle {
             ArrayList<Node> redCombatUnitEndLocation, ArrayList<CombatUnit> blueCombatUnit,
             ArrayList<Node> blueCombatUnitPreviousLocation, ArrayList<Node> blueCombatUnitEndLocation) { /*THE DECISION MAKER FUNCTION FOR COLLISIONS ON A NODE*/
 
+        Road redRoad, blueRoad;
         boolean redDecisionToFight = false;
         boolean blueDecisionToFight = false;
         boolean blueDefender = false;
@@ -131,13 +132,69 @@ public class Battle {
 
         if (redAggregateStrength < blueAggregateStrength) {
             /*Blue wins and moves to their desired location*/
+
+            // remove all of the losing red units from the player's roster
+            if (Scenario.redPlayer.playerID == red.get(0).faction.playerID) {
+                for (int i = 0; i < red.size(); i++) {
+                    Scenario.redPlayer.combatUnits.remove(red.get(i));
+                }
+            } else {
+                for (int i = 0; i < red.size(); i++) {
+                    Scenario.bluePlayer.combatUnits.remove(red.get(i));
+                }
+            }
+
+            // move the winning units to their desired location
+            for (int i = 0; i < blue.size(); i++) {
+                MapEvent.addMovement(blue.get(i).cUnitID, null, blueIntendedNode.get(i).id);
+            }
+
         } else if (redAggregateStrength > blueAggregateStrength) {
             /*Red wins and moves to their desired location*/
+            if (Scenario.bluePlayer.playerID == blue.get(0).faction.playerID) {
+                for (int i = 0; i < blue.size(); i++) {
+                    Scenario.bluePlayer.combatUnits.remove(blue.get(i));
+                }
+            } else {
+                for (int i = 0; i < blue.size(); i++) {
+                    Scenario.redPlayer.combatUnits.remove(blue.get(i));
+                }
+            }
+            for (int i = 0; i < red.size(); i++) {
+                MapEvent.addMovement(red.get(i).cUnitID, null, redsIntendedNode.get(i).id);
+            }
+
         } else {
             if (randNum.nextDouble() > 0.5) {
                 /*Red wins and moves to their desired location*/
+                if (Scenario.bluePlayer.playerID == blue.get(0).faction.playerID) {
+                    for (int i = 0; i < blue.size(); i++) {
+                        Scenario.bluePlayer.combatUnits.remove(blue.get(i));
+                    }
+                } else {
+                    for (int i = 0; i < blue.size(); i++) {
+                        Scenario.redPlayer.combatUnits.remove(blue.get(i));
+                    }
+                }
+                for (int i = 0; i < red.size(); i++) {
+                    MapEvent.addMovement(red.get(i).cUnitID, null, redsIntendedNode.get(i).id);
+                }
             } else {
                 /*Blue wins and moves to their desired location*/
+                if (Scenario.redPlayer.playerID == red.get(0).faction.playerID) {
+                    for (int i = 0; i < red.size(); i++) {
+                        Scenario.redPlayer.combatUnits.remove(red.get(i));
+                    }
+                } else {
+                    for (int i = 0; i < red.size(); i++) {
+                        Scenario.bluePlayer.combatUnits.remove(red.get(i));
+                    }
+                }
+
+                // move the winning units to their desired location
+                for (int i = 0; i < blue.size(); i++) {
+                    MapEvent.addMovement(blue.get(i).cUnitID, null, blueIntendedNode.get(i).id);
+                }
             }
         }
 
@@ -147,12 +204,26 @@ public class Battle {
         int retreatLocationCount = 0;
         Road[] fleeingRoads = new Road[100];
         Node[] fleeingNodes = new Node[100];
-
+        
+        String isCowards;
+        String isAttackers;
+        
         boolean isCowardDefender = false;
         boolean isAttackerDefender = false;
 
         int aggregateAttackersBattleStrength = 0;
         int aggregateCowardsBattleStrength = 0;
+        
+        if(cowards.get(0).faction.playerID == 0)
+        {
+            isCowards ="red";
+            isAttackers = "blue";
+        }
+        else
+        {
+            isCowards = "blue";    
+            isAttackers = "red";
+        }
 
         /*GET BATTLE STRENGTH for  Attackers*/
         for (int i = 0; i < attackers.size(); i++) {
@@ -185,6 +256,19 @@ public class Battle {
 
             if (randNum.nextDouble() > 0.7) /*30% chance they can flee with no battle*/ {
                 /*COWARDS FLEE TO PREVIOUS LOCATION WITH NO BATTLB*/
+                if (isCowards =="red")
+                {
+                    for (int i = 0; i < cowards.size(); i++) {
+                        
+                        MapEvent.addMovement(cowards.get(i).cUnitID, null, cowardsPreviousLocation.get(i).id);
+                    }
+                    
+                    for (int i = 0; i < attackers.size(); i++) {
+                        
+                        MapEvent.addMovement(attackers.get(i).cUnitID, null, attackerIntendedLocation.get(i).id);
+                    }
+                    
+                }
 
             } else {
                 if (aggregateCowardsBattleStrength > aggregateAttackersBattleStrength) {
@@ -269,8 +353,7 @@ public class Battle {
         /*Not very complicated*/
     }
 
-    public void PVPChaseBattle(ArrayList<CombatUnit> attackers, ArrayList<CombatUnit> cowards, ArrayList<Node> attackersDesiredNode
-    ,ArrayList<Node> cowardsDesiredNode) {
+    public void PVPChaseBattle(ArrayList<CombatUnit> attackers, ArrayList<CombatUnit> cowards, ArrayList<Node> attackersDesiredNode, ArrayList<Node> cowardsDesiredNode) {
         /*This happpens when the play collide on Road and one should flee*/
         int aggregateAttackerStrength = 0;
         int aggregateCowardsStrength = 0;
@@ -335,12 +418,12 @@ public class Battle {
         if (redDecisionToFight && blueDecisionToFight) {
             PVPCommitedBattle(redCombatUnit, blueCombatUnit, redCombatUnitEndLocation, blueCombatUnitEndLocation);
         } else if (!redDecisionToFight && blueDecisionToFight) {
-            PVPChaseBattle(blueCombatUnit,redCombatUnit,blueCombatUnitEndLocation,redCombatUnitEndLocation);
-            
+            PVPChaseBattle(blueCombatUnit, redCombatUnit, blueCombatUnitEndLocation, redCombatUnitEndLocation);
+
         } else if (redDecisionToFight && !blueDecisionToFight) {
-            PVPChaseBattle(redCombatUnit,blueCombatUnit,redCombatUnitEndLocation,blueCombatUnitEndLocation);
+            PVPChaseBattle(redCombatUnit, blueCombatUnit, redCombatUnitEndLocation, blueCombatUnitEndLocation);
         } else {
-            PVPNonCommitedBattle(redCombatUnit,blueCombatUnit,redCombatUnitEndLocation,blueCombatUnitEndLocation);
+            PVPNonCommitedBattle(redCombatUnit, blueCombatUnit, redCombatUnitEndLocation, blueCombatUnitEndLocation);
         }
     }
 }
