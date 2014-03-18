@@ -208,7 +208,6 @@ public class Map extends javax.swing.JFrame {
         setMaximumSize(new java.awt.Dimension(860, 560));
         setMinimumSize(new java.awt.Dimension(860, 560));
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(860, 560));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -1501,6 +1500,7 @@ public class Map extends javax.swing.JFrame {
 
         new MainMenu().setVisible(true);
         Map.this.dispose();
+        Map.this.frameFloatingInfo.dispose();
     }//GEN-LAST:event_buttonMenuActionPerformed
 
     private void buttonExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonExitActionPerformed
