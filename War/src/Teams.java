@@ -43,9 +43,11 @@ public class Teams extends javax.swing.JFrame {
         labelBackground = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(265, 330));
-        setMinimumSize(new java.awt.Dimension(265, 330));
-        setPreferredSize(new java.awt.Dimension(265, 330));
+        setBounds(new java.awt.Rectangle(100, 100, 0, 0));
+        setMaximumSize(new java.awt.Dimension(260, 310));
+        setMinimumSize(new java.awt.Dimension(260, 310));
+        setUndecorated(true);
+        setPreferredSize(new java.awt.Dimension(260, 310));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 

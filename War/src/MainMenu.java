@@ -41,8 +41,10 @@ public class MainMenu extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(204, 204, 204));
+        setBounds(new java.awt.Rectangle(100, 100, 0, 0));
         setMaximumSize(new java.awt.Dimension(362, 253));
         setMinimumSize(new java.awt.Dimension(362, 253));
+        setUndecorated(true);
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 

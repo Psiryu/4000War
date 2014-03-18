@@ -36,9 +36,12 @@ public class HowToPlay extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(485, 300));
-        setMinimumSize(new java.awt.Dimension(485, 300));
-        setPreferredSize(new java.awt.Dimension(485, 300));
+        setBounds(new java.awt.Rectangle(100, 100, 0, 0));
+        setMaximumSize(new java.awt.Dimension(470, 265));
+        setMinimumSize(new java.awt.Dimension(470, 265));
+        setUndecorated(true);
+        setPreferredSize(new java.awt.Dimension(470, 265));
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         buttonMenu.setText("Main Menu");

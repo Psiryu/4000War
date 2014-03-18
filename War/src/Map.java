@@ -40,6 +40,7 @@ public class Map extends javax.swing.JFrame {
         //clears off the information panel
         ClearMenuInfo();
         buttonNext.setVisible(false);
+        frameFloatingInfo.setVisible(true);
 
         //resets turn count to 0;
         Game.turnCount = 0;
@@ -73,25 +74,16 @@ public class Map extends javax.swing.JFrame {
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
-        jFrame1 = new javax.swing.JFrame();
-        menuInfo2 = new javax.swing.JPanel();
-        labelInfo13 = new javax.swing.JLabel();
-        labelInfo14 = new javax.swing.JLabel();
-        labelInfo15 = new javax.swing.JLabel();
-        labelInfo16 = new javax.swing.JLabel();
-        labelInfo17 = new javax.swing.JLabel();
-        labelInfo18 = new javax.swing.JLabel();
-        buttonMenu1 = new javax.swing.JToggleButton();
-        buttonExit1 = new javax.swing.JButton();
-        labelOpponent1 = new javax.swing.JLabel();
-        labelScenario1 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        labelScenario = new javax.swing.JLabel();
-        labelOpponent = new javax.swing.JLabel();
-        labelCurPlayer = new javax.swing.JLabel();
+        frameFloatingInfo = new javax.swing.JFrame();
         labelTurnCount = new javax.swing.JLabel();
+        labelCurPlayer = new javax.swing.JLabel();
+        buttonFinishTurn = new javax.swing.JButton();
         buttonMenu = new javax.swing.JToggleButton();
         buttonExit = new javax.swing.JButton();
+        labelOpponent = new javax.swing.JLabel();
+        labelScenario = new javax.swing.JLabel();
+        list1 = new java.awt.List();
+        labelBackdrop = new javax.swing.JLabel();
         menuInfo = new javax.swing.JPanel();
         labelInfo1 = new javax.swing.JLabel();
         labelInfo2 = new javax.swing.JLabel();
@@ -99,7 +91,6 @@ public class Map extends javax.swing.JFrame {
         labelInfo4 = new javax.swing.JLabel();
         labelInfo5 = new javax.swing.JLabel();
         labelInfo6 = new javax.swing.JLabel();
-        buttonFinishTurn = new javax.swing.JButton();
         panelMap = new javax.swing.JPanel();
         nodePlaceholder1 = new javax.swing.JButton();
         nodePlaceholder2 = new javax.swing.JButton();
@@ -117,6 +108,7 @@ public class Map extends javax.swing.JFrame {
         nodePlaceholder14 = new javax.swing.JButton();
         buttonMapImage = new javax.swing.JButton();
         buttonNext = new javax.swing.JButton();
+        buttonBackdrop = new javax.swing.JButton();
 
         popupMenu.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         popupMenu.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -143,119 +135,48 @@ public class Map extends javax.swing.JFrame {
 
         popupMenu.add(jMenu1);
 
-        jFrame1.setMaximumSize(new java.awt.Dimension(730, 410));
-        jFrame1.setMinimumSize(new java.awt.Dimension(730, 410));
-        jFrame1.setPreferredSize(new java.awt.Dimension(730, 410));
-        jFrame1.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        menuInfo2.setMaximumSize(new java.awt.Dimension(700, 70));
-        menuInfo2.setMinimumSize(new java.awt.Dimension(700, 70));
-        menuInfo2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        labelInfo13.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        labelInfo13.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        labelInfo13.setText("city name");
-        menuInfo2.add(labelInfo13, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, -1, -1));
-
-        labelInfo14.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        labelInfo14.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        labelInfo14.setText("seasons");
-        menuInfo2.add(labelInfo14, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 10, -1, -1));
-
-        labelInfo15.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        labelInfo15.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        labelInfo15.setText("turn/turns left");
-        menuInfo2.add(labelInfo15, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 10, -1, -1));
-
-        labelInfo16.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        labelInfo16.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        labelInfo16.setText("political power?");
-        menuInfo2.add(labelInfo16, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 10, -1, -1));
-
-        labelInfo17.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        labelInfo17.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        labelInfo17.setText("player's armies");
-        menuInfo2.add(labelInfo17, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, -1, -1));
-
-        labelInfo18.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        labelInfo18.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        labelInfo18.setText("enemy's armies");
-        menuInfo2.add(labelInfo18, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 40, -1, -1));
-
-        jFrame1.getContentPane().add(menuInfo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 290, -1, -1));
-
-        buttonMenu1.setText("Main Menu");
-        buttonMenu1.setToolTipText("");
-        buttonMenu1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonMenu1ActionPerformed(evt);
-            }
-        });
-        jFrame1.getContentPane().add(buttonMenu1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 5, -1, -1));
-
-        buttonExit1.setText("End Game");
-        buttonExit1.setMaximumSize(new java.awt.Dimension(83, 23));
-        buttonExit1.setMinimumSize(new java.awt.Dimension(83, 23));
-        buttonExit1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonExit1ActionPerformed(evt);
-            }
-        });
-        jFrame1.getContentPane().add(buttonExit1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 5, 90, -1));
-
-        labelOpponent1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        labelOpponent1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        labelOpponent1.setText("text");
-        labelOpponent1.setName("labelOpponent"); // NOI18N
-        jFrame1.getContentPane().add(labelOpponent1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 10, -1, -1));
-
-        labelScenario1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        labelScenario1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        labelScenario1.setText("text");
-        jFrame1.getContentPane().add(labelScenario1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 10, -1, -1));
-
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/MapScreen-Side-backdrop.png"))); // NOI18N
-        jFrame1.getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 710, 340));
-
-        jFrame1.getAccessibleContext().setAccessibleParent(jFrame1);
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setBackground(new java.awt.Color(204, 255, 255));
-        setMaximumSize(new java.awt.Dimension(900, 600));
-        setMinimumSize(new java.awt.Dimension(900, 600));
-        setPreferredSize(new java.awt.Dimension(900, 600));
-        setResizable(false);
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        labelScenario.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        labelScenario.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        labelScenario.setText("text");
-        getContentPane().add(labelScenario, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 10, -1, -1));
-
-        labelOpponent.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        labelOpponent.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        labelOpponent.setText("text");
-        labelOpponent.setName("labelOpponent"); // NOI18N
-        getContentPane().add(labelOpponent, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 10, -1, -1));
-
-        labelCurPlayer.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        labelCurPlayer.setText("text");
-        getContentPane().add(labelCurPlayer, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 10, -1, -1));
+        frameFloatingInfo.setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        frameFloatingInfo.setBounds(new java.awt.Rectangle(860, 390, 0, 0));
+        frameFloatingInfo.setMaximumSize(new java.awt.Dimension(420, 275));
+        frameFloatingInfo.setMinimumSize(new java.awt.Dimension(420, 275));
+        frameFloatingInfo.setName(""); // NOI18N
+        frameFloatingInfo.setUndecorated(true);
+        frameFloatingInfo.setPreferredSize(new java.awt.Dimension(420, 275));
+        frameFloatingInfo.setResizable(false);
+        frameFloatingInfo.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         labelTurnCount.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         labelTurnCount.setText("Turn: 1");
-        getContentPane().add(labelTurnCount, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 10, -1, -1));
+        frameFloatingInfo.getContentPane().add(labelTurnCount, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 70, -1, -1));
 
+        labelCurPlayer.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        labelCurPlayer.setText("text");
+        frameFloatingInfo.getContentPane().add(labelCurPlayer, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 70, -1, -1));
+
+        buttonFinishTurn.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        buttonFinishTurn.setText("Finish Turn");
+        buttonFinishTurn.setContentAreaFilled(false);
+        buttonFinishTurn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonFinishTurnActionPerformed(evt);
+            }
+        });
+        frameFloatingInfo.getContentPane().add(buttonFinishTurn, new org.netbeans.lib.awtextra.AbsoluteConstraints(277, 10, -1, 40));
+
+        buttonMenu.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         buttonMenu.setText("Main Menu");
         buttonMenu.setToolTipText("");
+        buttonMenu.setContentAreaFilled(false);
         buttonMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonMenuActionPerformed(evt);
             }
         });
-        getContentPane().add(buttonMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 5, -1, -1));
+        frameFloatingInfo.getContentPane().add(buttonMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 100, 40));
 
+        buttonExit.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         buttonExit.setText("End Game");
+        buttonExit.setContentAreaFilled(false);
         buttonExit.setMaximumSize(new java.awt.Dimension(83, 23));
         buttonExit.setMinimumSize(new java.awt.Dimension(83, 23));
         buttonExit.addActionListener(new java.awt.event.ActionListener() {
@@ -263,10 +184,37 @@ public class Map extends javax.swing.JFrame {
                 buttonExitActionPerformed(evt);
             }
         });
-        getContentPane().add(buttonExit, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 5, 90, -1));
+        frameFloatingInfo.getContentPane().add(buttonExit, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 10, 100, 40));
+
+        labelOpponent.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        labelOpponent.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        labelOpponent.setText("text");
+        labelOpponent.setName("labelOpponent"); // NOI18N
+        frameFloatingInfo.getContentPane().add(labelOpponent, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, -1, -1));
+
+        labelScenario.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        labelScenario.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        labelScenario.setText("text");
+        frameFloatingInfo.getContentPane().add(labelScenario, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 70, -1, -1));
+        frameFloatingInfo.getContentPane().add(list1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 400, 160));
+
+        labelBackdrop.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/MapScreen-Side-backdrop.png"))); // NOI18N
+        frameFloatingInfo.getContentPane().add(labelBackdrop, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 420, -1));
+
+        frameFloatingInfo.getAccessibleContext().setAccessibleParent(frameFloatingInfo);
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(204, 255, 255));
+        setMaximumSize(new java.awt.Dimension(860, 560));
+        setMinimumSize(new java.awt.Dimension(860, 560));
+        setUndecorated(true);
+        setPreferredSize(new java.awt.Dimension(860, 560));
+        setResizable(false);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         menuInfo.setMaximumSize(new java.awt.Dimension(700, 70));
         menuInfo.setMinimumSize(new java.awt.Dimension(700, 70));
+        menuInfo.setOpaque(false);
         menuInfo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         labelInfo1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -299,18 +247,11 @@ public class Map extends javax.swing.JFrame {
         labelInfo6.setText("enemy's armies");
         menuInfo.add(labelInfo6, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 40, -1, -1));
 
-        getContentPane().add(menuInfo, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 490, -1, -1));
-
-        buttonFinishTurn.setText("Finish Turn");
-        buttonFinishTurn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonFinishTurnActionPerformed(evt);
-            }
-        });
-        getContentPane().add(buttonFinishTurn, new org.netbeans.lib.awtextra.AbsoluteConstraints(753, 3, 110, 30));
+        getContentPane().add(menuInfo, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 480, -1, -1));
 
         panelMap.setMaximumSize(new java.awt.Dimension(820, 470));
         panelMap.setMinimumSize(new java.awt.Dimension(820, 470));
+        panelMap.setOpaque(false);
         panelMap.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         nodePlaceholder1.setBackground(new java.awt.Color(0, 0, 0));
@@ -466,9 +407,9 @@ public class Map extends javax.swing.JFrame {
                 buttonMapImageActionPerformed(evt);
             }
         });
-        panelMap.add(buttonMapImage, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 11, -1, -1));
+        panelMap.add(buttonMapImage, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
-        getContentPane().add(panelMap, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, -1, -1));
+        getContentPane().add(panelMap, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
 
         buttonNext.setBackground(new java.awt.Color(255, 255, 255));
         buttonNext.setFont(new java.awt.Font("Times New Roman", 0, 36)); // NOI18N
@@ -478,7 +419,20 @@ public class Map extends javax.swing.JFrame {
                 buttonNextActionPerformed(evt);
             }
         });
-        getContentPane().add(buttonNext, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, 800, 450));
+        getContentPane().add(buttonNext, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 800, 450));
+
+        buttonBackdrop.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/mapscreen-main.png"))); // NOI18N
+        buttonBackdrop.setBorderPainted(false);
+        buttonBackdrop.setContentAreaFilled(false);
+        buttonBackdrop.setMaximumSize(new java.awt.Dimension(860, 560));
+        buttonBackdrop.setMinimumSize(new java.awt.Dimension(860, 560));
+        buttonBackdrop.setPreferredSize(new java.awt.Dimension(860, 560));
+        buttonBackdrop.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonBackdropActionPerformed(evt);
+            }
+        });
+        getContentPane().add(buttonBackdrop, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 860, 560));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -737,6 +691,7 @@ public class Map extends javax.swing.JFrame {
 
     private void MoveTo(final int[][] army) {
         ClearPopupMenu();
+        Boolean returnSet = false;
 
         //loops for every road in the list of roads in Scenario
         for (Road roads : Scenario.listOfRoads) {
@@ -750,10 +705,15 @@ public class Map extends javax.swing.JFrame {
                     //creates the menu item for this road
                     JMenuItem menuItemMove = new JMenuItem(movingTo);
                     final Road roads2 = roads;
+                    final String listText = "Army " + (ConvertSize(army[0][1], army[0][3]) +
+                            " is moving from " + roads.locationA.name + " to " +
+                            roads.locationB.name);
                     menuItemMove.addActionListener(new ActionListener() {
                         @Override
                         public void actionPerformed(ActionEvent event) {
                             MapEvent.addMovement(army[0][0], roads2, roads2.locationB.id);
+                            list1.add(listText);
+                            
                             //try catch for setting default node colours
                             try {
                                 SetDefaultColours();
@@ -777,10 +737,15 @@ public class Map extends javax.swing.JFrame {
                     //creates the menu item for this road
                     JMenuItem menuItemMove = new JMenuItem(movingTo);
                     final Road roads2 = roads;
+                    final String listText = "Army " + (ConvertSize(army[0][1], army[0][3]) +
+                            " is moving from " + roads.locationB.name + " to " +
+                            roads.locationA.name);
                     menuItemMove.addActionListener(new ActionListener() {
                         @Override
                         public void actionPerformed(ActionEvent event) {
                             MapEvent.addMovement(army[0][0], roads2, roads2.locationA.id);
+                            list1.add(listText);
+                            
                             //try catch for setting default node colours
                             try {
                                 SetDefaultColours();
@@ -797,8 +762,71 @@ public class Map extends javax.swing.JFrame {
                     //finally, adds this item to the popup menu.
                     popupMenu.add(menuItemMove);
                 }
+            } 
+            if(roads.locationA.id == army[0][2] && returnSet == false) {
+                returnSet = true;
+                //for keeping an army at the current node (to cancel a move)
+                    final String movingTo = roads.locationA.name;
+                    //creates the menu item for this road
+                    JMenuItem menuItemMove = new JMenuItem("Stay at " + movingTo);
+                    final Road roads2 = roads;
+                    final String listText = "Army " + (ConvertSize(army[0][1], army[0][3]) +
+                            " will remain at " + roads.locationA.name);
+                    menuItemMove.addActionListener(new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent event) {
+                            MapEvent.addMovement(army[0][0], roads2, roads2.locationA.id);
+                            list1.add(listText);
+                            
+                            //try catch for setting default node colours
+                            try {
+                                SetDefaultColours();
+                            } catch (IOException ex) {
+                                Logger.getLogger(Map.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+                            //sets colours of nodes with current player's armies
+                            SetColours();
+
+                            ClearMenuInfo();
+                            ClearPopupMenu();
+                        }
+                    });
+                    //finally, adds this item to the popup menu.
+                    popupMenu.add(menuItemMove);
+            }  else if(roads.locationB.id == army[0][2] && returnSet == false) {
+                returnSet = true;
+                //for keeping an army at the current node (to cancel a move)
+                    final String movingTo = "Stay at " + roads.locationB.name;
+                    //creates the menu item for this road
+                    JMenuItem menuItemMove = new JMenuItem(movingTo);
+                    final Road roads2 = roads;
+                    final String listText = "Army " + (ConvertSize(army[0][1], army[0][3]) +
+                            " will remain at " + roads.locationB.name);
+                    menuItemMove.addActionListener(new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent event) {
+                            MapEvent.addMovement(army[0][0], roads2, roads2.locationB.id);
+                            list1.add(listText);
+                            
+                            //try catch for setting default node colours
+                            try {
+                                SetDefaultColours();
+                            } catch (IOException ex) {
+                                Logger.getLogger(Map.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+                            //sets colours of nodes with current player's armies
+                            SetColours();
+
+                            ClearMenuInfo();
+                            ClearPopupMenu();
+                        }
+                    });
+                    //finally, adds this item to the popup menu.
+                    popupMenu.add(menuItemMove);
             }
         }
+        //adds the menu item for canceling movement
+        
 
         //re-sets the popupmenu as updated and visible
         popupMenu.setLocation(x, y);
@@ -1333,22 +1361,6 @@ public class Map extends javax.swing.JFrame {
                 break;
         }
     }
-    private void buttonMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonMenuActionPerformed
-        //button for quitting current scenario and returning to main menu
-        Scenario.killSwitch();
-
-        ClearPopupMenu();
-        ClearMenuInfo();
-
-        new MainMenu().setVisible(true);
-        Map.this.dispose();
-    }//GEN-LAST:event_buttonMenuActionPerformed
-
-    private void buttonExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonExitActionPerformed
-        //button for quitting the game altogether
-        System.exit(0);
-    }//GEN-LAST:event_buttonExitActionPerformed
-
     /*Placeholder nodes set the nodeSelected value, then call action.
      all of the nodes do the same actions: set the global value for
      the selected node's index value, sets the globals for the selected
@@ -1452,41 +1464,6 @@ public class Map extends javax.swing.JFrame {
         Action();
     }//GEN-LAST:event_nodePlaceholder14ActionPerformed
 
-    private void buttonFinishTurnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonFinishTurnActionPerformed
-        buttonNext.setVisible(true);
-        buttonFinishTurn.setEnabled(false);
-        ClearMenuInfo();
-        ClearPopupMenu();
-        
-        //This button end's the current player's turn and starts the turn
-        //for the next player
-        if (Global.curPlayer == 0) {
-            Global.curPlayer = 1;
-            labelCurPlayer.setText("Player " + (Global.curPlayer + 1) + "'s turn");
-            buttonNext.setText(labelCurPlayer.getText() + ", click here to proceed.");
-        } else {
-            Global.curPlayer = 0;
-            labelCurPlayer.setText("Player " + (Global.curPlayer + 1) + "'s turn");
-            buttonNext.setText(labelCurPlayer.getText() + ", click here to proceed.");
-        }
-        
-        panelMap.setVisible(false);
-        //actions to finish the turn on th ebackend
-        //Game.turnCount += 0.5;
-        Scenario.game.endTurn();
-
-        labelTurnCount.setText("Turn: " + ((int) Game.turnCount + 1));
-
-        //try catch for setting default node colours
-        try {
-            SetDefaultColours();
-        } catch (IOException ex) {
-            Logger.getLogger(Map.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        //sets colours of nodes with current player's armies
-        SetColours();
-    }//GEN-LAST:event_buttonFinishTurnActionPerformed
-
     private void menuItemCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemCloseActionPerformed
         //a base menu item always added to the popup menu that, when clicked,
         //clears and closes the popup menu.
@@ -1515,19 +1492,74 @@ public class Map extends javax.swing.JFrame {
         SetColours();
     }//GEN-LAST:event_buttonMapImageActionPerformed
 
-    private void buttonMenu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonMenu1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_buttonMenu1ActionPerformed
+    private void buttonMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonMenuActionPerformed
+        //button for quitting current scenario and returning to main menu
+        Scenario.killSwitch();
 
-    private void buttonExit1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonExit1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_buttonExit1ActionPerformed
+        ClearPopupMenu();
+        ClearMenuInfo();
+
+        new MainMenu().setVisible(true);
+        Map.this.dispose();
+    }//GEN-LAST:event_buttonMenuActionPerformed
+
+    private void buttonExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonExitActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_buttonExitActionPerformed
 
     private void buttonNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonNextActionPerformed
         buttonNext.setVisible(false);
         buttonFinishTurn.setEnabled(true);
         panelMap.setVisible(true);
     }//GEN-LAST:event_buttonNextActionPerformed
+
+    private void buttonFinishTurnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonFinishTurnActionPerformed
+        //removes all text
+        buttonFinishTurn.setEnabled(false);
+        list1.removeAll();
+        ClearMenuInfo();
+        ClearPopupMenu();
+        
+        //for the next player
+        if (Global.curPlayer == 0) {
+            Global.curPlayer = 1;
+            labelCurPlayer.setText("Player " + (Global.curPlayer + 1) + "'s turn");
+            buttonNext.setText(labelCurPlayer.getText() + ", click here to proceed.");
+        } else {
+            Global.curPlayer = 0;
+            labelCurPlayer.setText("Player " + (Global.curPlayer + 1) + "'s turn");
+            buttonNext.setText(labelCurPlayer.getText() + ", click here to proceed.");
+        }
+        
+        panelMap.setVisible(false);
+        //actions to finish the turn on th ebackend
+
+        Scenario.game.endTurn();
+        
+        buttonNext.setVisible(true);
+
+        labelTurnCount.setText("Turn: " + ((int) Game.turnCount + 1));
+
+        //try catch for setting default node colours
+        try {
+            SetDefaultColours();
+        } catch (IOException ex) {
+            Logger.getLogger(Map.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        //sets colours of nodes with current player's armies
+        SetColours();
+    }//GEN-LAST:event_buttonFinishTurnActionPerformed
+
+    private void buttonBackdropActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBackdropActionPerformed
+        ClearPopupMenu();
+        ClearMenuInfo();
+        try {
+            SetDefaultColours();
+        } catch (IOException ex) {
+            Logger.getLogger(Map.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        SetColours();
+    }//GEN-LAST:event_buttonBackdropActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1569,38 +1601,29 @@ public class Map extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton buttonBackdrop;
     private javax.swing.JButton buttonExit;
-    private javax.swing.JButton buttonExit1;
     private javax.swing.JButton buttonFinishTurn;
     private javax.swing.JButton buttonMapImage;
     private javax.swing.JToggleButton buttonMenu;
-    private javax.swing.JToggleButton buttonMenu1;
     private javax.swing.JButton buttonNext;
-    private javax.swing.JFrame jFrame1;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JFrame frameFloatingInfo;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JLabel labelBackdrop;
     private javax.swing.JLabel labelCurPlayer;
     private javax.swing.JLabel labelInfo1;
-    private javax.swing.JLabel labelInfo13;
-    private javax.swing.JLabel labelInfo14;
-    private javax.swing.JLabel labelInfo15;
-    private javax.swing.JLabel labelInfo16;
-    private javax.swing.JLabel labelInfo17;
-    private javax.swing.JLabel labelInfo18;
     private javax.swing.JLabel labelInfo2;
     private javax.swing.JLabel labelInfo3;
     private javax.swing.JLabel labelInfo4;
     private javax.swing.JLabel labelInfo5;
     private javax.swing.JLabel labelInfo6;
     private javax.swing.JLabel labelOpponent;
-    private javax.swing.JLabel labelOpponent1;
     private javax.swing.JLabel labelScenario;
-    private javax.swing.JLabel labelScenario1;
     private javax.swing.JLabel labelTurnCount;
+    private java.awt.List list1;
     private javax.swing.JPanel menuInfo;
-    private javax.swing.JPanel menuInfo2;
     private javax.swing.JMenuItem menuItemClose;
     private javax.swing.JButton nodePlaceholder1;
     private javax.swing.JButton nodePlaceholder10;
