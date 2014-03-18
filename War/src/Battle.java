@@ -260,7 +260,7 @@ public class Battle {
                 {
                     for (int i = 0; i < cowards.size(); i++) {
                         
-                        MapEvent.addMovement(cowards.get(i).cUnitID, null, cowardsPreviousLocation.get(i).id);
+                        MapEvent.addMovement(cowards.get(i).cUnitID,Scenario.findRoad(attackerPreviousLocation.get(i),cowardsPreviousLocation.get(i)), cowardsPreviousLocation.get(i).id);
                     }
                     
                     for (int i = 0; i < attackers.size(); i++) {
