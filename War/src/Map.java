@@ -470,16 +470,15 @@ public class Map extends javax.swing.JFrame {
 
         getContentPane().add(panelMap, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, -1, -1));
 
-        buttonNext.setBackground(new java.awt.Color(0, 0, 0));
+        buttonNext.setBackground(new java.awt.Color(255, 255, 255));
         buttonNext.setFont(new java.awt.Font("Times New Roman", 0, 36)); // NOI18N
-        buttonNext.setForeground(new java.awt.Color(255, 255, 255));
-        buttonNext.setText("jButton1");
+        buttonNext.setContentAreaFilled(false);
         buttonNext.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonNextActionPerformed(evt);
             }
         });
-        getContentPane().add(buttonNext, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 60, 750, 410));
+        getContentPane().add(buttonNext, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, 800, 450));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -1455,6 +1454,7 @@ public class Map extends javax.swing.JFrame {
 
     private void buttonFinishTurnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonFinishTurnActionPerformed
         buttonNext.setVisible(true);
+        buttonFinishTurn.setEnabled(false);
         ClearMenuInfo();
         ClearPopupMenu();
         
@@ -1466,7 +1466,7 @@ public class Map extends javax.swing.JFrame {
             buttonNext.setText(labelCurPlayer.getText() + ", click here to proceed.");
         } else {
             Global.curPlayer = 0;
-            labelCurPlayer.setText("Player " + (Global.curPlayer + 1) + "'s turn.");
+            labelCurPlayer.setText("Player " + (Global.curPlayer + 1) + "'s turn");
             buttonNext.setText(labelCurPlayer.getText() + ", click here to proceed.");
         }
         
@@ -1525,6 +1525,7 @@ public class Map extends javax.swing.JFrame {
 
     private void buttonNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonNextActionPerformed
         buttonNext.setVisible(false);
+        buttonFinishTurn.setEnabled(true);
         panelMap.setVisible(true);
     }//GEN-LAST:event_buttonNextActionPerformed
 
