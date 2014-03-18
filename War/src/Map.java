@@ -39,6 +39,7 @@ public class Map extends javax.swing.JFrame {
 
         //clears off the information panel
         ClearMenuInfo();
+        buttonNext.setVisible(false);
 
         //resets turn count to 0;
         Game.turnCount = 0;
@@ -115,6 +116,7 @@ public class Map extends javax.swing.JFrame {
         nodePlaceholder13 = new javax.swing.JButton();
         nodePlaceholder14 = new javax.swing.JButton();
         buttonMapImage = new javax.swing.JButton();
+        buttonNext = new javax.swing.JButton();
 
         popupMenu.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         popupMenu.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -467,6 +469,17 @@ public class Map extends javax.swing.JFrame {
         panelMap.add(buttonMapImage, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 11, -1, -1));
 
         getContentPane().add(panelMap, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, -1, -1));
+
+        buttonNext.setBackground(new java.awt.Color(0, 0, 0));
+        buttonNext.setFont(new java.awt.Font("Times New Roman", 0, 36)); // NOI18N
+        buttonNext.setForeground(new java.awt.Color(255, 255, 255));
+        buttonNext.setText("jButton1");
+        buttonNext.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonNextActionPerformed(evt);
+            }
+        });
+        getContentPane().add(buttonNext, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 60, 750, 410));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -1441,19 +1454,23 @@ public class Map extends javax.swing.JFrame {
     }//GEN-LAST:event_nodePlaceholder14ActionPerformed
 
     private void buttonFinishTurnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonFinishTurnActionPerformed
-
+        buttonNext.setVisible(true);
+        ClearMenuInfo();
+        ClearPopupMenu();
+        
         //This button end's the current player's turn and starts the turn
         //for the next player
         if (Global.curPlayer == 0) {
             Global.curPlayer = 1;
-            labelCurPlayer.setText("Player" + (Global.curPlayer + 1) + "'s turn.");
-            //more shit happens here
+            labelCurPlayer.setText("Player " + (Global.curPlayer + 1) + "'s turn");
+            buttonNext.setText(labelCurPlayer.getText() + ", click here to proceed.");
         } else {
             Global.curPlayer = 0;
-            labelCurPlayer.setText("Player" + (Global.curPlayer + 1) + "'s turn.");
-            //more shit happens here
+            labelCurPlayer.setText("Player " + (Global.curPlayer + 1) + "'s turn.");
+            buttonNext.setText(labelCurPlayer.getText() + ", click here to proceed.");
         }
-
+        
+        panelMap.setVisible(false);
         //actions to finish the turn on th ebackend
         //Game.turnCount += 0.5;
         Scenario.game.endTurn();
@@ -1468,9 +1485,6 @@ public class Map extends javax.swing.JFrame {
         }
         //sets colours of nodes with current player's armies
         SetColours();
-
-        ClearMenuInfo();
-        ClearPopupMenu();
     }//GEN-LAST:event_buttonFinishTurnActionPerformed
 
     private void menuItemCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemCloseActionPerformed
@@ -1508,6 +1522,11 @@ public class Map extends javax.swing.JFrame {
     private void buttonExit1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonExit1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_buttonExit1ActionPerformed
+
+    private void buttonNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonNextActionPerformed
+        buttonNext.setVisible(false);
+        panelMap.setVisible(true);
+    }//GEN-LAST:event_buttonNextActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1555,6 +1574,7 @@ public class Map extends javax.swing.JFrame {
     private javax.swing.JButton buttonMapImage;
     private javax.swing.JToggleButton buttonMenu;
     private javax.swing.JToggleButton buttonMenu1;
+    private javax.swing.JButton buttonNext;
     private javax.swing.JFrame jFrame1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
