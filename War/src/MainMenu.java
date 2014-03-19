@@ -29,6 +29,7 @@ public class MainMenu extends javax.swing.JFrame {
     private void initComponents() {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
+        butonX = new javax.swing.JButton();
         labelTitle = new javax.swing.JLabel();
         buttonScenario1 = new javax.swing.JButton();
         buttonScenario2 = new javax.swing.JButton();
@@ -47,6 +48,16 @@ public class MainMenu extends javax.swing.JFrame {
         setUndecorated(true);
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        butonX.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/X.png"))); // NOI18N
+        butonX.setBorderPainted(false);
+        butonX.setContentAreaFilled(false);
+        butonX.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                butonXActionPerformed(evt);
+            }
+        });
+        getContentPane().add(butonX, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 0, 20, -1));
 
         labelTitle.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
         labelTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -127,7 +138,7 @@ public class MainMenu extends javax.swing.JFrame {
         getContentPane().add(buttonHowTo, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 200, 150, 40));
 
         labelBackgroundImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/MainMenu-Backdrop.png"))); // NOI18N
-        labelBackgroundImage.setToolTipText("");
+        labelBackgroundImage.setToolTipText(null);
         getContentPane().add(labelBackgroundImage, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 390, 300));
 
         pack();
@@ -168,6 +179,10 @@ public class MainMenu extends javax.swing.JFrame {
         MainMenu.this.dispose();
     }//GEN-LAST:event_buttonHowToActionPerformed
 
+    private void butonXActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butonXActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_butonXActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -205,6 +220,7 @@ public class MainMenu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton butonX;
     private javax.swing.JButton buttonEnd;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton buttonHowTo;

@@ -34,6 +34,7 @@ public class Teams extends javax.swing.JFrame {
     private void initComponents() {
 
         buttongroupTeam = new javax.swing.ButtonGroup();
+        butonX = new javax.swing.JButton();
         labelTitle = new javax.swing.JLabel();
         labelSubtitle = new javax.swing.JLabel();
         labelOr = new javax.swing.JLabel();
@@ -50,6 +51,16 @@ public class Teams extends javax.swing.JFrame {
         setPreferredSize(new java.awt.Dimension(260, 310));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        butonX.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/X.png"))); // NOI18N
+        butonX.setBorderPainted(false);
+        butonX.setContentAreaFilled(false);
+        butonX.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                butonXActionPerformed(evt);
+            }
+        });
+        getContentPane().add(butonX, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 0, 20, -1));
 
         labelTitle.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         labelTitle.setText("Player 1,");
@@ -96,6 +107,7 @@ public class Teams extends javax.swing.JFrame {
         getContentPane().add(buttonBegin, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 240, 250, 60));
 
         labelBackground.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/TeamSelect-backdrop.png"))); // NOI18N
+        labelBackground.setToolTipText(null);
         getContentPane().add(labelBackground, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 260, 310));
 
         pack();
@@ -116,6 +128,10 @@ public class Teams extends javax.swing.JFrame {
     private void radioTeam2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioTeam2ActionPerformed
         Global.chosenTeam = true;
     }//GEN-LAST:event_radioTeam2ActionPerformed
+
+    private void butonXActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butonXActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_butonXActionPerformed
 
     /**
      * @param args the command line arguments
@@ -154,6 +170,7 @@ public class Teams extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton butonX;
     private javax.swing.JButton buttonBegin;
     private javax.swing.ButtonGroup buttongroupTeam;
     private javax.swing.JLabel labelBackground;
