@@ -54,7 +54,7 @@ public class Map extends javax.swing.JFrame {
 
         //sets labels for scenario selected, and that it is player 1's turn
         labelScenario.setText("Scenario: " + Global.intScenario);
-        labelCurPlayer.setText("Player" + (Global.curPlayer + 1) + "'s turn.");
+        labelCurPlayer.setText("Player" + (Global.curPlayer + 1) + "'s turn");
 
         GameStart();
         //jFrame1.setVisible(true);
@@ -147,11 +147,11 @@ public class Map extends javax.swing.JFrame {
 
         labelTurnCount.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         labelTurnCount.setText("Turn: 1");
-        frameFloatingInfo.getContentPane().add(labelTurnCount, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 70, -1, -1));
+        frameFloatingInfo.getContentPane().add(labelTurnCount, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 70, -1, -1));
 
         labelCurPlayer.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         labelCurPlayer.setText("text");
-        frameFloatingInfo.getContentPane().add(labelCurPlayer, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 70, -1, -1));
+        frameFloatingInfo.getContentPane().add(labelCurPlayer, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 70, -1, -1));
 
         buttonFinishTurn.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         buttonFinishTurn.setText("Finish Turn");
@@ -195,7 +195,7 @@ public class Map extends javax.swing.JFrame {
         labelScenario.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         labelScenario.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         labelScenario.setText("text");
-        frameFloatingInfo.getContentPane().add(labelScenario, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 70, -1, -1));
+        frameFloatingInfo.getContentPane().add(labelScenario, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 70, -1, -1));
         frameFloatingInfo.getContentPane().add(list1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 400, 160));
 
         labelBackdrop.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/MapScreen-Side-backdrop.png"))); // NOI18N
