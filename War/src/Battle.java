@@ -118,7 +118,8 @@ public class Battle {
             ArrayList<Node> blueIntendedNode) {
         /*STANDARD BATTLE*/
         /*WINNER MOVES TO HIS DESIRED LOCATION*/
-
+        
+        int yesNo;
         int redAggregateStrength = 0;
         int blueAggregateStrength = 0;
 
@@ -148,7 +149,9 @@ public class Battle {
             for (int i = 0; i < blue.size(); i++) {
                 MapEvent.addMovement(blue.get(i).cUnitID, null, blueIntendedNode.get(i).id);
             }
-
+            
+            JOptionPane.showMessageDialog(null, "Blue wins and moves to their desired location");
+            
         } else if (redAggregateStrength > blueAggregateStrength) {
             /*Red wins and moves to their desired location*/
             if (Scenario.bluePlayer.playerID == blue.get(0).faction.playerID) {
@@ -163,6 +166,7 @@ public class Battle {
             for (int i = 0; i < red.size(); i++) {
                 MapEvent.addMovement(red.get(i).cUnitID, null, redsIntendedNode.get(i).id);
             }
+           JOptionPane.showMessageDialog(null, "Red wins and moves to their desired location");
 
         } else {
             if (randNum.nextDouble() > 0.5) {
@@ -179,6 +183,8 @@ public class Battle {
                 for (int i = 0; i < red.size(); i++) {
                     MapEvent.addMovement(red.get(i).cUnitID, null, redsIntendedNode.get(i).id);
                 }
+           JOptionPane.showMessageDialog(null, "Red wins and moves to their desired location");
+
             } else {
                 /*Blue wins and moves to their desired location*/
                 if (Scenario.redPlayer.playerID == red.get(0).faction.playerID) {
@@ -196,6 +202,8 @@ public class Battle {
                     MapEvent.addMovement(blue.get(i).cUnitID, null, blueIntendedNode.get(i).id);
                 }
             }
+            JOptionPane.showMessageDialog(null, "Blue wins and moves to their desired location");
+
         }
 
     }
@@ -492,7 +500,20 @@ public class Battle {
                     else
                     {
                         /*Attcker Red Dies*/
-                        
+                        if (Scenario.redPlayer.playerID == attackers.get(0).faction.playerID) 
+                        {
+                            for (int i = 0; i < attackers.size(); i++) 
+                            {
+                                Scenario.redPlayer.combatUnits.remove(cowards.get(i));
+                            }
+                        } 
+                        else 
+                        {
+                            for (int i = 0; i < attackers.size(); i++) 
+                            {
+                                Scenario.bluePlayer.combatUnits.remove(attackers.get(i));
+                            }
+                        }
                     }
                     
                     
