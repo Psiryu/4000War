@@ -107,6 +107,7 @@ public class Teams extends javax.swing.JFrame {
         getContentPane().add(buttonBegin, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 240, 250, 60));
 
         labelBackground.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/TeamSelect-backdrop.png"))); // NOI18N
+        labelBackground.setToolTipText(null);
         getContentPane().add(labelBackground, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 260, 310));
 
         pack();

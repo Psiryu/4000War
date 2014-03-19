@@ -200,6 +200,7 @@ public class Map extends javax.swing.JFrame {
         frameFloatingInfo.getContentPane().add(list1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 400, 160));
 
         labelBackdrop.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/MapScreen-Side-backdrop.png"))); // NOI18N
+        labelBackdrop.setToolTipText(null);
         frameFloatingInfo.getContentPane().add(labelBackdrop, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 420, -1));
 
         frameFloatingInfo.getAccessibleContext().setAccessibleParent(frameFloatingInfo);

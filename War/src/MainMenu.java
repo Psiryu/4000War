@@ -138,7 +138,7 @@ public class MainMenu extends javax.swing.JFrame {
         getContentPane().add(buttonHowTo, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 200, 150, 40));
 
         labelBackgroundImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/MainMenu-Backdrop.png"))); // NOI18N
-        labelBackgroundImage.setToolTipText("");
+        labelBackgroundImage.setToolTipText(null);
         getContentPane().add(labelBackgroundImage, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 390, 300));
 
         pack();

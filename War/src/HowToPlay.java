@@ -113,6 +113,7 @@ public class HowToPlay extends javax.swing.JFrame {
         getContentPane().add(radioVictory, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 100, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/HelpScreen-backdrop.png"))); // NOI18N
+        jLabel1.setToolTipText(null);
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 480, -1));
 
         pack();
