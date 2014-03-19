@@ -84,6 +84,7 @@ public class Map extends javax.swing.JFrame {
         labelScenario = new javax.swing.JLabel();
         list1 = new java.awt.List();
         labelBackdrop = new javax.swing.JLabel();
+        butonX = new javax.swing.JButton();
         menuInfo = new javax.swing.JPanel();
         labelInfo1 = new javax.swing.JLabel();
         labelInfo2 = new javax.swing.JLabel();
@@ -210,6 +211,16 @@ public class Map extends javax.swing.JFrame {
         setUndecorated(true);
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        butonX.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/X.png"))); // NOI18N
+        butonX.setBorderPainted(false);
+        butonX.setContentAreaFilled(false);
+        butonX.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                butonXActionPerformed(evt);
+            }
+        });
+        getContentPane().add(butonX, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 0, 20, -1));
 
         menuInfo.setMaximumSize(new java.awt.Dimension(700, 70));
         menuInfo.setMinimumSize(new java.awt.Dimension(700, 70));
@@ -1561,6 +1572,10 @@ public class Map extends javax.swing.JFrame {
         SetColours();
     }//GEN-LAST:event_buttonBackdropActionPerformed
 
+    private void butonXActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butonXActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_butonXActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1601,6 +1616,7 @@ public class Map extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton butonX;
     private javax.swing.JButton buttonBackdrop;
     private javax.swing.JButton buttonExit;
     private javax.swing.JButton buttonFinishTurn;

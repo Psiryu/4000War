@@ -27,6 +27,7 @@ public class HowToPlay extends javax.swing.JFrame {
     private void initComponents() {
 
         groupHelpTypes = new javax.swing.ButtonGroup();
+        butonX = new javax.swing.JButton();
         buttonMenu = new javax.swing.JToggleButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         textHelp = new javax.swing.JTextArea();
@@ -37,12 +38,22 @@ public class HowToPlay extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBounds(new java.awt.Rectangle(100, 100, 0, 0));
-        setMaximumSize(new java.awt.Dimension(470, 265));
-        setMinimumSize(new java.awt.Dimension(470, 265));
+        setMaximumSize(new java.awt.Dimension(475, 275));
+        setMinimumSize(new java.awt.Dimension(475, 275));
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(470, 265));
+        setPreferredSize(new java.awt.Dimension(475, 275));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        butonX.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/X.png"))); // NOI18N
+        butonX.setBorderPainted(false);
+        butonX.setContentAreaFilled(false);
+        butonX.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                butonXActionPerformed(evt);
+            }
+        });
+        getContentPane().add(butonX, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 0, 20, -1));
 
         buttonMenu.setText("Main Menu");
         buttonMenu.setToolTipText("");
@@ -102,7 +113,7 @@ public class HowToPlay extends javax.swing.JFrame {
         getContentPane().add(radioVictory, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 100, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/HelpScreen-backdrop.png"))); // NOI18N
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 470, 270));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 480, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -134,6 +145,10 @@ public class HowToPlay extends javax.swing.JFrame {
                 + "I should like; and I like less than half of you "
                 + "half as well as you deserve....");
     }//GEN-LAST:event_radioVictoryActionPerformed
+
+    private void butonXActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butonXActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_butonXActionPerformed
 
     /**
      * @param args the command line arguments
@@ -172,6 +187,7 @@ public class HowToPlay extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton butonX;
     private javax.swing.JToggleButton buttonMenu;
     private javax.swing.ButtonGroup groupHelpTypes;
     private javax.swing.JLabel jLabel1;
