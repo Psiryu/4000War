@@ -479,6 +479,15 @@ public class Map extends javax.swing.JFrame {
         }
 
         labelInfo1.setText(Scenario.listOfNodes[nodeSelected].name);
+        String nodeType;
+        if(Scenario.listOfNodes[nodeSelected].isPort == true)
+            nodeType = "Port town";
+        else if (Scenario.listOfNodes[nodeSelected].isCity == true)
+            nodeType = "City";
+        else
+            nodeType = "Checkpoint";
+        labelInfo2.setText(nodeType);
+        
         mergableArmy = false;
         divisableArmy = false;
         armyHere = false;
@@ -668,7 +677,7 @@ public class Map extends javax.swing.JFrame {
             if (nodeSelected == armies[i][2]) {
                 //obtains army size, because the method call being
                 //within the next line after it caused issues
-                final String armySize = ConvertSize(armies[i][1], armies[i][3]);
+                final String armySize = ConvertFullSize(armies[i][1], armies[i][3]);
 
                 //creates a new array item to send out, since nested method
                 //can't use the indexing for the array.
@@ -716,8 +725,8 @@ public class Map extends javax.swing.JFrame {
                     //creates the menu item for this road
                     JMenuItem menuItemMove = new JMenuItem(movingTo);
                     final Road roads2 = roads;
-                    final String listText = "Army " + (ConvertSize(army[0][1], army[0][3]) +
-                            " is moving from " + roads.locationA.name + " to " +
+                    final String listText = (ConvertFullSize(army[0][1], army[0][3])
+                            + "army will move from " + roads.locationA.name + " to " +
                             roads.locationB.name);
                     menuItemMove.addActionListener(new ActionListener() {
                         @Override
@@ -748,8 +757,8 @@ public class Map extends javax.swing.JFrame {
                     //creates the menu item for this road
                     JMenuItem menuItemMove = new JMenuItem(movingTo);
                     final Road roads2 = roads;
-                    final String listText = "Army " + (ConvertSize(army[0][1], army[0][3]) +
-                            " is moving from " + roads.locationB.name + " to " +
+                    final String listText = (ConvertFullSize(army[0][1], army[0][3]) +
+                            "army will move from " + roads.locationB.name + " to " +
                             roads.locationA.name);
                     menuItemMove.addActionListener(new ActionListener() {
                         @Override
@@ -781,8 +790,8 @@ public class Map extends javax.swing.JFrame {
                     //creates the menu item for this road
                     JMenuItem menuItemMove = new JMenuItem("Stay at " + movingTo);
                     final Road roads2 = roads;
-                    final String listText = "Army " + (ConvertSize(army[0][1], army[0][3]) +
-                            " will remain at " + roads.locationA.name);
+                    final String listText = (ConvertFullSize(army[0][1], army[0][3]) +
+                            "army will remain at " + roads.locationA.name);
                     menuItemMove.addActionListener(new ActionListener() {
                         @Override
                         public void actionPerformed(ActionEvent event) {
@@ -811,8 +820,8 @@ public class Map extends javax.swing.JFrame {
                     //creates the menu item for this road
                     JMenuItem menuItemMove = new JMenuItem(movingTo);
                     final Road roads2 = roads;
-                    final String listText = "Army " + (ConvertSize(army[0][1], army[0][3]) +
-                            " will remain at " + roads.locationB.name);
+                    final String listText = (ConvertFullSize(army[0][1], army[0][3]) +
+                            "army will remain at " + roads.locationB.name);
                     menuItemMove.addActionListener(new ActionListener() {
                         @Override
                         public void actionPerformed(ActionEvent event) {
@@ -857,14 +866,19 @@ public class Map extends javax.swing.JFrame {
                 //checks to make sure the army is at least an M size
                 if (army[i][1] > 5) {
                     //creates the menu item for this army to divide
-                    JMenuItem menuItemMove = new JMenuItem(ConvertSize(army[i][1], army[i][3]));
+                    JMenuItem menuItemMove = new JMenuItem(ConvertFullSize(army[i][1], army[i][3]));
                     final int i2 = i;
+                    final String listItem = (ConvertFullSize(army[i][1],army[i][3])) +
+                            "army at " + (Scenario.listOfNodes[nodeSelected].name) +
+                            " has divided";
                     menuItemMove.addActionListener(new ActionListener() {
                         @Override
                         public void actionPerformed(ActionEvent event) {
                             //temporary actions. will change to send to Temp once Temp is done.
                             //labelInfo6.setText(army[0][1] + " is dividing");
                             MapEvent.divideUnit(army[i2][0]);
+                            //adds event to list log
+                            list1.add(listItem);
                             //try catch for setting default node colours
                             try {
                                 SetDefaultColours();
@@ -916,7 +930,7 @@ public class Map extends javax.swing.JFrame {
                                     final int indexer = army.cUnitID;
                                     final int size = army.size;
 
-                                    JMenuItem menuItemMerged = new JMenuItem(ConvertSize(army.size, isFleet));
+                                    JMenuItem menuItemMerged = new JMenuItem(ConvertFullSize(army.size, isFleet));
                                     menuItemMerged.addActionListener(new ActionListener() {
                                         @Override
                                         public void actionPerformed(ActionEvent event) {
@@ -952,7 +966,7 @@ public class Map extends javax.swing.JFrame {
                                 final int indexer = army.cUnitID;
                                 final int size = army.size;
 
-                                JMenuItem menuItemMerged = new JMenuItem(ConvertSize(army.size, isFleet));
+                                JMenuItem menuItemMerged = new JMenuItem(ConvertFullSize(army.size, isFleet));
                                 menuItemMerged.addActionListener(new ActionListener() {
                                     @Override
                                     public void actionPerformed(ActionEvent event) {
@@ -995,13 +1009,19 @@ public class Map extends javax.swing.JFrame {
                         if (isFleet == 0) {
                             //creates the menu item for this army to merge
                             final int indexer = indexer2;
-
-                            JMenuItem menuItemMerge = new JMenuItem(ConvertSize(army.size, isFleet));
+                            final String listItem = (ConvertFullSize(army.size, isFleet)) +
+                                "armies at " + (Scenario.listOfNodes[nodeSelected].name) +
+                                " have merged";
+                            
+                            JMenuItem menuItemMerge = new JMenuItem(ConvertFullSize(army.size, isFleet));
                             menuItemMerge.addActionListener(new ActionListener() {
                                 @Override
                                 public void actionPerformed(ActionEvent event) {
                                     //sends current array item to MergeArmy method
                                     MapEvent.mergeUnits(indexer, army.cUnitID);
+                                    
+                                    list1.add(listItem);
+                                    
                                     try {
                                         SetDefaultColours();
                                     } catch (IOException ex) {
@@ -1033,13 +1053,19 @@ public class Map extends javax.swing.JFrame {
                         if (isFleet == 0) {
                             //creates the menu item for this army to merge
                             final int indexer = indexer2;
+                            final String listItem = (ConvertFullSize(army.size, isFleet)) +
+                                "armies at " + (Scenario.listOfNodes[nodeSelected].name) +
+                                " have merged";
 
-                            JMenuItem menuItemMerge = new JMenuItem(ConvertSize(army.size, isFleet));
+                            JMenuItem menuItemMerge = new JMenuItem(ConvertFullSize(army.size, isFleet));
                             menuItemMerge.addActionListener(new ActionListener() {
                                 @Override
                                 public void actionPerformed(ActionEvent event) {
                                     //sends current array item to MergeArmy method
                                     MapEvent.mergeUnits(indexer, army.cUnitID);
+                                    
+                                    list1.add(listItem);
+                                    
                                     try {
                                         SetDefaultColours();
                                     } catch (IOException ex) {
@@ -1066,7 +1092,7 @@ public class Map extends javax.swing.JFrame {
     }
 
 
-    //converts the army size integer into real words.
+    //converts the army size integer into a single character.
     private String ConvertSize(int armieSize, int isFleet) {
         //creates a string for output
         String size;
@@ -1089,6 +1115,29 @@ public class Map extends javax.swing.JFrame {
         return size;
     }
 
+     //converts the army size integer into real words.
+    private String ConvertFullSize(int armieSize, int isFleet) {
+        //creates a string for output
+        String size;
+        //checks the size for which letter size it is associated with
+        if (isFleet == 1) //if it's a fleet, size is always "F" for "Fleet"
+        {
+            size = "Fleet ";
+        } else {
+            if (armieSize > 10) //if it's in the "Large" range it gets an "L"
+            {
+                size = "Large ";
+            } else if (armieSize > 5) //if in "Medium" size range, it gets an "M"
+            {
+                size = "Medium ";
+            } else //lastly, for anything under size 6, it gets an "S" for "Small"
+            {
+                size = "Small ";
+            }
+        }
+        return size;
+    }
+    
     private void ClearMenuInfo() {
         /* This method clears all of the visible information presented to
          the player, to end their turn and ensure the next player is
