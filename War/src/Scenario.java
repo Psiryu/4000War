@@ -123,6 +123,10 @@ public class Scenario {
                 redPlayer = new Player(true, listOfNodes[10], 0, "red");
             }
         }
+        redPlayer.setUpRumours();
+        redPlayer.generateRomourList();
+        bluePlayer.setUpRumours();
+        bluePlayer.generateRomourList();
     }
 
     // Method to set up the units
