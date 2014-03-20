@@ -116,7 +116,7 @@ public class Battle {
         } else {
             /*When No one wants to fight*/
 
-            PVPNonCommitedBattle(redCombatUnit, blueCombatUnit, redCombatUnitEndLocation, blueCombatUnitPreviousLocation);
+            PVPNonCommitedBattle(redCombatUnit, blueCombatUnit, redCombatUnitEndLocation,redCombatUnitPreviousLocation, blueCombatUnitPreviousLocation,blueCombatUnitPreviousLocation);
             //PVPNonCommitedBattle(node,red,blue);
 
         }
@@ -1102,11 +1102,26 @@ public class Battle {
         /*CASE 4: does not exist cause you can not have both defenders*/
     }
 
-    public void PVPNonCommitedBattle(ArrayList<CombatUnit> red, ArrayList<CombatUnit> blue, ArrayList<Node> redsIntendedNode,
-            ArrayList<Node> blueIntendedNode) {
+    public void PVPNonCommitedBattle(ArrayList<CombatUnit> red, ArrayList<CombatUnit> blue, 
+            ArrayList<Node> redsIntendedNode,ArrayList<Node> redsPreviousNode,
+            ArrayList<Node> blueIntendedNode, ArrayList<Node> bluePreviousNode) {
         /*This where no battle happens and all CombatUnits return to previous node*/
-
         /*Not very complicated*/
+        
+        for (int i = 0; i < red.size(); i++) 
+                        {
+                            MapEvent.addMovement(red.get(i).cUnitID, Scenario.findRoad(redsIntendedNode.get(i), redsPreviousNode.get(i) ) , redsPreviousNode.get(i).id);
+                        }
+        for (int i = 0; i < blue.size(); i++) 
+                        {
+                            MapEvent.addMovement(blue.get(i).cUnitID, Scenario.findRoad(bluePreviousNode.get(i),blueIntendedNode.get(i)) , bluePreviousNode.get(i).id);
+                        }
+        
+        JOptionPane.showMessageDialog(null, "Both Combat Units decide to retreat "+
+        "\nNo battle was taken place");
+        
+        
+        
     }
 
     public void PVPChaseBattle(ArrayList<CombatUnit> attackers, ArrayList<CombatUnit> cowards, ArrayList<Node> attackersDesiredNode, ArrayList<Node> cowardsDesiredNode) {
@@ -1179,7 +1194,7 @@ public class Battle {
         } else if (redDecisionToFight && !blueDecisionToFight) {
             PVPChaseBattle(redCombatUnit, blueCombatUnit, redCombatUnitEndLocation, blueCombatUnitEndLocation);
         } else {
-            PVPNonCommitedBattle(redCombatUnit, blueCombatUnit, redCombatUnitEndLocation, blueCombatUnitEndLocation);
+            PVPNonCommitedBattle(redCombatUnit, blueCombatUnit, redCombatUnitEndLocation,redCombatUnitPreviousLocation, blueCombatUnitEndLocation, blueCombatUnitPreviousLocation);
         }
     }
 
