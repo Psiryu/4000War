@@ -56,7 +56,7 @@ public class HowToPlay extends javax.swing.JFrame {
         getContentPane().add(butonX, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 0, 20, -1));
 
         buttonMenu.setText("Main Menu");
-        buttonMenu.setToolTipText("");
+        buttonMenu.setToolTipText(null);
         buttonMenu.setBorder(null);
         buttonMenu.setContentAreaFilled(false);
         buttonMenu.addActionListener(new java.awt.event.ActionListener() {
@@ -71,7 +71,7 @@ public class HowToPlay extends javax.swing.JFrame {
         textHelp.setLineWrap(true);
         textHelp.setRows(5);
         textHelp.setText("I don't know who you are. I don't know what you want. If you are looking for ransom, I can tell you I don't have money. But what I do have are a very particular set of skills; skills I have acquired over a very long career. Skills that make me a nightmare for people like you. If you let my daughter go now, that'll be the end of it. I will not look for you, I will not pursue you. But if you don't, I will look for you, I will find you, and I will kill you. ");
-        textHelp.setToolTipText("");
+        textHelp.setToolTipText(null);
         textHelp.setWrapStyleWord(true);
         textHelp.setBorder(null);
         textHelp.setMaximumSize(new java.awt.Dimension(160, 90));

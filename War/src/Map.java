@@ -166,7 +166,7 @@ public class Map extends javax.swing.JFrame {
 
         buttonMenu.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         buttonMenu.setText("Main Menu");
-        buttonMenu.setToolTipText("");
+        buttonMenu.setToolTipText(null);
         buttonMenu.setContentAreaFilled(false);
         buttonMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
