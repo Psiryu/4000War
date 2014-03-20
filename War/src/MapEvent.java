@@ -29,6 +29,9 @@ public class MapEvent {
     private static ArrayList<Node> blueCombatUnitPreviousLocation; // list of blue faction previous locations pre-combat
     private static ArrayList<Node> blueCombatUnitEndLocation; // list of blue faction tentative end locations pre-combat
     private static Battle battle; // initialize the battle object for method calls
+    private static ArrayList<Road> redCombatRoad = new ArrayList<Road>();
+    private static ArrayList<Road> blueCombatRoad = new ArrayList<Road>();
+    private static ArrayList<CombatInstance> combatQueue = new ArrayList<CombatInstance>();
 
     // Constructor for MapEvent
     public MapEvent() {
@@ -120,6 +123,14 @@ public class MapEvent {
 
     }
 
+    public static void addMovementFerry(int fleetNum, int unitNum, Road road, int endLocationNum) {
+
+    }
+
+    public static void postCombatSimulation() {
+
+    }
+
     // at turn's end, add units to the list that may have remained stationary
     private static void cleanList() {
         boolean found = false; // flag for whether the unit has been found
@@ -183,16 +194,6 @@ public class MapEvent {
 
     }
 
-    public void removeMovement() {
-        /*
-         search for the item based on parameter(s)
-         .remove(index) from the lists:
-         combatUnits____
-         ____UnitRoad
-         ____UnitEnd
-         */
-    }
-
     // Method called to in order to simulate simutanious movement
     public static void processEvents() {
         // storage of all the red and blue units participating in a battle
@@ -209,6 +210,7 @@ public class MapEvent {
                         redCombatListCollision.add(combatUnitsRed.get(j));
                         redCombatUnitPreviousLocation.add(combatUnitsRed.get(j).location);
                         redCombatUnitEndLocation.add(redUnitEnd.get(j));
+                        redCombatRoad.add(redUnitRoad.get(j));
                     }
                 }
             }
@@ -218,16 +220,27 @@ public class MapEvent {
                         blueCombatListCollision.add(combatUnitsBlue.get(j));
                         blueCombatUnitPreviousLocation.add(combatUnitsBlue.get(j).location);
                         blueCombatUnitEndLocation.add(blueUnitEnd.get(j));
+                        blueCombatRoad.add(blueUnitRoad.get(j));
                     }
                 }
             }
 
             // if there are both red and blue units on this road, activate a collision on road battle
             if (redCombatListCollision.size() > 0 && blueCombatListCollision.size() > 0) {
-                redList.addAll(redCombatListCollision);
-                blueList.addAll(blueCombatListCollision);
-                battle.doBattleOnRoad(redCombatListCollision, redCombatUnitPreviousLocation, redCombatUnitEndLocation,
-                        blueCombatListCollision, blueCombatUnitPreviousLocation, blueCombatUnitEndLocation);
+                CombatInstance combat = new CombatInstance(redCombatListCollision, blueCombatListCollision,
+                        redCombatRoad, blueCombatRoad, redCombatUnitEndLocation, blueCombatUnitEndLocation,
+                        redCombatUnitPreviousLocation, blueCombatUnitPreviousLocation, false);
+
+                redList.addAll(redCombatListNode);
+                blueList.addAll(blueCombatListNode);
+
+                combatQueue.add(combat);
+                /*
+                 redList.addAll(redCombatListCollision);
+                 blueList.addAll(blueCombatListCollision);
+                 battle.doBattleOnRoad(redCombatListCollision, redCombatUnitPreviousLocation, redCombatUnitEndLocation,
+                 blueCombatListCollision, blueCombatUnitPreviousLocation, blueCombatUnitEndLocation);
+                 */
             }
 
             // clear the lists for use in the next road case
@@ -246,6 +259,7 @@ public class MapEvent {
                     redCombatListNode.add(combatUnitsRed.get(j));
                     redCombatUnitPreviousLocation.add(combatUnitsRed.get(j).location);
                     redCombatUnitEndLocation.add(redUnitEnd.get(j));
+                    redCombatRoad.add(null);
                 }
             }
             for (int j = 0; j < blueUnitEnd.size(); j++) { // find blue units on this node
@@ -253,15 +267,24 @@ public class MapEvent {
                     blueCombatListNode.add(combatUnitsBlue.get(j));
                     blueCombatUnitPreviousLocation.add(combatUnitsBlue.get(j).location);
                     blueCombatUnitEndLocation.add(blueUnitEnd.get(j));
+                    blueCombatRoad.add(null);
                 }
             }
 
             // if both red and blue units were found on this node, then activate a battle on node
             if (redCombatListNode.size() > 0 && blueCombatListNode.size() > 0) {
+                CombatInstance combat = new CombatInstance(redCombatListCollision, blueCombatListCollision,
+                        redCombatRoad, blueCombatRoad, redCombatUnitEndLocation, blueCombatUnitEndLocation,
+                        redCombatUnitPreviousLocation, blueCombatUnitPreviousLocation, true);
+
                 redList.addAll(redCombatListNode);
                 blueList.addAll(blueCombatListNode);
-                battle.PVPdoCampBattleOnNode(Scenario.listOfNodes[i], redCombatListNode, redCombatUnitPreviousLocation, redCombatUnitEndLocation,
-                        blueCombatListNode, blueCombatUnitPreviousLocation, blueCombatUnitEndLocation);
+
+                combatQueue.add(combat);
+                /*
+                 battle.PVPdoCampBattleOnNode(Scenario.listOfNodes[i], redCombatListNode, redCombatUnitPreviousLocation, redCombatUnitEndLocation,
+                 blueCombatListNode, blueCombatUnitPreviousLocation, blueCombatUnitEndLocation);
+                 */
             }
 
             // clear the lists for use in the next node case
@@ -276,7 +299,7 @@ public class MapEvent {
         // check for red units that are not participating in combat
         for (int j = 0; j < combatUnitsRed.size(); j++) { // for each of the possible red units
             // check if the unit is present in either node or road conflicts
-            if (!redList.contains(combatUnitsRed.get(j)) && !redList.contains(combatUnitsRed.get(j))) {
+            if (!redList.contains(combatUnitsRed.get(j))) {
                 // if the unit did not participate in battle, move the unit to intended location
                 combatUnitsRed.get(j).previousLocation = combatUnitsRed.get(j).location;
                 combatUnitsRed.get(j).location = redUnitEnd.get(j);
@@ -286,12 +309,20 @@ public class MapEvent {
         // check for blue units that are not participating in combat
         for (int j = 0; j < combatUnitsBlue.size(); j++) { // for each of the possible blue units
             // check if the unit is present in either node or road conflict
-            if (!blueList.contains(combatUnitsBlue.get(j)) && !blueList.contains(combatUnitsBlue.get(j))) {
+            if (!blueList.contains(combatUnitsBlue.get(j))) {
                 // if the unit did not participate in battle, move the unit to the intended location
                 combatUnitsBlue.get(j).previousLocation = combatUnitsBlue.get(j).location;
                 combatUnitsBlue.get(j).location = blueUnitEnd.get(j);
             }
         }
+        clearRegistry();
+        simulateMovement();
+    }
+
+    public static void simulateMovement() {
+        for (int i = 0; i < combatQueue.size();i++){
+            
+        }        
     }
 
     // Method called to in order to handle unit merges
@@ -496,11 +527,11 @@ public class MapEvent {
         blueCombatListCollision = new ArrayList<CombatUnit>();
         redCombatListNode = new ArrayList<CombatUnit>();
         blueCombatListNode = new ArrayList<CombatUnit>();
-        redPlayer = Scenario.redPlayer;
-        bluePlayer = Scenario.bluePlayer;
         redCombatUnitPreviousLocation = new ArrayList<Node>();
         redCombatUnitEndLocation = new ArrayList<Node>();
         blueCombatUnitPreviousLocation = new ArrayList<Node>();
         blueCombatUnitEndLocation = new ArrayList<Node>();
+        redCombatRoad = new ArrayList<Road>();
+        blueCombatRoad = new ArrayList<Road>();
     }
 }
