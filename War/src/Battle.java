@@ -1417,6 +1417,9 @@ public class Battle {
         boolean preemptiveRed = false;
         boolean preemptiveBlue = false;
         int yesNo;
+        Object[] options = {"Battle", "Flee!"};
+        
+        
         /*Asking red if they want to do battle*/
 
 
@@ -1432,8 +1435,10 @@ public class Battle {
         {
             /*PRRRRRRRRRRRRRRRRRREEEEEEEEEEEEEEEEEEEEEMMMMMM*/
             /*you question box is here*/
-            yesNo = JOptionPane.showConfirmDialog(null, "Player One... Would you like to battle on ?", "Battle?",
-                    JOptionPane.YES_NO_OPTION);
+            yesNo = JOptionPane.showOptionDialog(null, ("Player One... Would you like to battle on the road between" +
+                    redCombatUnitPreviousLocation.get(0).name + " and " +
+                    redCombatUnitEndLocation.get(0).name), "Battle?",
+                    JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE,null,options,options[0]);
             if (yesNo == 0) /*IF FIGHT*/ {
                 redDecisionToFight = true;
             } else {
@@ -1452,8 +1457,11 @@ public class Battle {
         {
             /*PRRRRRRRRRRRRRRRRRREEEEEEEEEEEEEEEEEEEEEMMMMMM*/
             /*you question box is here*/
-            yesNo = JOptionPane.showConfirmDialog(null, "Player Two... Would you like to battle ?", "Battle?",
-                    JOptionPane.YES_NO_OPTION);
+            
+            yesNo = JOptionPane.showOptionDialog(null, ("Player Two... Would you like to battle on the road between" +
+                    redCombatUnitPreviousLocation.get(0).name + " and " +
+                    redCombatUnitEndLocation.get(0).name), "Battle?",
+                    JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE,null,options,options[0]);
             if (yesNo == 0) /*IF FIGHT*/ {
                 blueDecisionToFight = true;
             } else {
