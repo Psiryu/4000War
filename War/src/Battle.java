@@ -1455,9 +1455,9 @@ public class Battle {
             yesNo = JOptionPane.showConfirmDialog(null, "Player Two... Would you like to battle ?", "Battle?",
                     JOptionPane.YES_NO_OPTION);
             if (yesNo == 0) /*IF FIGHT*/ {
-                redDecisionToFight = true;
+                blueDecisionToFight = true;
             } else {
-                redDecisionToFight = false;
+                blueDecisionToFight = false;
             }
         }
 
