@@ -26,7 +26,8 @@ public class Battle {
     // for the case of battle occuring on a node
     public void PVPdoCampBattleOnNode(Node node, ArrayList<CombatUnit> redCombatUnit, ArrayList<Node> redCombatUnitPreviousLocation,
             ArrayList<Node> redCombatUnitEndLocation, ArrayList<CombatUnit> blueCombatUnit,
-            ArrayList<Node> blueCombatUnitPreviousLocation, ArrayList<Node> blueCombatUnitEndLocation) { /*THE DECISION MAKER FUNCTION FOR COLLISIONS ON A NODE*/
+            ArrayList<Node> blueCombatUnitPreviousLocation, ArrayList<Node> blueCombatUnitEndLocation) 
+    { /*THE DECISION MAKER FUNCTION FOR COLLISIONS ON A NODE*/
 
         Road redRoad, blueRoad;
         boolean redDecisionToFight = false;
@@ -42,6 +43,10 @@ public class Battle {
         /*****Defenders Imply that the CombatUnit (or one of them) has not moved and battle initiated **/
         /***********************************************************************************************/
 
+        JOptionPane.showMessageDialog(null, "Collision Alert!!!!!/n"
+                + "There is a collision of armies at " + node.name);
+        
+        
         for (int i = 0; i < blueCombatUnitPreviousLocation.size(); i++) {
             if (blueCombatUnitPreviousLocation.get(i).id == blueCombatUnitEndLocation.get(i).id) {
                 blueDefender = true;
@@ -1511,7 +1516,10 @@ public class Battle {
         int yesNo;
         Object[] options = {"Battle", "Flee!"};
         
-        
+                JOptionPane.showMessageDialog(null, "Collision Alert!!!!!/n"
+                        + "There is a collision of armies between " + redCombatUnitPreviousLocation.get(0).name
+                        + " and " + redCombatUnitEndLocation.get(0).name);
+                
         /*Asking red if they want to do battle*/
 
 
