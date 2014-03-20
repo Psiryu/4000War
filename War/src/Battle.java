@@ -109,19 +109,24 @@ public class Battle {
         if (blueDecisionToFight && redDecisionToFight) {
             /*Both armies commit to battle*/
             PVPCommitedBattle(redCombatUnit, blueCombatUnit, redCombatUnitEndLocation, blueCombatUnitEndLocation);
-        } else if (!blueDecisionToFight && redDecisionToFight) {
+        } 
+        else if (!blueDecisionToFight && redDecisionToFight) 
+        {
             /*if Red wants to fight but blue does not*/
-            PVPHalfCommitedBattleOnNode(node, redCombatUnit, blueCombatUnit, redCombatUnitPreviousLocation, redCombatUnitEndLocation, blueCombatUnitPreviousLocation);
+            PVPHalfCommitedBattleOnNode(node, redCombatUnit, blueCombatUnit, redCombatUnitPreviousLocation,
+                    redCombatUnitEndLocation, blueCombatUnitPreviousLocation);
         } else if (blueDecisionToFight && !redDecisionToFight) {
             /*if Blue wants to fight but Red does not*/
-            PVPHalfCommitedBattleOnNode(node, blueCombatUnit, redCombatUnit, blueCombatUnitPreviousLocation, blueCombatUnitEndLocation, redCombatUnitPreviousLocation);
+            PVPHalfCommitedBattleOnNode(node, blueCombatUnit, redCombatUnit, blueCombatUnitPreviousLocation,
+                    blueCombatUnitEndLocation, redCombatUnitPreviousLocation);
 
             //PVPCommitedBattle(node, red, blue);
         } else {
             /*When No one wants to fight*/
 
-            PVPNonCommitedBattle(redCombatUnit, blueCombatUnit, redCombatUnitEndLocation,redCombatUnitPreviousLocation, blueCombatUnitPreviousLocation,blueCombatUnitPreviousLocation);
-            //PVPNonCommitedBattle(node,red,blue);
+            PVPNonCommitedBattle(redCombatUnit, blueCombatUnit, redCombatUnitEndLocation,
+                    redCombatUnitPreviousLocation, blueCombatUnitPreviousLocation,blueCombatUnitPreviousLocation);
+           
 
         }
     }
@@ -160,7 +165,8 @@ public class Battle {
             }
         }
 
-        if (redAggregateStrength < blueAggregateStrength) {
+        if (redAggregateStrength < blueAggregateStrength)
+        {
             /*Blue wins and moves to their desired location*/
 
             // remove all of the losing red units from the player's roster
@@ -203,7 +209,9 @@ public class Battle {
            + "Red Battle Strength: " + redAggregateStrength + " Blue Battle Strength: "
                         + blueAggregateStrength);
 
-        } else {
+        } 
+        else 
+        {
             if (randNum.nextDouble() > 0.5) {
                 /*Red wins and moves to their desired location*/
                 if (Scenario.bluePlayer.playerID == blue.get(0).faction.playerID) {
@@ -248,10 +256,6 @@ public class Battle {
     }
 
     public void PVPHalfCommitedBattleOnNode(Node node, ArrayList<CombatUnit> attackers, ArrayList<CombatUnit> cowards, ArrayList<Node> attackerPreviousLocation, ArrayList<Node> attackerIntendedLocation, ArrayList<Node> cowardsPreviousLocation) {
-        int retreatLocationCount = 0;
-        Road[] fleeingRoads = new Road[100];
-        Node[] fleeingNodes = new Node[100];
-
         String isCowards;
         String isAttackers;
 
@@ -278,19 +282,19 @@ public class Battle {
             }
                 else
             {
-                aggregateAttackersBattleStrength += (int)(attackers.get(i).GetBattleStrengh()*0.85);
+                aggregateAttackersBattleStrength += (int)((double)attackers.get(i).GetBattleStrengh()*0.85);
             }
         }
         /*GET BATTLE STRENGTH for Cowards*/
         for (int i = 0; i < cowards.size(); i++) 
         {
-            if (!attackers.get(i).isFleet)
+            if (!cowards.get(i).isFleet)
             {
                 aggregateCowardsBattleStrength += cowards.get(i).GetBattleStrengh();
             }
                 else
             {
-                aggregateCowardsBattleStrength += (int)(cowards.get(i).GetBattleStrengh()*0.85);
+                aggregateCowardsBattleStrength += (int)((double)cowards.get(i).GetBattleStrengh()*0.85);
             }
         }
 
@@ -343,18 +347,26 @@ public class Battle {
                     JOptionPane.showMessageDialog(null, "Red flees battle while Blue moves into their intended postion\n"
                             + "Blue Strength: " + aggregateCowardsBattleStrength + " Red Strength:" + attackerPreviousLocation);
                 }
-
-            } else {
-                if (aggregateCowardsBattleStrength > aggregateAttackersBattleStrength) { /*attackers fall in battle*/
+            } 
+            else 
+            {
+                if (aggregateCowardsBattleStrength > aggregateAttackersBattleStrength) 
+                { /*attackers fall in battle*/
                     /*COWARDS WIN and end up heading towards their intened position*/
-                    if (isCowards == "red") {
+                    if (isCowards == "red") 
+                    {
                         /*if cowards is red then blue loses their armies*/
-                        if (Scenario.bluePlayer.playerID == attackers.get(0).faction.playerID) {
-                            for (int i = 0; i < attackers.size(); i++) {
+                        if (Scenario.bluePlayer.playerID == attackers.get(0).faction.playerID) 
+                        {
+                            for (int i = 0; i < attackers.size(); i++) 
+                            {
                                 Scenario.bluePlayer.combatUnits.remove(attackers.get(i));
                             }
-                        } else {
-                            for (int i = 0; i < attackers.size(); i++) {
+                        } 
+                        else 
+                        {
+                            for (int i = 0; i < attackers.size(); i++) 
+                            {
                                 Scenario.redPlayer.combatUnits.remove(attackers.get(i));
                             }
                         }
