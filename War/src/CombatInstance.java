@@ -16,11 +16,12 @@ public class CombatInstance {
     private ArrayList<Road> redRoad, blueRoad;
     private ArrayList<Node> redEndLocation, blueEndLocation;
     private ArrayList<Node> redFromLocation, blueFromLocation;
+    private boolean isNode;
     
     public CombatInstance(ArrayList<CombatUnit> redUnits, ArrayList<CombatUnit> blueUnits, 
             ArrayList<Road> redRoad, ArrayList<Road> blueRoad,
             ArrayList<Node> redEndLocation, ArrayList<Node> blueEndLocation,
-            ArrayList<Node> redFromLocation, ArrayList<Node> blueFromLocation){
+            ArrayList<Node> redFromLocation, ArrayList<Node> blueFromLocation, boolean isNode){
         redUnits = this.redUnits;
         blueUnits = this.blueUnits;
         redRoad = this.redRoad;
@@ -29,6 +30,7 @@ public class CombatInstance {
         blueEndLocation = this.blueEndLocation;
         redFromLocation = this.redFromLocation;
         blueFromLocation = this.blueFromLocation;
+        isNode = this.isNode;
     }
     
 }
