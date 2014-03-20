@@ -780,6 +780,9 @@ public class Battle {
                                 Scenario.bluePlayer.combatUnits.remove(cowards.get(i));
                             }
                         }
+                        JOptionPane.showMessageDialog(null, "Red are unable flees from their position therefore their unit is defeated!!!"+
+                                "\nBlue proceeds to intended postion");
+
                     }
                     else
                     {   
@@ -798,6 +801,9 @@ public class Battle {
                                 Scenario.redPlayer.combatUnits.remove(cowards.get(i));
                             }
                         }
+                       JOptionPane.showMessageDialog(null, "Blue are unable flees from their position therefore their unit is defeated!!!"+
+                                "\nRed proceeds to intended postion");
+
                     }
                     
                     
@@ -807,37 +813,289 @@ public class Battle {
                     int roadChoice = randNum.nextInt(adjacentRoadsToNode.size());
                      
                     /*Move ATTACKERS to intended node and Cowards to Random Node*/
-                    
-                    if (isCowards == "red")
+                    Node randomRoadDestination;
+                    if(adjacentRoadsToNode.get(roadChoice).locationA.id == node.id)
                     {
-                        /*red army moves to location */
-                        for (int i = 0; i < cowards.size(); i++) 
-                        {
-                            MapEvent.addMovement(cowards.get(i).cUnitID, adjacentRoadsToNode.get(roadChoice) , attackerPreviousLocation.get(i).id);
-                        } 
+                        randomRoadDestination = adjacentRoadsToNode.get(roadChoice).locationB;
                     }
                     else
                     {
-                    
+                        randomRoadDestination = adjacentRoadsToNode.get(roadChoice).locationA;
                     }
+                    
+                   
+                    /* COWARDS move to random spot*/
+                    /* no team specification required*/
+                    
+                    for (int i = 0; i < cowards.size(); i++) 
+                    {
+                        MapEvent.addMovement(cowards.get(i).cUnitID, adjacentRoadsToNode.get(roadChoice) , randomRoadDestination.id);
+                    } 
+                    
+                    if (isCowards == "red")
+                    {
+                        JOptionPane.showMessageDialog(null, "Red flees from their position!!!"+
+                        "\nBlue proceeds to intended postion and no battle is taken place");
+
+                    }
+                    else
+                    {
+                        JOptionPane.showMessageDialog(null, "Blue flees from their position!!!"+
+                        "\nRed proceeds to intended postion and no battle is taken place");
+                    }
+                    
                 
                 }
             }
-        } /*CASE 3: Attackers are defenders (attackers did not move but have commited to battle)*/ else {
+        } /*CASE 3: Attackers are defenders (attackers did not move but have commited to battle)*/ 
+        else 
+        {
             if (randNum.nextDouble() > 0.3) /*Cowards are not able to flee*/ {
-                if (aggregateCowardsBattleStrength > aggregateAttackersBattleStrength) {
+                if (aggregateCowardsBattleStrength > aggregateAttackersBattleStrength) 
+                {
                     /*COWARDS WIN and end up heading towards their intened position*/
-                } else if (aggregateCowardsBattleStrength < aggregateAttackersBattleStrength) {
+                    if (isCowards == "red")
+                    {
+                        /*RED (Cowards) UNIT WINS They Proceed their intended spot*/
+                        
+                        /*blue dies*/
+                        if (Scenario.bluePlayer.playerID == attackers.get(0).faction.playerID) 
+                            {
+                                for (int i = 0; i < attackers.size(); i++) 
+                                {
+                                    Scenario.bluePlayer.combatUnits.remove(attackers.get(i));
+                                }
+                            } 
+                            else 
+                            {
+                                for (int i = 0; i < attackers.size(); i++) 
+                                {
+                                    Scenario.redPlayer.combatUnits.remove(attackers.get(i));
+                                }
+                            }
+
+                        JOptionPane.showMessageDialog(null, "Red Combat Unit defeat Blue Combat Unit!!!"+
+                        "\nRed will move to thier intended position");
+                        
+                        
+                    }
+                    else 
+                    {
+                        /*Blue (Cowards) UNIT WINS They Proceed their intended spot*/
+                        /*Red dies*/
+                        if (Scenario.redPlayer.playerID == attackers.get(0).faction.playerID) 
+                            {
+                                for (int i = 0; i < attackers.size(); i++) 
+                                {
+                                    Scenario.redPlayer.combatUnits.remove(attackers.get(i));
+                                }
+                            } 
+                            else 
+                            {
+                                for (int i = 0; i < attackers.size(); i++) 
+                                {
+                                    Scenario.bluePlayer.combatUnits.remove(attackers.get(i));
+                                }
+                            }
+                        
+                    }
+                    
+                    JOptionPane.showMessageDialog(null, "Blue Combat Unit defeat Red Combat !!!"+
+                    "\nBlue will move to thier intended position");
+                    
+                    
+                    /* Cowards will move to their intended location (Not team specific) */
+                    for (int i = 0; i < cowards.size(); i++) 
+                    {
+                        MapEvent.addMovement(cowards.get(i).cUnitID, null , node.id);
+                    }
+                    
+                    
+                    
+                    
+                    
+                } 
+                else if (aggregateCowardsBattleStrength < aggregateAttackersBattleStrength) 
+                {
                     /*ATTACKERS WIN AND REMAIN AT THEIR POSITION*/
-                } else {
-                    if (randNum.nextDouble() > .5) {
-                        /*ATTACKERS WIN AND REMAIN AT THEIR POSITION*/
-                    } else {
+                    if(isCowards == "red")
+                    {
+                        /*Blue Wins and remains at their postion*/
+                        /*Red Combat Unit dies*/
+                        
+                        if (Scenario.redPlayer.playerID == cowards.get(0).faction.playerID) 
+                        {
+                            for (int i = 0; i < cowards.size(); i++) 
+                            {
+                                Scenario.redPlayer.combatUnits.remove(cowards.get(i));
+                            }
+                        } 
+                        else 
+                        {
+                            for (int i = 0; i < cowards.size(); i++) 
+                            {
+                                Scenario.bluePlayer.combatUnits.remove(cowards.get(i));
+                            }
+                        }
+                        
+                    JOptionPane.showMessageDialog(null, "Blue Combat Unit defends their position and defeat Red!!!"+
+                    "\nBlue remain at their original position");  
+ 
+                    }
+                    else
+                    { 
+                        /*Red Wins and remains at their postion*/
+                        /*Blue Combat Unit dies*/
+                        if (Scenario.bluePlayer.playerID == cowards.get(0).faction.playerID) 
+                        {
+                            for (int i = 0; i < cowards.size(); i++) 
+                            {
+                                Scenario.bluePlayer.combatUnits.remove(cowards.get(i));
+                            }
+                        } 
+                        else 
+                        {
+                            for (int i = 0; i < cowards.size(); i++) 
+                            {
+                                Scenario.redPlayer.combatUnits.remove(cowards.get(i));
+                            }
+                        }
+                        JOptionPane.showMessageDialog(null, "Red Combat Unit defends their position and defeat Blue!!!"+
+                        "\nRed remain at their original position");
+                    
+                    }
+                } 
+                else 
+                {
+                    if (randNum.nextDouble() > .5) 
+                    {
+                        
+                            /*ATTACKERS WIN AND REMAIN AT THEIR POSITION*/
+                        if(isCowards == "red")
+                        {
+                            /*Blue Wins and remains at their postion*/
+                            /*Red Combat Unit dies*/
+
+                            if (Scenario.redPlayer.playerID == cowards.get(0).faction.playerID) 
+                            {
+                                for (int i = 0; i < cowards.size(); i++) 
+                                {
+                                    Scenario.redPlayer.combatUnits.remove(cowards.get(i));
+                                }
+                            } 
+                            else 
+                            {
+                                for (int i = 0; i < cowards.size(); i++) 
+                                {
+                                    Scenario.bluePlayer.combatUnits.remove(cowards.get(i));
+                                }
+                            }
+
+                        JOptionPane.showMessageDialog(null, "Blue Combat Unit defends their position and defeat Red!!!"+
+                        "\nBlue remain at their original position");  
+
+                        }
+                        else
+                        { 
+                            /*Red Wins and remains at their postion*/
+                            /*Blue Combat Unit dies*/
+                            if (Scenario.bluePlayer.playerID == cowards.get(0).faction.playerID) 
+                            {
+                                for (int i = 0; i < cowards.size(); i++) 
+                                {
+                                    Scenario.bluePlayer.combatUnits.remove(cowards.get(i));
+                                }
+                            } 
+                            else 
+                            {
+                                for (int i = 0; i < cowards.size(); i++) 
+                                {
+                                    Scenario.redPlayer.combatUnits.remove(cowards.get(i));
+                                }
+                            }
+                            JOptionPane.showMessageDialog(null, "Red Combat Unit defends their position and defeat Blue!!!"+
+                            "\nRed remain at their original position");
+
+                        }
+                        
+                    } 
+                    
+                    else 
+                    {
                         /*COWARDS WIN and end up heading towards their intened position*/
+                        if (isCowards == "red")
+                        {
+                            /*RED (Cowards) UNIT WINS They Proceed their intended spot*/
+
+                            /*blue dies*/
+                            if (Scenario.bluePlayer.playerID == attackers.get(0).faction.playerID) 
+                                {
+                                    for (int i = 0; i < attackers.size(); i++) 
+                                    {
+                                        Scenario.bluePlayer.combatUnits.remove(attackers.get(i));
+                                    }
+                                } 
+                                else 
+                                {
+                                    for (int i = 0; i < attackers.size(); i++) 
+                                    {
+                                        Scenario.redPlayer.combatUnits.remove(attackers.get(i));
+                                    }
+                                }
+
+                            JOptionPane.showMessageDialog(null, "Red Combat Unit defeat Blue Combat Unit!!!"+
+                            "\nRed will move to thier intended position");
+
+
+                        }
+                        else 
+                        {
+                            /*Blue (Cowards) UNIT WINS They Proceed their intended spot*/
+                            /*Red dies*/
+                            if (Scenario.redPlayer.playerID == attackers.get(0).faction.playerID) 
+                                {
+                                    for (int i = 0; i < attackers.size(); i++) 
+                                    {
+                                        Scenario.redPlayer.combatUnits.remove(attackers.get(i));
+                                    }
+                                } 
+                                else 
+                                {
+                                    for (int i = 0; i < attackers.size(); i++) 
+                                    {
+                                        Scenario.bluePlayer.combatUnits.remove(attackers.get(i));
+                                    }
+                                }
+
+                        }
+
+                        JOptionPane.showMessageDialog(null, "Blue Combat Unit defeat Red Combat !!!"+
+                        "\nBlue will move to thier intended position");
+
+
+                        /* Cowards will move to their intended location (Not team specific) */
+                        for (int i = 0; i < cowards.size(); i++) 
+                        {
+                            MapEvent.addMovement(cowards.get(i).cUnitID, null , node.id);
+                        }
+                        
+                        
                     }
                 }
-            } else {
+            } 
+            else 
+            {
                 /*BOTH TEAMS REMAIN AT THEIR ORIGNAL POSTION*/
+                if (isCowards == "red")
+                {
+                JOptionPane.showMessageDialog(null, "Red Combat unit was able to retreat!!!"+
+                "\nNo battle was taken place");
+                }
+                else
+                {
+                JOptionPane.showMessageDialog(null, "Blue Combat unit was able to retreat!!!"+
+                "\nNo battle was taken place");
+                }
             }
         }
 
