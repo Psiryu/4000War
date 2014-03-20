@@ -71,10 +71,11 @@ public class Teams extends javax.swing.JFrame {
         getContentPane().add(labelSubtitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 40, -1, -1));
 
         labelOr.setText("Or");
-        getContentPane().add(labelOr, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 140, -1, -1));
+        getContentPane().add(labelOr, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 140, -1, -1));
 
         buttongroupTeam.add(radioTeam1);
         radioTeam1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        radioTeam1.setForeground(new java.awt.Color(255, 0, 0));
         radioTeam1.setSelected(true);
         radioTeam1.setText("jRadioButton1");
         radioTeam1.setContentAreaFilled(false);
@@ -83,10 +84,11 @@ public class Teams extends javax.swing.JFrame {
                 radioTeam1ActionPerformed(evt);
             }
         });
-        getContentPane().add(radioTeam1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 100, -1, -1));
+        getContentPane().add(radioTeam1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 100, -1, -1));
 
         buttongroupTeam.add(radioTeam2);
         radioTeam2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        radioTeam2.setForeground(new java.awt.Color(0, 0, 204));
         radioTeam2.setText("jRadioButton2");
         radioTeam2.setContentAreaFilled(false);
         radioTeam2.addActionListener(new java.awt.event.ActionListener() {
@@ -94,7 +96,7 @@ public class Teams extends javax.swing.JFrame {
                 radioTeam2ActionPerformed(evt);
             }
         });
-        getContentPane().add(radioTeam2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 180, -1, -1));
+        getContentPane().add(radioTeam2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 180, -1, -1));
 
         buttonBegin.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         buttonBegin.setText("Begin Match");

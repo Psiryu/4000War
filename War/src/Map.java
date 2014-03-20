@@ -54,7 +54,10 @@ public class Map extends javax.swing.JFrame {
 
         //sets labels for scenario selected, and that it is player 1's turn
         labelScenario.setText("Scenario: " + Global.intScenario);
-        labelCurPlayer.setText("Player" + (Global.curPlayer + 1) + "'s turn");
+        if(Global.curPlayer == 0)
+            labelCurPlayer.setText("Red team's turn");
+        else
+            labelCurPlayer.setText("Blue team's turn");
 
         GameStart();
         //jFrame1.setVisible(true);
@@ -152,7 +155,7 @@ public class Map extends javax.swing.JFrame {
 
         labelCurPlayer.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         labelCurPlayer.setText("text");
-        frameFloatingInfo.getContentPane().add(labelCurPlayer, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 70, -1, -1));
+        frameFloatingInfo.getContentPane().add(labelCurPlayer, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 70, -1, -1));
 
         buttonFinishTurn.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         buttonFinishTurn.setText("Finish Turn");
@@ -235,13 +238,13 @@ public class Map extends javax.swing.JFrame {
 
         labelInfo2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         labelInfo2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        labelInfo2.setText("seasons");
-        menuInfo.add(labelInfo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 10, -1, -1));
+        labelInfo2.setText("node type");
+        menuInfo.add(labelInfo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 10, -1, -1));
 
         labelInfo3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         labelInfo3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        labelInfo3.setText("turn/turns left");
-        menuInfo.add(labelInfo3, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 10, -1, -1));
+        labelInfo3.setText("Season");
+        menuInfo.add(labelInfo3, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 10, -1, -1));
 
         labelInfo4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         labelInfo4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -256,7 +259,7 @@ public class Map extends javax.swing.JFrame {
         labelInfo6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         labelInfo6.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         labelInfo6.setText("enemy's armies");
-        menuInfo.add(labelInfo6, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 40, -1, -1));
+        menuInfo.add(labelInfo6, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 40, -1, -1));
 
         getContentPane().add(menuInfo, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 480, -1, -1));
 
@@ -478,7 +481,10 @@ public class Map extends javax.swing.JFrame {
             Logger.getLogger(Map.class.getName()).log(Level.SEVERE, null, ex);
         }
 
+        //sets the info labels for: type of node, the current season,
+        //and the current political power lvele, respectively
         labelInfo1.setText(Scenario.listOfNodes[nodeSelected].name);
+        
         String nodeType;
         if(Scenario.listOfNodes[nodeSelected].isPort == true)
             nodeType = "Port town";
@@ -486,7 +492,21 @@ public class Map extends javax.swing.JFrame {
             nodeType = "City";
         else
             nodeType = "Checkpoint";
-        labelInfo2.setText(nodeType);
+        labelInfo2.setText("Location type: " + nodeType);
+        
+        if(Global.season == 0)
+            labelInfo3.setText("Season: Winter");
+        else if(Global.season == 1)
+            labelInfo3.setText("Season: Spring");
+        else if(Global.season == 2)
+            labelInfo3.setText("Season: Summer");
+        else if(Global.season == 3)
+            labelInfo3.setText("Season: Autumn");
+        
+        if(Global.curPlayer == 0)
+            labelInfo4.setText("Political power: " + Scenario.redPlayer.politicalPower);
+        else
+            labelInfo4.setText("Political power: " + Scenario.bluePlayer.politicalPower);
         
         mergableArmy = false;
         divisableArmy = false;
@@ -709,7 +729,153 @@ public class Map extends javax.swing.JFrame {
 
     }
 
-    private void MoveTo(final int[][] army) {
+//    private void MoveTo(final int[][] army) {
+//        ClearPopupMenu();
+//        Boolean returnSet = false;
+//
+//        //loops for every road in the list of roads in Scenario
+//        for (Road roads : Scenario.listOfRoads) {
+//            //checks if current locaion in array at index is the selected city
+//            //first it checks if locationA on the road is the current node,
+//            //then it will do the same commands for if it is locationB
+//            if (roads.locationA.id == army[0][2]) {
+//                if (roads.capacity >= army[0][1] || (roads.capacity == 0 && army[0][3] == 1)) {
+//                    //adds locationB name to a final string
+//                    final String movingTo = roads.locationB.name;
+//                    //creates the menu item for this road
+//                    JMenuItem menuItemMove = new JMenuItem(movingTo);
+//                    final Road roads2 = roads;
+//                    final String listText = (ConvertFullSize(army[0][1], army[0][3])
+//                            + "army will move from " + roads.locationA.name + " to " +
+//                            roads.locationB.name);
+//                    menuItemMove.addActionListener(new ActionListener() {
+//                        @Override
+//                        public void actionPerformed(ActionEvent event) {
+//                            MapEvent.addMovement(army[0][0], roads2, roads2.locationB.id);
+//                            list1.add(listText);
+//                            
+//                            //try catch for setting default node colours
+//                            try {
+//                                SetDefaultColours();
+//                            } catch (IOException ex) {
+//                                Logger.getLogger(Map.class.getName()).log(Level.SEVERE, null, ex);
+//                            }
+//                            //sets colours of nodes with current player's armies
+//                            SetColours();
+//
+//                            ClearMenuInfo();
+//                            ClearPopupMenu();
+//                        }
+//                    });
+//                    //finally, adds this item to the popup menu.
+//                    popupMenu.add(menuItemMove);
+//                }
+//            } else if (roads.locationB.id == army[0][2]) {
+//                if (roads.capacity >= army[0][1] || (roads.capacity == 0 && army[0][3] == 1)) {                
+//                    //adds locationB name to a final string
+//                    final String movingTo = roads.locationA.name;
+//                    //creates the menu item for this road
+//                    JMenuItem menuItemMove = new JMenuItem(movingTo);
+//                    final Road roads2 = roads;
+//                    final String listText = (ConvertFullSize(army[0][1], army[0][3]) +
+//                            "army will move from " + roads.locationB.name + " to " +
+//                            roads.locationA.name);
+//                    menuItemMove.addActionListener(new ActionListener() {
+//                        @Override
+//                        public void actionPerformed(ActionEvent event) {
+//                            MapEvent.addMovement(army[0][0], roads2, roads2.locationA.id);
+//                            list1.add(listText);
+//                            
+//                            //try catch for setting default node colours
+//                            try {
+//                                SetDefaultColours();
+//                            } catch (IOException ex) {
+//                                Logger.getLogger(Map.class.getName()).log(Level.SEVERE, null, ex);
+//                            }
+//                            //sets colours of nodes with current player's armies
+//                            SetColours();
+//
+//                            ClearMenuInfo();
+//                            ClearPopupMenu();
+//                        }
+//                    });
+//                    //finally, adds this item to the popup menu.
+//                    popupMenu.add(menuItemMove);
+//                }
+//            } 
+//            if(roads.locationA.id == army[0][2] && returnSet == false) {
+//                returnSet = true;
+//                //for keeping an army at the current node (to cancel a move)
+//                    final String movingTo = roads.locationA.name;
+//                    //creates the menu item for this road
+//                    JMenuItem menuItemMove = new JMenuItem("Stay at " + movingTo);
+//                    final Road roads2 = roads;
+//                    final String listText = (ConvertFullSize(army[0][1], army[0][3]) +
+//                            "army will remain at " + roads.locationA.name);
+//                    menuItemMove.addActionListener(new ActionListener() {
+//                        @Override
+//                        public void actionPerformed(ActionEvent event) {
+//                            MapEvent.addMovement(army[0][0], roads2, roads2.locationA.id);
+//                            list1.add(listText);
+//                            
+//                            //try catch for setting default node colours
+//                            try {
+//                                SetDefaultColours();
+//                            } catch (IOException ex) {
+//                                Logger.getLogger(Map.class.getName()).log(Level.SEVERE, null, ex);
+//                            }
+//                            //sets colours of nodes with current player's armies
+//                            SetColours();
+//
+//                            ClearMenuInfo();
+//                            ClearPopupMenu();
+//                        }
+//                    });
+//                    //finally, adds this item to the popup menu.
+//                    popupMenu.add(menuItemMove);
+//            }  else if(roads.locationB.id == army[0][2] && returnSet == false) {
+//                returnSet = true;
+//                //for keeping an army at the current node (to cancel a move)
+//                    final String movingTo = "Stay at " + roads.locationB.name;
+//                    //creates the menu item for this road
+//                    JMenuItem menuItemMove = new JMenuItem(movingTo);
+//                    final Road roads2 = roads;
+//                    final String listText = (ConvertFullSize(army[0][1], army[0][3]) +
+//                            "army will remain at " + roads.locationB.name);
+//                    menuItemMove.addActionListener(new ActionListener() {
+//                        @Override
+//                        public void actionPerformed(ActionEvent event) {
+//                            MapEvent.addMovement(army[0][0], roads2, roads2.locationB.id);
+//                            list1.add(listText);
+//                            
+//                            //try catch for setting default node colours
+//                            try {
+//                                SetDefaultColours();
+//                            } catch (IOException ex) {
+//                                Logger.getLogger(Map.class.getName()).log(Level.SEVERE, null, ex);
+//                            }
+//                            //sets colours of nodes with current player's armies
+//                            SetColours();
+//
+//                            ClearMenuInfo();
+//                            ClearPopupMenu();
+//                        }
+//                    });
+//                    //finally, adds this item to the popup menu.
+//                    popupMenu.add(menuItemMove);
+//            }
+//        }
+//        //adds the menu item for canceling movement
+//        
+//
+//        //re-sets the popupmenu as updated and visible
+//        popupMenu.setLocation(x, y);
+//        popupMenu.updateUI();
+//        popupMenu.setVisible(true);
+//
+//    }
+
+        private void MoveTo(final int[][] army) {
         ClearPopupMenu();
         Boolean returnSet = false;
 
@@ -719,14 +885,14 @@ public class Map extends javax.swing.JFrame {
             //first it checks if locationA on the road is the current node,
             //then it will do the same commands for if it is locationB
             if (roads.locationA.id == army[0][2]) {
-                if (roads.capacity >= army[0][1] || (roads.capacity == 0 && army[0][3] == 1)) {
+                if (roads.capacity >= army[0][1]) {
                     //adds locationB name to a final string
                     final String movingTo = roads.locationB.name;
                     //creates the menu item for this road
                     JMenuItem menuItemMove = new JMenuItem(movingTo);
                     final Road roads2 = roads;
                     final String listText = (ConvertFullSize(army[0][1], army[0][3])
-                            + "army will move from " + roads.locationA.name + " to " +
+                            + "army unit will move from " + roads.locationA.name + " to " +
                             roads.locationB.name);
                     menuItemMove.addActionListener(new ActionListener() {
                         @Override
@@ -749,16 +915,95 @@ public class Map extends javax.swing.JFrame {
                     });
                     //finally, adds this item to the popup menu.
                     popupMenu.add(menuItemMove);
+                //next if statement checks for fleet-only pathways
+                } else if(roads.capacity == 0 && army[0][3] == 1) {
+                    //ensures the season is not winter
+                    if(Global.season != 0) {
+                        
+                        //creates the movement for a fleet to travel this road alone
+                        final String movingTo = roads.locationB.name;
+                        //creates the menu item for this road
+                        JMenuItem menuItemMove = new JMenuItem(movingTo);
+                        final Road roads2 = roads;
+                        final String listText = (ConvertFullSize(army[0][1], army[0][3])
+                                + "army unit will move from " + roads.locationA.name + " to " +
+                                roads.locationB.name);
+                        menuItemMove.addActionListener(new ActionListener() {
+                            @Override
+                            public void actionPerformed(ActionEvent event) {
+                                MapEvent.addMovement(army[0][0], roads2, roads2.locationB.id);
+                                list1.add(listText);
+
+                                //try catch for setting default node colours
+                                try {
+                                    SetDefaultColours();
+                                } catch (IOException ex) {
+                                    Logger.getLogger(Map.class.getName()).log(Level.SEVERE, null, ex);
+                                }
+                                //sets colours of nodes with current player's armies
+                                SetColours();
+
+                                ClearMenuInfo();
+                                ClearPopupMenu();
+                            }
+                        });
+                        //finally, adds this item to the popup menu.
+                        popupMenu.add(menuItemMove);
+                        
+                        
+                        //creates an array of all armies to check if the fleet
+                        //can ferry a small army
+                        int[][] allArmies = null;
+                        allArmies = ObtainArmies(allArmies);
+                        for(int[] selectedArmy : allArmies) {
+                            //if army is at node, is small, and is not fleet
+                            if (selectedArmy[2] == nodeSelected && selectedArmy[1] == 5
+                                    && selectedArmy[3] == 0) {
+                                //adds locationB name to a final string
+                                String movingToFerry = roads.locationB.name;
+                                //creates the menu item for this road
+                                JMenuItem menuItemMove2 = new JMenuItem("Ferry small army to " + movingToFerry);
+                                final Road roads3 = roads;
+                                final String listText2 = (ConvertFullSize(army[0][1], army[0][3])
+                                        + "army unit will ferry a small army from " + roads.locationA.name + " to " +
+                                        roads.locationB.name);
+                                menuItemMove.addActionListener(new ActionListener() {
+                                    @Override
+                                    public void actionPerformed(ActionEvent event) {
+                                        //MapEvent.addMovement(army[0][0], roads3, roads3.locationB.id);
+                                        //ADD NEW METHOD HERE ------------------------------------------------------------------------
+                                        list1.add(listText2);
+
+                                        //try catch for setting default node colours
+                                        try {
+                                            SetDefaultColours();
+                                        } catch (IOException ex) {
+                                            Logger.getLogger(Map.class.getName()).log(Level.SEVERE, null, ex);
+                                        }
+                                        //sets colours of nodes with current player's armies
+                                        SetColours();
+
+                                        ClearMenuInfo();
+                                        ClearPopupMenu();
+                                    }
+                                });
+                                //finally, adds this item to the popup menu.
+                                popupMenu.add(menuItemMove2);
+                                
+                            }
+                        }
+                        
+                    }
                 }
             } else if (roads.locationB.id == army[0][2]) {
-                if (roads.capacity >= army[0][1] || (roads.capacity == 0 && army[0][3] == 1)) {                
+                if (roads.capacity >= army[0][1]) {                
                     //adds locationB name to a final string
                     final String movingTo = roads.locationA.name;
                     //creates the menu item for this road
                     JMenuItem menuItemMove = new JMenuItem(movingTo);
                     final Road roads2 = roads;
                     final String listText = (ConvertFullSize(army[0][1], army[0][3]) +
-                            "army will move from " + roads.locationB.name + " to " +
+                            "army unit will move from " + roads.locationB.name + " to " +
                             roads.locationA.name);
                     menuItemMove.addActionListener(new ActionListener() {
                         @Override
@@ -781,6 +1026,84 @@ public class Map extends javax.swing.JFrame {
                     });
                     //finally, adds this item to the popup menu.
                     popupMenu.add(menuItemMove);
+                } else if(roads.capacity == 0 && army[0][3] == 1) {
+                    //ensures the season is not winter
+                    if(Global.season != 0) {
+                        //creates the movement for a fleet to travel this road alone
+                        final String movingTo = roads.locationA.name;
+                        //creates the menu item for this road
+                        JMenuItem menuItemMove = new JMenuItem(movingTo);
+                        final Road roads2 = roads;
+                        final String listText = (ConvertFullSize(army[0][1], army[0][3])
+                                + "army unit will move from " + roads.locationB.name + " to " +
+                                roads.locationA.name);
+                        menuItemMove.addActionListener(new ActionListener() {
+                            @Override
+                            public void actionPerformed(ActionEvent event) {
+                                MapEvent.addMovement(army[0][0], roads2, roads2.locationA.id);
+                                list1.add(listText);
+
+                                //try catch for setting default node colours
+                                try {
+                                    SetDefaultColours();
+                                } catch (IOException ex) {
+                                    Logger.getLogger(Map.class.getName()).log(Level.SEVERE, null, ex);
+                                }
+                                //sets colours of nodes with current player's armies
+                                SetColours();
+
+                                ClearMenuInfo();
+                                ClearPopupMenu();
+                            }
+                        });
+                        //finally, adds this item to the popup menu.
+                        popupMenu.add(menuItemMove);
+                        
+                        
+                        //creates an array of all armies to check if the fleet
+                        //can ferry a small army
+                        int[][] allArmies = null;
+                        allArmies = ObtainArmies(allArmies);
+                        for(int[] selectedArmy : allArmies) {
+                            //if army is at node, is small, and is not fleet
+                            if (selectedArmy[2] == nodeSelected && selectedArmy[1] == 5
+                                    && selectedArmy[3] == 0) {
+                                //adds locationB name to a final string
+                                final String movingTo2 = roads.locationA.name;
+                                //creates the menu item for this road
+                                JMenuItem menuItemMove2 = new JMenuItem("Ferry small army to " + movingTo2);
+                                final Road roads22 = roads;
+                                final String listText2 = (ConvertFullSize(army[0][1], army[0][3])
+                                        + "army unit will ferry a small army from " + roads.locationB.name + " to " +
+                                        roads.locationA.name);
+                                menuItemMove.addActionListener(new ActionListener() {
+                                    @Override
+                                    public void actionPerformed(ActionEvent event) {
+                                        //MapEvent.addMovement(army[0][0], roads22, roads22.locationB.id);
+                                        //ADD NEW METHOD HERE ------------------------------------------------------------------------
+                                        list1.add(listText2);
+
+                                        //try catch for setting default node colours
+                                        try {
+                                            SetDefaultColours();
+                                        } catch (IOException ex) {
+                                            Logger.getLogger(Map.class.getName()).log(Level.SEVERE, null, ex);
+                                        }
+                                        //sets colours of nodes with current player's armies
+                                        SetColours();
+
+                                        ClearMenuInfo();
+                                        ClearPopupMenu();
+                                    }
+                                });
+                                //finally, adds this item to the popup menu.
+                                popupMenu.add(menuItemMove2);
+                                
+                            }
+                        }
+                        
+                        
+                    }
                 }
             } 
             if(roads.locationA.id == army[0][2] && returnSet == false) {
@@ -791,7 +1114,7 @@ public class Map extends javax.swing.JFrame {
                     JMenuItem menuItemMove = new JMenuItem("Stay at " + movingTo);
                     final Road roads2 = roads;
                     final String listText = (ConvertFullSize(army[0][1], army[0][3]) +
-                            "army will remain at " + roads.locationA.name);
+                            "army unit will remain at " + roads.locationA.name);
                     menuItemMove.addActionListener(new ActionListener() {
                         @Override
                         public void actionPerformed(ActionEvent event) {
@@ -821,7 +1144,7 @@ public class Map extends javax.swing.JFrame {
                     JMenuItem menuItemMove = new JMenuItem(movingTo);
                     final Road roads2 = roads;
                     final String listText = (ConvertFullSize(army[0][1], army[0][3]) +
-                            "army will remain at " + roads.locationB.name);
+                            "army unit will remain at " + roads.locationB.name);
                     menuItemMove.addActionListener(new ActionListener() {
                         @Override
                         public void actionPerformed(ActionEvent event) {
@@ -1528,7 +1851,7 @@ public class Map extends javax.swing.JFrame {
         //a base menu item always added to the popup menu that, when clicked,
         //clears and closes the popup menu.
         ClearPopupMenu();
-        ClearMenuInfo();
+
         try {
             SetDefaultColours();
         } catch (IOException ex) {
@@ -1543,7 +1866,6 @@ public class Map extends javax.swing.JFrame {
 
     private void buttonMapImageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonMapImageActionPerformed
         ClearPopupMenu();
-        ClearMenuInfo();
         try {
             SetDefaultColours();
         } catch (IOException ex) {
@@ -1584,12 +1906,12 @@ public class Map extends javax.swing.JFrame {
         //for the next player
         if (Global.curPlayer == 0) {
             Global.curPlayer = 1;
-            labelCurPlayer.setText("Player " + (Global.curPlayer + 1) + "'s turn");
-            buttonNext.setText(labelCurPlayer.getText() + ", click here to proceed.");
+            labelCurPlayer.setText("Blue team's turn");
+            buttonNext.setText("Blue team, click here to proceed.");            
         } else {
             Global.curPlayer = 0;
-            labelCurPlayer.setText("Player " + (Global.curPlayer + 1) + "'s turn");
-            buttonNext.setText(labelCurPlayer.getText() + ", click here to proceed.");
+            labelCurPlayer.setText("Red team's turn");
+            buttonNext.setText("Red team, click here to proceed.");
         }
         
         panelMap.setVisible(false);
@@ -1613,7 +1935,6 @@ public class Map extends javax.swing.JFrame {
 
     private void buttonBackdropActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBackdropActionPerformed
         ClearPopupMenu();
-        ClearMenuInfo();
         try {
             SetDefaultColours();
         } catch (IOException ex) {
