@@ -29,6 +29,7 @@ public class Scenario {
             case 0:
                 game = new Game(); // start a new game
                 game.updateWeather(); // set the weather conditions
+                game.setMaxTurnCount(20);
                 setMapParameters(); // set up the scenario map, all roads and nodes
                 setPlayers(); // set the players based on faction properties
                 setCombatUnits(); // set the combat units based on scenario

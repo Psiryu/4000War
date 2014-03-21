@@ -11,15 +11,12 @@
 public class CombatUnit extends Game {
 
     Player faction; // the faction(player) the unit belongs to
-    int cUnitID; // unit id
-    int size; // total size of the army {0..15}
-    int illnessRating; // total illness rating
-    int distanceFromCapital; // distance from capital given by node value
-    int timeStationary; // total number of turns the unit does not move
+    int cUnitID, size, illnessRating, distanceFromCapital, timeStationary; // unit properties  
     Node previousLocation; // the previous location occupied by the unit
     Node location; // the current location of the unit
     int checkIllnessToggle = 0; // the value corresponding to a possible size decrease
     Boolean isFleet; // true if the unit is a fleet
+    Boolean[] properties;
     int supplyLevel; // supply level held by the unit
 
     // Constructor of combat units
@@ -28,11 +25,14 @@ public class CombatUnit extends Game {
         size = _size; // get size
         illnessRating = _healthRating; // set initial health rating
         location = _location; // set starting location
+        previousLocation = _location;
         faction = _faction; // set faction affililation
         isFleet = _isFleet; // set unit status, namely if it is a fleet
         supplyLevel = 3;
+        timeStationary = 0;
+        setDistanceFromCapital();
     }
-
+    
     // Method to obtain a combat unit's battle strength
     int GetBattleStrengh() {
         int strength; // temp variable to store strength calculation

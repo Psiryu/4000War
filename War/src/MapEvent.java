@@ -5,6 +5,7 @@
  */
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import javax.swing.JOptionPane;
 
 /**
@@ -32,6 +33,10 @@ public class MapEvent {
     private static ArrayList<Road> redCombatRoad = new ArrayList<Road>();
     private static ArrayList<Road> blueCombatRoad = new ArrayList<Road>();
     private static ArrayList<CombatInstance> combatQueue = new ArrayList<CombatInstance>();
+    private static ArrayList<CombatUnit> resolvedQueueC = new ArrayList<CombatUnit>();
+    private static ArrayList<ArrayList<Node>> resolvedQueueN = new ArrayList<ArrayList<Node>>();
+    private static ArrayList<CombatUnit> defeatQueue = new ArrayList<CombatUnit>();
+    private static HashMap ferryList = new HashMap();
 
     // Constructor for MapEvent
     public MapEvent() {
@@ -123,8 +128,86 @@ public class MapEvent {
 
     }
 
-    public static void addMovementFerry(int fleetNum, int unitNum, Road road, int endLocationNum) {
+    public static void deafeatedUnits(CombatUnit unit) {
 
+    }
+
+    public static void addMovementFerry(int fleetNum, int unitNum, Road road, int endLocationNum) {
+        CombatUnit unit = null;
+
+        // determine the player to be used
+        if (Global.curPlayer == 0) {
+            for (CombatUnit CUnits : Scenario.redPlayer.combatUnits) {
+                if (CUnits.cUnitID == unitNum) {
+                    unit = CUnits;
+                    ferryList.put(fleetNum, unit);
+                    redPlayer.combatUnits.remove(unit);
+                    addMovement(fleetNum, road, endLocationNum);
+                    break;
+                }
+            }
+        } else {
+            for (CombatUnit CUnits : Scenario.bluePlayer.combatUnits) {
+                if (CUnits.cUnitID == unitNum) {
+                    unit = CUnits;
+                    ferryList.put(fleetNum, unit);
+                    bluePlayer.combatUnits.remove(unit);
+                    addMovement(fleetNum, road, endLocationNum);
+                    break;
+                }
+            }
+        }
+    }
+
+    public static void removeMovementFerry(int fleetNum, Road road, int endLocationNum) {
+        CombatUnit unit = null;
+        unit = (CombatUnit) ferryList.get(fleetNum);
+        ferryList.remove(fleetNum);
+        
+        // determine the player to be used
+        if (Global.curPlayer == 0) {
+            redPlayer.combatUnits.add(unit);
+        } else {
+            bluePlayer.combatUnits.add(unit);
+        }
+
+        addMovement(fleetNum, road, endLocationNum);
+    }
+
+    private static void fulfillMovement() {
+        
+    }
+
+    private static void fulfillFerry(int fleetNum, Node endLocation) {
+        CombatUnit fleet = null;
+        CombatUnit unit = (CombatUnit) ferryList.get(fleetNum);
+        ferryList.remove(fleetNum);
+        
+        if (unit.faction.playerID == 0) {
+            redPlayer.combatUnits.add(unit);
+            for (CombatUnit CUnits : Scenario.redPlayer.combatUnits) {
+                if (CUnits.cUnitID == fleetNum) {
+                    fleet = CUnits;
+                    redPlayer.combatUnits.get(redPlayer.combatUnits.indexOf(fleet)).previousLocation = redPlayer.combatUnits.get(redPlayer.combatUnits.indexOf(fleet)).location;
+                    redPlayer.combatUnits.get(redPlayer.combatUnits.indexOf(fleet)).location = endLocation;
+                    redPlayer.combatUnits.get(redPlayer.combatUnits.indexOf(unit)).previousLocation = redPlayer.combatUnits.get(redPlayer.combatUnits.indexOf(unit)).location;
+                    redPlayer.combatUnits.get(redPlayer.combatUnits.indexOf(unit)).location = endLocation;
+                    break;
+                }
+            }
+        } else {
+            bluePlayer.combatUnits.add(unit);
+            for (CombatUnit CUnits : Scenario.bluePlayer.combatUnits) {
+                if (CUnits.cUnitID == fleetNum) {
+                    fleet = CUnits;
+                    bluePlayer.combatUnits.get(bluePlayer.combatUnits.indexOf(fleet)).previousLocation = bluePlayer.combatUnits.get(bluePlayer.combatUnits.indexOf(fleet)).location;
+                    bluePlayer.combatUnits.get(bluePlayer.combatUnits.indexOf(fleet)).location = endLocation;
+                    bluePlayer.combatUnits.get(bluePlayer.combatUnits.indexOf(unit)).previousLocation = bluePlayer.combatUnits.get(bluePlayer.combatUnits.indexOf(unit)).location;
+                    bluePlayer.combatUnits.get(bluePlayer.combatUnits.indexOf(unit)).location = endLocation;
+                    break;
+                }
+            }
+        }
     }
 
     public static void postCombatSimulation() {
@@ -251,26 +334,25 @@ public class MapEvent {
             blueCombatUnitPreviousLocation.clear();
             blueCombatUnitEndLocation.clear();
         }
-
-        // for each of the possible nodes/locations, check if two opposing units collided
-        for (int i = 0; i < Scenario.listOfNodes.length; i++) {
-            for (int j = 0; j < redUnitEnd.size(); j++) { // find red units on this node
-                if (redUnitEnd.get(j).id == Scenario.listOfNodes[i].id) {
+        for (Node listOfNode : Scenario.listOfNodes) {
+            for (int j = 0; j < redUnitEnd.size(); j++) {
+                // find red units on this node
+                if (redUnitEnd.get(j).id == listOfNode.id) {
                     redCombatListNode.add(combatUnitsRed.get(j));
                     redCombatUnitPreviousLocation.add(combatUnitsRed.get(j).location);
                     redCombatUnitEndLocation.add(redUnitEnd.get(j));
                     redCombatRoad.add(null);
                 }
             }
-            for (int j = 0; j < blueUnitEnd.size(); j++) { // find blue units on this node
-                if (blueUnitEnd.get(j).id == Scenario.listOfNodes[i].id) {
+            for (int j = 0; j < blueUnitEnd.size(); j++) {
+                // find blue units on this node
+                if (blueUnitEnd.get(j).id == listOfNode.id) {
                     blueCombatListNode.add(combatUnitsBlue.get(j));
                     blueCombatUnitPreviousLocation.add(combatUnitsBlue.get(j).location);
                     blueCombatUnitEndLocation.add(blueUnitEnd.get(j));
                     blueCombatRoad.add(null);
                 }
             }
-
             // if both red and blue units were found on this node, then activate a battle on node
             if (redCombatListNode.size() > 0 && blueCombatListNode.size() > 0) {
                 CombatInstance combat = new CombatInstance(redCombatListCollision, blueCombatListCollision,
@@ -286,7 +368,6 @@ public class MapEvent {
                  blueCombatListNode, blueCombatUnitPreviousLocation, blueCombatUnitEndLocation);
                  */
             }
-
             // clear the lists for use in the next node case
             redCombatListNode.clear();
             redCombatUnitPreviousLocation.clear();
@@ -300,9 +381,20 @@ public class MapEvent {
         for (int j = 0; j < combatUnitsRed.size(); j++) { // for each of the possible red units
             // check if the unit is present in either node or road conflicts
             if (!redList.contains(combatUnitsRed.get(j))) {
-                // if the unit did not participate in battle, move the unit to intended location
-                combatUnitsRed.get(j).previousLocation = combatUnitsRed.get(j).location;
-                combatUnitsRed.get(j).location = redUnitEnd.get(j);
+                final int j2 = j;
+                ArrayList<Node> temp = new ArrayList<Node>() {
+                    {
+                        add(combatUnitsRed.get(j2).location);
+                        add(redUnitEnd.get(j2));
+                    }
+                };
+                resolvedQueueC.add(combatUnitsRed.get(j2));
+                resolvedQueueN.add(temp); /*
+                 // if the unit did not participate in battle, move the unit to intended location
+                 combatUnitsRed.get(j).previousLocation = combatUnitsRed.get(j).location;
+                 combatUnitsRed.get(j).location = redUnitEnd.get(j);
+                 */
+
             }
         }
 
@@ -310,9 +402,20 @@ public class MapEvent {
         for (int j = 0; j < combatUnitsBlue.size(); j++) { // for each of the possible blue units
             // check if the unit is present in either node or road conflict
             if (!blueList.contains(combatUnitsBlue.get(j))) {
-                // if the unit did not participate in battle, move the unit to the intended location
-                combatUnitsBlue.get(j).previousLocation = combatUnitsBlue.get(j).location;
-                combatUnitsBlue.get(j).location = blueUnitEnd.get(j);
+                final int j2 = j;
+                ArrayList<Node> temp = new ArrayList<Node>() {
+                    {
+                        add(combatUnitsBlue.get(j2).location);
+                        add(blueUnitEnd.get(j2));
+                    }
+                };
+                resolvedQueueC.add(combatUnitsBlue.get(j2));
+                resolvedQueueN.add(temp);
+                /*
+                 // if the unit did not participate in battle, move the unit to the intended location
+                 combatUnitsBlue.get(j).previousLocation = combatUnitsBlue.get(j).location;
+                 combatUnitsBlue.get(j).location = blueUnitEnd.get(j);
+                 */
             }
         }
         clearRegistry();
@@ -320,9 +423,15 @@ public class MapEvent {
     }
 
     public static void simulateMovement() {
-        for (int i = 0; i < combatQueue.size();i++){
-            
-        }        
+        for (int i = 0; i < combatQueue.size(); i++) {
+            /*
+             scheme:
+             simulate the collisions observed
+             obtain results
+             simulate movement again
+             repeat for all fleeing units
+             */
+        }
     }
 
     // Method called to in order to handle unit merges
