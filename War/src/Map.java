@@ -2006,6 +2006,11 @@ public class Map extends javax.swing.JFrame {
         } catch (IOException ex) {
             Logger.getLogger(Map.class.getName()).log(Level.SEVERE, null, ex);
         }
+        try {
+            SetEnemyColours();
+        } catch (IOException ex) {
+            Logger.getLogger(Map.class.getName()).log(Level.SEVERE, null, ex);
+        }
         //sets colours of nodes with current player's armies
         SetColours();
     }//GEN-LAST:event_buttonFinishTurnActionPerformed
