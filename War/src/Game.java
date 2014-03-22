@@ -89,6 +89,7 @@ public class Game {
                 // decriment the supply level of the unit
                 Scenario.redPlayer.combatUnits.get(i).removeSupplies();
             }
+            Scenario.redPlayer.generateRumourList();
             // repeat the calculations for the blue faction
             for (int i = 0; i < Scenario.bluePlayer.combatUnits.size(); i++) {
                 Scenario.bluePlayer.combatUnits.get(i).setTimeStationary();
@@ -96,6 +97,7 @@ public class Game {
                 Scenario.bluePlayer.combatUnits.get(i).setSize();
                 Scenario.bluePlayer.combatUnits.get(i).removeSupplies();
             }
+            Scenario.bluePlayer.generateRumourList();
             updateWeather(); // change the weather conditions
             Global.season = (Global.season + 1) % 4; // change the season
             MapEvent.clearRegistry();

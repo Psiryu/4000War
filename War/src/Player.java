@@ -41,7 +41,8 @@ public class Player extends Game {
         rumours = new Rumour(playerID);
     }
     
-    public void generateRomourList(){
+    public void generateRumourList(){
+        rumours.updateUnitRegistry();
         enemyIntelligence = rumours.playerRumourSummary();
     }
 

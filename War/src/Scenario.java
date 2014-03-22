@@ -124,10 +124,6 @@ public class Scenario {
                 redPlayer = new Player(true, listOfNodes[10], 0, "red");
             }
         }
-        redPlayer.setUpRumours();
-        redPlayer.generateRomourList();
-        bluePlayer.setUpRumours();
-        bluePlayer.generateRomourList();
     }
 
     // Method to set up the units
@@ -174,6 +170,11 @@ public class Scenario {
         redPlayer.setInitialArmyLevel();
         bluePlayer.setCurrentArmyLevel();
         bluePlayer.setInitialArmyLevel();
+        
+        redPlayer.setUpRumours();
+        redPlayer.generateRumourList();
+        bluePlayer.setUpRumours();
+        bluePlayer.generateRumourList();
     }
 
     public static Road findRoad(Node locationA, Node locationB) {
