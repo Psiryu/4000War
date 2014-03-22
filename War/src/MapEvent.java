@@ -408,7 +408,7 @@ public class MapEvent {
                 }
                 resolvedQueueC.add(combatUnitsRed.get(j2));
                 resolvedQueueN.add(temp);
-                 // if the unit did not participate in battle, move the unit to intended location
+                // if the unit did not participate in battle, move the unit to intended location
                 //combatUnitsRed.get(j).previousLocation = combatUnitsRed.get(j).location;
                 //combatUnitsRed.get(j).location = redUnitEnd.get(j);
             }
@@ -430,11 +430,11 @@ public class MapEvent {
                 } else {
                     combatUnitsBlue.get(j2).previousLocation = combatUnitsBlue.get(j2).location;
                     combatUnitsBlue.get(j2).location = blueUnitEnd.get(j);
-                }   
+                }
                 resolvedQueueC.add(combatUnitsBlue.get(j2));
                 resolvedQueueN.add(temp);
 
-                 // if the unit did not participate in battle, move the unit to the intended location
+                // if the unit did not participate in battle, move the unit to the intended location
                 //combatUnitsBlue.get(j).previousLocation = combatUnitsBlue.get(j).location;
                 //combatUnitsBlue.get(j).location = blueUnitEnd.get(j);
             }
@@ -536,15 +536,15 @@ public class MapEvent {
          currentPlayer.combatUnits.remove(unit[1]);
          */
         if (Global.curPlayer == 0) {
-            temp = new CombatUnit(false, unit[0].cUnitID, sumSize, health, unit[0].location, redPlayer);
-            redPlayer.combatUnits.add(temp);
-            redPlayer.combatUnits.remove(unit[0]);
-            redPlayer.combatUnits.remove(unit[1]);
+            temp = new CombatUnit(false, unit[0].cUnitID, sumSize, health, unit[0].location, Scenario.redPlayer);
+            Scenario.redPlayer.combatUnits.add(temp);
+            Scenario.redPlayer.combatUnits.remove(unit[0]);
+           Scenario.redPlayer.combatUnits.remove(unit[1]);
         } else {
-            temp = new CombatUnit(false, unit[0].cUnitID, sumSize, health, unit[0].location, bluePlayer);
-            bluePlayer.combatUnits.add(temp);
-            bluePlayer.combatUnits.remove(unit[0]);
-            bluePlayer.combatUnits.remove(unit[1]);
+            temp = new CombatUnit(false, unit[0].cUnitID, sumSize, health, unit[0].location, Scenario.bluePlayer);
+            Scenario.bluePlayer.combatUnits.add(temp);
+            Scenario.bluePlayer.combatUnits.remove(unit[0]);
+            Scenario.bluePlayer.combatUnits.remove(unit[1]);
         }
         /*
          currentPlayer.addUnit(temp);
@@ -628,16 +628,16 @@ public class MapEvent {
             one = new CombatUnit(false, unit.cUnitID, divSize, unit.illnessRating, unit.location, Scenario.redPlayer);
             two = new CombatUnit(false, id, divSize, unit.illnessRating, unit.location, Scenario.redPlayer);
 
-            redPlayer.combatUnits.remove(unit);
-            redPlayer.combatUnits.add(one);
-            redPlayer.combatUnits.add(two);
+            Scenario.redPlayer.combatUnits.remove(unit);
+            Scenario.redPlayer.combatUnits.add(one);
+            Scenario.redPlayer.combatUnits.add(two);
         } else {
             one = new CombatUnit(false, unit.cUnitID, divSize, unit.illnessRating, unit.location, Scenario.bluePlayer);
             two = new CombatUnit(false, id, divSize, unit.illnessRating, unit.location, Scenario.bluePlayer);
 
-            bluePlayer.combatUnits.remove(unit);
-            bluePlayer.combatUnits.add(one);
-            bluePlayer.combatUnits.add(two);
+            Scenario.bluePlayer.combatUnits.remove(unit);
+            Scenario.bluePlayer.combatUnits.add(one);
+            Scenario.bluePlayer.combatUnits.add(two);
         }
         /*one.faction.removeUnit(unit);
          one.faction.addUnit(one);
