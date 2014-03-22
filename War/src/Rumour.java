@@ -149,13 +149,13 @@ public class Rumour {
 
             if (timeAsAFunction > 1.1) {
                 ArrayList<Integer> neighbours = neighbourFind(nodeID);
-                int rand = random.nextInt(neighbours.size() - 1);
+                int rand = random.nextInt(neighbours.size());
                 rumourList.set(0, neighbours.get(rand));
             } else if (timeAsAFunction > 1.9) {
                 ArrayList<Integer> neighbours = neighbourFind(nodeID);
-                int rand = random.nextInt(neighbours.size() - 1);
+                int rand = random.nextInt(neighbours.size());
                 neighbours = neighbourFind(neighbours.get(rand));
-                rand = random.nextInt(neighbours.size() - 1);
+                rand = random.nextInt(neighbours.size());
                 rumourList.set(0, neighbours.get(rand));
             }
 
