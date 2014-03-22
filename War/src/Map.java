@@ -1927,6 +1927,11 @@ public class Map extends javax.swing.JFrame {
         } catch (IOException ex) {
             Logger.getLogger(Map.class.getName()).log(Level.SEVERE, null, ex);
         }
+        try {
+            SetEnemyColours();
+        } catch (IOException ex) {
+            Logger.getLogger(Map.class.getName()).log(Level.SEVERE, null, ex);
+        }
         SetColours();
     }//GEN-LAST:event_buttonMapImageActionPerformed
 
@@ -2009,6 +2014,11 @@ public class Map extends javax.swing.JFrame {
         ClearPopupMenu();
         try {
             SetDefaultColours();
+        } catch (IOException ex) {
+            Logger.getLogger(Map.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            SetEnemyColours();
         } catch (IOException ex) {
             Logger.getLogger(Map.class.getName()).log(Level.SEVERE, null, ex);
         }
