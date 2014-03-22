@@ -18,6 +18,8 @@ public class Global {
     public static int intScenario; // scenario number
     public static MapEvent mapEvent;
     public static int curPlayer; //global variable for keeping track of whos turn it is
+    public static String gameSummary;
+    
     
     public static void ResetGlobals() {
         opponent = false; //if true, against player. false means AI
@@ -29,5 +31,6 @@ public class Global {
         intScenario = 0; // scenario number
         mapEvent = null;
         curPlayer = 0; //global variable for keeping track of whos turn it is
+        gameSummary = "";
     }
 }
