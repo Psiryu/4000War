@@ -151,7 +151,7 @@ public class MapEvent {
                 if (CUnits.cUnitID == unitNum) {
                     unit = CUnits;
                     ferryList.put(fleetNum, unit);
-                    redPlayer.combatUnits.remove(unit);
+                    Scenario.redPlayer.combatUnits.remove(unit);
                     addMovement(fleetNum, road, endLocationNum);
                     break;
                 }
@@ -161,7 +161,7 @@ public class MapEvent {
                 if (CUnits.cUnitID == unitNum) {
                     unit = CUnits;
                     ferryList.put(fleetNum, unit);
-                    bluePlayer.combatUnits.remove(unit);
+                    Scenario.bluePlayer.combatUnits.remove(unit);
                     addMovement(fleetNum, road, endLocationNum);
                     break;
                 }
@@ -176,9 +176,9 @@ public class MapEvent {
 
         // determine the player to be used
         if (Global.curPlayer == 0) {
-            redPlayer.combatUnits.add(unit);
+            Scenario.redPlayer.combatUnits.add(unit);
         } else {
-            bluePlayer.combatUnits.add(unit);
+            Scenario.bluePlayer.combatUnits.add(unit);
         }
 
         addMovement(fleetNum, road, endLocationNum);
@@ -194,7 +194,7 @@ public class MapEvent {
         ferryList.remove(fleetNum);
 
         if (unit.faction.playerID == 0) {
-            redPlayer.combatUnits.add(unit);
+            Scenario.redPlayer.combatUnits.add(unit);
             for (CombatUnit CUnits : Scenario.redPlayer.combatUnits) {
                 if (CUnits.cUnitID == fleetNum) {
                     fleet = CUnits;
@@ -206,7 +206,7 @@ public class MapEvent {
                 }
             }
         } else {
-            bluePlayer.combatUnits.add(unit);
+            Scenario.bluePlayer.combatUnits.add(unit);
             for (CombatUnit CUnits : Scenario.bluePlayer.combatUnits) {
                 if (CUnits.cUnitID == fleetNum) {
                     fleet = CUnits;
@@ -625,15 +625,15 @@ public class MapEvent {
          currentPlayer.combatUnits.add(two);
          */
         if (Global.curPlayer == 0) {
-            one = new CombatUnit(false, unit.cUnitID, divSize, unit.illnessRating, unit.location, redPlayer);
-            two = new CombatUnit(false, id, divSize, unit.illnessRating, unit.location, redPlayer);
+            one = new CombatUnit(false, unit.cUnitID, divSize, unit.illnessRating, unit.location, Scenario.redPlayer);
+            two = new CombatUnit(false, id, divSize, unit.illnessRating, unit.location, Scenario.redPlayer);
 
             redPlayer.combatUnits.remove(unit);
             redPlayer.combatUnits.add(one);
             redPlayer.combatUnits.add(two);
         } else {
-            one = new CombatUnit(false, unit.cUnitID, divSize, unit.illnessRating, unit.location, bluePlayer);
-            two = new CombatUnit(false, id, divSize, unit.illnessRating, unit.location, bluePlayer);
+            one = new CombatUnit(false, unit.cUnitID, divSize, unit.illnessRating, unit.location, Scenario.bluePlayer);
+            two = new CombatUnit(false, id, divSize, unit.illnessRating, unit.location, Scenario.bluePlayer);
 
             bluePlayer.combatUnits.remove(unit);
             bluePlayer.combatUnits.add(one);
