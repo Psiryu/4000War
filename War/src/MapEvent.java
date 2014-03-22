@@ -365,7 +365,13 @@ public class MapEvent {
             }
             // if both red and blue units were found on this node, then activate a battle on node
             if (redCombatListNode.size() > 0 && blueCombatListNode.size() > 0) {
-                CombatInstance combat = new CombatInstance(redCombatListCollision, blueCombatListCollision,
+                /*
+                public CombatInstance(ArrayList<CombatUnit> _redUnits, ArrayList<CombatUnit> _blueUnits, 
+            ArrayList<Road> _redRoad, ArrayList<Road> _blueRoad,
+            ArrayList<Node> _redEndLocation, ArrayList<Node> _blueEndLocation,
+            ArrayList<Node> _redFromLocation, ArrayList<Node> _blueFromLocation, boolean _isNode)
+                */
+                CombatInstance combat = new CombatInstance(redCombatListNode, blueCombatListNode,
                         redCombatRoad, blueCombatRoad, redCombatUnitEndLocation, blueCombatUnitEndLocation,
                         redCombatUnitPreviousLocation, blueCombatUnitPreviousLocation, true);
 

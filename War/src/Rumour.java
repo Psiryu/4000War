@@ -1,7 +1,9 @@
 
+import static java.lang.Math.abs;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
+import javax.swing.JOptionPane;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -14,12 +16,12 @@ import java.util.Random;
  */
 public class Rumour {
 
-    public static Node[] listOfNodes = Scenario.listOfNodes; // storage of available location
-    public static ArrayList<CombatUnit> listOfUnitsRed = new ArrayList<CombatUnit>(); // storage of current red units
-    public static ArrayList<CombatUnit> listOfUnitsBlue = new ArrayList<CombatUnit>(); // storage of current blue units
-    public static Random random = new Random(); // establish a random variable
-    public static int maximum;
-    public static Player currentPlayer;
+    public Node[] listOfNodes = Scenario.listOfNodes; // storage of available location
+    public ArrayList<CombatUnit> listOfUnitsRed = new ArrayList<CombatUnit>(); // storage of current red units
+    public ArrayList<CombatUnit> listOfUnitsBlue = new ArrayList<CombatUnit>(); // storage of current blue units
+    public Random random = new Random(); // establish a random variable
+    public int maximum;
+    public Player currentPlayer;
 
     // Constructor of the rumour system
     public Rumour(int currentPlayerID) {
@@ -40,8 +42,8 @@ public class Rumour {
         int largestConnections = 0;
         int[] connections = connectedNodes();
 
-        for (int i = connections.length - 1; i >= connections.length - numUnits; i--) {
-            largestConnections += connections[i] * 10;
+        for (int i = connections.length - 1; i >= (connections.length - numUnits); i--) {
+            largestConnections += connections[i];
         }
         return largestConnections;
     }
@@ -53,10 +55,10 @@ public class Rumour {
         for (int i = 0; i < Scenario.listOfNodes.length; i++) {
             for (int j = 0; j < Scenario.listOfRoads.length; j++) {
                 if (Scenario.listOfRoads[j].locationA.id == listOfNodes[i].id || Scenario.listOfRoads[j].locationB.id == listOfNodes[i].id) {
-                    tempCalc++;
+                    tempCalc += Scenario.listOfRoads[j].fogValue;
                 }
             }
-            calculated[i] = tempCalc * 4;
+            calculated[i] = tempCalc + Scenario.listOfNodes[i].fogValue;
             tempCalc = 0;
         }
         Arrays.sort(calculated);
@@ -76,6 +78,7 @@ public class Rumour {
         int nodeFogSum = 0;
         int fogSum;
         int randomFog;
+        double calculatedFog;
 
         for (int i = 0; i < currentPlayer.combatUnits.size(); i++) {
             currentNode = currentPlayer.combatUnits.get(i).location;
@@ -92,9 +95,9 @@ public class Rumour {
         randomFog = (int) (random.nextDouble() * 100);
         fogSum = nodeFogSum + roadFogSum + currentPlayer.politicalPower + randomFog;
 
-        fogSum = (fogSum / maximum);
+        calculatedFog = (double) fogSum / maximum;
 
-        return fogSum;
+        return calculatedFog;
     }
 
     public ArrayList<ArrayList<Integer>> playerRumourSummary() {
@@ -102,9 +105,8 @@ public class Rumour {
         ArrayList<ArrayList<Integer>> assembled = new ArrayList<ArrayList<Integer>>();
 
         for (int i = 0; i < Scenario.listOfNodes.length; i++) {
-            temp.addAll(reportRumour(Scenario.listOfNodes[i].id));
+            temp = reportRumour(Scenario.listOfNodes[i].id);
             assembled.add(temp);
-            temp.clear();
         }
         return assembled;
     }
@@ -113,68 +115,74 @@ public class Rumour {
         ArrayList<Integer> rumourList = new ArrayList<Integer>();
         Node currentNode = Scenario.listOfNodes[nodeID];
         ArrayList<Integer> units = nodeOccupancy(nodeID);
-        double mapEffect = 1.0 - playerFogValueUpdate();
+        double fogUpdate = playerFogValueUpdate();
+        double mapEffect = (1.0 - fogUpdate) * 9;
         double sigma;
         int mean;
         double rumour;
-        boolean flip;
-        int report;
+        int report = 99;
 
-        if (currentNode.timeUnoccupied > 0) {
-            rumour = random.nextGaussian() * (3 - currentNode.timeUnoccupied);
-            for (int i = 0; i < rumour; i++) {
-                report = (int) (random.nextGaussian() * (3 - currentNode.timeUnoccupied));
-                if (report > 3) {
-                    report = 3;
-                }
-                rumourList.add(report);
+        for (int i = 0; i < units.size(); i++) {
+            mean = units.get(i);
+            i++;
+            sigma = mapEffect - (3 * units.get(i));
+            if (sigma < 0) {
+                sigma = 0;
             }
-        } else {
-            for (int i = 0; i < units.size(); i++) {
-                mean = units.get(i);
-                i++;
-                sigma = mapEffect - (3 * units.get(i));
-                if (sigma < 0) {
-                    sigma = 0;
-                }
-                rumour = random.nextGaussian() * sigma;
-                flip = random.nextBoolean();
-                if (flip) {
-                    rumour = rumour * -1;
-                }
-                if (rumour < 0.9 && rumour > -0.9) {
-                    if (rumour > 0.5) {
-                        if (mean == 2) {
-                            report = 1;
-                        } else if (mean == 1) {
-                            report = 2;
-                        } else {
-                            report = 1;
-                        }
-                    } else if (rumour < -0.5) {
-                        if (mean == 2) {
-                            report = 0;
-                        } else if (mean == 1) {
-                            report = 0;
-                        } else {
-                            report = 2;
-                        }
-                    } else {
-                        report = mean;
-                    }
-                    rumourList.add(report);
-                }
-            }
-            if (mapEffect > 0.75) {
-                if (random.nextBoolean()) {
-                    rumourList.add(random.nextInt(2));
-                    rumourList.add(random.nextInt(2));
+            rumour = (abs(random.nextGaussian()) * sigma) / 9;
+
+            if (rumour >= 0.6 && rumour <= 0.8) {
+                if (mean == 2) {
+                    report = 0;
+                    rumourList.add(0);
+                    //JOptionPane.showMessageDialog(null, "At " + currentNode.name + ", rumour size " + report);
+                } else if (mean == 1) {
+                    report = 0;
+                    rumourList.add(0);
+                    //JOptionPane.showMessageDialog(null, "At " + currentNode.name + ", rumour size " + report);
+                } else if (mean == 0) {
+                    report = 2;
+                    rumourList.add(2);
+                    //JOptionPane.showMessageDialog(null, "At " + currentNode.name + ", rumour size " + report);
                 } else {
-                    rumourList.add(random.nextInt(2));
+                    report = 1;
+                    rumourList.add(1);
+                    //JOptionPane.showMessageDialog(null, "At " + currentNode.name + ", rumour size " + report);
                 }
+            } else if (rumour >= 0.4 && rumour < 0.6) {
+                if (mean == 2) {
+                    report = 1;
+                    rumourList.add(1);
+                    //JOptionPane.showMessageDialog(null, "At " + currentNode.name + ", rumour size " + report);
+                } else if (mean == 1) {
+                    report = 2;
+                    rumourList.add(2);
+                    //JOptionPane.showMessageDialog(null, "At " + currentNode.name + ", rumour size " + report);
+                } else if (mean == 0) {
+                    report = 1;
+                    rumourList.add(1);
+                    //JOptionPane.showMessageDialog(null, "At " + currentNode.name + ", rumour size " + report);
+                } else {
+                    report = 0;
+                    rumourList.add(0);
+                    //JOptionPane.showMessageDialog(null, "At " + currentNode.name + ", rumour size " + report);
+                }
+            } else if (rumour < 0.4) {
+                report = mean;
+                rumourList.add(mean);
             }
+            //JOptionPane.showMessageDialog(null, "Rumour at: " + currentNode.name + " With weight: " + rumour + ", Mean: " + mean + ", Report: " + report);
         }
 
+        /*
+         if (mapEffect > 0.75) {
+         if (random.nextBoolean()) {
+         rumourList.add(random.nextInt(2));
+         rumourList.add(random.nextInt(2));
+         } else {
+         rumourList.add(random.nextInt(2));
+         }
+         }*/
         return rumourList;
     }
 
@@ -199,6 +207,9 @@ public class Rumour {
                     scaledSize = 1;
                 } else {
                     scaledSize = 0;
+                }
+                if (currentOpponent.combatUnits.get(i).isFleet) {
+                    scaledSize = 3;
                 }
                 units.add(scaledSize);
                 units.add(currentOpponent.combatUnits.get(i).timeStationary);
