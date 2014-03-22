@@ -26,9 +26,9 @@ public class MapEvent {
     private static ArrayList<CombatUnit> blueCombatListNode = new ArrayList<CombatUnit>(); // list of blue faction units in combat on node
     private static Player redPlayer, bluePlayer, currentPlayer; // player objects for use in the events
     private static ArrayList<Node> redCombatUnitPreviousLocation = new ArrayList<Node>(); // list of red faction previous locations pre-combat
-    private static ArrayList<Node> redCombatUnitEndLocation; // list of red faction tentative end locations pre-combat
-    private static ArrayList<Node> blueCombatUnitPreviousLocation; // list of blue faction previous locations pre-combat
-    private static ArrayList<Node> blueCombatUnitEndLocation; // list of blue faction tentative end locations pre-combat
+    private static ArrayList<Node> redCombatUnitEndLocation = new ArrayList<Node>(); // list of red faction tentative end locations pre-combat
+    private static ArrayList<Node> blueCombatUnitPreviousLocation = new ArrayList<Node>(); // list of blue faction previous locations pre-combat
+    private static ArrayList<Node> blueCombatUnitEndLocation = new ArrayList<Node>(); // list of blue faction tentative end locations pre-combat
     private static Battle battle; // initialize the battle object for method calls
     private static ArrayList<Road> redCombatRoad = new ArrayList<Road>();
     private static ArrayList<Road> blueCombatRoad = new ArrayList<Road>();
@@ -41,23 +41,25 @@ public class MapEvent {
     // Constructor for MapEvent
     public MapEvent() {
         // initialize the parameters
-        combatUnitsRed = new ArrayList<CombatUnit>();
-        combatUnitsBlue = new ArrayList<CombatUnit>();
-        redUnitRoad = new ArrayList<Road>();
-        blueUnitRoad = new ArrayList<Road>();
-        redUnitEnd = new ArrayList<Node>();
-        blueUnitEnd = new ArrayList<Node>();
-        redCombatListCollision = new ArrayList<CombatUnit>();
-        blueCombatListCollision = new ArrayList<CombatUnit>();
-        redCombatListNode = new ArrayList<CombatUnit>();
-        blueCombatListNode = new ArrayList<CombatUnit>();
-        redPlayer = Scenario.redPlayer;
-        bluePlayer = Scenario.bluePlayer;
-        redCombatUnitPreviousLocation = new ArrayList<Node>();
-        redCombatUnitEndLocation = new ArrayList<Node>();
-        blueCombatUnitPreviousLocation = new ArrayList<Node>();
-        blueCombatUnitEndLocation = new ArrayList<Node>();
-        battle = new Battle();
+        /*
+         combatUnitsRed = new ArrayList<CombatUnit>();
+         combatUnitsBlue = new ArrayList<CombatUnit>();
+         redUnitRoad = new ArrayList<Road>();
+         blueUnitRoad = new ArrayList<Road>();
+         redUnitEnd = new ArrayList<Node>();
+         blueUnitEnd = new ArrayList<Node>();
+         redCombatListCollision = new ArrayList<CombatUnit>();
+         blueCombatListCollision = new ArrayList<CombatUnit>();
+         redCombatListNode = new ArrayList<CombatUnit>();
+         blueCombatListNode = new ArrayList<CombatUnit>();
+         redPlayer = Scenario.redPlayer;
+         bluePlayer = Scenario.bluePlayer;
+         redCombatUnitPreviousLocation = new ArrayList<Node>();
+         redCombatUnitEndLocation = new ArrayList<Node>();
+         blueCombatUnitPreviousLocation = new ArrayList<Node>();
+         blueCombatUnitEndLocation = new ArrayList<Node>();
+         battle = new Battle();
+         */
     }
 
     // Method called to to add a movement to the registry
@@ -128,8 +130,16 @@ public class MapEvent {
 
     }
 
-    public static void deafeatedUnits(CombatUnit unit) {
-
+    public static void deafeatedUnitsQueue(CombatUnit unit, Boolean addRemove) {
+        if (addRemove) {
+            if (!defeatQueue.contains(unit)) {
+                defeatQueue.add(unit);
+            }
+        } else {
+            if (defeatQueue.contains(unit)) {
+                defeatQueue.remove(unit);
+            }
+        }
     }
 
     public static void addMovementFerry(int fleetNum, int unitNum, Road road, int endLocationNum) {
@@ -163,7 +173,7 @@ public class MapEvent {
         CombatUnit unit = null;
         unit = (CombatUnit) ferryList.get(fleetNum);
         ferryList.remove(fleetNum);
-        
+
         // determine the player to be used
         if (Global.curPlayer == 0) {
             redPlayer.combatUnits.add(unit);
@@ -175,14 +185,14 @@ public class MapEvent {
     }
 
     private static void fulfillMovement() {
-        
+
     }
 
     private static void fulfillFerry(int fleetNum, Node endLocation) {
         CombatUnit fleet = null;
         CombatUnit unit = (CombatUnit) ferryList.get(fleetNum);
         ferryList.remove(fleetNum);
-        
+
         if (unit.faction.playerID == 0) {
             redPlayer.combatUnits.add(unit);
             for (CombatUnit CUnits : Scenario.redPlayer.combatUnits) {
@@ -418,25 +428,26 @@ public class MapEvent {
                  */
             }
         }
-        clearRegistry();
+        //clearRegistry();
         simulateMovement();
     }
 
     public static void simulateMovement() {
         for (int i = 0; i < combatQueue.size(); i++) {
-            /*
-             scheme:
-             simulate the collisions observed
-             obtain results
-             simulate movement again
-             repeat for all fleeing units
-             */
+            CombatInstance combat = combatQueue.get(i);
+            if (combat.isNode) {
+                battle.PVPdoCampBattleOnNode(combat.redEndLocation.get(0),
+                        combat.redUnits, combat.redFromLocation, combat.redEndLocation,
+                        combat.blueUnits, combat.blueFromLocation, combat.blueEndLocation);
+            } else {
+                battle.doBattleOnRoad(combat.redUnits, combat.redFromLocation, combat.redEndLocation, 
+                        combat.blueUnits, combat.blueFromLocation, combat.blueEndLocation);
+            }
         }
     }
 
     // Method called to in order to handle unit merges
     public static void mergeUnits(int oneNum, int twoNum) {
-        int[] nums = {oneNum, twoNum};
         CombatUnit[] unit = new CombatUnit[2];
         CombatUnit temp; // temporary unit to store new unit
         //boolean found = false; // flag for use in the unit search
