@@ -1156,6 +1156,15 @@ public class Map extends javax.swing.JFrame {
                                 Logger.getLogger(Map.class.getName()).log(Level.SEVERE, null, ex);
                             }
                             SetColours();
+                            
+                            //resets the info panel text for which armies are here
+                            //establishes an army array of all player controlled armies
+                            int[][] armies = null;
+                            //calls to fill the array
+                            armies = ObtainArmies(armies);
+
+                            //displays if any of your armies are at the selected node
+                            ArmiesHere(armies);
 
                             ClearMenuInfo();
                             ClearPopupMenu();
@@ -1303,6 +1312,14 @@ public class Map extends javax.swing.JFrame {
                                         Logger.getLogger(Map.class.getName()).log(Level.SEVERE, null, ex);
                                     }
                                     SetColours();
+                                    
+                                    //establishes an army array of all player controlled armies
+                                    int[][] armies = null;
+                                    //calls to fill the array
+                                    armies = ObtainArmies(armies);
+
+                                    //displays if any of your armies are at the selected node
+                                    ArmiesHere(armies);
 
                                     ClearMenuInfo();
                                     ClearPopupMenu();
@@ -1352,6 +1369,14 @@ public class Map extends javax.swing.JFrame {
                                         Logger.getLogger(Map.class.getName()).log(Level.SEVERE, null, ex);
                                     }
                                     SetColours();
+                                    
+                                    //establishes an army array of all player controlled armies
+                                    int[][] armies = null;
+                                    //calls to fill the array
+                                    armies = ObtainArmies(armies);
+
+                                    //displays if any of your armies are at the selected node
+                                    ArmiesHere(armies);
 
                                     ClearMenuInfo();
                                     ClearPopupMenu();
@@ -1999,18 +2024,18 @@ public class Map extends javax.swing.JFrame {
             //calls the AI
             AI.AI();
             //ends turn again
-            Scenario.game.endTurn();
+           // Scenario.game.endTurn();
             
             //resets the curPlayer controller to the previous player
-            if (Global.curPlayer == 0) {
-                Global.curPlayer = 1;
-                labelCurPlayer.setText("Blue team's turn");
-                buttonNext.setText("Blue team, click here to proceed.");            
-            } else {
-                Global.curPlayer = 0;
-                labelCurPlayer.setText("Red team's turn");
-                buttonNext.setText("Red team, click here to proceed.");
-            }
+//            if (Global.curPlayer == 0) {
+//                Global.curPlayer = 1;
+//                labelCurPlayer.setText("Blue team's turn");
+//                buttonNext.setText("Blue team, click here to proceed.");            
+//            } else {
+//                Global.curPlayer = 0;
+//                labelCurPlayer.setText("Red team's turn");
+//                buttonNext.setText("Red team, click here to proceed.");
+//            }
         }
         
         buttonNext.setVisible(true);

@@ -27,8 +27,22 @@ public class AI {
             robotLegion = Scenario.redPlayer.combatUnits;
             robots = Scenario.redPlayer; }
     
-        //sends it to the initial method
+        //determines if any units controlled should merge or divide
+        Merging(robotLegion, robots);
+        Dividing(robotLegion, robots);
+        
+        //sends it to the initial movement method
         WhereToMove(robotLegion, robots);
+    }
+    
+    //this method handles merging armies
+    private static void Merging(ArrayList<CombatUnit> robotLegion, Player robots) {
+        
+    }
+    
+    //this method handles dividing armies
+    private static void Dividing(ArrayList<CombatUnit> robotLegion, Player robots) {
+        
     }
     
     //this method determines the possible movements
@@ -232,6 +246,15 @@ public class AI {
             MapEvent.addMovement(killBots.cUnitID, road, road.locationB.id);
         else
             MapEvent.addMovement(killBots.cUnitID, road, road.locationA.id);
+
+    }
+    //finalizes ferrying movement
+    private static void FinalizeFerryMovement(CombatUnit killBots, 
+            CombatUnit killBoats, Road road, int location) {
+        if(road.locationA.id == location)
+            MapEvent.addMovementFerry(killBoats.cUnitID, killBots.cUnitID, road, road.locationB.id);
+        else
+            MapEvent.addMovementFerry(killBoats.cUnitID, killBots.cUnitID, road, road.locationB.id);
 
     }
 }
