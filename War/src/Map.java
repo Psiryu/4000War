@@ -817,7 +817,6 @@ public class Map extends javax.swing.JFrame {
                             }
                             SetColours();
 
-                            ClearMenuInfo();
                             ClearPopupMenu();
                         }
                     });
@@ -856,7 +855,6 @@ public class Map extends javax.swing.JFrame {
                                 }
                                 SetColours();
 
-                                ClearMenuInfo();
                                 ClearPopupMenu();
                             }
                         });
@@ -899,8 +897,6 @@ public class Map extends javax.swing.JFrame {
                                             Logger.getLogger(Map.class.getName()).log(Level.SEVERE, null, ex);
                                         }
                                         SetColours();
-
-                                        ClearMenuInfo();
                                         ClearPopupMenu();
                                     }
                                 });
@@ -942,7 +938,6 @@ public class Map extends javax.swing.JFrame {
                             }
                             SetColours();
 
-                            ClearMenuInfo();
                             ClearPopupMenu();
                         }
                     });
@@ -979,7 +974,6 @@ public class Map extends javax.swing.JFrame {
                                 }
                                 SetColours();
 
-                                ClearMenuInfo();
                                 ClearPopupMenu();
                             }
                         });
@@ -1022,8 +1016,6 @@ public class Map extends javax.swing.JFrame {
                                             Logger.getLogger(Map.class.getName()).log(Level.SEVERE, null, ex);
                                         }
                                         SetColours();
-
-                                        ClearMenuInfo();
                                         ClearPopupMenu();
                                     }
                                 });
@@ -1066,7 +1058,6 @@ public class Map extends javax.swing.JFrame {
                             }
                             SetColours();
 
-                            ClearMenuInfo();
                             ClearPopupMenu();
                         }
                     });
@@ -1101,7 +1092,6 @@ public class Map extends javax.swing.JFrame {
                             }
                             SetColours();
 
-                            ClearMenuInfo();
                             ClearPopupMenu();
                         }
                     });
@@ -1166,7 +1156,6 @@ public class Map extends javax.swing.JFrame {
                             //displays if any of your armies are at the selected node
                             ArmiesHere(armies);
 
-                            ClearMenuInfo();
                             ClearPopupMenu();
                         }
                     });
@@ -1321,7 +1310,6 @@ public class Map extends javax.swing.JFrame {
                                     //displays if any of your armies are at the selected node
                                     ArmiesHere(armies);
 
-                                    ClearMenuInfo();
                                     ClearPopupMenu();
                                 }
                             });
@@ -1378,7 +1366,6 @@ public class Map extends javax.swing.JFrame {
                                     //displays if any of your armies are at the selected node
                                     ArmiesHere(armies);
 
-                                    ClearMenuInfo();
                                     ClearPopupMenu();
                                 }
                             });
