@@ -532,9 +532,6 @@ public class Map extends javax.swing.JFrame {
             nodeType = "Checkpoint";
         labelInfo2.setText("Location type: " + nodeType);
         
-        //displays the supply level of selected node
-        labelInfo3.setText("Supply level: " + Scenario.listOfNodes[nodeSelected].suppliesAvailable);
-        
         //displays current weather
         String weather = "";
         if(Scenario.game.getWeather() == 0)
@@ -668,6 +665,13 @@ public class Map extends javax.swing.JFrame {
         }
 
         labelInfo5.setText("Your armies here: " + sizes);
+        
+        //check if armies exist here
+        if(sizes.equals("none"))
+            labelInfo3.setText("");
+        else
+            //displays the supply level of selected node
+            labelInfo3.setText("Supply level: " + Scenario.listOfNodes[nodeSelected].suppliesAvailable);
     }
 
     private void OpenPopup(final int[][] armies) {
