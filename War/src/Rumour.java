@@ -104,10 +104,11 @@ public class Rumour {
         ArrayList<Integer> temp = new ArrayList<Integer>();
         ArrayList<ArrayList<Integer>> assembled = new ArrayList<ArrayList<Integer>>();
 
-        for (int i = 0; i < Scenario.listOfNodes.length; i++) {
-            temp = reportRumour(Scenario.listOfNodes[i].id);
+        for (Node listOfNode : Scenario.listOfNodes) {
+            temp = reportRumour(listOfNode.id);
             assembled.add(temp);
         }
+
         return assembled;
     }
 
@@ -118,18 +119,58 @@ public class Rumour {
         double fogUpdate = playerFogValueUpdate();
         double mapEffect = (1.0 - fogUpdate) * 9;
         double sigma;
+        double timeAsAFunction;
+        double randomGauss;
         int mean;
         double rumour;
         int report = 99;
 
+        rumourList.add(currentNode.id);
+
         for (int i = 0; i < units.size(); i++) {
+            do {
+                randomGauss = abs(random.nextGaussian());
+            } while (randomGauss > 1);
+
+            timeAsAFunction = randomGauss * (3 - units.get(i + 1));
+
+            if (timeAsAFunction > 1.1) {
+                if (random.nextGaussian() > 1) {
+                    rumourList.add(random.nextInt(3));
+                }
+                return rumourList;
+            }
+
+            do {
+                randomGauss = abs(random.nextGaussian());
+            } while (randomGauss > 1);
+
+            timeAsAFunction = randomGauss * (3 - units.get(i + 1));
+
+            if (timeAsAFunction > 1.1) {
+                ArrayList<Integer> neighbours = neighbourFind(nodeID);
+                int rand = random.nextInt(neighbours.size() - 1);
+                rumourList.set(0, neighbours.get(rand));
+            } else if (timeAsAFunction > 1.9) {
+                ArrayList<Integer> neighbours = neighbourFind(nodeID);
+                int rand = random.nextInt(neighbours.size() - 1);
+                neighbours = neighbourFind(neighbours.get(rand));
+                rand = random.nextInt(neighbours.size() - 1);
+                rumourList.set(0, neighbours.get(rand));
+            }
+
             mean = units.get(i);
             i++;
             sigma = mapEffect - (3 * units.get(i));
             if (sigma < 0) {
                 sigma = 0;
             }
-            rumour = (abs(random.nextGaussian()) * sigma) / 9;
+
+            do {
+                randomGauss = abs(random.nextGaussian());
+            } while (randomGauss > 1);
+
+            rumour = (randomGauss * sigma) / 9;
 
             if (rumour >= 0.6 && rumour <= 0.8) {
                 if (mean == 2) {
@@ -184,6 +225,20 @@ public class Rumour {
          }
          }*/
         return rumourList;
+    }
+
+    private ArrayList<Integer> neighbourFind(int nodeID) {
+        ArrayList<Integer> neighbours = new ArrayList<Integer>();
+
+        for (Road listOfRoad : Scenario.listOfRoads) {
+            if (listOfRoad.locationA.id == nodeID) {
+                neighbours.add(listOfRoad.locationB.id);
+            } else if (listOfRoad.locationB.id == nodeID) {
+                neighbours.add(listOfRoad.locationA.id);
+            }
+        }
+
+        return neighbours;
     }
 
     private ArrayList<Integer> nodeOccupancy(int nodeID) {
