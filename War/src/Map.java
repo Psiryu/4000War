@@ -880,7 +880,7 @@ public class Map extends javax.swing.JFrame {
                                 final String listText2 = (ConvertFullSize(army[0][1], army[0][3])
                                         + "army unit will ferry a small army from " + roads.locationA.name + " to " +
                                         roads.locationB.name);
-                                menuItemMove.addActionListener(new ActionListener() {
+                                menuItemMove2.addActionListener(new ActionListener() {
                                     @Override
                                     public void actionPerformed(ActionEvent event) {
                                         MapEvent.addMovementFerry(army[0][0], selectedArmy[0], roads3, roads3.locationB.id);
@@ -1003,7 +1003,7 @@ public class Map extends javax.swing.JFrame {
                                 final String listText2 = (ConvertFullSize(army[0][1], army[0][3])
                                         + "army unit will ferry a small army from " + roads.locationB.name + " to " +
                                         roads.locationA.name);
-                                menuItemMove.addActionListener(new ActionListener() {
+                                menuItemMove2.addActionListener(new ActionListener() {
                                     @Override
                                     public void actionPerformed(ActionEvent event) {
                                         MapEvent.addMovementFerry(army[0][0], selectedArmy[0], roads22, roads22.locationA.id);
