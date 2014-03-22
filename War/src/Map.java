@@ -1770,7 +1770,7 @@ public class Map extends javax.swing.JFrame {
     }
     
     private void EnemiesHere() {
-        String enemies = "";
+        String enemies = ""; int first = 0;
         ArrayList<Integer> intel;
         if(Global.curPlayer == 0)
             intel = Scenario.redPlayer.enemyIntelligence.get(nodeSelected);
@@ -1781,16 +1781,20 @@ public class Map extends javax.swing.JFrame {
             enemies = "none known to be here";
         else
         {
-            intel.remove(0);
+            //intel.remove(0);
             for(int fog : intel) {
-                if(fog == 3)
-                    enemies += (" " + ConvertSize(5, 1));
-                else if(fog == 2)
-                    enemies += (" " + ConvertSize(15, 0));
-                else if(fog == 1)
-                    enemies += (" " + ConvertSize(10, 0));
-                else if(fog == 0)
-                    enemies += (" " + ConvertSize (5, 0));
+                if(first == 0)
+                    first++;
+                else {
+                    if(fog == 3)
+                        enemies += (" " + ConvertSize(5, 1));
+                    else if(fog == 2)
+                        enemies += (" " + ConvertSize(15, 0));
+                    else if(fog == 1)
+                        enemies += (" " + ConvertSize(10, 0));
+                    else if(fog == 0)
+                        enemies += (" " + ConvertSize (5, 0));
+                }
             }
         }
         
