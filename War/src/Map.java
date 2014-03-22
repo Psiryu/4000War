@@ -1913,6 +1913,11 @@ public class Map extends javax.swing.JFrame {
         } catch (IOException ex) {
             Logger.getLogger(Map.class.getName()).log(Level.SEVERE, null, ex);
         }
+        try {
+            SetEnemyColours();
+        } catch (IOException ex) {
+            Logger.getLogger(Map.class.getName()).log(Level.SEVERE, null, ex);
+        }
         SetColours();
     }//GEN-LAST:event_menuItemCloseActionPerformed
 
@@ -1979,6 +1984,26 @@ public class Map extends javax.swing.JFrame {
         //actions to finish the turn on th ebackend
 
         Scenario.game.endTurn();
+
+        
+        //check for if the second player is an ai
+        if(Global.opponent == false) {
+            //calls the AI
+            AI.AI();
+            //ends turn again
+            Scenario.game.endTurn();
+            
+            //resets the curPlayer controller to the previous player
+            if (Global.curPlayer == 0) {
+                Global.curPlayer = 1;
+                labelCurPlayer.setText("Blue team's turn");
+                buttonNext.setText("Blue team, click here to proceed.");            
+            } else {
+                Global.curPlayer = 0;
+                labelCurPlayer.setText("Red team's turn");
+                buttonNext.setText("Red team, click here to proceed.");
+            }
+        }
         
         buttonNext.setVisible(true);
 
