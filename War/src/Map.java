@@ -1655,69 +1655,66 @@ public class Map extends javax.swing.JFrame {
             intelList = Scenario.bluePlayer.enemyIntelligence;
 
         //first it checks if there is any intel
-        if(intelList.isEmpty() != true)
-        {
-            for(ArrayList<Integer> intel : intelList) {
-                if(intel.isEmpty() == false)
-                {
-                    //sets the node of index to opposing team colour
-                    Image img;
-                    if(Global.curPlayer == 0)
-                        img = ImageIO.read(getClass().getResource("Images/map-node-blue.png"));
-                    else
-                        img = ImageIO.read(getClass().getResource("Images/map-node-red.png"));
+        for(ArrayList<Integer> intel : intelList) {
+            if(intel.size() > 1)
+            {
+                //sets the node of index to opposing team colour
+                Image img;
+                if(Global.curPlayer == 0)
+                    img = ImageIO.read(getClass().getResource("Images/map-node-blue.png"));
+                else
+                    img = ImageIO.read(getClass().getResource("Images/map-node-red.png"));
 
-                    ImageIcon img2 = new ImageIcon(img);
-                
-                        switch (i) {
-                        case 0:
-                            nodePlaceholder1.setIcon(img2);
-                            break;
-                        case 1:
-                            nodePlaceholder2.setIcon(img2);
-                            break;
-                        case 2:
-                            nodePlaceholder3.setIcon(img2);
-                            break;
-                        case 3:
-                            nodePlaceholder4.setIcon(img2);
-                            break;
-                        case 4:
-                            nodePlaceholder5.setIcon(img2);
-                            break;
-                        case 5:
-                            nodePlaceholder6.setIcon(img2);
-                            break;
-                        case 6:
-                            nodePlaceholder7.setIcon(img2);
-                            break;
-                        case 7:
-                            nodePlaceholder8.setIcon(img2);
-                            break;
-                        case 8:
-                            nodePlaceholder9.setIcon(img2);
-                            break;
-                        case 9:
-                            nodePlaceholder10.setIcon(img2);
-                            break;
-                        case 10:
-                            nodePlaceholder11.setIcon(img2);
-                            break;
-                        case 11:
-                            nodePlaceholder12.setIcon(img2);
-                            break;
-                        case 12:
-                            nodePlaceholder13.setIcon(img2);
-                            break;
-                        case 13:
-                            nodePlaceholder14.setIcon(img2);
-                            break;
+                ImageIcon img2 = new ImageIcon(img);
+
+                    switch (i) {
+                    case 0:
+                        nodePlaceholder1.setIcon(img2);
+                        break;
+                    case 1:
+                        nodePlaceholder2.setIcon(img2);
+                        break;
+                    case 2:
+                        nodePlaceholder3.setIcon(img2);
+                        break;
+                    case 3:
+                        nodePlaceholder4.setIcon(img2);
+                        break;
+                    case 4:
+                        nodePlaceholder5.setIcon(img2);
+                        break;
+                    case 5:
+                        nodePlaceholder6.setIcon(img2);
+                        break;
+                    case 6:
+                        nodePlaceholder7.setIcon(img2);
+                        break;
+                    case 7:
+                        nodePlaceholder8.setIcon(img2);
+                        break;
+                    case 8:
+                        nodePlaceholder9.setIcon(img2);
+                        break;
+                    case 9:
+                        nodePlaceholder10.setIcon(img2);
+                        break;
+                    case 10:
+                        nodePlaceholder11.setIcon(img2);
+                        break;
+                    case 11:
+                        nodePlaceholder12.setIcon(img2);
+                        break;
+                    case 12:
+                        nodePlaceholder13.setIcon(img2);
+                        break;
+                    case 13:
+                        nodePlaceholder14.setIcon(img2);
+                        break;
                     }
-                }
-
-                //increments i, which keeps track of indexing
-                i++;
             }
+         
+            //increments i, which keeps track of indexing
+             i++;   
         }
     }
 
@@ -1780,9 +1777,11 @@ public class Map extends javax.swing.JFrame {
         else
             intel = Scenario.bluePlayer.enemyIntelligence.get(nodeSelected);
 
-        if(intel.isEmpty() == true)
+        if(intel.size() == 1)
             enemies = "none known to be here";
         else
+        {
+            intel.remove(0);
             for(int fog : intel) {
                 if(fog == 3)
                     enemies += (" " + ConvertSize(5, 1));
@@ -1793,6 +1792,7 @@ public class Map extends javax.swing.JFrame {
                 else if(fog == 0)
                     enemies += (" " + ConvertSize (5, 0));
             }
+        }
         
         labelInfo6.setText("Enemies here: " + enemies);
     }
