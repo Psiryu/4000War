@@ -955,7 +955,7 @@ public class Map extends javax.swing.JFrame {
                         //can ferry a small army
                         int[][] allArmies = null;
                         allArmies = ObtainArmies(allArmies);
-                        for(int[] selectedArmy : allArmies) {
+                        for(final int[] selectedArmy : allArmies) {
                             //if army is at node, is small, and is not fleet
                             if (selectedArmy[2] == nodeSelected && selectedArmy[1] == 5
                                     && selectedArmy[3] == 0) {
@@ -970,8 +970,7 @@ public class Map extends javax.swing.JFrame {
                                 menuItemMove.addActionListener(new ActionListener() {
                                     @Override
                                     public void actionPerformed(ActionEvent event) {
-                                        //MapEvent.addMovement(army[0][0], roads3, roads3.locationB.id);
-                                        //ADD NEW METHOD HERE ------------------------------------------------------------------------
+                                        MapEvent.addMovementFerry(army[0][0], selectedArmy[0], roads3, roads3.locationB.id);
                                         list1.add(listText2);
 
                                         //try catch for setting default node colours
@@ -1064,7 +1063,7 @@ public class Map extends javax.swing.JFrame {
                         //can ferry a small army
                         int[][] allArmies = null;
                         allArmies = ObtainArmies(allArmies);
-                        for(int[] selectedArmy : allArmies) {
+                        for(final int[] selectedArmy : allArmies) {
                             //if army is at node, is small, and is not fleet
                             if (selectedArmy[2] == nodeSelected && selectedArmy[1] == 5
                                     && selectedArmy[3] == 0) {
@@ -1079,8 +1078,7 @@ public class Map extends javax.swing.JFrame {
                                 menuItemMove.addActionListener(new ActionListener() {
                                     @Override
                                     public void actionPerformed(ActionEvent event) {
-                                        //MapEvent.addMovement(army[0][0], roads22, roads22.locationB.id);
-                                        //ADD NEW METHOD HERE ------------------------------------------------------------------------
+                                        MapEvent.addMovementFerry(army[0][0], selectedArmy[0], roads22, roads22.locationA.id);
                                         list1.add(listText2);
 
                                         //try catch for setting default node colours
