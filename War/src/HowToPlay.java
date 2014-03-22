@@ -1,3 +1,6 @@
+
+import javax.swing.JFrame;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -32,6 +35,7 @@ public class HowToPlay extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         textHelp = new javax.swing.JTextArea();
         radioBasics = new javax.swing.JRadioButton();
+        jRadioButton1 = new javax.swing.JRadioButton();
         radioBattles = new javax.swing.JRadioButton();
         radioVictory = new javax.swing.JRadioButton();
         jLabel1 = new javax.swing.JLabel();
@@ -70,7 +74,7 @@ public class HowToPlay extends javax.swing.JFrame {
         textHelp.setColumns(20);
         textHelp.setLineWrap(true);
         textHelp.setRows(5);
-        textHelp.setText("I don't know who you are. I don't know what you want. If you are looking for ransom, I can tell you I don't have money. But what I do have are a very particular set of skills; skills I have acquired over a very long career. Skills that make me a nightmare for people like you. If you let my daughter go now, that'll be the end of it. I will not look for you, I will not pursue you. But if you don't, I will look for you, I will find you, and I will kill you. ");
+        textHelp.setText("Select an item from the sidebar to learn more about it!");
         textHelp.setToolTipText(null);
         textHelp.setWrapStyleWord(true);
         textHelp.setBorder(null);
@@ -79,10 +83,9 @@ public class HowToPlay extends javax.swing.JFrame {
         textHelp.setOpaque(false);
         jScrollPane1.setViewportView(textHelp);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(151, 63, 310, 180));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(151, 63, 310, 190));
 
         groupHelpTypes.add(radioBasics);
-        radioBasics.setSelected(true);
         radioBasics.setText("The Basics");
         radioBasics.setContentAreaFilled(false);
         radioBasics.addActionListener(new java.awt.event.ActionListener() {
@@ -92,6 +95,9 @@ public class HowToPlay extends javax.swing.JFrame {
         });
         getContentPane().add(radioBasics, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 100, -1));
 
+        jRadioButton1.setText("jRadioButton1");
+        getContentPane().add(jRadioButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, -1, -1));
+
         groupHelpTypes.add(radioBattles);
         radioBattles.setText("Battles");
         radioBattles.setContentAreaFilled(false);
@@ -100,7 +106,7 @@ public class HowToPlay extends javax.swing.JFrame {
                 radioBattlesActionPerformed(evt);
             }
         });
-        getContentPane().add(radioBattles, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 100, -1));
+        getContentPane().add(radioBattles, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 100, -1));
 
         groupHelpTypes.add(radioVictory);
         radioVictory.setText("Victory");
@@ -110,7 +116,7 @@ public class HowToPlay extends javax.swing.JFrame {
                 radioVictoryActionPerformed(evt);
             }
         });
-        getContentPane().add(radioVictory, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 100, -1));
+        getContentPane().add(radioVictory, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, 100, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/HelpScreen-backdrop.png"))); // NOI18N
         jLabel1.setToolTipText(null);
@@ -130,15 +136,15 @@ public class HowToPlay extends javax.swing.JFrame {
     }//GEN-LAST:event_radioBattlesActionPerformed
 
     private void radioBasicsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioBasicsActionPerformed
-        textHelp.setText("I don't know who you are. I don't know what "
-                + "you want. If you are looking for ransom, I can tell "
-                + "you I don't have money. But what I do have are a very "
-                + "particular set of skills; skills I have acquired over "
-                + "a very long career. Skills that make me a nightmare "
-                + "for people like you. If you let my daughter go now, "
-                + "that'll be the end of it. I will not look for you, I "
-                + "will not pursue you. But if you don't, I will look for "
-                + "you, I will find you, and I will kill you. ");
+        textHelp.setText("Welcome to Roman Civil War! \n" +
+                "   This learning tool places you inside a war from Roman " +
+                "history as one of the Generals involved in the conflict." +
+                " YThe decisions you make will determine if your team wins or loses." +
+                "\n\n   To begin the match, you must select a scenario, " +
+                "followed by which team (represented as 'red' or 'blue') " +
+                "in that scenario you want to fight alongside." +
+                "\n\n   ");
+        
     }//GEN-LAST:event_radioBasicsActionPerformed
 
     private void radioVictoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioVictoryActionPerformed
@@ -192,6 +198,7 @@ public class HowToPlay extends javax.swing.JFrame {
     private javax.swing.JToggleButton buttonMenu;
     private javax.swing.ButtonGroup groupHelpTypes;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JRadioButton radioBasics;
     private javax.swing.JRadioButton radioBattles;

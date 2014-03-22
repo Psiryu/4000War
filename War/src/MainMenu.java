@@ -177,6 +177,8 @@ public class MainMenu extends javax.swing.JFrame {
     private void buttonHowToActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonHowToActionPerformed
         new HowToPlay().setVisible(true);
         MainMenu.this.dispose();
+        
+        Map.class.getMethods();
     }//GEN-LAST:event_buttonHowToActionPerformed
 
     private void butonXActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butonXActionPerformed

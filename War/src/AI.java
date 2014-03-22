@@ -28,20 +28,120 @@ public class AI {
             robots = Scenario.redPlayer; }
     
         //determines if any units controlled should merge or divide
-        Merging(robotLegion, robots);
+        BeginMerging(robotLegion, robots);
         Dividing(robotLegion, robots);
+        
+        //re-establishes the variables in case mergers or divisions occured
+        if(Global.chosenTeam == false) {
+            robots = Scenario.bluePlayer;
+            robotLegion = Scenario.bluePlayer.combatUnits; }
+        else {
+            robotLegion = Scenario.redPlayer.combatUnits;
+            robots = Scenario.redPlayer; }
         
         //sends it to the initial movement method
         WhereToMove(robotLegion, robots);
     }
     
-    //this method handles merging armies
-    private static void Merging(ArrayList<CombatUnit> robotLegion, Player robots) {
+    //this method handles merging armies. It checks if an two units are able
+    //to be merged, then adds weighting based on fog of war values of the nodes
+    //surrounding the node the units are on
+    private static void BeginMerging(ArrayList<CombatUnit> robotLegion, Player robots) {
+        //MERGE RANDOMLY OR IF AN ENEMY IS AT AN ADJACENT NODE
+
+        //creates a small array that keeps track of which armies have already merged
+        ArrayList<Integer> mergers = new ArrayList<Integer>();
+        
+        //intitial loop to count all locations controlled
+        int count = 0;
+        for(Node nodes : Scenario.listOfNodes) {
+            //next loop for each combat unit
+            for(CombatUnit killBots : robotLegion) {
+                if(nodes.id == killBots.location.id)
+                {
+                    count++;
+                }
+            }
+            
+            //checks if number of controlled nodes is less than size of army
+            //(which implies at least two armies are on the same node)
+            if(count < robotLegion.size()) {
+                //establishes two arrays of all combat units to check locations
+                for(CombatUnit killBots : robotLegion) {
+                    if(mergers.contains(killBots.cUnitID) == false) {
+                        for(CombatUnit killBots2 : robotLegion) {
+                            //checks if they are on the same location and not the same unit
+                            //and that their sizes are both small or both medium
+                            if(killBots.cUnitID != killBots2.cUnitID &&
+                                    killBots.location.id == killBots2.location.id &&
+                                    ((killBots.size <=10 && killBots.size >5 && 
+                                    killBots2.size <= 10 && killBots.size > 5) ||
+                                    ((killBots.size <=5 && killBots2.size <=5) &&
+                                    killBots.isFleet == false && killBots2.isFleet == false))) {
+                                //establishes int for weight based on this possible merge
+                                int weighting = 0;
+                                //creates an instance of all roads to check locations for weighting
+                                for(Road road : Scenario.listOfRoads) {
+                                    //checks if road point A connects to location
+                                    if(road.locationA.id == killBots.location.id) {
+                                        for(Node node : Scenario.listOfNodes) {
+                                            if(node.id == road.locationB.id) {
+                                                //checks if fog of war at this node has any values
+                                                if(robots.enemyIntelligence.get(node.id).size() > 1) {
+                                                    weighting+=10;
+                                                }
+                                            }
+                                        }
+
+                                    } else if(road.locationB.id == killBots.location.id) {
+                                        for(Node node : Scenario.listOfNodes) {
+                                            if(node.id == road.locationB.id) {
+                                                //checks if fog of war at this node has any values
+                                                if(robots.enemyIntelligence.get(node.id).size() > 1) {
+                                                    weighting+=10;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                //sends the weighted value to Merging
+                                Merging(weighting, killBots, killBots2);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    //manages the merge
+    private static void Merging(int weighting, CombatUnit killBots, CombatUnit killBots2) {
+        //creates a random number generator
+        Random randomizer = new Random();
+        //randomizes the number twice, to ensure randomness
+        int random = randomizer.nextInt(5);
+        random = randomizer.nextInt(5);
+        //randomizes the weighting, from 0 to 10
+        //0 nullifies the movement, 10 makes it much more appealing
+        weighting = weighting*random;
+        
+        //merges if weighting*randomizer is greater than thirty
+        if(weighting>30)
+            MapEvent.mergeUnits(killBots.cUnitID, killBots2.cUnitID);
+        
+        //additional randomizer to merge even if no real need to
+        if(weighting == 0) {
+            random = randomizer.nextInt(5);
+            if(random>3)
+                MapEvent.mergeUnits(killBots.cUnitID, killBots2.cUnitID);
+            
+        }
         
     }
     
     //this method handles dividing armies
     private static void Dividing(ArrayList<CombatUnit> robotLegion, Player robots) {
+        //DIVIDE RANDOMLY OR IF NO MOVE/MOVE OF SMALLER CAPACITY
         
     }
     

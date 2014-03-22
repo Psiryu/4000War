@@ -2005,6 +2005,8 @@ public class Map extends javax.swing.JFrame {
 
         Scenario.game.endTurn();
 
+        if(Global.intGameOver == 1)
+            GameOver();
         
         //check for if the second player is an ai
         if(Global.opponent == false) {
@@ -2115,6 +2117,18 @@ public class Map extends javax.swing.JFrame {
 
         });
 
+    }
+    
+    public void GameOver() {
+        //button for quitting current scenario and returning to main menu
+        Scenario.killSwitch();
+
+        ClearPopupMenu();
+        ClearMenuInfo();
+
+        new GameOver().setVisible(true);
+        Map.this.dispose();
+        Map.this.frameFloatingInfo.dispose();
     }
 
 

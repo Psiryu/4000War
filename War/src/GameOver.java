@@ -36,7 +36,6 @@ public class GameOver extends javax.swing.JFrame {
         setMaximumSize(new java.awt.Dimension(260, 310));
         setMinimumSize(new java.awt.Dimension(260, 310));
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(260, 310));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         butonX.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/X.png"))); // NOI18N

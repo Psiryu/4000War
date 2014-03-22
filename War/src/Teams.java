@@ -116,6 +116,7 @@ public class Teams extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void buttonBeginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBeginActionPerformed
+        Global.intGameOver = 0;
         Scenario scenario = new Scenario();
         scenario.Initialize(0);
         Global.mapEvent = new MapEvent();
