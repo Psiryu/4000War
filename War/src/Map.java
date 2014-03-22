@@ -46,20 +46,6 @@ public class Map extends javax.swing.JFrame {
         //resets turn count to 0;
         Game.turnCount = 0;
 
-        //sets a label that informs you whom you are versing.
-        if ((Global.opponent) == true) {
-            labelOpponent.setText("Against Player");
-        } else {
-            labelOpponent.setText("Against AI");
-        }
-
-        //sets labels for scenario selected, and that it is player 1's turn
-        labelScenario.setText("Scenario: " + Global.intScenario);
-        if(Global.curPlayer == 0)
-            labelCurPlayer.setText("Red team's turn");
-        else
-            labelCurPlayer.setText("Blue team's turn");
-
         GameStart();
         //jFrame1.setVisible(true);
     }
@@ -86,6 +72,8 @@ public class Map extends javax.swing.JFrame {
         buttonExit = new javax.swing.JButton();
         labelOpponent = new javax.swing.JLabel();
         labelScenario = new javax.swing.JLabel();
+        labelPoliticalPower = new javax.swing.JLabel();
+        labelSeason = new javax.swing.JLabel();
         list1 = new java.awt.List();
         labelBackdrop = new javax.swing.JLabel();
         butonX = new javax.swing.JButton();
@@ -201,7 +189,15 @@ public class Map extends javax.swing.JFrame {
         labelScenario.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         labelScenario.setText("text");
         frameFloatingInfo.getContentPane().add(labelScenario, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 70, -1, -1));
-        frameFloatingInfo.getContentPane().add(list1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 400, 160));
+
+        labelPoliticalPower.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        labelPoliticalPower.setText("text");
+        frameFloatingInfo.getContentPane().add(labelPoliticalPower, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 90, -1, -1));
+
+        labelSeason.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        labelSeason.setText("text");
+        frameFloatingInfo.getContentPane().add(labelSeason, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, -1, -1));
+        frameFloatingInfo.getContentPane().add(list1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 400, 140));
 
         labelBackdrop.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/MapScreen-Side-backdrop.png"))); // NOI18N
         labelBackdrop.setToolTipText(null);
@@ -244,13 +240,13 @@ public class Map extends javax.swing.JFrame {
 
         labelInfo3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         labelInfo3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        labelInfo3.setText("Season");
+        labelInfo3.setText("supplies");
         menuInfo.add(labelInfo3, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 10, -1, -1));
 
         labelInfo4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         labelInfo4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        labelInfo4.setText("political power?");
-        menuInfo.add(labelInfo4, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 10, -1, -1));
+        labelInfo4.setText("weather");
+        menuInfo.add(labelInfo4, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 10, -1, -1));
 
         labelInfo5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         labelInfo5.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -457,8 +453,43 @@ public class Map extends javax.swing.JFrame {
         //game for player 1. (essentially "finish turn" button aftereffects
         //that need to happen for th every first turn).
 
+        //sets a label that informs you whom you are versing.
+        if ((Global.opponent) == true) {
+            labelOpponent.setText("Against Player");
+        } else {
+            labelOpponent.setText("Against AI");
+        }
+
+        //sets labels for scenario selected, and that it is player 1's turn
+        labelScenario.setText("Scenario: " + Global.intScenario);
+        if(Global.curPlayer == 0)
+            labelCurPlayer.setText("Red team's turn");
+        else
+            labelCurPlayer.setText("Blue team's turn");
+        
+        //sets label that displays season
+        if(Global.season == 0)
+            labelSeason.setText("Season: Winter");
+        else if(Global.season == 1)
+            labelSeason.setText("Season: Spring");
+        else if(Global.season == 2)
+            labelSeason.setText("Season: Summer");
+        else if(Global.season == 3)
+            labelSeason.setText("Season: Autumn");
+        
+        //sets label that displays current political power level
+        if(Global.curPlayer == 0)
+            labelPoliticalPower.setText("Political power: " + Scenario.redPlayer.politicalPower);
+        else
+            labelPoliticalPower.setText("Political power: " + Scenario.bluePlayer.politicalPower);
+        
         try {
             SetDefaultColours();
+        } catch (IOException ex) {
+            Logger.getLogger(Map.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            SetEnemyColours();
         } catch (IOException ex) {
             Logger.getLogger(Map.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -468,13 +499,19 @@ public class Map extends javax.swing.JFrame {
 //Action will control all node-based actions. Dimmed public because no need
 //for hidden values, and allows information to be passed more easily
     public void Action() {
+        //DISPLAY SUPPLY LEVEL TOO ----------------------------------------------------------------------
         ClearMenuInfo();
         try {
             SetDefaultColours();
         } catch (IOException ex) {
             Logger.getLogger(Map.class.getName()).log(Level.SEVERE, null, ex);
         }
-        //sets colours of nodes with current player's armies
+        try {
+            //sets colours of nodes with current player's armies and fog of war info
+            SetEnemyColours();
+        } catch (IOException ex) {
+            Logger.getLogger(Map.class.getName()).log(Level.SEVERE, null, ex);
+        }
         SetColours();
         try {
             SetCurrentColour();
@@ -495,19 +532,24 @@ public class Map extends javax.swing.JFrame {
             nodeType = "Checkpoint";
         labelInfo2.setText("Location type: " + nodeType);
         
-        if(Global.season == 0)
-            labelInfo3.setText("Season: Winter");
-        else if(Global.season == 1)
-            labelInfo3.setText("Season: Spring");
-        else if(Global.season == 2)
-            labelInfo3.setText("Season: Summer");
-        else if(Global.season == 3)
-            labelInfo3.setText("Season: Autumn");
+        //displays the supply level of selected node
+        labelInfo3.setText("Supply level: " + Scenario.listOfNodes[nodeSelected].suppliesAvailable);
         
-        if(Global.curPlayer == 0)
-            labelInfo4.setText("Political power: " + Scenario.redPlayer.politicalPower);
-        else
-            labelInfo4.setText("Political power: " + Scenario.bluePlayer.politicalPower);
+        //displays current weather
+        String weather = "";
+        if(Scenario.game.getWeather() == 0)
+            weather = "clear";
+        else if(Scenario.game.getWeather() == 1)
+            weather = "light rain";
+        else if(Scenario.game.getWeather() == 2)
+            weather = "heavy rain";
+        else if(Scenario.game.getWeather() == 3)
+            weather = "drought";
+        else if(Scenario.game.getWeather() == 4)
+            weather = "flooding";
+        else if(Scenario.game.getWeather() == 5)
+            weather = "tornado warnings";
+        labelInfo4.setText("Weather: " + weather);
         
         EnemiesHere();
         
@@ -763,7 +805,12 @@ public class Map extends javax.swing.JFrame {
                             } catch (IOException ex) {
                                 Logger.getLogger(Map.class.getName()).log(Level.SEVERE, null, ex);
                             }
-                            //sets colours of nodes with current player's armies
+                            try {
+                                //sets colours of nodes with current player's armies
+                                SetEnemyColours();
+                            } catch (IOException ex) {
+                                Logger.getLogger(Map.class.getName()).log(Level.SEVERE, null, ex);
+                            }
                             SetColours();
 
                             ClearMenuInfo();
@@ -797,7 +844,12 @@ public class Map extends javax.swing.JFrame {
                                 } catch (IOException ex) {
                                     Logger.getLogger(Map.class.getName()).log(Level.SEVERE, null, ex);
                                 }
-                                //sets colours of nodes with current player's armies
+                                try {
+                                    //sets colours of nodes with current player's armies
+                                    SetEnemyColours();
+                                } catch (IOException ex) {
+                                    Logger.getLogger(Map.class.getName()).log(Level.SEVERE, null, ex);
+                                }
                                 SetColours();
 
                                 ClearMenuInfo();
@@ -836,7 +888,12 @@ public class Map extends javax.swing.JFrame {
                                         } catch (IOException ex) {
                                             Logger.getLogger(Map.class.getName()).log(Level.SEVERE, null, ex);
                                         }
-                                        //sets colours of nodes with current player's armies
+                                        try {
+                                            //sets colours of nodes with current player's armies
+                                            SetEnemyColours();
+                                        } catch (IOException ex) {
+                                            Logger.getLogger(Map.class.getName()).log(Level.SEVERE, null, ex);
+                                        }
                                         SetColours();
 
                                         ClearMenuInfo();
@@ -873,7 +930,12 @@ public class Map extends javax.swing.JFrame {
                             } catch (IOException ex) {
                                 Logger.getLogger(Map.class.getName()).log(Level.SEVERE, null, ex);
                             }
-                            //sets colours of nodes with current player's armies
+                            try {
+                                //sets colours of nodes with current player's armies
+                                SetEnemyColours();
+                            } catch (IOException ex) {
+                                Logger.getLogger(Map.class.getName()).log(Level.SEVERE, null, ex);
+                            }
                             SetColours();
 
                             ClearMenuInfo();
@@ -905,7 +967,12 @@ public class Map extends javax.swing.JFrame {
                                 } catch (IOException ex) {
                                     Logger.getLogger(Map.class.getName()).log(Level.SEVERE, null, ex);
                                 }
-                                //sets colours of nodes with current player's armies
+                                try {
+                                    //sets colours of nodes with current player's armies
+                                    SetEnemyColours();
+                                } catch (IOException ex) {
+                                    Logger.getLogger(Map.class.getName()).log(Level.SEVERE, null, ex);
+                                }
                                 SetColours();
 
                                 ClearMenuInfo();
@@ -944,7 +1011,12 @@ public class Map extends javax.swing.JFrame {
                                         } catch (IOException ex) {
                                             Logger.getLogger(Map.class.getName()).log(Level.SEVERE, null, ex);
                                         }
-                                        //sets colours of nodes with current player's armies
+                                        try {
+                                            //sets colours of nodes with current player's armies
+                                            SetEnemyColours();
+                                        } catch (IOException ex) {
+                                            Logger.getLogger(Map.class.getName()).log(Level.SEVERE, null, ex);
+                                        }
                                         SetColours();
 
                                         ClearMenuInfo();
@@ -982,7 +1054,12 @@ public class Map extends javax.swing.JFrame {
                             } catch (IOException ex) {
                                 Logger.getLogger(Map.class.getName()).log(Level.SEVERE, null, ex);
                             }
-                            //sets colours of nodes with current player's armies
+                            try {
+                                //sets colours of nodes with current player's armies
+                                SetEnemyColours();
+                            } catch (IOException ex) {
+                                Logger.getLogger(Map.class.getName()).log(Level.SEVERE, null, ex);
+                            }
                             SetColours();
 
                             ClearMenuInfo();
@@ -1012,7 +1089,12 @@ public class Map extends javax.swing.JFrame {
                             } catch (IOException ex) {
                                 Logger.getLogger(Map.class.getName()).log(Level.SEVERE, null, ex);
                             }
-                            //sets colours of nodes with current player's armies
+                            try {
+                                //sets colours of nodes with current player's armies
+                                SetEnemyColours();
+                            } catch (IOException ex) {
+                                Logger.getLogger(Map.class.getName()).log(Level.SEVERE, null, ex);
+                            }
                             SetColours();
 
                             ClearMenuInfo();
@@ -1063,7 +1145,12 @@ public class Map extends javax.swing.JFrame {
                             } catch (IOException ex) {
                                 Logger.getLogger(Map.class.getName()).log(Level.SEVERE, null, ex);
                             }
-                            //sets colours of nodes with current player's armies
+                            try {
+                                //sets colours of nodes with current player's armies
+                                SetEnemyColours();
+                            } catch (IOException ex) {
+                                Logger.getLogger(Map.class.getName()).log(Level.SEVERE, null, ex);
+                            }
                             SetColours();
 
                             ClearMenuInfo();
@@ -1205,7 +1292,12 @@ public class Map extends javax.swing.JFrame {
                                     } catch (IOException ex) {
                                         Logger.getLogger(Map.class.getName()).log(Level.SEVERE, null, ex);
                                     }
-                                    //sets colours of nodes with current player's armies
+                                    try {
+                                        //sets colours of nodes with current player's armies
+                                        SetEnemyColours();
+                                    } catch (IOException ex) {
+                                        Logger.getLogger(Map.class.getName()).log(Level.SEVERE, null, ex);
+                                    }
                                     SetColours();
 
                                     ClearMenuInfo();
@@ -1249,7 +1341,12 @@ public class Map extends javax.swing.JFrame {
                                     } catch (IOException ex) {
                                         Logger.getLogger(Map.class.getName()).log(Level.SEVERE, null, ex);
                                     }
-                                    //sets colours of nodes with current player's armies
+                                    try {
+                                        //sets colours of nodes with current player's armies
+                                        SetEnemyColours();
+                                    } catch (IOException ex) {
+                                        Logger.getLogger(Map.class.getName()).log(Level.SEVERE, null, ex);
+                                    }
                                     SetColours();
 
                                     ClearMenuInfo();
@@ -1548,6 +1645,81 @@ public class Map extends javax.swing.JFrame {
             }
         }
     }
+    
+    private void SetEnemyColours() throws IOException {
+        int i = 0; 
+        ArrayList<ArrayList<Integer>> intelList;
+        if(Global.curPlayer == 0)
+            intelList = Scenario.redPlayer.enemyIntelligence;
+        else
+            intelList = Scenario.bluePlayer.enemyIntelligence;
+
+        //first it checks if there is any intel
+        if(intelList.isEmpty() != true)
+        {
+            for(ArrayList<Integer> intel : intelList) {
+                if(intel.isEmpty() == false)
+                {
+                    //sets the node of index to opposing team colour
+                    Image img;
+                    if(Global.curPlayer == 0)
+                        img = ImageIO.read(getClass().getResource("Images/map-node-blue.png"));
+                    else
+                        img = ImageIO.read(getClass().getResource("Images/map-node-red.png"));
+
+                    ImageIcon img2 = new ImageIcon(img);
+                
+                        switch (i) {
+                        case 0:
+                            nodePlaceholder1.setIcon(img2);
+                            break;
+                        case 1:
+                            nodePlaceholder2.setIcon(img2);
+                            break;
+                        case 2:
+                            nodePlaceholder3.setIcon(img2);
+                            break;
+                        case 3:
+                            nodePlaceholder4.setIcon(img2);
+                            break;
+                        case 4:
+                            nodePlaceholder5.setIcon(img2);
+                            break;
+                        case 5:
+                            nodePlaceholder6.setIcon(img2);
+                            break;
+                        case 6:
+                            nodePlaceholder7.setIcon(img2);
+                            break;
+                        case 7:
+                            nodePlaceholder8.setIcon(img2);
+                            break;
+                        case 8:
+                            nodePlaceholder9.setIcon(img2);
+                            break;
+                        case 9:
+                            nodePlaceholder10.setIcon(img2);
+                            break;
+                        case 10:
+                            nodePlaceholder11.setIcon(img2);
+                            break;
+                        case 11:
+                            nodePlaceholder12.setIcon(img2);
+                            break;
+                        case 12:
+                            nodePlaceholder13.setIcon(img2);
+                            break;
+                        case 13:
+                            nodePlaceholder14.setIcon(img2);
+                            break;
+                    }
+                }
+
+                //increments i, which keeps track of indexing
+                i++;
+            }
+        }
+    }
 
     private void SetCurrentColour() throws IOException {
         //sets the node selected to a white background
@@ -1614,9 +1786,12 @@ public class Map extends javax.swing.JFrame {
             for(int fog : intel) {
                 if(fog == 3)
                     enemies += (" " + ConvertSize(5, 1));
-                else {
-                    enemies += (" " + ConvertSize(fog, 0));
-                }
+                else if(fog == 2)
+                    enemies += (" " + ConvertSize(15, 0));
+                else if(fog == 1)
+                    enemies += (" " + ConvertSize(10, 0));
+                else if(fog == 0)
+                    enemies += (" " + ConvertSize (5, 0));
             }
         
         labelInfo6.setText("Enemies here: " + enemies);
@@ -1803,6 +1978,22 @@ public class Map extends javax.swing.JFrame {
         buttonNext.setVisible(true);
 
         labelTurnCount.setText("Turn: " + ((int) Game.turnCount + 1));
+        
+        //sets label that displays season
+        if(Global.season == 0)
+            labelSeason.setText("Season: Winter");
+        else if(Global.season == 1)
+            labelSeason.setText("Season: Spring");
+        else if(Global.season == 2)
+            labelSeason.setText("Season: Summer");
+        else if(Global.season == 3)
+            labelSeason.setText("Season: Autumn");
+        
+        //sets label that displays current political power level
+        if(Global.curPlayer == 0)
+            labelPoliticalPower.setText("Political power: " + Scenario.redPlayer.politicalPower);
+        else
+            labelPoliticalPower.setText("Political power: " + Scenario.bluePlayer.politicalPower);
 
         //try catch for setting default node colours
         try {
@@ -1888,7 +2079,9 @@ public class Map extends javax.swing.JFrame {
     private javax.swing.JLabel labelInfo5;
     private javax.swing.JLabel labelInfo6;
     private javax.swing.JLabel labelOpponent;
+    private javax.swing.JLabel labelPoliticalPower;
     private javax.swing.JLabel labelScenario;
+    private javax.swing.JLabel labelSeason;
     private javax.swing.JLabel labelTurnCount;
     private java.awt.List list1;
     private javax.swing.JPanel menuInfo;
