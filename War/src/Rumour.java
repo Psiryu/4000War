@@ -102,9 +102,9 @@ public class Rumour {
         ArrayList<ArrayList<Integer>> assembled = new ArrayList<ArrayList<Integer>>();
 
         for (int i = 0; i < Scenario.listOfNodes.length; i++) {
-            temp.add(Scenario.listOfNodes[i].id);
             temp.addAll(reportRumour(Scenario.listOfNodes[i].id));
             assembled.add(temp);
+            temp.clear();
         }
         return assembled;
     }

@@ -12,25 +12,24 @@ import java.util.ArrayList;
  * @author Ben
  */
 public class CombatInstance {
-    private ArrayList<CombatUnit> redUnits, blueUnits;
-    private ArrayList<Road> redRoad, blueRoad;
-    private ArrayList<Node> redEndLocation, blueEndLocation;
-    private ArrayList<Node> redFromLocation, blueFromLocation;
-    private boolean isNode;
+    public ArrayList<CombatUnit> redUnits, blueUnits;
+    public ArrayList<Road> redRoad, blueRoad;
+    public ArrayList<Node> redEndLocation, blueEndLocation;
+    public ArrayList<Node> redFromLocation, blueFromLocation;
+    public boolean isNode;
     
-    public CombatInstance(ArrayList<CombatUnit> redUnits, ArrayList<CombatUnit> blueUnits, 
-            ArrayList<Road> redRoad, ArrayList<Road> blueRoad,
-            ArrayList<Node> redEndLocation, ArrayList<Node> blueEndLocation,
-            ArrayList<Node> redFromLocation, ArrayList<Node> blueFromLocation, boolean isNode){
-        redUnits = this.redUnits;
-        blueUnits = this.blueUnits;
-        redRoad = this.redRoad;
-        blueRoad = this.blueRoad;
-        redEndLocation = this.redEndLocation;
-        blueEndLocation = this.blueEndLocation;
-        redFromLocation = this.redFromLocation;
-        blueFromLocation = this.blueFromLocation;
-        isNode = this.isNode;
-    }
-    
+    public CombatInstance(ArrayList<CombatUnit> _redUnits, ArrayList<CombatUnit> _blueUnits, 
+            ArrayList<Road> _redRoad, ArrayList<Road> _blueRoad,
+            ArrayList<Node> _redEndLocation, ArrayList<Node> _blueEndLocation,
+            ArrayList<Node> _redFromLocation, ArrayList<Node> _blueFromLocation, boolean _isNode){
+        redUnits = _redUnits;
+        blueUnits = _blueUnits;
+        redRoad = _redRoad;
+        blueRoad = _blueRoad;
+        redEndLocation = _redEndLocation;
+        blueEndLocation = _blueEndLocation;
+        redFromLocation = _redFromLocation;
+        blueFromLocation = _blueFromLocation;
+        isNode = _isNode;
+    }    
 }
