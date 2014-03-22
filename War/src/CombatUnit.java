@@ -106,7 +106,7 @@ public class CombatUnit extends Game {
     {
         // determine the faction membership
         // obtain the correct distance from capital based on location value
-        if (faction.playerName.equals("red")) 
+        if (faction.playerID == 0) 
         {
             distanceFromCapital = location.distanceFromCapitalRed;
         }

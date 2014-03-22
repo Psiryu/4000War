@@ -430,7 +430,7 @@ public class MapEvent {
                 } else {
                     combatUnitsBlue.get(j2).previousLocation = combatUnitsBlue.get(j2).location;
                     combatUnitsBlue.get(j2).location = blueUnitEnd.get(j);
-                }
+                }   
                 resolvedQueueC.add(combatUnitsBlue.get(j2));
                 resolvedQueueN.add(temp);
 
