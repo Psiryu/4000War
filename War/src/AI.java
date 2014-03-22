@@ -79,7 +79,8 @@ public class AI {
             
             for(Road road : Scenario.listOfRoads) {
                 if(road.locationA.id == location || road.locationB.id == location) {
-                    if(road.capacity >= killBots.size) {
+                    if(road.capacity >= killBots.size || ((road.capacity == 0 && killBots.isFleet == true)
+                            && Global.season != 0)){
                         if(road.locationA.id != location)
                             newLocation = road.locationA.id;
                         else
