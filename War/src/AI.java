@@ -401,10 +401,12 @@ public class AI {
     //finalizes ferrying movement
     private static void FinalizeFerryMovement(CombatUnit killBots, 
             CombatUnit killBoats, Road road, int location) {
-        if(road.locationA.id == location)
-            MapEvent.addMovementFerry(killBoats.cUnitID, killBots.cUnitID, road, road.locationB.id);
-        else
-            MapEvent.addMovementFerry(killBoats.cUnitID, killBots.cUnitID, road, road.locationB.id);
-
+        if(road.locationA.id == location) {
+            MapEvent.addMovement(killBoats.cUnitID, road, road.locationB.id);
+            MapEvent.addMovement(killBots.cUnitID, road, road.locationB.id);
+        }else {
+            MapEvent.addMovement(killBoats.cUnitID, road, road.locationB.id);
+            MapEvent.addMovement(killBots.cUnitID, road, road.locationB.id);
+        }
     }
 }
