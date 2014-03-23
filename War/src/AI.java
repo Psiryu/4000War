@@ -313,6 +313,34 @@ public class AI {
                 indexer++;
             }
             
+                        //checks if the ai can ferry a small army            
+            ArrayList<Road> ferryRoad = new ArrayList<Road>();
+            ArrayList<Integer> ferryDestination = new ArrayList<Integer>();
+            ArrayList<CombatUnit> idToFerry = new ArrayList<CombatUnit>();
+            int dest; //destination tracker
+            if(killBots.isFleet == true)
+            {
+                for(Road roads2 : Scenario.listOfRoads) {
+                    if(roads2.locationA.id == killBots.location.id ||
+                            roads2.locationB.id == killBots.location.id &&
+                            roads2.capacity == 0) 
+                        for(CombatUnit killBots2 : robots.combatUnits) {
+                            if(killBots2.size < 6 &&
+                                    killBots2.location.id == killBots.location.id) {
+                                if(roads2.locationA.id == killBots.location.id)
+                                    dest = roads2.locationA.id;
+                                else
+                                    dest = roads2.locationB.id;
+                                
+                                ferryRoad.add(roads2);
+                                ferryDestination.add(dest);
+                                idToFerry.add(killBots2);
+                            }
+                        }
+                }
+            }
+
+            
             //checks which weighting is the highest
             indexer = 0;
             int greatest = 0; int index = 0;
@@ -326,15 +354,37 @@ public class AI {
             
             indexer = 0;
             //SEND MOVEMENT TO MAPEVENT HERE
-            for(Road road : Scenario.listOfRoads) {
-                //establishes the location id's of each possible movement
-                if(road.locationA.id == location || road.locationB.id == location)
-                    indexer++;
-                //once it reaches the proper index, send to finalize
-                if(indexer == index){
-                    FinalizeMovement(killBots, road, location);
+            if(ferryRoad.isEmpty() == true) {
+                for(Road road : Scenario.listOfRoads) {
+                    //establishes the location id's of each possible movement
+                    if(road.locationA.id == location || road.locationB.id == location)
+                        indexer++;
+                    //once it reaches the proper index, send to finalize
+                    if(indexer == index){
+                        FinalizeMovement(killBots, road, location);
+                    }
+
                 }
+            } else {
+                Random randomizer = new Random();
+                int random = randomizer.nextInt(10);
+                int randomIndex = randomizer.nextInt(ferryRoad.size() - 1);
                 
+                if(random >8)
+                    FinalizeFerryMovement(killBots, idToFerry.get(randomIndex),
+                            ferryRoad.get(randomIndex), ferryDestination.get(randomIndex));
+                else {
+                    for(Road road : Scenario.listOfRoads) {
+                    //establishes the location id's of each possible movement
+                    if(road.locationA.id == location || road.locationB.id == location)
+                        indexer++;
+                    //once it reaches the proper index, send to finalize
+                    if(indexer == index){
+                        FinalizeMovement(killBots, road, location);
+                    }
+
+                }
+                }
             }
             count++;
         }
