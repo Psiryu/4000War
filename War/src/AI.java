@@ -141,7 +141,8 @@ public class AI {
     
     //this method handles dividing armies
     private static void Dividing(ArrayList<CombatUnit> robotLegion, Player robots) {
-        //DIVIDE RANDOMLY OR IF NO MOVE/MOVE OF SMALLER CAPACITY
+        
+        
         
     }
     
@@ -204,17 +205,17 @@ public class AI {
                         increment = weighting[indexer];
 
                         if(Scenario.listOfNodes[newLocation].isCapitalBlue || Scenario.listOfNodes[newLocation].isCapitalRed)
-                            weighting[indexer] += 20;
+                            weighting[indexer] += 30;
                         if(robots.enemyIntelligence.get(indexer).isEmpty() == false)
-                            weighting[indexer] += 45;
+                            weighting[indexer] += 55;
                         if(controlledLocations.contains(newLocation))
-                            weighting[indexer] -= 20;
+                            weighting[indexer] -= 30;
                         if(Scenario.listOfNodes[newLocation].suppliesAvailable < 3)
-                            weighting[indexer] += 25;
+                            weighting[indexer] += 35;
                         else if(Scenario.listOfNodes[newLocation].suppliesAvailable <5)
-                            weighting[indexer] += 15;
+                            weighting[indexer] += 25;
                         if(weighting[indexer] == increment)
-                            weighting[indexer]+= 10;
+                            weighting[indexer]+= 20;
 
                         //checks adjacent nodes
                         for(Road road2 : Scenario.listOfRoads) {
@@ -255,17 +256,17 @@ public class AI {
                                         increment = weighting[indexer];
 
                                         if(Scenario.listOfNodes[newLocation].isCapitalBlue || Scenario.listOfNodes[newLocation].isCapitalRed)
-                                            weighting[indexer] += 20;
+                                            weighting[indexer] += 10;
                                         if(robots.enemyIntelligence.get(indexer).isEmpty() == false)
-                                            weighting[indexer] += 45;
+                                            weighting[indexer] += 35;
                                         if(controlledLocations.contains(newLocation))
-                                            weighting[indexer] -= 20;
+                                            weighting[indexer] -= 10;
                                         if(Scenario.listOfNodes[newLocation].suppliesAvailable < 3)
-                                            weighting[indexer] += 25;
-                                        else if(Scenario.listOfNodes[newLocation].suppliesAvailable <5)
                                             weighting[indexer] += 15;
+                                        else if(Scenario.listOfNodes[newLocation].suppliesAvailable <5)
+                                            weighting[indexer] += 5;
                                         if(weighting[indexer] == increment)
-                                            weighting[indexer]+= 10;
+                                            weighting[indexer]+= 5;
                                     }
                                 }
 

@@ -40,6 +40,7 @@ public class Teams extends javax.swing.JFrame {
         labelOr = new javax.swing.JLabel();
         radioTeam1 = new javax.swing.JRadioButton();
         radioTeam2 = new javax.swing.JRadioButton();
+        buttonBack = new javax.swing.JButton();
         buttonBegin = new javax.swing.JButton();
         labelBackground = new javax.swing.JLabel();
 
@@ -64,14 +65,14 @@ public class Teams extends javax.swing.JFrame {
 
         labelTitle.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         labelTitle.setText("Player 1,");
-        getContentPane().add(labelTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, -1, -1));
+        getContentPane().add(labelTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, -1, -1));
 
         labelSubtitle.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         labelSubtitle.setText("select your team:");
-        getContentPane().add(labelSubtitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 40, -1, -1));
+        getContentPane().add(labelSubtitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 110, -1, -1));
 
         labelOr.setText("Or");
-        getContentPane().add(labelOr, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 140, -1, -1));
+        getContentPane().add(labelOr, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 170, -1, -1));
 
         buttongroupTeam.add(radioTeam1);
         radioTeam1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -84,7 +85,7 @@ public class Teams extends javax.swing.JFrame {
                 radioTeam1ActionPerformed(evt);
             }
         });
-        getContentPane().add(radioTeam1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 100, -1, -1));
+        getContentPane().add(radioTeam1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 140, -1, -1));
 
         buttongroupTeam.add(radioTeam2);
         radioTeam2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -96,17 +97,29 @@ public class Teams extends javax.swing.JFrame {
                 radioTeam2ActionPerformed(evt);
             }
         });
-        getContentPane().add(radioTeam2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 180, -1, -1));
+        getContentPane().add(radioTeam2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 190, -1, -1));
+
+        buttonBack.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        buttonBack.setText("Return to Menu");
+        buttonBack.setContentAreaFilled(false);
+        buttonBack.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        buttonBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonBackActionPerformed(evt);
+            }
+        });
+        getContentPane().add(buttonBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 240, 60));
 
         buttonBegin.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         buttonBegin.setText("Begin Match");
         buttonBegin.setContentAreaFilled(false);
+        buttonBegin.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         buttonBegin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonBeginActionPerformed(evt);
             }
         });
-        getContentPane().add(buttonBegin, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 240, 250, 60));
+        getContentPane().add(buttonBegin, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 240, 240, 60));
 
         labelBackground.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/TeamSelect-backdrop.png"))); // NOI18N
         labelBackground.setToolTipText(null);
@@ -115,14 +128,13 @@ public class Teams extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void buttonBeginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBeginActionPerformed
-        Global.intGameOver = 0;
-        Scenario scenario = new Scenario();
-        scenario.Initialize(0);
-        Global.mapEvent = new MapEvent();
-        new Map().setVisible(true);
+    private void buttonBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBackActionPerformed
+        //button for quitting current scenario and returning to main menu
+        Scenario.killSwitch();
+
+        new MainMenu().setVisible(true);
         Teams.this.dispose();
-    }//GEN-LAST:event_buttonBeginActionPerformed
+    }//GEN-LAST:event_buttonBackActionPerformed
 
     private void radioTeam1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioTeam1ActionPerformed
         Global.chosenTeam = false;
@@ -135,6 +147,10 @@ public class Teams extends javax.swing.JFrame {
     private void butonXActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butonXActionPerformed
         System.exit(0);
     }//GEN-LAST:event_butonXActionPerformed
+
+    private void buttonBeginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBeginActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_buttonBeginActionPerformed
 
     /**
      * @param args the command line arguments
@@ -174,6 +190,7 @@ public class Teams extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton butonX;
+    private javax.swing.JButton buttonBack;
     private javax.swing.JButton buttonBegin;
     private javax.swing.ButtonGroup buttongroupTeam;
     private javax.swing.JLabel labelBackground;
