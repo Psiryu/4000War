@@ -19,6 +19,7 @@ public class Global {
     public static MapEvent mapEvent;
     public static int curPlayer; //global variable for keeping track of whos turn it is
     public static String gameSummary;
+    public static int intGameOver;
     
     
     public static void ResetGlobals() {
