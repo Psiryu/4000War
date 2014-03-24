@@ -137,11 +137,11 @@ public class Map extends javax.swing.JFrame {
         frameFloatingInfo.setResizable(false);
         frameFloatingInfo.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        labelTurnCount.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        labelTurnCount.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         labelTurnCount.setText("Turn: 1");
         frameFloatingInfo.getContentPane().add(labelTurnCount, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 70, -1, -1));
 
-        labelCurPlayer.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        labelCurPlayer.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         labelCurPlayer.setText("text");
         frameFloatingInfo.getContentPane().add(labelCurPlayer, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 70, -1, -1));
 
@@ -178,22 +178,22 @@ public class Map extends javax.swing.JFrame {
         });
         frameFloatingInfo.getContentPane().add(buttonExit, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 10, 100, 40));
 
-        labelOpponent.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        labelOpponent.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         labelOpponent.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         labelOpponent.setText("text");
         labelOpponent.setName("labelOpponent"); // NOI18N
         frameFloatingInfo.getContentPane().add(labelOpponent, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, -1, -1));
 
-        labelScenario.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        labelScenario.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         labelScenario.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         labelScenario.setText("text");
         frameFloatingInfo.getContentPane().add(labelScenario, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 70, -1, -1));
 
-        labelPoliticalPower.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        labelPoliticalPower.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         labelPoliticalPower.setText("text");
         frameFloatingInfo.getContentPane().add(labelPoliticalPower, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 90, -1, -1));
 
-        labelSeason.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        labelSeason.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         labelSeason.setText("text");
         frameFloatingInfo.getContentPane().add(labelSeason, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, -1, -1));
 
@@ -230,32 +230,32 @@ public class Map extends javax.swing.JFrame {
         menuInfo.setOpaque(false);
         menuInfo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        labelInfo1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        labelInfo1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         labelInfo1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         labelInfo1.setText("city name");
         menuInfo.add(labelInfo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, -1, -1));
 
-        labelInfo2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        labelInfo2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         labelInfo2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         labelInfo2.setText("node type");
         menuInfo.add(labelInfo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 10, -1, -1));
 
-        labelInfo3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        labelInfo3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         labelInfo3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         labelInfo3.setText("supplies");
         menuInfo.add(labelInfo3, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 10, -1, -1));
 
-        labelInfo4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        labelInfo4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         labelInfo4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         labelInfo4.setText("weather");
         menuInfo.add(labelInfo4, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 10, -1, -1));
 
-        labelInfo5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        labelInfo5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         labelInfo5.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         labelInfo5.setText("player's armies");
         menuInfo.add(labelInfo5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, -1, -1));
 
-        labelInfo6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        labelInfo6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         labelInfo6.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         labelInfo6.setText("enemy's armies");
         menuInfo.add(labelInfo6, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 40, -1, -1));
@@ -488,6 +488,7 @@ public class Map extends javax.swing.JFrame {
             labelPoliticalPower.setText("Political power: " + Scenario.bluePlayer.politicalPower);
         }
         
+        labelTurnCount.setText("Turn: 1/"+Game.maxTurnCount);
         //creates the timer for the match
         ActionListener timerDone = new ActionListener() {
             @Override
@@ -2072,7 +2073,7 @@ public class Map extends javax.swing.JFrame {
         buttonNext.setVisible(true);
 
         int turns = (int)Game.turnCount + 1;
-        labelTurnCount.setText("Turn: " + (turns));
+        labelTurnCount.setText("Turn: " + (turns) +"/"+Game.maxTurnCount);
 
         //sets label that displays season
         if (Global.season == 0) {
