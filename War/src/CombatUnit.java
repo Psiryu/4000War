@@ -9,13 +9,14 @@
  *
  * @author Jason Englehart
  *
- *This class outlines the construction, storage and use of the CombatUnit object.
- * The CombatUnit object outlines the entities which the player manipulates through
- * the interface. CombatUnits interact with each other through merging, dividing,
- * ferrying and combat.
- * 
- * Each object stores information regarding it's position on the map, its internal
- * status, and some aggregate information regarding the player to which it belongs.
+ * This class outlines the construction, storage and use of the CombatUnit
+ * object. The CombatUnit object outlines the entities which the player
+ * manipulates through the interface. CombatUnits interact with each other
+ * through merging, dividing, ferrying and combat.
+ *
+ * Each object stores information regarding it's position on the map, its
+ * internal status, and some aggregate information regarding the player to which
+ * it belongs.
  */
 public class CombatUnit extends Game {
 
@@ -28,17 +29,17 @@ public class CombatUnit extends Game {
     int supplyLevel; // supply level held by the unit
 
     /*
-    Method: CombatUnit
-    Parameters: Boolean _isFleet -> true if the unit is a naval unit or fleet
-    int _cUnitID -> the unique ID of the unit
-    int _size -> the size of the unit, between 0 and 15
-    int _illnessRating -> the value assigned to the current health rating of the units
-    Node _location -> the current location occupied by the unit
-    Player _faction -> the player to which the player belongs and is controlled by
+     Method: CombatUnit
+     Parameters: Boolean _isFleet -> true if the unit is a naval unit or fleet
+     int _cUnitID -> the unique ID of the unit
+     int _size -> the size of the unit, between 0 and 15
+     int _illnessRating -> the value assigned to the current health rating of the units
+     Node _location -> the current location occupied by the unit
+     Player _faction -> the player to which the player belongs and is controlled by
     
-    This is the constructor for the CombatUnit object. With the given parameters
-    the state of the unit is established.
-    */
+     This is the constructor for the CombatUnit object. With the given parameters
+     the state of the unit is established.
+     */
     public CombatUnit(Boolean _isFleet, int _cUnitID, int _size, int _illnessRating, Node _location, Player _faction) {
         cUnitID = _cUnitID; // establish ID
         size = _size; // get size
@@ -53,14 +54,14 @@ public class CombatUnit extends Game {
     }
 
     /*
-    Method: GetBattleStrength
-    Parameters: none
+     Method: GetBattleStrength
+     Parameters: none
     
-    Returns the integer value of battle strength, the value used to determine the 
-    ability of the unit to fight in the case of a battle. The value calculated here
-    is used in the Battle class. This is a function of both player and unit 
-    properties. 
-    */
+     Returns the integer value of battle strength, the value used to determine the 
+     ability of the unit to fight in the case of a battle. The value calculated here
+     is used in the Battle class. This is a function of both player and unit 
+     properties. 
+     */
     int GetBattleStrengh() {
         int strength; // temp variable to store strength calculation
 
@@ -78,26 +79,26 @@ public class CombatUnit extends Game {
     }
 
     /*
-    Method: setIllnessRating
-    Parameters: none
+     Method: setIllnessRating
+     Parameters: none
     
-    This method is called to at the end of each turn to establish the health of
-    the unit. The health, or conversely the illness level, of the unit is a 
-    function of time exposed to the elements.
-    */
+     This method is called to at the end of each turn to establish the health of
+     the unit. The health, or conversely the illness level, of the unit is a 
+     function of time exposed to the elements.
+     */
     void setIllnessRating() {
         // calculate the illness rating based on time stationary and environment
         illnessRating = timeStationary + Global.season + Global.weather;
     }
 
     /*
-    Method: setSize
-    Parameters: none
+     Method: setSize
+     Parameters: none
     
-    This method is called at turn's end in order to determine if illness has killed
-    of individuals in this unit or if individuals have deserted due to a drop in 
-    political power. Changes here will be reflected in a decrease in unit size.
-    */ 
+     This method is called at turn's end in order to determine if illness has killed
+     of individuals in this unit or if individuals have deserted due to a drop in 
+     political power. Changes here will be reflected in a decrease in unit size.
+     */
     void setSize() {
         // calculate a sum of illness and political power decrease
         checkIllnessToggle = illnessRating + faction.getPoliticalPowerDecrease() + (5 - supplyLevel);
@@ -109,13 +110,13 @@ public class CombatUnit extends Game {
     }
 
     /*
-    Method: setTimeStationary
-    Parameters: none
+     Method: setTimeStationary
+     Parameters: none
     
-    This method is called to at turn's end and evaluates whether the unit has
-    moved to a new location. This is based on an observed change between previous
-    location and current location.
-    */
+     This method is called to at turn's end and evaluates whether the unit has
+     moved to a new location. This is based on an observed change between previous
+     location and current location.
+     */
     void setTimeStationary() {
         // if the unit has not moved
         if (location == previousLocation) {
@@ -129,19 +130,19 @@ public class CombatUnit extends Game {
         }
     }
 
-     /*
-    Method: addSupplies
-    Parameters: none
+    /*
+     Method: addSupplies
+     Parameters: none
     
-    When a player occupies a location/node with supplies, the supplies at the
-    location are added to the units storage.
-    */
+     When a player occupies a location/node with supplies, the supplies at the
+     location are added to the units storage.
+     */
     void addSupplies() {
         // increase the supply of the unit based on location supply value
         supplyLevel += location.suppliesAvailable;
-        
+
         // cap the supply level at 5
-        if (supplyLevel > 5){
+        if (supplyLevel > 5) {
             supplyLevel = 5;
         }
         // set the location's supply to zero when all supplies are taken
@@ -149,33 +150,33 @@ public class CombatUnit extends Game {
     }
 
     /*
-    Method: removeSupplies
-    Parameters: none
+     Method: removeSupplies
+     Parameters: none
     
-    At turn's end, the value of supplies is decremented by one to indicate
-    consumption.
-    */
+     At turn's end, the value of supplies is decremented by one to indicate
+     consumption.
+     */
     void removeSupplies() {
         supplyLevel--;
     }
 
     /*
-    Method: GetLocation
-    Parameters: none
+     Method: GetLocation
+     Parameters: none
     
-    Returns the location of the unit.
-    */
+     Returns the location of the unit.
+     */
     Node GetLocation() {
         return location;
     }
 
     /*
-    Method: setDistanceFromCapital
-    Parameters: none
+     Method: setDistanceFromCapital
+     Parameters: none
     
-    When called to, this method will read the value stored at its location
-    indicating how far away from its capital the unit is.
-    */
+     When called to, this method will read the value stored at its location
+     indicating how far away from its capital the unit is.
+     */
     void setDistanceFromCapital() {
         // determine the faction membership
         // obtain the correct distance from capital based on location value
