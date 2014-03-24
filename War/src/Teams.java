@@ -130,7 +130,7 @@ public class Teams extends javax.swing.JFrame {
 
     private void buttonBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBackActionPerformed
         //button for quitting current scenario and returning to main menu
-        Scenario.killSwitch();
+        //Scenario.killSwitch();
 
         new MainMenu().setVisible(true);
         Teams.this.dispose();

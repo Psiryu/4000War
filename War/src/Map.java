@@ -43,11 +43,7 @@ public class Map extends javax.swing.JFrame {
         buttonNext.setVisible(false);
         frameFloatingInfo.setVisible(true);
 
-        //resets turn count to 0;
-        //Game.turnCount = 0;
-
         GameStart();
-        //jFrame1.setVisible(true);
     }
 
     /**
@@ -2033,7 +2029,7 @@ public class Map extends javax.swing.JFrame {
             //ends turn again
             
             
-            if (Global.intGameOver == 1)
+            if(Global.intGameOver == 1)
                 GameOver();
         }
 

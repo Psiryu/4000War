@@ -29,6 +29,15 @@ public class AI {
     
         //determines if any units controlled should merge or divide
         BeginMerging(robotLegion, robots);
+        
+        //re-establishes the variables in case mergers or divisions occured
+        if(Global.chosenTeam == false) {
+            robots = Scenario.bluePlayer;
+            robotLegion = Scenario.bluePlayer.combatUnits; }
+        else {
+            robotLegion = Scenario.redPlayer.combatUnits;
+            robots = Scenario.redPlayer; }
+        
         Dividing(robotLegion);
         
         //re-establishes the variables in case mergers or divisions occured
