@@ -2003,7 +2003,8 @@ public class Map extends javax.swing.JFrame {
 
         panelMap.setVisible(false);
         //actions to finish the turn on th ebackend
-
+        
+        Game.IsGameEnd();        
         if (Global.intGameOver == 1)
             GameOver();
         
@@ -2028,7 +2029,7 @@ public class Map extends javax.swing.JFrame {
             
             //ends turn again
             
-            
+            Game.IsGameEnd();
             if(Global.intGameOver == 1)
                 GameOver();
         }

@@ -19,6 +19,7 @@ public class Game {
     // initialize the game with turn count 0
     public Game() {
         //turnCount = 0;
+        maxTurnCount = 3;
     }
     
     void setMaxTurnCount(int number){
@@ -124,7 +125,7 @@ public class Game {
         }
 
     }
-    public void IsGameEnd ()
+    public static void IsGameEnd ()
     {
 	int aggregateRedSize = 0;
 	int aggregateBlueSize = 0;
