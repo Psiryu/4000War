@@ -1,3 +1,6 @@
+
+import javax.swing.JScrollPane;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -17,7 +20,7 @@ public class GameOver extends javax.swing.JFrame {
         initComponents();
         
         labelWinner.setText(Global.gameSummary);
-        labelWhy.setText(Global.gameSummary2);
+        textfieldWhy.setText(Global.gameSummary2);
     }
 
     /**
@@ -33,7 +36,7 @@ public class GameOver extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         labelGameOver = new javax.swing.JLabel();
         labelWinner = new javax.swing.JLabel();
-        labelWhy = new javax.swing.JLabel();
+        textfieldWhy = new java.awt.TextArea();
         labelBackground = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -74,10 +77,10 @@ public class GameOver extends javax.swing.JFrame {
         labelWinner.setText("jLabel1");
         getContentPane().add(labelWinner, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 220, -1));
 
-        labelWhy.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        labelWhy.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        labelWhy.setText("jLabel2");
-        getContentPane().add(labelWhy, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, 220, 100));
+        textfieldWhy.setEditable(false);
+        textfieldWhy.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        textfieldWhy.setRows(30);
+        getContentPane().add(textfieldWhy, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 240, 100));
 
         labelBackground.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/TeamSelect-backdrop.png"))); // NOI18N
         labelBackground.setToolTipText(null);
@@ -138,7 +141,7 @@ public class GameOver extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel labelBackground;
     private javax.swing.JLabel labelGameOver;
-    private javax.swing.JLabel labelWhy;
     private javax.swing.JLabel labelWinner;
+    private java.awt.TextArea textfieldWhy;
     // End of variables declaration//GEN-END:variables
 }
