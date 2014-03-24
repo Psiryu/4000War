@@ -328,6 +328,22 @@ public class MapEvent {
                 }
             }
         }
+        redCombatListCollisionL.clear();
+        blueCombatListCollisionL.clear();
+        redCombatUnitPreviousLocationC.clear();
+        redCombatUnitEndLocationC.clear();
+        blueCombatUnitPreviousLocationC.clear();
+        blueCombatUnitEndLocationC.clear();
+        redCombatRoadC.clear();
+        blueCombatRoadC.clear();
+        redCombatListNodeL.clear();
+        blueCombatListNodeL.clear();
+        redCombatUnitPreviousLocationN.clear();
+        redCombatUnitEndLocationN.clear();
+        blueCombatUnitPreviousLocationN.clear();
+        blueCombatUnitEndLocationN.clear();
+        redCombatRoadN.clear();
+        blueCombatRoadN.clear();
     }
 
     /*
