@@ -75,13 +75,37 @@ public class Battle {
         {
             /*PRRRRRRRRRRRRRRRRRREEEEEEEEEEEEEEEEEEEEEMMMMMM*/
             /*you question box is here*/
-
-            yesNo = JOptionPane.showOptionDialog(null, ("Red Team... Would you like to battle on " + node.name + " ?"), "Battle?",
-                    JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE,null,options,options[0]);
-            if (yesNo == 0) /*IF FIGHT*/ {
-                redDecisionToFight = true;
-            } else {
-                redDecisionToFight = false;
+            if (Global.opponent == true) /*PVP*/
+            {
+                yesNo = JOptionPane.showOptionDialog(null, ("Red Team... Would you like to battle on " + node.name + " ?"), "Battle?",
+                        JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE,null,options,options[0]);
+                if (yesNo == 0) /*IF FIGHT*/ {
+                    redDecisionToFight = true;
+                } else {
+                    redDecisionToFight = false;
+                }
+            }
+            else if (Global.chosenTeam == false) /*player is red*/
+            {
+                yesNo = JOptionPane.showOptionDialog(null, ("Red Team... Would you like to battle on " + node.name + " ?"), "Battle?",
+                        JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE,null,options,options[0]);
+                if (yesNo == 0) /*IF FIGHT*/ {
+                    redDecisionToFight = true;
+                } else {
+                    redDecisionToFight = false;
+                }
+            }
+            else /*Red is computer AI*/
+            {
+                if (randNum.nextDouble() > 0.3)
+                {
+                    redDecisionToFight = true;
+                } 
+                else 
+                {
+                    redDecisionToFight = false;
+                }
+                
             }
         }
        
@@ -96,14 +120,41 @@ public class Battle {
         {
             /*PRRRRRRRRRRRRRRRRRREEEEEEEEEEEEEEEEEEEEEMMMMMM*/
             /*you question box is here*/
-            yesNo = JOptionPane.showOptionDialog(null, ("Blue... Would you like to battle on " + node.name + " ?"), "Battle?",
-                    JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE,null,options,options[0]);
-            
-            if (yesNo == 0) /*IF FIGHT*/ {
-                blueDecisionToFight = true;
-            } else {
-                blueDecisionToFight = false;
+            if (Global.opponent == true) /*PVP*/
+            {
+                yesNo = JOptionPane.showOptionDialog(null, ("Blue... Would you like to battle on " + node.name + " ?"), "Battle?",
+                        JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE,null,options,options[0]);
+
+                if (yesNo == 0) /*IF FIGHT*/ {
+                    blueDecisionToFight = true;
+                } else {
+                    blueDecisionToFight = false;
+                }
             }
+            else if(Global.chosenTeam == true) /*player is Blue*/
+            {
+                yesNo = JOptionPane.showOptionDialog(null, ("Blue... Would you like to battle on " + node.name + " ?"), "Battle?",
+                        JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE,null,options,options[0]);
+
+                if (yesNo == 0) /*IF FIGHT*/ {
+                    blueDecisionToFight = true;
+                } else {
+                    blueDecisionToFight = false;
+                }
+            
+            }
+            else /*Blue is AI*/
+            {
+                if (randNum.nextDouble() > 0.3)
+                {
+                    blueDecisionToFight = true;
+                } 
+                else 
+                {
+                    blueDecisionToFight = false;
+                }
+            }
+            
         }
 
         if (blueDecisionToFight && redDecisionToFight) {
@@ -1591,9 +1642,6 @@ public class Battle {
                         + " and " + redCombatUnitEndLocation.get(0).name);
                 
         /*Asking red if they want to do battle*/
-
-
-
         if(IsPreemptive(redCombatUnitEndLocation.get(0),redCombatUnit.get(0).faction.playerID))
         {
             redDecisionToFight = true;
@@ -1605,14 +1653,41 @@ public class Battle {
         {
             /*PRRRRRRRRRRRRRRRRRREEEEEEEEEEEEEEEEEEEEEMMMMMM*/
             /*you question box is here*/
-            yesNo = JOptionPane.showOptionDialog(null, ("Red Team... Would you like to battle on the road between" +
+            if (Global.opponent == true) /*PVP*/
+            {
+                yesNo = JOptionPane.showOptionDialog(null, ("Red Team... Would you like to battle on the road between" +
                     redCombatUnitPreviousLocation.get(0).name + " and " +
                     redCombatUnitEndLocation.get(0).name), "Battle?",
                     JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE,null,options,options[0]);
-            if (yesNo == 0) /*IF FIGHT*/ {
-                redDecisionToFight = true;
-            } else {
-                redDecisionToFight = false;
+                if (yesNo == 0) /*IF FIGHT*/ {
+                    redDecisionToFight = true;
+                } else {
+                    redDecisionToFight = false;
+                }
+            }
+            else if (Global.chosenTeam == false) /*player is red*/
+            {
+                yesNo = JOptionPane.showOptionDialog(null, ("Red Team... Would you like to battle on the road between" +
+                    redCombatUnitPreviousLocation.get(0).name + " and " +
+                    redCombatUnitEndLocation.get(0).name), "Battle?",
+                    JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE,null,options,options[0]);
+                if (yesNo == 0) /*IF FIGHT*/ {
+                    redDecisionToFight = true;
+                } else {
+                    redDecisionToFight = false;
+                }
+            }
+            else /*Red is computer AI*/
+            {
+                if (randNum.nextDouble() > 0.3)
+                {
+                    redDecisionToFight = true;
+                } 
+                else 
+                {
+                    redDecisionToFight = false;
+                }
+                
             }
         }
        
@@ -1627,15 +1702,43 @@ public class Battle {
         {
             /*PRRRRRRRRRRRRRRRRRREEEEEEEEEEEEEEEEEEEEEMMMMMM*/
             /*you question box is here*/
-            
-            yesNo = JOptionPane.showOptionDialog(null, ("Blue Team... Would you like to battle on the road between" +
+            if (Global.opponent == true) /*PVP*/
+            {
+                yesNo = JOptionPane.showOptionDialog(null, ("Blue Team... Would you like to battle on the road between" +
                     redCombatUnitPreviousLocation.get(0).name + " and " +
                     redCombatUnitEndLocation.get(0).name), "Battle?",
                     JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE,null,options,options[0]);
-            if (yesNo == 0) /*IF FIGHT*/ {
-                blueDecisionToFight = true;
-            } else {
-                blueDecisionToFight = false;
+
+                if (yesNo == 0) /*IF FIGHT*/ {
+                    blueDecisionToFight = true;
+                } else {
+                    blueDecisionToFight = false;
+                }
+            }
+            else if(Global.chosenTeam == true) /*player is Blue*/
+            {
+                yesNo = JOptionPane.showOptionDialog(null, ("Blue Team... Would you like to battle on the road between" +
+                    redCombatUnitPreviousLocation.get(0).name + " and " +
+                    redCombatUnitEndLocation.get(0).name), "Battle?",
+                    JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE,null,options,options[0]);
+
+                if (yesNo == 0) /*IF FIGHT*/ {
+                    blueDecisionToFight = true;
+                } else {
+                    blueDecisionToFight = false;
+                }
+            
+            }
+            else /*Blue is AI*/
+            {
+                if (randNum.nextDouble() > 0.3)
+                {
+                    blueDecisionToFight = true;
+                } 
+                else 
+                {
+                    blueDecisionToFight = false;
+                }
             }
         }
 
