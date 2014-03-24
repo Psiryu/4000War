@@ -73,7 +73,7 @@ public class Game {
     void endTurn() {
         turnCount += 0.5; // increase the turn count
         if (turnCount % 1 == 0) {
-            MapEvent.onmipresentSimulation();
+            MapEvent.omnipresentSimulation();
 
             // update the political power levels of each faction
             Scenario.redPlayer.AdjustPoliticalPower();
