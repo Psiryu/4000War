@@ -48,6 +48,7 @@ public class MapEvent {
     private static ArrayList<ArrayList<Node>> blueCombatUnitEndLocationN = new ArrayList<ArrayList<Node>>(); // list of blue faction tentative end locations pre-combat
     private static ArrayList<ArrayList<Road>> redCombatRoadN = new ArrayList<ArrayList<Road>>(); // the road upon which red traveled to the conficted node
     private static ArrayList<ArrayList<Road>> blueCombatRoadN = new ArrayList<ArrayList<Road>>(); // the road upon which blue traveled to the conflicted node
+    private static ArrayList<CombatUnit> removeQueue = new ArrayList<CombatUnit>();
 
     // Constructor for MapEvent
     public MapEvent() {
@@ -155,6 +156,7 @@ public class MapEvent {
             cleanList(); // consolidate the lists
             processEvents(); // process the movements and detect collisions
             simulateCombat(); // send collision information to combat
+            removeInstances(); // remove all the units from the movement registry
         } while (combatUnitsRed.size() > 0 || combatUnitsRed != null);
 
         clearRegistry(); // reset the class to be prepared for the next turn
@@ -285,7 +287,7 @@ public class MapEvent {
                 final int j2 = j;
                 combatUnitsRed.get(j2).previousLocation = combatUnitsRed.get(j2).location;
                 combatUnitsRed.get(j2).location = redUnitEnd.get(j2);
-                removeInstance(combatUnitsRed.get(j2)); // remove the movement instance from the list
+                removeQueue.add(combatUnitsRed.get(j2)); // remove the movement instance from the list
             }
         }
 
@@ -295,7 +297,7 @@ public class MapEvent {
                 final int j2 = j;
                 combatUnitsBlue.get(j2).previousLocation = combatUnitsBlue.get(j2).location;
                 combatUnitsBlue.get(j2).location = blueUnitEnd.get(j);
-                removeInstance(combatUnitsBlue.get(j2));
+                removeQueue.add(combatUnitsBlue.get(j2));
             }
         }
     }
@@ -307,21 +309,23 @@ public class MapEvent {
      This method will check which faction the unit belongs to and remove the unit
      from the movement lists
      */
-    private static void removeInstance(CombatUnit unit) {
-        // check which faction the unit belongs to 
-        if (Scenario.redPlayer.playerID == unit.faction.playerID) {
-            // remove the unit and its information from the movement lists
-            if (combatUnitsRed.contains(unit)) {
-                redUnitRoad.remove(combatUnitsRed.indexOf(unit));
-                redUnitEnd.remove(combatUnitsRed.indexOf(unit));
-                combatUnitsRed.remove(unit);
-            }
-        } else {
-            // repeat for blue faction units
-            if (combatUnitsBlue.contains(unit)) {
-                blueUnitRoad.remove(combatUnitsBlue.indexOf(unit));
-                blueUnitEnd.remove(combatUnitsBlue.indexOf(unit));
-                combatUnitsBlue.remove(unit);
+    private static void removeInstances() {
+        for (CombatUnit unit : removeQueue) {
+            // check which faction the unit belongs to 
+            if (Scenario.redPlayer.playerID == unit.faction.playerID) {
+                // remove the unit and its information from the movement lists
+                if (combatUnitsRed.contains(unit)) {
+                    redUnitRoad.remove(combatUnitsRed.indexOf(unit));
+                    redUnitEnd.remove(combatUnitsRed.indexOf(unit));
+                    combatUnitsRed.remove(unit);
+                }
+            } else {
+                // repeat for blue faction units
+                if (combatUnitsBlue.contains(unit)) {
+                    blueUnitRoad.remove(combatUnitsBlue.indexOf(unit));
+                    blueUnitEnd.remove(combatUnitsBlue.indexOf(unit));
+                    combatUnitsBlue.remove(unit);
+                }
             }
         }
     }
@@ -360,7 +364,7 @@ public class MapEvent {
     private static void cleanList() {
         boolean found = false; // flag for whether the unit has been found
 
-        if (!combatUnitsRed.isEmpty()) { // if the current list is empty
+        if (!combatUnitsRed.isEmpty()) { // if the current list is not empty
             // determine which units have not been added to the lists
             for (int i = 0; i < Scenario.redPlayer.combatUnits.size(); i++) { // for each possible unit in the faction
                 for (int j = 0; j < combatUnitsRed.size(); j++) { // for each unit accounted for in the faction
@@ -420,7 +424,7 @@ public class MapEvent {
      */
     public static void completeCombat(ArrayList<CombatUnit> redUnits, Boolean redVictor, ArrayList<CombatUnit> blueUnits, Boolean blueVictor, Node endLocation) {
         for (CombatUnit unit : redUnits) { // for each of the red units
-            removeInstance(unit); // remove the movement records for each unit
+            removeQueue.add(unit); // remove the movement records for each unit
             if (!redVictor) { // if red lost, remove the units from play 
                 Scenario.redPlayer.combatUnits.remove(unit);
             } else { // if red won, move the unit to the intended location
@@ -430,7 +434,7 @@ public class MapEvent {
             }
         }
         for (CombatUnit unit : blueUnits) { // repeat the processes for blue units
-            removeInstance(unit);
+            removeQueue.add(unit);
             if (!blueVictor) {
                 Scenario.bluePlayer.combatUnits.remove(unit);
             } else {
