@@ -181,7 +181,7 @@ public class AI {
                 //weight starts off as ten, is subtracted for each road it cannot
                 //travel due to size. Random number from 0 to weight is then used
                 //for the probability of dividing.
-                weight = 12;
+                weight = 20;
 
                 //loop goes through each road
                 for(Road road : Scenario.listOfRoads) {
@@ -197,7 +197,7 @@ public class AI {
                 }
                 //sets weight to 1 if it is decremented to or below 0
                 if(weight <=0)
-                    weight = 3;
+                    weight = 4;
 
                 //adds randomness and decides if it should divide or not
                 //creates a random number generator
@@ -205,7 +205,7 @@ public class AI {
                 int divide = randomizer.nextInt(weight);
 
                 //determines if it will divide or not
-                if(divide < 3)
+                if(divide < 4)
                     dividers.add(killBots);
             }
         }
