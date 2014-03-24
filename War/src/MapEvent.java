@@ -78,6 +78,7 @@ public class MapEvent {
 
         // determine the player to be used
         if (Scenario.redPlayer.playerID == Global.curPlayer) {
+            currentPlayer = Scenario.redPlayer;
             for (CombatUnit CUnits : Scenario.redPlayer.combatUnits) { // search the player's roster for the unit
                 if (CUnits.cUnitID == unitNum) {
                     unit = CUnits;
@@ -87,6 +88,7 @@ public class MapEvent {
             }
         } else { // do the same for bluePlayer, should that be the current player
             for (CombatUnit CUnits : Scenario.bluePlayer.combatUnits) {
+                currentPlayer = Scenario.bluePlayer;
                 if (CUnits.cUnitID == unitNum) {
                     unit = CUnits;
                     //JOptionPane.showMessageDialog(null, "BLUE UNIT FOUND!");

@@ -102,7 +102,7 @@ public class Game {
                 // determin the new time spent stationary
                 Scenario.redPlayer.combatUnits.get(i).setTimeStationary();
                 // re-evaluate the illness rating
-                Scenario.redPlayer.combatUnits.get(i).setHealthRating();
+                Scenario.redPlayer.combatUnits.get(i).setIllnessRating();
                 // determine if a size decrease will occur
                 Scenario.redPlayer.combatUnits.get(i).setSize();
                 // decriment the supply level of the unit
@@ -112,7 +112,7 @@ public class Game {
             // repeat the calculations for the blue faction
             for (int i = 0; i < Scenario.bluePlayer.combatUnits.size(); i++) {
                 Scenario.bluePlayer.combatUnits.get(i).setTimeStationary();
-                Scenario.bluePlayer.combatUnits.get(i).setHealthRating();
+                Scenario.bluePlayer.combatUnits.get(i).setIllnessRating();
                 Scenario.bluePlayer.combatUnits.get(i).setSize();
                 Scenario.bluePlayer.combatUnits.get(i).removeSupplies();
             }
