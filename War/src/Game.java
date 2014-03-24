@@ -124,4 +124,118 @@ public class Game {
         }
 
     }
+    public void IsGameEnd ()
+    {
+	int aggregateRedSize = 0;
+	int aggregateBlueSize = 0;
+	
+	for (int i = 0 ; i < Scenario.redPlayer.combatUnits.size(); i ++)
+	{
+		aggregateRedSize += Scenario.redPlayer.combatUnits.get(i).size;
+	}
+	for (int i = 0 ; i < Scenario.bluePlayer.combatUnits.size(); i ++)
+	{
+		aggregateRedSize += Scenario.bluePlayer.combatUnits.get(i).size;
+	}
+	
+	/*Case one for victory time runs out*/
+	if (turnCount >= maxTurnCount)
+	{
+		if (Scenario.redPlayer.politicalPower > Scenario.bluePlayer.politicalPower )
+		{
+			Global.gameSummary = "There are no more turns remaining...\n"+
+				"Red player wins because their political power is greater than Blue's";
+			
+			Global.intGameOver = 1;
+			return;
+		}
+		else if (Scenario.redPlayer.politicalPower < Scenario.bluePlayer.politicalPower )
+		{
+		
+			Global.gameSummary = "There are no more turns remaining...\n"+
+				"Blue player wins because their political power is greater than Red's";
+				Global.intGameOver = 1;
+				return;
+		
+		}
+                else /*POLITICAL POWER IS EQUAL*/
+                {
+                        if(aggregateRedSize > aggregateBlueSize)
+			{
+				Global.gameSummary = "There are no more turns remaining...\n"+
+				"Red player wins because their political power is equal than Blue's\n"+
+				"but Red has a larger army";
+			
+				Global.intGameOver = 1;
+				return;
+			}
+			else if(aggregateRedSize < aggregateBlueSize)
+			{
+				Global.gameSummary = "There are no more turns remaining...\n"+
+				"Blue player wins because their political power is equal than Red's\n"+
+				"but Blue has a larger army";
+				
+				Global.intGameOver = 1;
+				return;
+			
+			}
+                        else
+                        {
+                                Global.gameSummary = "There are no more turns remaining...\n"+
+                                "The game is tied\nThere are no more turns left and both players have\n"+
+                                "equal strength in army size and political power";	
+                                Global.intGameOver = 1;
+                                return;
+                        }
+                }
+        }
+
+	else if (Scenario.redPlayer.combatUnits.size() == 1 )
+	{
+		if ((Scenario.bluePlayer.combatUnits.size() == 1 ))
+		{
+			if (Scenario.bluePlayer.combatUnits.get(0).isFleet&& Scenario.redPlayer.combatUnits.get(0).isFleet)
+			{
+				Global.gameSummary = "The game is tied\n"+
+				"Both players have only one combat unit left and that combat unit\n"+
+				"is a naval fleet unit";	
+				
+				Global.intGameOver = 1;
+				return;
+			}
+		}
+		
+		else if(Scenario.redPlayer.combatUnits.get(0).isFleet)
+		{
+				Global.gameSummary = "Blue have won the game\n"+
+				"Red has only one combat unit left\n"+
+				"And that unit is a naval fleet unit";
+				
+				Global.intGameOver = 1;
+				return;
+		}
+	
+	}
+	else if ((Scenario.bluePlayer.combatUnits.size() == 1 ))
+	{
+		if(Scenario.bluePlayer.combatUnits.get(0).isFleet)
+		{
+				Global.gameSummary = "Red have won the game\n"+
+				"Blue has only one combat unit left\n"+
+				"And that unit is a naval fleet unit";
+				
+				Global.intGameOver = 1;
+				return;
+		}
+	
+	}
+	else
+	{
+		return;
+	
+	}
+	
+
+       return;
+    }
 }
