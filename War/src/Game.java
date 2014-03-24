@@ -102,23 +102,24 @@ public class Game {
             updateWeather(); // change the weather conditions
             Global.season = (Global.season + 1) % 4; // change the season
 
-            for (Node listOfNode : Scenario.listOfNodes) {
-                listOfNode.timeUnoccupied++;
-                if (listOfNode.timeUnoccupied > 3) {
-                    listOfNode.timeUnoccupied = 3;
-                }
-            }
-
-            for (Node listOfNode : Scenario.listOfNodes) {
-                for (int j = 0; j < Scenario.redPlayer.combatUnits.size(); j++) {
-                    if (Scenario.redPlayer.combatUnits.get(j).location.id == listOfNode.id) {
-                        listOfNode.timeUnoccupied = 0;
+            for (Node location : Scenario.listOfNodes) {
+                Boolean raidCheck = true;
+                for (CombatUnit unit : Scenario.redPlayer.combatUnits) {
+                    if (unit.location.id == location.id) {
+                        unit.addSupplies();
+                        location.removeSupplies();
+                        raidCheck = false;
                     }
                 }
-                for (int j = 0; j < Scenario.bluePlayer.combatUnits.size(); j++) {
-                    if (Scenario.bluePlayer.combatUnits.get(j).location.id == listOfNode.id) {
-                        listOfNode.timeUnoccupied = 0;
+                for (CombatUnit unit : Scenario.redPlayer.combatUnits) {
+                    if (unit.location.id == location.id) {
+                        unit.addSupplies();
+                        location.removeSupplies();
+                        raidCheck = false;
                     }
+                }
+                if (raidCheck){
+                    location.addSupplies();
                 }
             }
         }
