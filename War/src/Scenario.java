@@ -164,6 +164,10 @@ public class Scenario {
         for (int i = 4; i < 8; i++) {
             redPlayer.addUnit(listOfUnits.get(i));
         }
+        
+        for (CombatUnit unit : listOfUnits){
+            unit.location.removeSupplies();
+        }
 
         // establish the current/initial armysize for each faction
         redPlayer.setCurrentArmyLevel();
@@ -188,8 +192,7 @@ public class Scenario {
                 found = listOfRoads[i];
                 return found;
             }
-        }
-        
-        return null;
+        }        
+        return found;
     }
 }
