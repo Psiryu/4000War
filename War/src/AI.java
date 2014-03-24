@@ -285,7 +285,7 @@ public class AI {
                         else if(Scenario.listOfNodes[newLocation].suppliesAvailable <5)
                             weighting[indexer] += 25;
                         if(weighting[indexer] == increment)
-                            weighting[indexer]+= 20;
+                            weighting[indexer]+= 5;
 
                         //checks adjacent nodes
                         for(Road road2 : Scenario.listOfRoads) {
@@ -336,7 +336,7 @@ public class AI {
                                         else if(Scenario.listOfNodes[newLocation].suppliesAvailable <5)
                                             weighting[indexer] += 5;
                                         if(weighting[indexer] == increment)
-                                            weighting[indexer]+= 5;
+                                            weighting[indexer]+= 15;
                                     }
                                 }
 
