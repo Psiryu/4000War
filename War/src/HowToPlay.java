@@ -179,7 +179,7 @@ public class HowToPlay extends javax.swing.JFrame {
     }//GEN-LAST:event_radioBattlesActionPerformed
 
     private void radioBasicsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioBasicsActionPerformed
-        textHelp.setText("Welcome to Roman Civil War! \n" +
+        textHelp.setText("Welcome to Roman Civil War! \n\n" +
                 "     This learning tool places you inside a war from Roman " +
                 "history as one of the Generals involved in the conflict." +
                 " The decisions you make will determine if your team wins or loses." +
@@ -258,7 +258,7 @@ public class HowToPlay extends javax.swing.JFrame {
                 "presented with the map screen. The map screen is where " +
                 "your time will primarily be spent, as it is the hub " +
                 "for controlling all movment and actions performed.\n\n" +
-                "The map screen consists of two windows: a map with an " +
+                "     The map screen consists of two windows: a map with an " +
                 "information bar beneath it, and an accompanying information " +
                 "window to the bottom right of the map. \n\n " +
                 "     The bar beneath the " +
@@ -280,7 +280,8 @@ public class HowToPlay extends javax.swing.JFrame {
     private void radioActionsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioActionsActionPerformed
         textHelp.setText("During your turn, you can perform four types "
                 + "of actions: movement, merging, dividing, and waiting. These"
-                + " actions can be performed by selecting a map node. Only"
+                + " actions can be performed by selecting a map node - except"
+                + "for waiting, which requires no action. Only"
                 + " actions you are capable of doing at a selected node will"
                 + "be presented to you.\n\n"
                 + "     Movement: moving an army allows you to move one "
