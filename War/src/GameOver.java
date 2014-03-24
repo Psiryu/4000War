@@ -15,6 +15,9 @@ public class GameOver extends javax.swing.JFrame {
      */
     public GameOver() {
         initComponents();
+        
+        labelWinner.setText(Global.gameSummary);
+        labelWhy.setText(Global.gameSummary2);
     }
 
     /**
@@ -28,8 +31,9 @@ public class GameOver extends javax.swing.JFrame {
 
         butonX = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
-        labelText = new javax.swing.JLabel();
         labelGameOver = new javax.swing.JLabel();
+        labelWinner = new javax.swing.JLabel();
+        labelWhy = new javax.swing.JLabel();
         labelBackground = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -59,14 +63,21 @@ public class GameOver extends javax.swing.JFrame {
         });
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, 240, 60));
 
-        labelText.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        getContentPane().add(labelText, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 220, 130));
-
         labelGameOver.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         labelGameOver.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelGameOver.setText("Game over!");
         labelGameOver.setToolTipText(null);
         getContentPane().add(labelGameOver, new org.netbeans.lib.awtextra.AbsoluteConstraints(-3, 10, 240, 60));
+
+        labelWinner.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        labelWinner.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelWinner.setText("jLabel1");
+        getContentPane().add(labelWinner, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 220, -1));
+
+        labelWhy.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        labelWhy.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        labelWhy.setText("jLabel2");
+        getContentPane().add(labelWhy, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, 220, 100));
 
         labelBackground.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/TeamSelect-backdrop.png"))); // NOI18N
         labelBackground.setToolTipText(null);
@@ -127,6 +138,7 @@ public class GameOver extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel labelBackground;
     private javax.swing.JLabel labelGameOver;
-    private javax.swing.JLabel labelText;
+    private javax.swing.JLabel labelWhy;
+    private javax.swing.JLabel labelWinner;
     // End of variables declaration//GEN-END:variables
 }

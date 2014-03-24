@@ -18,8 +18,8 @@ public class Global {
     public static int intScenario; // scenario number
     public static MapEvent mapEvent;
     public static int curPlayer; //global variable for keeping track of whos turn it is
-    public static String gameSummary;
-    public static String gameSummary2;
+    public static String gameSummary; //will be populated with whom the winner of a match was
+    public static String gameSummary2; //will be populated with why the winner won
     public static int intGameOver;
     
     
