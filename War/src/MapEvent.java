@@ -311,14 +311,18 @@ public class MapEvent {
         // check which faction the unit belongs to 
         if (Scenario.redPlayer.playerID == unit.faction.playerID) {
             // remove the unit and its information from the movement lists
-            redUnitRoad.remove(combatUnitsRed.indexOf(unit));
-            redUnitEnd.remove(combatUnitsRed.indexOf(unit));
-            combatUnitsRed.remove(unit);
+            if (combatUnitsRed.contains(unit)) {
+                redUnitRoad.remove(combatUnitsRed.indexOf(unit));
+                redUnitEnd.remove(combatUnitsRed.indexOf(unit));
+                combatUnitsRed.remove(unit);
+            }
         } else {
             // repeat for blue faction units
-            blueUnitRoad.remove(combatUnitsBlue.indexOf(unit));
-            blueUnitEnd.remove(combatUnitsBlue.indexOf(unit));
-            combatUnitsBlue.remove(unit);
+            if (combatUnitsBlue.contains(unit)) {
+                blueUnitRoad.remove(combatUnitsBlue.indexOf(unit));
+                blueUnitEnd.remove(combatUnitsBlue.indexOf(unit));
+                combatUnitsBlue.remove(unit);
+            }
         }
     }
 
