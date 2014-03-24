@@ -22,6 +22,8 @@ public class Global {
     public static String gameSummary2; //will be populated with why the winner won
     public static int intGameOver;
     
+    public static int timer = 9999; // Value to overidden in other compnent. game is to have time limit.
+    
     
     public static void ResetGlobals() {
         opponent = false; //if true, against player. false means AI
