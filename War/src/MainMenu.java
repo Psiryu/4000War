@@ -1,3 +1,6 @@
+
+import javax.swing.JOptionPane;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -151,15 +154,21 @@ public class MainMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonScenario1ActionPerformed
 
     private void buttonScenario2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonScenario2ActionPerformed
-        Global.intScenario = 2;
-        new Teams().setVisible(true);
-        MainMenu.this.dispose();
+//        Global.intScenario = 2;
+//        new Teams().setVisible(true);
+//        MainMenu.this.dispose();
+        
+        JOptionPane.showMessageDialog(null,
+    "There is presently only one scenario, please select scenario 1, sorry.");
     }//GEN-LAST:event_buttonScenario2ActionPerformed
 
     private void buttonScenario3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonScenario3ActionPerformed
-        Global.intScenario = 3;
-        new Teams().setVisible(true);
-        MainMenu.this.dispose();
+//        Global.intScenario = 3;
+//        new Teams().setVisible(true);
+//        MainMenu.this.dispose();
+        
+        JOptionPane.showMessageDialog(null,
+    "There is presently only one scenario, please select scenario 1, sorry.");
     }//GEN-LAST:event_buttonScenario3ActionPerformed
 
     private void radioAIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioAIActionPerformed

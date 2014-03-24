@@ -49,7 +49,6 @@ public class Teams extends javax.swing.JFrame {
         setMaximumSize(new java.awt.Dimension(260, 310));
         setMinimumSize(new java.awt.Dimension(260, 310));
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(260, 310));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -150,7 +149,8 @@ public class Teams extends javax.swing.JFrame {
 
     private void buttonBeginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBeginActionPerformed
         //resets intgameover to 0, creates a new scenario and initializes mapevent
-        Global.intGameOver = 0;
+        Global.intGameOver = 1200;
+        Global.timer = 62;
         Scenario scenario = new Scenario();
         scenario.Initialize(0);
         Global.mapEvent = new MapEvent();

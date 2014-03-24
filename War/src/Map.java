@@ -10,6 +10,7 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
+import javax.swing.Timer;
 
 
 /*
@@ -31,6 +32,7 @@ public class Map extends javax.swing.JFrame {
     public Boolean mergableArmy = false;
     //nodeSelection is used for selecting a node
     public int nodeSelected = 0;
+    public Timer timer;
 
     /**
      * Creates new form Map
@@ -70,6 +72,7 @@ public class Map extends javax.swing.JFrame {
         labelScenario = new javax.swing.JLabel();
         labelPoliticalPower = new javax.swing.JLabel();
         labelSeason = new javax.swing.JLabel();
+        labelTimer = new javax.swing.JLabel();
         list1 = new java.awt.List();
         labelBackdrop = new javax.swing.JLabel();
         butonX = new javax.swing.JButton();
@@ -188,11 +191,14 @@ public class Map extends javax.swing.JFrame {
 
         labelPoliticalPower.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         labelPoliticalPower.setText("text");
-        frameFloatingInfo.getContentPane().add(labelPoliticalPower, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 90, -1, -1));
+        frameFloatingInfo.getContentPane().add(labelPoliticalPower, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 90, -1, -1));
 
         labelSeason.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         labelSeason.setText("text");
         frameFloatingInfo.getContentPane().add(labelSeason, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, -1, -1));
+
+        labelTimer.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        frameFloatingInfo.getContentPane().add(labelTimer, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 90, -1, -1));
         frameFloatingInfo.getContentPane().add(list1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 400, 140));
 
         labelBackdrop.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/MapScreen-Side-backdrop.png"))); // NOI18N
@@ -481,7 +487,32 @@ public class Map extends javax.swing.JFrame {
         } else {
             labelPoliticalPower.setText("Political power: " + Scenario.bluePlayer.politicalPower);
         }
-
+        
+        //creates the timer for the match
+        ActionListener timerDone = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                Global.timer--;
+                if(Global.timer == 0) {
+                    timer.stop();
+                    Game.IsGameEnd();
+                }
+                if(Global.intGameOver == 1)
+                    GameOver();
+                String minutes = (Global.timer/60)+"";
+                String seconds = "";
+                if((Global.timer - (Global.timer/60*60)) >= 10)
+                    seconds = (Global.timer - (Global.timer/60*60)) +"";
+                else
+                    seconds = "0"+(Global.timer - (Global.timer/60*60));
+                            
+                labelTimer.setText(minutes+":"+seconds);
+            }
+        };
+        timer = new Timer(1000,timerDone);
+        timer.start();
+    
+    //sets initial map node colours
         try {
             SetDefaultColours();
         } catch (IOException ex) {
@@ -493,6 +524,10 @@ public class Map extends javax.swing.JFrame {
             Logger.getLogger(Map.class.getName()).log(Level.SEVERE, null, ex);
         }
         SetColours();
+    }
+    
+    public void TimerDone() {
+        
     }
 
 //Action will control all node-based actions. Dimmed public because no need
@@ -2166,6 +2201,7 @@ public class Map extends javax.swing.JFrame {
     private javax.swing.JLabel labelPoliticalPower;
     private javax.swing.JLabel labelScenario;
     private javax.swing.JLabel labelSeason;
+    private javax.swing.JLabel labelTimer;
     private javax.swing.JLabel labelTurnCount;
     private java.awt.List list1;
     private javax.swing.JPanel menuInfo;
