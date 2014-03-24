@@ -275,15 +275,17 @@ public class AI {
                         increment = weighting[indexer];
 
                         if(Scenario.listOfNodes[newLocation].isCapitalBlue || Scenario.listOfNodes[newLocation].isCapitalRed)
-                            weighting[indexer] += 30;
+                            weighting[indexer] += 15;
                         if(robots.enemyIntelligence.get(indexer).isEmpty() == false)
                             weighting[indexer] += 55;
                         if(controlledLocations.contains(newLocation))
+                        {
                             weighting[indexer] -= 30;
-                        if(Scenario.listOfNodes[newLocation].suppliesAvailable < 3)
-                            weighting[indexer] += 35;
-                        else if(Scenario.listOfNodes[newLocation].suppliesAvailable <5)
-                            weighting[indexer] += 25;
+                            if(Scenario.listOfNodes[newLocation].suppliesAvailable < 3)
+                                weighting[indexer] += 45;
+                            else if(Scenario.listOfNodes[newLocation].suppliesAvailable <5)
+                                weighting[indexer] += 30;
+                        }
                         if(weighting[indexer] == increment)
                             weighting[indexer]+= 5;
 
@@ -300,15 +302,16 @@ public class AI {
                                 increment = weighting[indexer];
 
                                 if(Scenario.listOfNodes[newLocation].isCapitalBlue || Scenario.listOfNodes[newLocation].isCapitalRed)
-                                    weighting[indexer] += 20;
+                                    weighting[indexer] += 15;
                                 if(robots.enemyIntelligence.get(indexer).isEmpty() == false)
                                     weighting[indexer] += 45;
-                                if(controlledLocations.contains(newLocation))
+                                if(controlledLocations.contains(newLocation)) {
                                     weighting[indexer] -= 20;
-                                if(Scenario.listOfNodes[newLocation].suppliesAvailable < 3)
-                                    weighting[indexer] += 25;
-                                else if(Scenario.listOfNodes[newLocation].suppliesAvailable <5)
-                                    weighting[indexer] += 15;
+                                    if(Scenario.listOfNodes[newLocation].suppliesAvailable < 3)
+                                        weighting[indexer] += 35;
+                                    else if(Scenario.listOfNodes[newLocation].suppliesAvailable <5)
+                                        weighting[indexer] += 20;
+                                }
                                 if(weighting[indexer] == increment)
                                     weighting[indexer]+= 10;
 
@@ -329,14 +332,15 @@ public class AI {
                                             weighting[indexer] += 10;
                                         if(robots.enemyIntelligence.get(indexer).isEmpty() == false)
                                             weighting[indexer] += 35;
-                                        if(controlledLocations.contains(newLocation))
+                                        if(controlledLocations.contains(newLocation)) {
                                             weighting[indexer] -= 10;
-                                        if(Scenario.listOfNodes[newLocation].suppliesAvailable < 3)
-                                            weighting[indexer] += 15;
-                                        else if(Scenario.listOfNodes[newLocation].suppliesAvailable <5)
-                                            weighting[indexer] += 5;
+                                            if(Scenario.listOfNodes[newLocation].suppliesAvailable < 3)
+                                                weighting[indexer] += 25;
+                                            else if(Scenario.listOfNodes[newLocation].suppliesAvailable <5)
+                                                weighting[indexer] += 10;
+                                        }
                                         if(weighting[indexer] == increment)
-                                            weighting[indexer]+= 15;
+                                            weighting[indexer]+= 20;
                                     }
                                 }
 
