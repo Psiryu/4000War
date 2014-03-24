@@ -141,8 +141,12 @@ public class AI {
     
     //this method handles dividing armies
     private static void Dividing(ArrayList<CombatUnit> robotLegion, Player robots) {
+        int weight; //counter that ad
         
-        
+        //loop goes through each individual combat unit
+        for(CombatUnit killBots : robotLegion) {
+            
+        }
         
     }
     

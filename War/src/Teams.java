@@ -149,7 +149,13 @@ public class Teams extends javax.swing.JFrame {
     }//GEN-LAST:event_butonXActionPerformed
 
     private void buttonBeginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBeginActionPerformed
-        // TODO add your handling code here:
+        //resets intgameover to 0, creates a new scenario and initializes mapevent
+        Global.intGameOver = 0;
+        Scenario scenario = new Scenario();
+        scenario.Initialize(0);
+        Global.mapEvent = new MapEvent();
+        new Map().setVisible(true);
+        Teams.this.dispose();
     }//GEN-LAST:event_buttonBeginActionPerformed
 
     /**
