@@ -144,7 +144,8 @@ public class Game {
 	{
 		if (Scenario.redPlayer.politicalPower > Scenario.bluePlayer.politicalPower )
 		{
-			Global.gameSummary = "There are no more turns remaining...\n"+
+                        Global.gameSummary = "Red Player Wins!!!";
+			Global.gameSummary2 = "There are no more turns remaining...\n"+
 				"Red player wins because their political power is greater than Blue's";
 			
 			Global.intGameOver = 1;
@@ -152,8 +153,8 @@ public class Game {
 		}
 		else if (Scenario.redPlayer.politicalPower < Scenario.bluePlayer.politicalPower )
 		{
-		
-			Global.gameSummary = "There are no more turns remaining...\n"+
+                        Global.gameSummary = "Blue Palyer Wins!!!";
+			Global.gameSummary2 = "There are no more turns remaining...\n"+
 				"Blue player wins because their political power is greater than Red's";
 				Global.intGameOver = 1;
 				return;
@@ -163,7 +164,8 @@ public class Game {
                 {
                         if(aggregateRedSize > aggregateBlueSize)
 			{
-				Global.gameSummary = "There are no more turns remaining...\n"+
+                                Global.gameSummary = "Red Palyer Wins!!!";
+				Global.gameSummary2 = "There are no more turns remaining...\n"+
 				"Red player wins because their political power is equal than Blue's\n"+
 				"but Red has a larger army";
 			
@@ -172,7 +174,8 @@ public class Game {
 			}
 			else if(aggregateRedSize < aggregateBlueSize)
 			{
-				Global.gameSummary = "There are no more turns remaining...\n"+
+                                Global.gameSummary = "Blue Palyer Wins!!!";
+				Global.gameSummary2 = "There are no more turns remaining...\n"+
 				"Blue player wins because their political power is equal than Red's\n"+
 				"but Blue has a larger army";
 				
@@ -182,8 +185,9 @@ public class Game {
 			}
                         else
                         {
-                                Global.gameSummary = "There are no more turns remaining...\n"+
-                                "The game is tied\nThere are no more turns left and both players have\n"+
+                                Global.gameSummary = "Tie Game!!!";
+                                Global.gameSummary2 = "There are no more turns remaining...\n"+
+                                "There are no more turns left and both players have\n"+
                                 "equal strength in army size and political power";	
                                 Global.intGameOver = 1;
                                 return;
@@ -197,8 +201,8 @@ public class Game {
 		{
 			if (Scenario.bluePlayer.combatUnits.get(0).isFleet&& Scenario.redPlayer.combatUnits.get(0).isFleet)
 			{
-				Global.gameSummary = "The game is tied\n"+
-				"Both players have only one combat unit left and that combat unit\n"+
+                                Global.gameSummary = "The game is tied\n";
+				Global.gameSummary2 = "Both players have only one combat unit left \nand that combat unit"+
 				"is a naval fleet unit";	
 				
 				Global.intGameOver = 1;
@@ -208,8 +212,8 @@ public class Game {
 		
 		else if(Scenario.redPlayer.combatUnits.get(0).isFleet)
 		{
-				Global.gameSummary = "Blue have won the game\n"+
-				"Red has only one combat unit left\n"+
+				Global.gameSummary = "Blue have won the game";
+				Global.gameSummary2 ="Red has only one combat unit left\n"+
 				"And that unit is a naval fleet unit";
 				
 				Global.intGameOver = 1;
@@ -221,8 +225,8 @@ public class Game {
 	{
 		if(Scenario.bluePlayer.combatUnits.get(0).isFleet)
 		{
-				Global.gameSummary = "Red have won the game\n"+
-				"Blue has only one combat unit left\n"+
+				Global.gameSummary = "Red have won the game\n";
+				Global.gameSummary2 ="Blue has only one combat unit left\n"+
 				"And that unit is a naval fleet unit";
 				
 				Global.intGameOver = 1;
