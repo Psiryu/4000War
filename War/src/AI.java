@@ -51,6 +51,10 @@ public class AI {
 
         //creates a small array that keeps track of which armies have already merged
         ArrayList<Integer> mergers = new ArrayList<Integer>();
+        //arrays to finalizes merges once the loops are done
+        ArrayList<CombatUnit> merge1 = new ArrayList<CombatUnit>();
+        ArrayList<CombatUnit> merge2 = new ArrayList<CombatUnit>();
+        ArrayList<Integer> mergeWeight = new ArrayList<Integer>();
         
         //intitial loop to count all locations controlled
         int count = 0;
@@ -106,13 +110,25 @@ public class AI {
                                             }
                                         }
                                         //sends the weighted value to Merging
-                                        Merging(weighting, killBots, killBots2);
+                                        mergers.add(killBots.cUnitID);
+                                        mergers.add(killBots2.cUnitID);
+                                        merge1.add(killBots);
+                                        merge2.add(killBots2);
+                                        mergeWeight.add(weighting);
                                     }
                                 }
                             }
                         }
                     }
                 }
+            }
+        }
+        
+        if(merge1.isEmpty() == false) {
+            int i = 0;
+            for(CombatUnit unit : merge1) {
+                Merging(mergeWeight.get(i), merge1.get(i), merge2.get(i));
+                i++;
             }
         }
     }
@@ -414,25 +430,26 @@ public class AI {
             } else {
                 Random randomizer = new Random();
                 int random = randomizer.nextInt(10);
-                int randomIndex = randomizer.nextInt(ferryRoad.size() - 1);
+                int randomIndex = 0;
+                if((ferryRoad.size() - 1) < 0)
+                    randomIndex = randomizer.nextInt(ferryRoad.size() - 1);
                 
                 if(random >8)
                     FinalizeFerryMovement(killBots, idToFerry.get(randomIndex),
                             ferryRoad.get(randomIndex), ferryDestination.get(randomIndex));
                 else {
                     for(Road road : Scenario.listOfRoads) {
-                    //establishes the location id's of each possible movement
-                    if(road.locationA.id == location || road.locationB.id == location)
-                        indexer++;
-                    //once it reaches the proper index, send to finalize
-                    if(indexer == index){
-                        FinalizeMovement(killBots, road, location);
-                    }
+                        //establishes the location id's of each possible movement
+                        if(road.locationA.id == location || road.locationB.id == location)
+                            indexer++;
+                        //once it reaches the proper index, send to finalize
+                        if(indexer == index){
+                            FinalizeMovement(killBots, road, location);
+                        }
 
-                }
+                    }
                 }
             }
-            count++;
         }
     }
     
