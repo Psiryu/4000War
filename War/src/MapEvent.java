@@ -1,15 +1,25 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
+ * MapEvent Class
  *
  * @author Ben Yntema
+ *
+ * This class mediates between the user interface and the back end mechanics,
+ * namely the movement and combat mechanics.
+ *
+ * Several lists are maintained by this class, each of which records a
+ * particular aspect of the behavior of units as they are manipulated through
+ * the front end. Subsequently the methods in this class serve to manipulate the
+ * back end. These methods are largely private as they are intended for internal
+ * use only. Methods such as addMovement, mergeUnit, and divideUnit are used by
+ * the interface to manipulate units while completeCombat and successfulFlee are
+ * used by the Battle class to facilitate movement and unit deletion after
+ * combat calculations. Internal methods include processEvents, removeInstance,
+ * simulateCombat, cleanList, and clearRegistry serve to facilitate the flow and
+ * processing of information generated in the game.
  */
 public class MapEvent {
 
@@ -431,9 +441,9 @@ public class MapEvent {
      Road road -> the road upon which the fleeing unit is traveling
      int endLocationNum -> the ID of the node/location which is being traveled to
     
-    This method is called from Battle class when a flee is detected and is successful.
-    Units passed to this method will be moved to the location indicated by post-combat
-    evaluation.
+     This method is called from Battle class when a flee is detected and is successful.
+     Units passed to this method will be moved to the location indicated by post-combat
+     evaluation.
      */
     public static void successfullFlee(ArrayList<CombatUnit> units, Road road, int endLocationNum) {
         for (CombatUnit unit : units) { // for each of the units
@@ -442,14 +452,14 @@ public class MapEvent {
     }
 
     /*
-    Method: mergeUnits
-    Parameters: int oneNum -> the ID of the first unit
-    int twoNum -> the ID of the second unit
+     Method: mergeUnits
+     Parameters: int oneNum -> the ID of the first unit
+     int twoNum -> the ID of the second unit
     
-    Units passed to this method will be summed and merged into one unit. The result
-    of the summation will reflect the properties of the two units considered for
-    the merge.
-    */
+     Units passed to this method will be summed and merged into one unit. The result
+     of the summation will reflect the properties of the two units considered for
+     the merge.
+     */
     public static void mergeUnits(int oneNum, int twoNum) {
         CombatUnit[] unit = new CombatUnit[2]; // storage of the units involved in the merge
         CombatUnit temp; // temporary unit to store new unit
@@ -525,12 +535,12 @@ public class MapEvent {
     }
 
     /*
-    Method: divideUnit
-    Parameters: int unitNum -> the ID of unit to be divided
+     Method: divideUnit
+     Parameters: int unitNum -> the ID of unit to be divided
     
-    The unit passed will be evaluated for division. The resulting two units will
-    carry the properties of the parent unit.
-    */
+     The unit passed will be evaluated for division. The resulting two units will
+     carry the properties of the parent unit.
+     */
     public static void divideUnit(int unitNum) {
         CombatUnit unit = null; // storage of the parent unit
         CombatUnit one, two; // storage of the new units
@@ -539,7 +549,7 @@ public class MapEvent {
         int id = -1; // the ID being compared to roster for uniqueness
         int i2 = 0; // index of the ID of the parent unit being searched for
         int divSize; // calculated size for child units based on parent value
-        
+
         // determine the player to be used
         if (Global.curPlayer == 0) {
             currentPlayer = Scenario.redPlayer; // set the current player
@@ -578,7 +588,7 @@ public class MapEvent {
             }
             if (checker == 0) { // if an ID hit had not occured
                 idFind = false; // set to false to exit the loop
-            }           
+            }
         }
 
         // for the current player, build the child units
@@ -601,12 +611,12 @@ public class MapEvent {
     }
 
     /*
-    Method: clearRegistry
-    Parameters: none
+     Method: clearRegistry
+     Parameters: none
     
-    At the end of movement simulation, clear the lists used for movement detection
-    for the next turn.
-    */
+     At the end of movement simulation, clear the lists used for movement detection
+     for the next turn.
+     */
     private static void clearRegistry() {
         combatUnitsRed = new ArrayList<CombatUnit>();
         combatUnitsBlue = new ArrayList<CombatUnit>();
