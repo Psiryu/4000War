@@ -141,11 +141,42 @@ public class AI {
     
     //this method handles dividing armies
     private static void Dividing(ArrayList<CombatUnit> robotLegion, Player robots) {
-        int weight; //counter that ad
+        int weight; //counter that adds weighting
         
         //loop goes through each individual combat unit
         for(CombatUnit killBots : robotLegion) {
-            
+            //ensures no small or flets try to divide
+            if(killBots.size > 5) {
+                //weight starts off as ten, is subtracted for each road it cannot
+                //travel due to size. Random number from 0 to weight is then used
+                //for the probability of dividing.
+                weight = 12;
+
+                //loop goes through each road
+                for(Road road : Scenario.listOfRoads) {
+                    //checks if the unit is connected to this road
+                    if(road.locationA.id == killBots.location.id || road.locationB.id == killBots.location.id) {
+                        //checks if unit cannot travel it due to size
+                        if(road.capacity < killBots.size && road.capacity > 0)
+                            weight-=1;
+                        if(road.capacity < killBots.size) {
+                            weight-=3;                        
+                        }
+                    }
+                }
+                //sets weight to 1 if it is decremented to or below 0
+                if(weight <=0)
+                    weight = 3;
+
+                //adds randomness and decides if it should divide or not
+                //creates a random number generator
+                Random randomizer = new Random();
+                int divide = randomizer.nextInt(weight);
+
+                //determines if it will divide or not
+                if(divide < 3)
+                    MapEvent.divideUnit(killBots.cUnitID);
+            }
         }
         
     }
