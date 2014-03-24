@@ -29,7 +29,16 @@ public class AI {
     
         //determines if any units controlled should merge or divide
         BeginMerging(robotLegion, robots);
-        Dividing(robotLegion, robots);
+        
+        //re-establishes the variables in case mergers or divisions occured
+        if(Global.chosenTeam == false) {
+            robots = Scenario.bluePlayer;
+            robotLegion = Scenario.bluePlayer.combatUnits; }
+        else {
+            robotLegion = Scenario.redPlayer.combatUnits;
+            robots = Scenario.redPlayer; }
+        
+        Dividing(robotLegion);
         
         //re-establishes the variables in case mergers or divisions occured
         if(Global.chosenTeam == false) {
@@ -51,6 +60,10 @@ public class AI {
 
         //creates a small array that keeps track of which armies have already merged
         ArrayList<Integer> mergers = new ArrayList<Integer>();
+        //arrays to finalizes merges once the loops are done
+        ArrayList<CombatUnit> merge1 = new ArrayList<CombatUnit>();
+        ArrayList<CombatUnit> merge2 = new ArrayList<CombatUnit>();
+        ArrayList<Integer> mergeWeight = new ArrayList<Integer>();
         
         //intitial loop to count all locations controlled
         int count = 0;
@@ -68,48 +81,63 @@ public class AI {
             if(count < robotLegion.size()) {
                 //establishes two arrays of all combat units to check locations
                 for(CombatUnit killBots : robotLegion) {
-                    if(mergers.contains(killBots.cUnitID) == false) {
-                        for(CombatUnit killBots2 : robotLegion) {
-                            //checks if they are on the same location and not the same unit
-                            //and that their sizes are both small or both medium
-                            if(killBots.cUnitID != killBots2.cUnitID &&
-                                    killBots.location.id == killBots2.location.id &&
-                                    ((killBots.size <=10 && killBots.size >5 && 
-                                    killBots2.size <= 10 && killBots.size > 5) ||
-                                    ((killBots.size <=5 && killBots2.size <=5) &&
-                                    killBots.isFleet == false && killBots2.isFleet == false))) {
-                                //establishes int for weight based on this possible merge
-                                int weighting = 0;
-                                //creates an instance of all roads to check locations for weighting
-                                for(Road road : Scenario.listOfRoads) {
-                                    //checks if road point A connects to location
-                                    if(road.locationA.id == killBots.location.id) {
-                                        for(Node node : Scenario.listOfNodes) {
-                                            if(node.id == road.locationB.id) {
-                                                //checks if fog of war at this node has any values
-                                                if(robots.enemyIntelligence.get(node.id).size() > 1) {
-                                                    weighting+=10;
+                    if(killBots != null) {
+                        if(mergers.isEmpty() == true || mergers.contains(killBots.cUnitID) == false) {
+                            for(CombatUnit killBots2 : robotLegion) {
+                                if(killBots2 != null) {
+                                    int weighting = 0;
+                                    //checks if they are on the same location and not the same unit
+                                    //and that their sizes are both small or both medium
+                                    if(killBots.cUnitID != killBots2.cUnitID &&
+                                            killBots.location.id == killBots2.location.id &&
+                                            ((killBots.size <=10 && killBots.size >5 && 
+                                            killBots2.size <= 10 && killBots.size > 5) ||
+                                            ((killBots.size <=5 && killBots2.size <=5) &&
+                                            killBots.isFleet == false && killBots2.isFleet == false))) {
+                                        //creates an instance of all roads to check locations for weighting
+                                        for(Road road : Scenario.listOfRoads) {
+                                            //checks if road point A connects to location
+                                            if(road.locationA.id == killBots.location.id) {
+                                                for(Node node : Scenario.listOfNodes) {
+                                                    if(node.id == road.locationB.id) {
+                                                        //checks if fog of war at this node has any values
+                                                        if(robots.enemyIntelligence.get(node.id).size() > 1) {
+                                                            weighting+=10;
+                                                        }
+                                                    }
                                                 }
-                                            }
-                                        }
 
-                                    } else if(road.locationB.id == killBots.location.id) {
-                                        for(Node node : Scenario.listOfNodes) {
-                                            if(node.id == road.locationB.id) {
-                                                //checks if fog of war at this node has any values
-                                                if(robots.enemyIntelligence.get(node.id).size() > 1) {
-                                                    weighting+=10;
+                                            } else if(road.locationB.id == killBots.location.id) {
+                                                for(Node node : Scenario.listOfNodes) {
+                                                    if(node.id == road.locationB.id) {
+                                                        //checks if fog of war at this node has any values
+                                                        if(robots.enemyIntelligence.get(node.id).size() > 1) {
+                                                            weighting+=10;
+                                                        }
+                                                    }
                                                 }
                                             }
                                         }
+                                        //sends the weighted value to Merging
+                                        mergers.add(killBots.cUnitID);
+                                        mergers.add(killBots2.cUnitID);
+                                        merge1.add(killBots);
+                                        merge2.add(killBots2);
+                                        mergeWeight.add(weighting);
                                     }
                                 }
-                                //sends the weighted value to Merging
-                                Merging(weighting, killBots, killBots2);
                             }
                         }
                     }
                 }
+            }
+        }
+        
+        if(merge1.isEmpty() == false) {
+            int i = 0;
+            for(CombatUnit unit : merge1) {
+                Merging(mergeWeight.get(i), merge1.get(i), merge2.get(i));
+                i++;
             }
         }
     }
@@ -140,9 +168,52 @@ public class AI {
     }
     
     //this method handles dividing armies
-    private static void Dividing(ArrayList<CombatUnit> robotLegion, Player robots) {
-        //DIVIDE RANDOMLY OR IF NO MOVE/MOVE OF SMALLER CAPACITY
+    private static void Dividing(ArrayList<CombatUnit> robotLegion) {
+        int weight; //counter that adds weighting
         
+        //list of which to divide
+        ArrayList<CombatUnit> dividers = new ArrayList<CombatUnit>();
+        
+        //loop goes through each individual combat unit
+        for(CombatUnit killBots : robotLegion) {
+            //ensures no small or flets try to divide
+            if(killBots.size > 5) {
+                //weight starts off as ten, is subtracted for each road it cannot
+                //travel due to size. Random number from 0 to weight is then used
+                //for the probability of dividing.
+                weight = 12;
+
+                //loop goes through each road
+                for(Road road : Scenario.listOfRoads) {
+                    //checks if the unit is connected to this road
+                    if(road.locationA.id == killBots.location.id || road.locationB.id == killBots.location.id) {
+                        //checks if unit cannot travel it due to size
+                        if(road.capacity < killBots.size && road.capacity > 0)
+                            weight-=1;
+                        if(road.capacity < killBots.size) {
+                            weight-=3;                        
+                        }
+                    }
+                }
+                //sets weight to 1 if it is decremented to or below 0
+                if(weight <=0)
+                    weight = 3;
+
+                //adds randomness and decides if it should divide or not
+                //creates a random number generator
+                Random randomizer = new Random();
+                int divide = randomizer.nextInt(weight);
+
+                //determines if it will divide or not
+                if(divide < 3)
+                    dividers.add(killBots);
+            }
+        }
+        
+        if(dividers.isEmpty() == false) {
+            for(CombatUnit units : dividers) 
+                MapEvent.divideUnit(units.cUnitID);
+        }
     }
     
     //this method determines the possible movements
@@ -204,17 +275,17 @@ public class AI {
                         increment = weighting[indexer];
 
                         if(Scenario.listOfNodes[newLocation].isCapitalBlue || Scenario.listOfNodes[newLocation].isCapitalRed)
-                            weighting[indexer] += 20;
+                            weighting[indexer] += 30;
                         if(robots.enemyIntelligence.get(indexer).isEmpty() == false)
-                            weighting[indexer] += 45;
+                            weighting[indexer] += 55;
                         if(controlledLocations.contains(newLocation))
-                            weighting[indexer] -= 20;
+                            weighting[indexer] -= 30;
                         if(Scenario.listOfNodes[newLocation].suppliesAvailable < 3)
-                            weighting[indexer] += 25;
+                            weighting[indexer] += 35;
                         else if(Scenario.listOfNodes[newLocation].suppliesAvailable <5)
-                            weighting[indexer] += 15;
+                            weighting[indexer] += 25;
                         if(weighting[indexer] == increment)
-                            weighting[indexer]+= 10;
+                            weighting[indexer]+= 20;
 
                         //checks adjacent nodes
                         for(Road road2 : Scenario.listOfRoads) {
@@ -255,17 +326,17 @@ public class AI {
                                         increment = weighting[indexer];
 
                                         if(Scenario.listOfNodes[newLocation].isCapitalBlue || Scenario.listOfNodes[newLocation].isCapitalRed)
-                                            weighting[indexer] += 20;
+                                            weighting[indexer] += 10;
                                         if(robots.enemyIntelligence.get(indexer).isEmpty() == false)
-                                            weighting[indexer] += 45;
+                                            weighting[indexer] += 35;
                                         if(controlledLocations.contains(newLocation))
-                                            weighting[indexer] -= 20;
+                                            weighting[indexer] -= 10;
                                         if(Scenario.listOfNodes[newLocation].suppliesAvailable < 3)
-                                            weighting[indexer] += 25;
-                                        else if(Scenario.listOfNodes[newLocation].suppliesAvailable <5)
                                             weighting[indexer] += 15;
+                                        else if(Scenario.listOfNodes[newLocation].suppliesAvailable <5)
+                                            weighting[indexer] += 5;
                                         if(weighting[indexer] == increment)
-                                            weighting[indexer]+= 10;
+                                            weighting[indexer]+= 5;
                                     }
                                 }
 
@@ -313,6 +384,34 @@ public class AI {
                 indexer++;
             }
             
+                        //checks if the ai can ferry a small army            
+            ArrayList<Road> ferryRoad = new ArrayList<Road>();
+            ArrayList<Integer> ferryDestination = new ArrayList<Integer>();
+            ArrayList<CombatUnit> idToFerry = new ArrayList<CombatUnit>();
+            int dest; //destination tracker
+            if(killBots.isFleet == true)
+            {
+                for(Road roads2 : Scenario.listOfRoads) {
+                    if(roads2.locationA.id == killBots.location.id ||
+                            roads2.locationB.id == killBots.location.id &&
+                            roads2.capacity == 0) 
+                        for(CombatUnit killBots2 : robots.combatUnits) {
+                            if(killBots2.size < 6 &&
+                                    killBots2.location.id == killBots.location.id) {
+                                if(roads2.locationA.id == killBots.location.id)
+                                    dest = roads2.locationA.id;
+                                else
+                                    dest = roads2.locationB.id;
+                                
+                                ferryRoad.add(roads2);
+                                ferryDestination.add(dest);
+                                idToFerry.add(killBots2);
+                            }
+                        }
+                }
+            }
+
+            
             //checks which weighting is the highest
             indexer = 0;
             int greatest = 0; int index = 0;
@@ -326,17 +425,40 @@ public class AI {
             
             indexer = 0;
             //SEND MOVEMENT TO MAPEVENT HERE
-            for(Road road : Scenario.listOfRoads) {
-                //establishes the location id's of each possible movement
-                if(road.locationA.id == location || road.locationB.id == location)
-                    indexer++;
-                //once it reaches the proper index, send to finalize
-                if(indexer == index){
-                    FinalizeMovement(killBots, road, location);
+            if(ferryRoad.isEmpty() == true) {
+                for(Road road : Scenario.listOfRoads) {
+                    //establishes the location id's of each possible movement
+                    if(road.locationA.id == location || road.locationB.id == location)
+                        indexer++;
+                    //once it reaches the proper index, send to finalize
+                    if(indexer == index){
+                        FinalizeMovement(killBots, road, location);
+                    }
+
                 }
+            } else {
+                Random randomizer = new Random();
+                int random = randomizer.nextInt(10);
+                int randomIndex = 0;
+                if((ferryRoad.size() - 1) < 0)
+                    randomIndex = randomizer.nextInt(ferryRoad.size() - 1);
                 
+                if(random >8)
+                    FinalizeFerryMovement(killBots, idToFerry.get(randomIndex),
+                            ferryRoad.get(randomIndex), ferryDestination.get(randomIndex));
+                else {
+                    for(Road road : Scenario.listOfRoads) {
+                        //establishes the location id's of each possible movement
+                        if(road.locationA.id == location || road.locationB.id == location)
+                            indexer++;
+                        //once it reaches the proper index, send to finalize
+                        if(indexer == index){
+                            FinalizeMovement(killBots, road, location);
+                        }
+
+                    }
+                }
             }
-            count++;
         }
     }
     
@@ -351,10 +473,12 @@ public class AI {
     //finalizes ferrying movement
     private static void FinalizeFerryMovement(CombatUnit killBots, 
             CombatUnit killBoats, Road road, int location) {
-        if(road.locationA.id == location)
-            MapEvent.addMovementFerry(killBoats.cUnitID, killBots.cUnitID, road, road.locationB.id);
-        else
-            MapEvent.addMovementFerry(killBoats.cUnitID, killBots.cUnitID, road, road.locationB.id);
-
+        if(road.locationA.id == location) {
+            MapEvent.addMovement(killBoats.cUnitID, road, road.locationB.id);
+            MapEvent.addMovement(killBots.cUnitID, road, road.locationB.id);
+        }else {
+            MapEvent.addMovement(killBoats.cUnitID, road, road.locationB.id);
+            MapEvent.addMovement(killBots.cUnitID, road, road.locationB.id);
+        }
     }
 }

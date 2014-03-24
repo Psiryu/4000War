@@ -43,11 +43,7 @@ public class Map extends javax.swing.JFrame {
         buttonNext.setVisible(false);
         frameFloatingInfo.setVisible(true);
 
-        //resets turn count to 0;
-        Game.turnCount = 0;
-
         GameStart();
-        //jFrame1.setVisible(true);
     }
 
     /**
@@ -1992,6 +1988,8 @@ public class Map extends javax.swing.JFrame {
         ClearMenuInfo();
         ClearPopupMenu();
 
+        Scenario.game.endTurn();
+                
         //for the next player
         if (Global.curPlayer == 0) {
             Global.curPlayer = 1;
@@ -2006,34 +2004,39 @@ public class Map extends javax.swing.JFrame {
         panelMap.setVisible(false);
         //actions to finish the turn on th ebackend
 
-        Scenario.game.endTurn();
-
-        if (Global.intGameOver == 1) {
+        if (Global.intGameOver == 1)
             GameOver();
-        }
+        
 
         //check for if the second player is an ai
         if (Global.opponent == false) {
             //calls the AI
             AI.AI();
-            //ends turn again
-            // Scenario.game.endTurn();
-
+            
+            Scenario.game.endTurn();
+            
             //resets the curPlayer controller to the previous player
-//            if (Global.curPlayer == 0) {
-//                Global.curPlayer = 1;
-//                labelCurPlayer.setText("Blue team's turn");
-//                buttonNext.setText("Blue team, click here to proceed.");            
-//            } else {
-//                Global.curPlayer = 0;
-//                labelCurPlayer.setText("Red team's turn");
-//                buttonNext.setText("Red team, click here to proceed.");
-//            }
+            if (Global.curPlayer == 0) {
+                Global.curPlayer = 1;
+                labelCurPlayer.setText("Blue team's turn");
+                buttonNext.setText("Blue team, click here to proceed.");            
+            } else {
+                Global.curPlayer = 0;
+                labelCurPlayer.setText("Red team's turn");
+                buttonNext.setText("Red team, click here to proceed.");
+            }
+            
+            //ends turn again
+            
+            
+            if(Global.intGameOver == 1)
+                GameOver();
         }
 
         buttonNext.setVisible(true);
 
-        labelTurnCount.setText("Turn: " + ((int) Game.turnCount + 1));
+        int turns = (int)Game.turnCount + 1;
+        labelTurnCount.setText("Turn: " + (turns));
 
         //sets label that displays season
         if (Global.season == 0) {

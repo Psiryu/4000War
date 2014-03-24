@@ -13,12 +13,12 @@ import javax.swing.JOptionPane;
  */
 public class Game {
 
-    public static double turnCount; // total number of turns in the game
+    public static double turnCount = 0; // total number of turns in the game
     public static int maxTurnCount;
 
     // initialize the game with turn count 0
     public Game() {
-        turnCount = 0;
+        //turnCount = 0;
     }
     
     void setMaxTurnCount(int number){
