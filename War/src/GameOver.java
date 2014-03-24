@@ -20,7 +20,7 @@ public class GameOver extends javax.swing.JFrame {
         initComponents();
         
         labelWinner.setText(Global.gameSummary);
-        textfieldWhy.setText(Global.gameSummary2);
+        textWhy.setText(Global.gameSummary2);
     }
 
     /**
@@ -36,7 +36,8 @@ public class GameOver extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         labelGameOver = new javax.swing.JLabel();
         labelWinner = new javax.swing.JLabel();
-        textfieldWhy = new java.awt.TextArea();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        textWhy = new javax.swing.JTextArea();
         labelBackground = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -77,10 +78,19 @@ public class GameOver extends javax.swing.JFrame {
         labelWinner.setText("jLabel1");
         getContentPane().add(labelWinner, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 220, -1));
 
-        textfieldWhy.setEditable(false);
-        textfieldWhy.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        textfieldWhy.setRows(30);
-        getContentPane().add(textfieldWhy, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 240, 100));
+        textWhy.setEditable(false);
+        textWhy.setColumns(20);
+        textWhy.setLineWrap(true);
+        textWhy.setRows(5);
+        textWhy.setToolTipText(null);
+        textWhy.setWrapStyleWord(true);
+        textWhy.setBorder(null);
+        textWhy.setMaximumSize(new java.awt.Dimension(160, 90));
+        textWhy.setMinimumSize(new java.awt.Dimension(160, 90));
+        textWhy.setOpaque(false);
+        jScrollPane1.setViewportView(textWhy);
+
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 240, 100));
 
         labelBackground.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/TeamSelect-backdrop.png"))); // NOI18N
         labelBackground.setToolTipText(null);
@@ -139,9 +149,10 @@ public class GameOver extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton butonX;
     private javax.swing.JButton jButton1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel labelBackground;
     private javax.swing.JLabel labelGameOver;
     private javax.swing.JLabel labelWinner;
-    private java.awt.TextArea textfieldWhy;
+    private javax.swing.JTextArea textWhy;
     // End of variables declaration//GEN-END:variables
 }

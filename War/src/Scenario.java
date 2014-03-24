@@ -3,14 +3,18 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 /**
+ * Scenario Class
  *
- * @author BotBen
+ * @author Ben Yntema
+ *
+ * Through this class, the preliminary game information is tabulated and
+ * established based on the parameters of the chosen scenario. This class
+ * initializes the properties of the game and subsequent player, units, and map
+ * properties.
+ *
+ * Data in the form of arrays contain information needed to initialize the game
+ * state and map properties.
  */
 public class Scenario {
 
@@ -23,13 +27,19 @@ public class Scenario {
     public static ArrayList<Integer> unitLocations; // initialize array to store unit locations
     public static Game game; // new game object
 
-    // Method to coordinate the establishment of the scenario
+    /*
+     Method: Initialize
+     Parameters: int _scenarioID -> the index of the chosen scenario based on user selection
+    
+     Initialize selects the data from which to draw upon when setting up the game
+     state.
+     */
     public void Initialize(int _scenarioID) {
         switch (_scenarioID) { // perform correct scenario operations
             case 0:
                 game = new Game(); // start a new game
                 game.updateWeather(); // set the weather conditions
-                game.setMaxTurnCount(20);
+                game.setMaxTurnCount(20); // set the maximum turn count
                 setMapParameters(); // set up the scenario map, all roads and nodes
                 setPlayers(); // set the players based on faction properties
                 setCombatUnits(); // set the combat units based on scenario
@@ -37,6 +47,13 @@ public class Scenario {
         }
     }
 
+    /*
+     Method: killSwitch
+     Parameters: none
+    
+     Variables are set to default values at the end of the lifecycle of the game 
+     state or when a player opts to return to scenario selection mid game.
+     */
     public static void killSwitch() {
         Node[] listOfNodes = null;
         Road[] listOfRoads = null;
@@ -48,8 +65,15 @@ public class Scenario {
         Game game = null;
     }
 
-// Method to establish the roads and nodes on the map
-    void setMapParameters() {
+    /*
+     Method: setMapParameters
+     Parameters: none
+    
+     Information regarding the locations present in the chosen scenario and the 
+     roads which connect them are translated to structures to be used in user
+     interface operations and unit movement.
+     */
+    private void setMapParameters() {
         // array of all the node names
         String[] names = {"Utica", "Fidenza", "Faenza", "Volterra", "Saturnia", "Senigalia", "Clusium", "Palestrina", "Naples", "Nola", "Brindis", "Dyrrhachulum", "Kavala", "Roma"};
         // storage of the distance to capital of Blue and Red respectively
@@ -101,8 +125,14 @@ public class Scenario {
         }
     }
 
-    // Method to set the factions
-    void setPlayers() {
+    /*
+     Method: setPlayers
+     Parameters: none
+    
+     Based on user selection, players are assigned to either computer or player
+     control and to their selected faction, be it red or blue player
+     */
+    private void setPlayers() {
         if (Global.opponent) { // if player vs player is chosen
             if (Global.chosenTeam) { // if player one selected red faction
                 redPlayer = new Player(false, listOfNodes[10], 0, "red");
@@ -126,10 +156,16 @@ public class Scenario {
         }
     }
 
-    // Method to set up the units
-    void setCombatUnits() {
+    /*
+     Method: setCombatUnits
+     Parameters: none
+    
+     Combat units are constructed, assigned to a player, and placed on the map based
+     on the parameters outlined in the scenario.
+     */
+    private void setCombatUnits() {
         int temp; // temporary storage of the random unit placement value
-        unitLocations = new ArrayList<Integer>() {
+        unitLocations = new ArrayList<Integer>() { // list of all start locations
             {
                 add(13);
                 add(5);
@@ -164,8 +200,8 @@ public class Scenario {
         for (int i = 4; i < 8; i++) {
             redPlayer.addUnit(listOfUnits.get(i));
         }
-        
-        for (CombatUnit unit : listOfUnits){
+
+        for (CombatUnit unit : listOfUnits) {
             unit.location.removeSupplies();
         }
 
@@ -174,25 +210,36 @@ public class Scenario {
         redPlayer.setInitialArmyLevel();
         bluePlayer.setCurrentArmyLevel();
         bluePlayer.setInitialArmyLevel();
-        
+
+        // with all units assigned, initialize the knowledge of enemy location for each player
         redPlayer.setUpRumours();
         redPlayer.generateRumourList();
         bluePlayer.setUpRumours();
         bluePlayer.generateRumourList();
     }
 
+    /*
+     Method: findRoad
+     Parameters: Node locationA -> the possible start location of the road to be found
+     Node locationB -> the possible end location of the road to be found
+    
+     This method allows for the roads to be searched through based on a supposed
+     start and end location. The found road is returned.
+     */
     public static Road findRoad(Node locationA, Node locationB) {
-        Road found = null;
+        Road found = null; // storage of the found road
 
+        // for each of the roads in the scenario
         for (int i = 0; i < listOfRoads.length; i++) {
-            if (locationA.id == listOfRoads[i].locationA.id && locationB.id == listOfRoads[i].locationB.id){
-                found = listOfRoads[i];
-                return found;
-            } else if (locationB.id == listOfRoads[i].locationA.id && locationA.id == listOfRoads[i].locationB.id){
+            // compare the start and end location of each road to the current road
+            if (locationA.id == listOfRoads[i].locationA.id && locationB.id == listOfRoads[i].locationB.id) {
+                found = listOfRoads[i]; // when found, store the found road
+                return found; // return the found road
+            } else if (locationB.id == listOfRoads[i].locationA.id && locationA.id == listOfRoads[i].locationB.id) {
                 found = listOfRoads[i];
                 return found;
             }
-        }        
+        }
         return found;
     }
 }

@@ -35,10 +35,12 @@ public class HowToPlay extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         textHelp = new javax.swing.JTextArea();
         radioBasics = new javax.swing.JRadioButton();
-        jRadioButton1 = new javax.swing.JRadioButton();
+        radioMap = new javax.swing.JRadioButton();
+        radioMapNodes = new javax.swing.JRadioButton();
+        radioActions = new javax.swing.JRadioButton();
         radioBattles = new javax.swing.JRadioButton();
         radioVictory = new javax.swing.JRadioButton();
-        jLabel1 = new javax.swing.JLabel();
+        labelBackdrop = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBounds(new java.awt.Rectangle(100, 100, 0, 0));
@@ -59,6 +61,7 @@ public class HowToPlay extends javax.swing.JFrame {
         });
         getContentPane().add(butonX, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 0, 20, -1));
 
+        buttonMenu.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         buttonMenu.setText("Main Menu");
         buttonMenu.setToolTipText(null);
         buttonMenu.setBorder(null);
@@ -72,6 +75,7 @@ public class HowToPlay extends javax.swing.JFrame {
 
         textHelp.setEditable(false);
         textHelp.setColumns(20);
+        textHelp.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         textHelp.setLineWrap(true);
         textHelp.setRows(5);
         textHelp.setText("Select an item from the sidebar to learn more about it!");
@@ -95,8 +99,35 @@ public class HowToPlay extends javax.swing.JFrame {
         });
         getContentPane().add(radioBasics, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 100, -1));
 
-        jRadioButton1.setText("jRadioButton1");
-        getContentPane().add(jRadioButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, -1, -1));
+        groupHelpTypes.add(radioMap);
+        radioMap.setText("Map Screen");
+        radioMap.setContentAreaFilled(false);
+        radioMap.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radioMapActionPerformed(evt);
+            }
+        });
+        getContentPane().add(radioMap, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, -1, -1));
+
+        groupHelpTypes.add(radioMapNodes);
+        radioMapNodes.setText("Map Nodes");
+        radioMapNodes.setContentAreaFilled(false);
+        radioMapNodes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radioMapNodesActionPerformed(evt);
+            }
+        });
+        getContentPane().add(radioMapNodes, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, -1, -1));
+
+        groupHelpTypes.add(radioActions);
+        radioActions.setText("Actions");
+        radioActions.setContentAreaFilled(false);
+        radioActions.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radioActionsActionPerformed(evt);
+            }
+        });
+        getContentPane().add(radioActions, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, -1, -1));
 
         groupHelpTypes.add(radioBattles);
         radioBattles.setText("Battles");
@@ -106,7 +137,7 @@ public class HowToPlay extends javax.swing.JFrame {
                 radioBattlesActionPerformed(evt);
             }
         });
-        getContentPane().add(radioBattles, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 100, -1));
+        getContentPane().add(radioBattles, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, 100, -1));
 
         groupHelpTypes.add(radioVictory);
         radioVictory.setText("Victory");
@@ -116,11 +147,11 @@ public class HowToPlay extends javax.swing.JFrame {
                 radioVictoryActionPerformed(evt);
             }
         });
-        getContentPane().add(radioVictory, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, 100, -1));
+        getContentPane().add(radioVictory, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 220, 100, -1));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/HelpScreen-backdrop.png"))); // NOI18N
-        jLabel1.setToolTipText(null);
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 480, -1));
+        labelBackdrop.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/HelpScreen-backdrop.png"))); // NOI18N
+        labelBackdrop.setToolTipText(null);
+        getContentPane().add(labelBackdrop, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 480, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -131,16 +162,28 @@ public class HowToPlay extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonMenuActionPerformed
 
     private void radioBattlesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioBattlesActionPerformed
-        textHelp.setText("Hello. My name is Inigo Montoya. "
-                + "You killed my father. Prepare to die. ");
+        textHelp.setText("If a colision occurs between opposing enemy units, "
+                + "the units will set up camp and prepare for battle. It is"
+                + " your decision if you want your army units to commit to"
+                + " the battle, or if they should attempt to flee. All units"
+                + " that you control that are involved in the collision will"
+                + " be included in the battle and will follow the same commands"
+                + " to fight or flee. If the units successfully flee, they will"
+                + " return to the node that they originally departed from, or "
+                + "to a random adjacent node if no movement was made.\n\n" +
+                "     The victor of a battle is determined by the sizes of"
+                + " the units involved in the battle, the political power "
+                + "of both teams, and the type of battle (if one side is defending"
+                + " inside an annexed node or if the collision has occured"
+                + " on road).");
     }//GEN-LAST:event_radioBattlesActionPerformed
 
     private void radioBasicsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioBasicsActionPerformed
-        textHelp.setText("Welcome to Roman Civil War! \n" +
-                "   This learning tool places you inside a war from Roman " +
+        textHelp.setText("Welcome to Roman Civil War! \n\n" +
+                "     This learning tool places you inside a war from Roman " +
                 "history as one of the Generals involved in the conflict." +
-                " YThe decisions you make will determine if your team wins or loses." +
-                "\n\n   To begin the match, you must select a scenario, " +
+                " The decisions you make will determine if your team wins or loses." +
+                "\n\n     To begin the match, you must select a scenario, " +
                 "followed by which team (represented as 'red' or 'blue') " +
                 "in that scenario you want to fight alongside." +
                 "\n\n   ");
@@ -148,14 +191,135 @@ public class HowToPlay extends javax.swing.JFrame {
     }//GEN-LAST:event_radioBasicsActionPerformed
 
     private void radioVictoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioVictoryActionPerformed
-        textHelp.setText("I don't know half of you half as well as "
-                + "I should like; and I like less than half of you "
-                + "half as well as you deserve....");
+        textHelp.setText("Victory can be achieved through multiple methods. "
+                + " You can win because of political power, remaining army "
+                + "sizes, turn count, and a time limit.\n\n"
+                + "     Political power: your political power is a meter"
+                + " outlining the level of political support your faction"
+                + " of the civil war posseses. Political power is "
+                + "determined by how many army unis you control and of what size, "
+                + "how many turns into the scenario have passed, an army "
+                + "unit's distance from your capital city, if an army unit "
+                + "has peformed any actions or has remained stationary. If "
+                + "your political power has dropped to 0, you have lost all "
+                + "political support and lose the match. \n\n"
+                + "     Remaining army sizes: if your controlled armies have"
+                + " either all been defeated, or if your forces are rendered"
+                + " small enough that there is no possible way for you to "
+                + "defeat the opponent, you will lose the match.\n\n"
+                + "     Turn count: each scenario has a specific maximum"
+                + " turn count. Turns represent time passing. If the match"
+                + " reaches the maximum turn limit, a winner will be determined "
+                + "based on political power and army units remaining.\n\n"
+                + "     Time limit: each match also has a twenty minute time"
+                + " limit before the game has ended. If the timer runs out, "
+                + "a winner will be determined via political power and army "
+                + "units remaining.");
     }//GEN-LAST:event_radioVictoryActionPerformed
 
     private void butonXActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butonXActionPerformed
         System.exit(0);
     }//GEN-LAST:event_butonXActionPerformed
+
+    private void radioMapNodesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioMapNodesActionPerformed
+        textHelp.setText("The map screen contains location markers " +
+                "called 'nodes.' These markers are assigned different " + 
+                "colours to represent different location types or army " +
+                "units present. The colours are: \n\n" +
+                "     Dark grey: this node is a city/town. These " + 
+                "locations connect to other cities via a road network and " +
+                "have valuable supplies to resupply your army units." +
+                " If a node you control is shown as having no supplies " +
+                " available, it may mean an enemy unit has recently " +
+                "been to this location. \n\n"+
+                "     Beige: these nodes are checkpoints along roads; " +
+                "they do not contain supplies but act as resting points " +
+                "for your armies to annex as they travel between cities.\n\n" +
+                "     Light blue: This colour represents a port town. " +
+                "Port towns are useful as they contain special routes that" +
+                " only naval units can move between. Naval units can even " +
+                "ferry small sized army units accross these routes.\n\n" +
+                "     Red: The node being coloured red means the red team has an " +
+                "army at this location. This is for the red team to see where" +
+                " their own troops are, or for the blue team to know which " +
+                "nodes they contain intel on their enemy's location - whether" +
+                " it be by rumours or from their spies.\n\n" +
+                "     Blue: Similar to red, a blue node represents a blue " +
+                "army unit at this location - for blue team to keep track of" +
+                " their troop locations or red team to see where they believe" +
+                " blue team has troops located.\n\n" +
+                "     White: The node you have highlighted will turn white " +
+                "as an easy way to keep track of which node you are presently " +
+                "looking at the information of.");
+    }//GEN-LAST:event_radioMapNodesActionPerformed
+
+    private void radioMapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioMapActionPerformed
+        textHelp.setText("Once you have selected a team, you will be " +
+                "presented with the map screen. The map screen is where " +
+                "your time will primarily be spent, as it is the hub " +
+                "for controlling all movment and actions performed.\n\n" +
+                "     The map screen consists of two windows: a map with an " +
+                "information bar beneath it, and an accompanying information " +
+                "window to the bottom right of the map. \n\n " +
+                "     The bar beneath the " +
+                "map will contain relevant information about whichever " +
+                "node you have selected from the map (the node " +
+                "type, which armies you possess at that location, any " +
+                "enemies your spies believe may be located there, the " +
+                "current weather, the amont of supplies available at the " +
+                "selected node, and - most importantly - the node's " +
+                "name and type).\n\n" +
+                "     The side window will contain general information " +
+                "for each player (the turn count, the time remaining, " +
+                "the scenario and opponents selected, who's turn it presently " +
+                "is, and your current political power level). It also contains" +
+                " a list of all actions you are commiting each turn, as a " +
+                "general reminder for you.");
+    }//GEN-LAST:event_radioMapActionPerformed
+
+    private void radioActionsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioActionsActionPerformed
+        textHelp.setText("During your turn, you can perform four types "
+                + "of actions: movement, merging, dividing, and waiting. These"
+                + " actions can be performed by selecting a map node - except "
+                + "for waiting, which requires no action. Only"
+                + " actions you are capable of doing at a selected node will "
+                + "be presented to you.\n\n"
+                + "     Movement: moving an army allows you to move one "
+                + "of your army units from location to location. You can"
+                + " move any or even all of your army units each turn. "
+                + "Some roads will only allow for certain sizes of armies "
+                + "to travel along them (for instance, mountain passes may "
+                + "be too narrow for a large sized army to travel through), "
+                + " while specific roads attached to port towns can only "
+                + "be used by naval unit - although these pathways cannot be "
+                + "used during Winter. Naval units can travel along any pathway"
+                + " on-land, and can also ferry small sized army units accross "
+                + "the pathways between port towns. Your army unit movements "
+                + "will happen at the same tme as the opponent's units, "
+                + "so plan accordingly.\n\n"
+                + "     Merging: you can choose to merge together two "
+                + "of your army units that are on the same location and "
+                + "are of the same size (only small or medium sized armies "
+                + "can be merged together). Two smalls merged together will "
+                + "become a medium sized army, while two mediums merged "
+                + "together will become a large army unit. Merging happens "
+                + "instantly, as soon as you select the action.\n\n"
+                + "     Dividing: the opposite of merging, you can divide "
+                + "an army unit into two smaller units. Only Large and"
+                + " medium armies can be divided. Dividing a large unit will"
+                + " create two medium units, while dividing a medium will"
+                + " give you two smalls. Dividing happens instantly, as"
+                + " soon as you select the action.\n\n"
+                + "     Waiting: you can also choose to simply not do anything"
+                + " with an army unit. There are benefits and drawbacks to not"
+                + " using an army. The benefit is that an army unit that has"
+                + " annexed a node will gain a defensive bonus in battle, "
+                + "while the disadvantages are that stationary troops may"
+                + " be the victims of illnesses, that the unit is more likely "
+                + "to be found by enemy spies, and you will lose poliical"
+                + " power (political power is explained in the 'victory' section)"
+                + " for every army you do not use each turn.");
+    }//GEN-LAST:event_radioActionsActionPerformed
 
     /**
      * @param args the command line arguments
@@ -197,11 +361,13 @@ public class HowToPlay extends javax.swing.JFrame {
     private javax.swing.JButton butonX;
     private javax.swing.JToggleButton buttonMenu;
     private javax.swing.ButtonGroup groupHelpTypes;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel labelBackdrop;
+    private javax.swing.JRadioButton radioActions;
     private javax.swing.JRadioButton radioBasics;
     private javax.swing.JRadioButton radioBattles;
+    private javax.swing.JRadioButton radioMap;
+    private javax.swing.JRadioButton radioMapNodes;
     private javax.swing.JRadioButton radioVictory;
     private javax.swing.JTextArea textHelp;
     // End of variables declaration//GEN-END:variables

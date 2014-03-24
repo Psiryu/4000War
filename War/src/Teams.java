@@ -70,7 +70,7 @@ public class Teams extends javax.swing.JFrame {
         labelSubtitle.setText("select your team:");
         getContentPane().add(labelSubtitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 110, -1, -1));
 
-        labelOr.setText("Or");
+        labelOr.setText("or");
         getContentPane().add(labelOr, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 170, -1, -1));
 
         buttongroupTeam.add(radioTeam1);
@@ -149,8 +149,8 @@ public class Teams extends javax.swing.JFrame {
 
     private void buttonBeginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBeginActionPerformed
         //resets intgameover to 0, creates a new scenario and initializes mapevent
-        Global.intGameOver = 1200;
-        Global.timer = 62;
+        Global.intGameOver = 0;
+        Global.timer = 1200;
         Scenario scenario = new Scenario();
         scenario.Initialize(0);
         Global.mapEvent = new MapEvent();
