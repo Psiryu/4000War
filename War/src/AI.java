@@ -282,9 +282,9 @@ public class AI {
                         {
                             weighting[indexer] -= 30;
                             if(Scenario.listOfNodes[newLocation].suppliesAvailable < 3)
-                                weighting[indexer] += 45;
-                            else if(Scenario.listOfNodes[newLocation].suppliesAvailable <5)
                                 weighting[indexer] += 30;
+                            else if(Scenario.listOfNodes[newLocation].suppliesAvailable <5)
+                                weighting[indexer] += 35;
                         }
                         if(weighting[indexer] == increment)
                             weighting[indexer]+= 5;
@@ -308,9 +308,9 @@ public class AI {
                                 if(controlledLocations.contains(newLocation)) {
                                     weighting[indexer] -= 20;
                                     if(Scenario.listOfNodes[newLocation].suppliesAvailable < 3)
-                                        weighting[indexer] += 35;
-                                    else if(Scenario.listOfNodes[newLocation].suppliesAvailable <5)
                                         weighting[indexer] += 20;
+                                    else if(Scenario.listOfNodes[newLocation].suppliesAvailable <5)
+                                        weighting[indexer] += 25;
                                 }
                                 if(weighting[indexer] == increment)
                                     weighting[indexer]+= 10;
@@ -335,9 +335,9 @@ public class AI {
                                         if(controlledLocations.contains(newLocation)) {
                                             weighting[indexer] -= 10;
                                             if(Scenario.listOfNodes[newLocation].suppliesAvailable < 3)
-                                                weighting[indexer] += 25;
-                                            else if(Scenario.listOfNodes[newLocation].suppliesAvailable <5)
                                                 weighting[indexer] += 10;
+                                            else if(Scenario.listOfNodes[newLocation].suppliesAvailable <5)
+                                                weighting[indexer] += 15;
                                         }
                                         if(weighting[indexer] == increment)
                                             weighting[indexer]+= 20;
