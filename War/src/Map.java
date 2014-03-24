@@ -2017,18 +2017,18 @@ public class Map extends javax.swing.JFrame {
             //calls the AI
             AI.AI();
             //ends turn again
-            // Scenario.game.endTurn();
+            Scenario.game.endTurn();
 
             //resets the curPlayer controller to the previous player
-//            if (Global.curPlayer == 0) {
-//                Global.curPlayer = 1;
-//                labelCurPlayer.setText("Blue team's turn");
-//                buttonNext.setText("Blue team, click here to proceed.");            
-//            } else {
-//                Global.curPlayer = 0;
-//                labelCurPlayer.setText("Red team's turn");
-//                buttonNext.setText("Red team, click here to proceed.");
-//            }
+            if (Global.curPlayer == 0) {
+                Global.curPlayer = 1;
+                labelCurPlayer.setText("Blue team's turn");
+                buttonNext.setText("Blue team, click here to proceed.");            
+            } else {
+                Global.curPlayer = 0;
+                labelCurPlayer.setText("Red team's turn");
+                buttonNext.setText("Red team, click here to proceed.");
+            }
         }
 
         buttonNext.setVisible(true);

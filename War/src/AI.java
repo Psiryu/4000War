@@ -29,7 +29,7 @@ public class AI {
     
         //determines if any units controlled should merge or divide
         BeginMerging(robotLegion, robots);
-        Dividing(robotLegion, robots);
+        Dividing(robotLegion);
         
         //re-establishes the variables in case mergers or divisions occured
         if(Global.chosenTeam == false) {
@@ -68,44 +68,47 @@ public class AI {
             if(count < robotLegion.size()) {
                 //establishes two arrays of all combat units to check locations
                 for(CombatUnit killBots : robotLegion) {
-                    if(mergers.contains(killBots.cUnitID) == false) {
-                        for(CombatUnit killBots2 : robotLegion) {
-                            //checks if they are on the same location and not the same unit
-                            //and that their sizes are both small or both medium
-                            if(killBots.cUnitID != killBots2.cUnitID &&
-                                    killBots.location.id == killBots2.location.id &&
-                                    ((killBots.size <=10 && killBots.size >5 && 
-                                    killBots2.size <= 10 && killBots.size > 5) ||
-                                    ((killBots.size <=5 && killBots2.size <=5) &&
-                                    killBots.isFleet == false && killBots2.isFleet == false))) {
-                                //establishes int for weight based on this possible merge
-                                int weighting = 0;
-                                //creates an instance of all roads to check locations for weighting
-                                for(Road road : Scenario.listOfRoads) {
-                                    //checks if road point A connects to location
-                                    if(road.locationA.id == killBots.location.id) {
-                                        for(Node node : Scenario.listOfNodes) {
-                                            if(node.id == road.locationB.id) {
-                                                //checks if fog of war at this node has any values
-                                                if(robots.enemyIntelligence.get(node.id).size() > 1) {
-                                                    weighting+=10;
+                    if(killBots != null) {
+                        if(mergers.isEmpty() == true || mergers.contains(killBots.cUnitID) == false) {
+                            for(CombatUnit killBots2 : robotLegion) {
+                                if(killBots2 != null) {
+                                    int weighting = 0;
+                                    //checks if they are on the same location and not the same unit
+                                    //and that their sizes are both small or both medium
+                                    if(killBots.cUnitID != killBots2.cUnitID &&
+                                            killBots.location.id == killBots2.location.id &&
+                                            ((killBots.size <=10 && killBots.size >5 && 
+                                            killBots2.size <= 10 && killBots.size > 5) ||
+                                            ((killBots.size <=5 && killBots2.size <=5) &&
+                                            killBots.isFleet == false && killBots2.isFleet == false))) {
+                                        //creates an instance of all roads to check locations for weighting
+                                        for(Road road : Scenario.listOfRoads) {
+                                            //checks if road point A connects to location
+                                            if(road.locationA.id == killBots.location.id) {
+                                                for(Node node : Scenario.listOfNodes) {
+                                                    if(node.id == road.locationB.id) {
+                                                        //checks if fog of war at this node has any values
+                                                        if(robots.enemyIntelligence.get(node.id).size() > 1) {
+                                                            weighting+=10;
+                                                        }
+                                                    }
                                                 }
-                                            }
-                                        }
 
-                                    } else if(road.locationB.id == killBots.location.id) {
-                                        for(Node node : Scenario.listOfNodes) {
-                                            if(node.id == road.locationB.id) {
-                                                //checks if fog of war at this node has any values
-                                                if(robots.enemyIntelligence.get(node.id).size() > 1) {
-                                                    weighting+=10;
+                                            } else if(road.locationB.id == killBots.location.id) {
+                                                for(Node node : Scenario.listOfNodes) {
+                                                    if(node.id == road.locationB.id) {
+                                                        //checks if fog of war at this node has any values
+                                                        if(robots.enemyIntelligence.get(node.id).size() > 1) {
+                                                            weighting+=10;
+                                                        }
+                                                    }
                                                 }
                                             }
                                         }
+                                        //sends the weighted value to Merging
+                                        Merging(weighting, killBots, killBots2);
                                     }
                                 }
-                                //sends the weighted value to Merging
-                                Merging(weighting, killBots, killBots2);
                             }
                         }
                     }
@@ -140,8 +143,11 @@ public class AI {
     }
     
     //this method handles dividing armies
-    private static void Dividing(ArrayList<CombatUnit> robotLegion, Player robots) {
+    private static void Dividing(ArrayList<CombatUnit> robotLegion) {
         int weight; //counter that adds weighting
+        
+        //list of which to divide
+        ArrayList<CombatUnit> dividers = new ArrayList<CombatUnit>();
         
         //loop goes through each individual combat unit
         for(CombatUnit killBots : robotLegion) {
@@ -175,10 +181,14 @@ public class AI {
 
                 //determines if it will divide or not
                 if(divide < 3)
-                    MapEvent.divideUnit(killBots.cUnitID);
+                    dividers.add(killBots);
             }
         }
         
+        if(dividers.isEmpty() == false) {
+            for(CombatUnit units : dividers) 
+                MapEvent.divideUnit(units.cUnitID);
+        }
     }
     
     //this method determines the possible movements

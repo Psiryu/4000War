@@ -475,6 +475,7 @@ public class MapEvent {
 
     // Method called to in order to handle unit merges
     public static void mergeUnits(int oneNum, int twoNum) {
+        
         CombatUnit[] unit = new CombatUnit[2];
         CombatUnit temp; // temporary unit to store new unit
         //boolean found = false; // flag for use in the unit search
