@@ -16,7 +16,11 @@ import javax.swing.JOptionPane;
 public class Battle {
 
     // Placeholders for combat units partaking in battle
-    Random randNum = new Random();
+    Random randNum;
+    
+    public Battle(){
+        randNum = new Random();
+    }
 
     /*
      String[] report;
