@@ -277,7 +277,7 @@ public class AI {
                         if(Scenario.listOfNodes[newLocation].isCapitalBlue || Scenario.listOfNodes[newLocation].isCapitalRed)
                             weighting[indexer] += 15;
                         if(robots.enemyIntelligence.get(indexer).isEmpty() == false)
-                            weighting[indexer] += 55;
+                            weighting[indexer] += 45;
                         if(controlledLocations.contains(newLocation))
                         {
                             weighting[indexer] -= 30;
@@ -304,7 +304,7 @@ public class AI {
                                 if(Scenario.listOfNodes[newLocation].isCapitalBlue || Scenario.listOfNodes[newLocation].isCapitalRed)
                                     weighting[indexer] += 15;
                                 if(robots.enemyIntelligence.get(indexer).isEmpty() == false)
-                                    weighting[indexer] += 45;
+                                    weighting[indexer] += 35;
                                 if(controlledLocations.contains(newLocation)) {
                                     weighting[indexer] -= 20;
                                     if(Scenario.listOfNodes[newLocation].suppliesAvailable < 3)
@@ -331,7 +331,7 @@ public class AI {
                                         if(Scenario.listOfNodes[newLocation].isCapitalBlue || Scenario.listOfNodes[newLocation].isCapitalRed)
                                             weighting[indexer] += 10;
                                         if(robots.enemyIntelligence.get(indexer).isEmpty() == false)
-                                            weighting[indexer] += 35;
+                                            weighting[indexer] += 25;
                                         if(controlledLocations.contains(newLocation)) {
                                             weighting[indexer] -= 10;
                                             if(Scenario.listOfNodes[newLocation].suppliesAvailable < 3)
