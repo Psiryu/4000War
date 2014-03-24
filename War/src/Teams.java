@@ -70,7 +70,7 @@ public class Teams extends javax.swing.JFrame {
         labelSubtitle.setText("select your team:");
         getContentPane().add(labelSubtitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 110, -1, -1));
 
-        labelOr.setText("Or");
+        labelOr.setText("or");
         getContentPane().add(labelOr, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 170, -1, -1));
 
         buttongroupTeam.add(radioTeam1);

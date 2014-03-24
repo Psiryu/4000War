@@ -199,6 +199,8 @@ public class Map extends javax.swing.JFrame {
 
         labelTimer.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         frameFloatingInfo.getContentPane().add(labelTimer, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 90, -1, -1));
+
+        list1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         frameFloatingInfo.getContentPane().add(list1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 400, 140));
 
         labelBackdrop.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/MapScreen-Side-backdrop.png"))); // NOI18N

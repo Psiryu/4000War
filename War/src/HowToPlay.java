@@ -61,6 +61,7 @@ public class HowToPlay extends javax.swing.JFrame {
         });
         getContentPane().add(butonX, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 0, 20, -1));
 
+        buttonMenu.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         buttonMenu.setText("Main Menu");
         buttonMenu.setToolTipText(null);
         buttonMenu.setBorder(null);
@@ -74,6 +75,7 @@ public class HowToPlay extends javax.swing.JFrame {
 
         textHelp.setEditable(false);
         textHelp.setColumns(20);
+        textHelp.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         textHelp.setLineWrap(true);
         textHelp.setRows(5);
         textHelp.setText("Select an item from the sidebar to learn more about it!");

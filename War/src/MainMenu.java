@@ -98,7 +98,7 @@ public class MainMenu extends javax.swing.JFrame {
         getContentPane().add(buttonScenario3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 210, 150, 60));
 
         buttonGroup1.add(radioAI);
-        radioAI.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        radioAI.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         radioAI.setSelected(true);
         radioAI.setText("Against AI");
         radioAI.setContentAreaFilled(false);
@@ -107,10 +107,10 @@ public class MainMenu extends javax.swing.JFrame {
                 radioAIActionPerformed(evt);
             }
         });
-        getContentPane().add(radioAI, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 90, 110, -1));
+        getContentPane().add(radioAI, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 90, 110, -1));
 
         buttonGroup1.add(radioPlayer);
-        radioPlayer.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        radioPlayer.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         radioPlayer.setText("Against Player");
         radioPlayer.setContentAreaFilled(false);
         radioPlayer.addActionListener(new java.awt.event.ActionListener() {
@@ -118,7 +118,7 @@ public class MainMenu extends javax.swing.JFrame {
                 radioPlayerActionPerformed(evt);
             }
         });
-        getContentPane().add(radioPlayer, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 130, -1, -1));
+        getContentPane().add(radioPlayer, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 130, -1, -1));
 
         buttonEnd.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         buttonEnd.setText("End Game");
