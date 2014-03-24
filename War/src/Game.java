@@ -2,78 +2,96 @@
 import java.util.Random;
 import javax.swing.JOptionPane;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 /**
+ * Game Class
  *
- * @author Fearless Jay
+ * @author Jason Englehart
+ *
+ * This class stores information regarding the game state and variables that
+ * effect the overall behavior of the map.
+ *
+ * A multitude of set and get style methods allow for the game to be configured
+ * and monitored.
  */
 public class Game {
 
     public static double turnCount = 0; // total number of turns in the game
-    public static int maxTurnCount;
+    public static int maxTurnCount; // value at which the game will be terminated
 
-    // initialize the game with turn count 0
+    /*
+     Method: Game
+     Parameters: none
+    
+     This is the constructor for the Game object, in which the object is initialized
+     and a max turn count is established.
+     */
     public Game() {
-        //turnCount = 0;
         maxTurnCount = 3;
     }
+
+    /*
+     Method: setMaxTurnCount
+     Parameters: int number -> the value to set the max turn count to
     
-    void setMaxTurnCount(int number){
+     Set the maximum turn count value.
+     */
+    void setMaxTurnCount(int number) {
         maxTurnCount = number;
     }
+
+    /*
+     Method: getMaxturnCount
+     Parameters: none
     
-    int getMaxTurnCount(){
+     Get the value stored in maxTurnCount.
+     */
+    int getMaxTurnCount() {
         return maxTurnCount;
     }
 
-    // get the current weather conditions
+    /*
+     Method: getWeather
+     Parameters: none
+    
+     Return the current value for weather.
+     */
     int getWeather() {
         return Global.weather;
     }
 
-    // set new randomized weather conditions
+    /*
+     Method: updateWeather
+     Parameters: none
+    
+     Calculate the new value for weather at the end of each turn.
+     */
     void updateWeather() {
-        Random random = new Random();
-        Global.weather = (int) (5 * random.nextDouble());
+        Random random = new Random(); // establish random number generator
+        Global.weather = (int) (5 * random.nextDouble()); // set value to be random number between 0 and 5
     }
 
-    // obtain the current turn count
+    /*
+     Method: getTurnCount
+     Parameters: none
+    
+     Returns the current turn count.
+     */
     double getTurnCount() {
         return turnCount;
     }
 
-    // Method to determine if an two opposing units collided while in transit
-    void checkEnemyCollision() {
-        // temporary storage of units in play
-        CombatUnit[] armyArrayRed = null;
-        CombatUnit[] armyArrayBlue = null;
-
-        // for each unit in red faction
-        for (int i = 0; i < armyArrayRed.length; i++) {
-            // for each unit in blue faction
-            for (int j = 0; j < armyArrayBlue.length; j++) {
-                if (i != j) { // check if the road ids match, indicating collision
-                    /*
-                     if (armyArrayRed[i].road == armyArrayBlue[j].road) {
-                        
-                     insert logic for handling
-                         
-                     }
-                     */
-                }
-            }
-        }
-    }
-
-    // Method to handle the end turn calculations
+    /*
+     Method: endTurn
+     Parameters: none
+    
+     This method handles the conclusion of each turn. It will perform the processes
+     necessary to initialize the simulation of movement and adjust player, game,
+     and unit properties.
+     */
     void endTurn() {
         turnCount += 0.5; // increase the turn count
-        if (turnCount % 1 == 0) {
-            MapEvent.onmipresentSimulation();
+        if (turnCount % 1 == 0) { // if the turn count indicates that both players had their turn
+            MapEvent.omnipresentSimulation(); // simulate movements and perform combat
 
             // update the political power levels of each faction
             Scenario.redPlayer.AdjustPoliticalPower();
@@ -90,7 +108,7 @@ public class Game {
                 // decriment the supply level of the unit
                 Scenario.redPlayer.combatUnits.get(i).removeSupplies();
             }
-            Scenario.redPlayer.generateRumourList();
+
             // repeat the calculations for the blue faction
             for (int i = 0; i < Scenario.bluePlayer.combatUnits.size(); i++) {
                 Scenario.bluePlayer.combatUnits.get(i).setTimeStationary();
@@ -98,160 +116,161 @@ public class Game {
                 Scenario.bluePlayer.combatUnits.get(i).setSize();
                 Scenario.bluePlayer.combatUnits.get(i).removeSupplies();
             }
+
+            // recalculate the rumour/enemy intelligence information
+            Scenario.redPlayer.generateRumourList();
             Scenario.bluePlayer.generateRumourList();
+
             updateWeather(); // change the weather conditions
             Global.season = (Global.season + 1) % 4; // change the season
 
-            for (Node location : Scenario.listOfNodes) {
-                Boolean raidCheck = true;
-                for (CombatUnit unit : Scenario.redPlayer.combatUnits) {
+            // adjust the supply levels at each node based on occupancy
+            for (Node location : Scenario.listOfNodes) { // for each node in scenario
+                Boolean occupyCheck = true; // check if the node has been occupied
+                for (CombatUnit unit : Scenario.redPlayer.combatUnits) { // for all red units
+                    if (unit.location.id == location.id) { // if a red unit is here
+                        unit.addSupplies(); // take supplies
+                        location.removeSupplies(); // set node supply level to 0
+                        occupyCheck = false; // indicate that the node is occupied
+                    }
+                }
+                // repeat for blue player units
+                for (CombatUnit unit : Scenario.bluePlayer.combatUnits) {
                     if (unit.location.id == location.id) {
                         unit.addSupplies();
                         location.removeSupplies();
-                        raidCheck = false;
+                        occupyCheck = false;
                     }
                 }
-                for (CombatUnit unit : Scenario.redPlayer.combatUnits) {
-                    if (unit.location.id == location.id) {
-                        unit.addSupplies();
-                        location.removeSupplies();
-                        raidCheck = false;
-                    }
-                }
-                if (raidCheck){
-                    location.addSupplies();
+
+                if (occupyCheck) { // if the node is not occupied
+                    location.addSupplies(); // increase the supplies
                 }
             }
         }
 
     }
-    public static void IsGameEnd ()
-    {
-	int aggregateRedSize = 0;
-	int aggregateBlueSize = 0;
-	
-	for (int i = 0 ; i < Scenario.redPlayer.combatUnits.size(); i ++)
-	{
-		aggregateRedSize += Scenario.redPlayer.combatUnits.get(i).size;
-	}
-	for (int i = 0 ; i < Scenario.bluePlayer.combatUnits.size(); i ++)
-	{
-		aggregateRedSize += Scenario.bluePlayer.combatUnits.get(i).size;
-	}
-	
-	/*Case one for victory time runs out*/
-	if (turnCount >= maxTurnCount || Global.timer == 0)
-	{
-		if (Scenario.redPlayer.politicalPower > Scenario.bluePlayer.politicalPower )
-		{
-                        Global.gameSummary = "Red Player Wins!!!";
-			Global.gameSummary2 =   "There are no more turns remaining\n"+
-                                                "or time ran out... Red player\n"+
-                                                "wins because their political\n"+
-                                                "power is greater than Blue's";
-			
-			Global.intGameOver = 1;
-			return;
-		}
-		else if (Scenario.redPlayer.politicalPower < Scenario.bluePlayer.politicalPower )
-		{
-                        Global.gameSummary = "Blue Player Wins!!!";
-			Global.gameSummary2 = "There are no more turns remaining\n"+
-                                                "or time ran out... Nlue player\n"+
-                                                "wins because their political\n"+
-                                                "power is greater than Red's";
-				Global.intGameOver = 1;
-				return;
-		
-		}
-                else /*POLITICAL POWER IS EQUAL*/
-                {
-                        if(aggregateRedSize > aggregateBlueSize)
-			{
-                                Global.gameSummary = "Red Player Wins!!!";
-				Global.gameSummary2 = "There are no more turns remaining\n"
-                                                    + "or time ran out... Red player\n"+
-                                                      "wins because their political\n"
-                                                    + "power is equal than Blue's\n"+
-                                                      "but Red has a larger army";
-			
-				Global.intGameOver = 1;
-				return;
-			}
-			else if(aggregateRedSize < aggregateBlueSize)
-			{
-                                Global.gameSummary = "Blue Player Wins!!!";
-				Global.gameSummary2 = "There are no more turns remaining\n"
-                                                    + "or time ran out... Blue player\n"+
-                                                      "wins because their political\n"
-                                                    + "power is equal than Red's\n"+
-                                                      "but Blue has a larger army";
-				
-				Global.intGameOver = 1;
-				return;
-			
-			}
-                        else
-                        {
-                                Global.gameSummary = "Tie Game!!!";
-                                Global.gameSummary2 = "There are no more turns remaining\n"
-                                                    + "or time ran out...There are\n"+
-                                                      "no more turns left and both\n"
-                                                    + "players have equal strength\n"+
-                                                      "in army size and political power";	
-                                Global.intGameOver = 1;
-                                return;
-                        }
-                }
+
+    /*
+     Method: IsGameEnd
+     Parameters: none
+    
+     This method checks for all of the end game conditions. If one of the conditions
+     has been met, then the game will terminate and the winner determined.
+     */
+    public static void IsGameEnd() {
+        // storage of the total size of both faction's roster
+        int aggregateRedSize = 0;
+        int aggregateBlueSize = 0;
+
+        // sum the sizes of all the units in each player's roster
+        for (int i = 0; i < Scenario.redPlayer.combatUnits.size(); i++) {
+            aggregateRedSize += Scenario.redPlayer.combatUnits.get(i).size;
+        }
+        for (int i = 0; i < Scenario.bluePlayer.combatUnits.size(); i++) {
+            aggregateRedSize += Scenario.bluePlayer.combatUnits.get(i).size;
         }
 
-	else if (Scenario.redPlayer.combatUnits.size() == 1 )
-	{
-		if ((Scenario.bluePlayer.combatUnits.size() == 1 ))
-		{
-			if (Scenario.bluePlayer.combatUnits.get(0).isFleet&& Scenario.redPlayer.combatUnits.get(0).isFleet)
-			{
-                                Global.gameSummary = "The game is tied\n";
-				Global.gameSummary2 = "Both players have only one combat\n"
-                                                    + "unit left and that combat unit\n"+
-                                                      "is a naval fleet unit";	
-				
-				Global.intGameOver = 1;
-				return;
-			}
-		}
-		
-		else if(Scenario.redPlayer.combatUnits.get(0).isFleet)
-		{
-				Global.gameSummary = "Blue Player Wins!!!";
-				Global.gameSummary2 ="Red has only one combat unit left\n"+
-                                                     "And that unit is a naval fleet unit";
-				
-				Global.intGameOver = 1;
-				return;
-		}
-	
-	}
-	else if ((Scenario.bluePlayer.combatUnits.size() == 1 ))
-	{
-		if(Scenario.bluePlayer.combatUnits.get(0).isFleet)
-		{
-				Global.gameSummary = "Red Player Wins!!!";
-				Global.gameSummary2 ="Blue has only one combat unit left\n"+
-                                                     "And that unit is a naval fleet unit";
-				
-				Global.intGameOver = 1;
-				return;
-		}
-	
-	}
-	else
-	{
-		return;
-	
-	}
-	
+        // case 1: turn count or game timer meets limit
+        if (turnCount >= maxTurnCount || Global.timer == 0) {
+            // if red player's political power is greater than blue players
+            // indicate that red player is the winner
+            if (Scenario.redPlayer.politicalPower > Scenario.bluePlayer.politicalPower) {
+                Global.gameSummary = "Red Player Wins!!!";
+                Global.gameSummary2 = "There are no more turns remaining\n"
+                        + "or time ran out... Red player\n"
+                        + "wins because their political\n"
+                        + "power is greater than Blue's";
 
-       return;
+                Global.intGameOver = 1;
+                return;
+            } else if (Scenario.redPlayer.politicalPower < Scenario.bluePlayer.politicalPower) {
+                // if blue player's political power is greater than red players
+                // indicate that blue player is the winner
+                Global.gameSummary = "Blue Player Wins!!!";
+                Global.gameSummary2 = "There are no more turns remaining\n"
+                        + "or time ran out... Nlue player\n"
+                        + "wins because their political\n"
+                        + "power is greater than Red's";
+                Global.intGameOver = 1;
+                return;
+
+            } else /* equal political power levels*/ {
+                // if red has the larger remaining army, then red wins
+                if (aggregateRedSize > aggregateBlueSize) {
+                    Global.gameSummary = "Red Player Wins!!!";
+                    Global.gameSummary2 = "There are no more turns remaining\n"
+                            + "or time ran out... Red player\n"
+                            + "wins because their political\n"
+                            + "power is equal than Blue's\n"
+                            + "but Red has a larger army";
+
+                    Global.intGameOver = 1;
+                    return;
+                } else if (aggregateRedSize < aggregateBlueSize) {
+                    // if blue has the larger remaining army, then blue wins
+                    Global.gameSummary = "Blue Player Wins!!!";
+                    Global.gameSummary2 = "There are no more turns remaining\n"
+                            + "or time ran out... Blue player\n"
+                            + "wins because their political\n"
+                            + "power is equal than Red's\n"
+                            + "but Blue has a larger army";
+
+                    Global.intGameOver = 1;
+                    return;
+
+                } else {
+                    // if they have equal army sizes, declare a tie
+                    Global.gameSummary = "Tie Game!!!";
+                    Global.gameSummary2 = "There are no more turns remaining\n"
+                            + "or time ran out...There are\n"
+                            + "no more turns left and both\n"
+                            + "players have equal strength\n"
+                            + "in army size and political power";
+                    Global.intGameOver = 1;
+                    return;
+                }
+            }
+        } else if (Scenario.redPlayer.combatUnits.size() == 1) {
+            // case 2: one of the players has one unit remaining
+            // if the red player has one unit remaining
+            // and if the blue player has one unit remaining
+            if ((Scenario.bluePlayer.combatUnits.size() == 1)) {
+                // if both remaining units are fleets
+                // delare a tie
+                if (Scenario.bluePlayer.combatUnits.get(0).isFleet && Scenario.redPlayer.combatUnits.get(0).isFleet) {
+                    Global.gameSummary = "The game is tied\n";
+                    Global.gameSummary2 = "Both players have only one combat\n"
+                            + "unit left and that combat unit\n"
+                            + "is a naval fleet unit";
+
+                    Global.intGameOver = 1;
+                    return;
+                }
+            } else if (Scenario.redPlayer.combatUnits.get(0).isFleet) {
+                // if the red player has a fleet, and blue player has standard unit
+                // blue player wins
+                Global.gameSummary = "Blue Player Wins!!!";
+                Global.gameSummary2 = "Red has only one combat unit left\n"
+                        + "And that unit is a naval fleet unit";
+
+                Global.intGameOver = 1;
+                return;
+            }
+        } else if ((Scenario.bluePlayer.combatUnits.size() == 1)) {
+            // if blue player has only a fleet remaining
+            // declare red the victor
+            if (Scenario.bluePlayer.combatUnits.get(0).isFleet) {
+                Global.gameSummary = "Red Player Wins!!!";
+                Global.gameSummary2 = "Blue has only one combat unit left\n"
+                        + "And that unit is a naval fleet unit";
+
+                Global.intGameOver = 1;
+                return;
+            }
+        } else {
+            return;
+        }
+        return;
     }
 }
