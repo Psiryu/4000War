@@ -73,7 +73,7 @@ public class Game {
     void endTurn() {
         turnCount += 0.5; // increase the turn count
         if (turnCount % 1 == 0) {
-            MapEvent.processEvents();
+            MapEvent.onmipresentSimulation();
 
             // update the political power levels of each faction
             Scenario.redPlayer.AdjustPoliticalPower();
@@ -101,7 +101,6 @@ public class Game {
             Scenario.bluePlayer.generateRumourList();
             updateWeather(); // change the weather conditions
             Global.season = (Global.season + 1) % 4; // change the season
-            MapEvent.clearRegistry();
 
             for (Node listOfNode : Scenario.listOfNodes) {
                 listOfNode.timeUnoccupied++;

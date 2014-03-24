@@ -150,24 +150,35 @@ public class MapEvent {
 
     }
 
-    public static void deafeatedUnitsQueue(CombatUnit unit, Boolean addRemove) {
-        if (addRemove) {
-            if (!defeatQueue.contains(unit)) {
-                defeatQueue.add(unit);
+    public static void completeCombat(ArrayList<CombatUnit> redUnits, Boolean redVictor, ArrayList<CombatUnit> blueUnits, Boolean blueVictor, Node endLocation) {
+        for (CombatUnit unit : redUnits) {
+            removeInstance(unit);
+            if (!redVictor) {
+                Scenario.redPlayer.combatUnits.remove(unit);
+            } else {
+                int index = Scenario.redPlayer.combatUnits.indexOf(unit);
+                Scenario.redPlayer.combatUnits.get(index).previousLocation = unit.location;
+                Scenario.redPlayer.combatUnits.get(index).location = endLocation;
             }
-        } else {
-            if (defeatQueue.contains(unit)) {
-                defeatQueue.remove(unit);
+        }
+        for (CombatUnit unit : blueUnits) {
+            removeInstance(unit);
+            if (!blueVictor) {
+                Scenario.bluePlayer.combatUnits.remove(unit);
+            } else {
+                int index = Scenario.bluePlayer.combatUnits.indexOf(unit);
+                Scenario.bluePlayer.combatUnits.get(index).previousLocation = unit.location;
+                Scenario.bluePlayer.combatUnits.get(index).location = endLocation;
             }
         }
     }
 
-    private static void fulfillMovement() {
-
-    }
-
-    public static void postCombatSimulation() {
-
+    public static void successfullFlee(ArrayList<CombatUnit> units, Road road, int endLocationNum) {
+        for (CombatUnit unit : units) {
+            if (unit.faction.playerID == Scenario.redPlayer.playerID) {
+                addMovement(unit.cUnitID, road, endLocationNum);
+            }
+        }
     }
 
     // at turn's end, add units to the list that may have remained stationary
@@ -222,12 +233,12 @@ public class MapEvent {
     }
 
     // Method called to in order to simulate simutanious movement
-    public static void processEvents() {
+    private static void processEvents() {
         // storage of all the red and blue units participating in a battle
         ArrayList<CombatUnit> redList = new ArrayList<CombatUnit>();
         ArrayList<CombatUnit> blueList = new ArrayList<CombatUnit>();
 
-        cleanList(); // first clean up the list
+        combatQueue = new ArrayList<CombatInstance>();
 
         for (int i = 0; i < Scenario.listOfRoads.length; i++) {
             redCombatListCollisionL.add(new ArrayList<CombatUnit>());
@@ -323,7 +334,6 @@ public class MapEvent {
 
                 combatQueue.add(combat);
             }
-            // clear the lists for use in the next node case
         }
         // check for red units that are not participating in combat
         for (int j = 0; j < combatUnitsRed.size(); j++) { // for each of the possible red units
@@ -332,11 +342,7 @@ public class MapEvent {
                 final int j2 = j;
                 combatUnitsRed.get(j2).previousLocation = combatUnitsRed.get(j2).location;
                 combatUnitsRed.get(j2).location = redUnitEnd.get(j2);
-                //resolvedQueueC.add(combatUnitsRed.get(j2));
-                //resolvedQueueN.add(temp);
-                // if the unit did not participate in battle, move the unit to intended location
-                //combatUnitsRed.get(j).previousLocation = combatUnitsRed.get(j).location;
-                //combatUnitsRed.get(j).location = redUnitEnd.get(j);
+                removeInstance(combatUnitsRed.get(j2));
             }
         }
 
@@ -347,31 +353,43 @@ public class MapEvent {
                 final int j2 = j;
                 combatUnitsBlue.get(j2).previousLocation = combatUnitsBlue.get(j2).location;
                 combatUnitsBlue.get(j2).location = blueUnitEnd.get(j);
-                //}
-                //resolvedQueueC.add(combatUnitsBlue.get(j2));
-                //resolvedQueueN.add(temp);
-
-                // if the unit did not participate in battle, move the unit to the intended location
-                //combatUnitsBlue.get(j).previousLocation = combatUnitsBlue.get(j).location;
-                //combatUnitsBlue.get(j).location = blueUnitEnd.get(j);
+                removeInstance(combatUnitsBlue.get(j2));
             }
         }
         //clearRegistry();
-        simulateMovement();
+        onmipresentSimulation();
     }
 
-    public static void simulateMovement() {
-        for (CombatInstance combat : combatQueue) {
-            if (combat.redEndLocation().size() > 0) {
-                if (combat.isNode()) {
+    public static void onmipresentSimulation() {
+        do {
+            cleanList();
+            processEvents();
+            simulateCombat();
+        } while (combatUnitsRed.size() > 0 || combatUnitsRed != null);
+        clearRegistry();
+    }
 
-                    battle.PVPdoCampBattleOnNode(combat.redEndLocation().get(0),
-                            combat.redUnits(), combat.redFromLocation(), combat.redEndLocation(),
-                            combat.blueUnits(), combat.blueFromLocation(), combat.blueEndLocation());
-                } else {
-                    battle.doBattleOnRoad(combat.redUnits(), combat.redFromLocation(), combat.redEndLocation(),
-                            combat.blueUnits(), combat.blueFromLocation(), combat.blueEndLocation());
-                }
+    private static void removeInstance(CombatUnit unit) {
+        if (Scenario.redPlayer.playerID == unit.faction.playerID) {
+            redUnitRoad.remove(combatUnitsRed.indexOf(unit));
+            redUnitEnd.remove(combatUnitsRed.indexOf(unit));
+            combatUnitsRed.remove(unit);
+        } else {
+            blueUnitRoad.remove(combatUnitsBlue.indexOf(unit));
+            blueUnitEnd.remove(combatUnitsBlue.indexOf(unit));
+            combatUnitsBlue.remove(unit);
+        }
+    }
+
+    private static void simulateCombat() {
+        for (CombatInstance combat : combatQueue) {
+            if (combat.isNode()) {
+                battle.PVPdoCampBattleOnNode(combat.redEndLocation().get(0),
+                        combat.redUnits(), combat.redFromLocation(), combat.redEndLocation(),
+                        combat.blueUnits(), combat.blueFromLocation(), combat.blueEndLocation());
+            } else {
+                battle.doBattleOnRoad(combat.redUnits(), combat.redFromLocation(), combat.redEndLocation(),
+                        combat.blueUnits(), combat.blueFromLocation(), combat.blueEndLocation());
             }
         }
     }
@@ -515,13 +533,12 @@ public class MapEvent {
     }
 
     // Method to reset the arrays at turn's end
-    public static void clearRegistry() {
+    private static void clearRegistry() {
         combatUnitsRed = new ArrayList<CombatUnit>(); // list of all units held by the red faction in motion
         combatUnitsBlue = new ArrayList<CombatUnit>(); // list of all units held by the blue faction in motion
         redUnitRoad = new ArrayList<Road>(); // list of roads occupied by red faction
         blueUnitRoad = new ArrayList<Road>(); // list of roads occupied by blue faction
         redUnitEnd = new ArrayList<Node>(); // list of node end locations for red
         blueUnitEnd = new ArrayList<Node>(); // list of node end locations for blue
-        combatQueue = new ArrayList<CombatInstance>();
     }
 }
