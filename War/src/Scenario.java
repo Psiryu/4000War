@@ -79,7 +79,7 @@ public class Scenario {
         // storage of the distance to capital of Blue and Red respectively
         int[][] capitalDistances = {{1, 5}, {3, 6}, {2, 5}, {2, 5}, {2, 5}, {1, 4}, {1, 4}, {1, 4}, {1, 2}, {2, 1}, {3, 0}, {4, 1}, {5, 2}, {0, 3}};
         // storage of road capacity {0..2}, location a, and location b respectively
-        int[][] locations = {{0, 0, 13}, {15, 1, 3}, {15, 2, 5}, {10, 3, 5}, {15, 3, 4}, {15, 4, 6}, {15, 6, 13}, {5, 5, 13}, {10, 7, 13}, {15, 8, 13}, {15, 8, 9}, {15, 9, 10}, {0, 10, 11}, {15, 11, 12}};
+        int[][] locations = {{0, 0, 13}, {20, 1, 3}, {20, 2, 5}, {10, 3, 5}, {20, 3, 4}, {20, 4, 6}, {20, 6, 13}, {5, 5, 13}, {10, 7, 13}, {20, 8, 13}, {20, 8, 9}, {20, 9, 10}, {0, 10, 11}, {20, 11, 12}};
         // set up the arrays for roads and nodes
         listOfRoads = new Road[14];
         listOfNodes = new Node[14];
@@ -185,7 +185,7 @@ public class Scenario {
         }
 
         // initialize the combat units as per scenario parameters
-        listOfUnits.add(new CombatUnit(false, 0, 15, 0, listOfNodes[unitLocations.get(0)], bluePlayer));
+        listOfUnits.add(new CombatUnit(false, 0, 20, 0, listOfNodes[unitLocations.get(0)], bluePlayer));
         listOfUnits.add(new CombatUnit(false, 1, 10, 0, listOfNodes[unitLocations.get(1)], bluePlayer));
         listOfUnits.add(new CombatUnit(false, 2, 5, 0, listOfNodes[unitLocations.get(6)], bluePlayer));
         listOfUnits.add(new CombatUnit(true, 3, 5, 0, listOfNodes[unitLocations.get(2)], bluePlayer));

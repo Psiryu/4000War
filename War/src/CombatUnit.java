@@ -34,7 +34,7 @@ public class CombatUnit extends Game {
      Method: CombatUnit
      Parameters: Boolean _isFleet -> true if the unit is a naval unit or fleet
      int _cUnitID -> the unique ID of the unit
-     int _size -> the size of the unit, between 0 and 15
+     int _size -> the size of the unit, between 0 and 20
      int _illnessRating -> the value assigned to the current health rating of the units
      Node _location -> the current location occupied by the unit
      Player _faction -> the player to which the player belongs and is controlled by
@@ -77,8 +77,8 @@ public class CombatUnit extends Game {
         // strength is a function of faction political power, size, illness, and distance
         strength = (faction.politicalPower / 100) * 25 + (size * 2) - (illnessRating / 11) * 20 - distance;
 
-        JOptionPane.showMessageDialog(null, faction.playerID + "'s unit has battle strength " + strength);
-        JOptionPane.showMessageDialog(null, "PP: " + faction.politicalPower + " S: " + size + " I: " + illnessRating + "D: " + distance);
+        //JOptionPane.showMessageDialog(null, faction.playerID + "'s unit has battle strength " + strength);
+        //JOptionPane.showMessageDialog(null, "PP: " + faction.politicalPower + " S: " + size + " I: " + illnessRating + "D: " + distance);
 
         return strength;
     }
