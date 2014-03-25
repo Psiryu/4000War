@@ -27,6 +27,10 @@ public class Scenario {
     public static ArrayList<Integer> unitLocations; // initialize array to store unit locations
     public static Game game; // new game object
 
+    public Scenario (){
+        
+    }
+    
     /*
      Method: Initialize
      Parameters: int _scenarioID -> the index of the chosen scenario based on user selection
@@ -55,14 +59,13 @@ public class Scenario {
      state or when a player opts to return to scenario selection mid game.
      */
     public static void killSwitch() {
-        Node[] listOfNodes = null;
-        Road[] listOfRoads = null;
-        ArrayList<CombatUnit> listOfUnits = new ArrayList<CombatUnit>();
-        Player redPlayer = null;
-        Player bluePlayer = null;
-        Random random = new Random();
-        ArrayList<Integer> unitLocations = null;
-        Game game = null;
+        listOfNodes = null;
+        listOfRoads = null;
+        listOfUnits = new ArrayList<CombatUnit>();
+        redPlayer = null;
+        bluePlayer = null;
+        unitLocations = null;
+        game = null;
     }
 
     /*
