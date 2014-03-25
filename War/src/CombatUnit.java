@@ -6,7 +6,6 @@ import javax.swing.JOptionPane;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  * CombatUnit Class
  *
@@ -76,11 +75,11 @@ public class CombatUnit extends Game {
 
         // calculate the cumulative strength of the unit
         // strength is a function of faction political power, size, illness, and distance
-        strength = (faction.politicalPower / 100) * 25 + size - (illnessRating / 11) * 20 - distance;
+        strength = (faction.politicalPower / 100) * 25 + (size * 2) - (illnessRating / 11) * 20 - distance;
 
-        JOptionPane.showMessageDialog(null, faction.playerID +"'s unit has battle strength "+ strength);
-        JOptionPane.showMessageDialog(null, faction.politicalPower +" "+size+" "+illnessRating);
-        
+        JOptionPane.showMessageDialog(null, faction.playerID + "'s unit has battle strength " + strength);
+        JOptionPane.showMessageDialog(null, "PP: " + faction.politicalPower + " S: " + size + " I: " + illnessRating + "D: " + distance);
+
         return strength;
     }
 

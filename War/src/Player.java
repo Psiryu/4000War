@@ -85,12 +85,13 @@ public class Player extends Game {
 
         // store the current number of game turns and cap at 30
         // calculate the current level of political power
-        calculatedPoliticalPower = 100 - (20 - ((totalDistance / (totalDistanceMax * totalCurrentArmy)) * 20))
+        calculatedPoliticalPower = 100 - (20 - ((totalDistance / (totalDistanceMax * combatUnits.size())) * 20))
                 - (50 - (totalCurrentArmy / totalInitialArmy) * 50)
                 - ((Game.turnCount / Game.maxTurnCount) * 30);
         setPoliticalPower(calculatedPoliticalPower);
         
-        //JOptionPane.showMessageDialog(null, "Total distance: " + totalDistance + "Current Army: " + totalCurrentArmy / totalInitialArmy + "Turn Count: " + Game.turnCount);
+        
+        JOptionPane.showMessageDialog(null, "Total distance: " + totalDistance + "Current Army: " + totalCurrentArmy / totalInitialArmy + "Turn Count: " + Game.turnCount);
     }
 
     // Method to calculate the total dispersion of a faction's units
