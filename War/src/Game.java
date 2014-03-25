@@ -168,7 +168,7 @@ public class Game {
             aggregateRedSize += Scenario.redPlayer.combatUnits.get(i).size;
         }
         for (int i = 0; i < Scenario.bluePlayer.combatUnits.size(); i++) {
-            aggregateRedSize += Scenario.bluePlayer.combatUnits.get(i).size;
+            aggregateBlueSize += Scenario.bluePlayer.combatUnits.get(i).size;
         }
 
         // case 1: turn count or game timer meets limit

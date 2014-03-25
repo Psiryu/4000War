@@ -204,7 +204,7 @@ public class Battle {
             }
                 else
             {
-                redAggregateStrength += (int)(red.get(i).GetBattleStrengh()*0.85);
+                redAggregateStrength += (int)((double)(red.get(i).GetBattleStrengh())*(0.85));
             }
         }
         /*GET BATTLE STRENGTH for Cowards*/
@@ -216,7 +216,7 @@ public class Battle {
             }
                 else
             {
-                blueAggregateStrength += (int)(blue.get(i).GetBattleStrengh()*0.85);
+                blueAggregateStrength += (int)((double)(blue.get(i).GetBattleStrengh())*(0.85));
             }
         }
 
@@ -299,7 +299,7 @@ public class Battle {
             }
                 else
             {
-                aggregateAttackersBattleStrength += (int)((double)attackers.get(i).GetBattleStrengh()*0.85);
+                aggregateAttackersBattleStrength += (int)((double)(attackers.get(i).GetBattleStrengh())*(0.85));
             }
         }
         /*GET BATTLE STRENGTH for Cowards*/
@@ -311,11 +311,11 @@ public class Battle {
             }
                 else
             {
-                aggregateCowardsBattleStrength += (int)((double)cowards.get(i).GetBattleStrengh()*0.85);
+                aggregateCowardsBattleStrength += (int)((double)(cowards.get(i).GetBattleStrengh())*(0.85));
             }
         }
 
-        aggregateCowardsBattleStrength = (int) ((double) (aggregateCowardsBattleStrength) * 0.8);
+        aggregateCowardsBattleStrength = (int) ((double) (aggregateCowardsBattleStrength) * (0.8));
 
         /*We have to determine is the Cowards is a defender*/
         for (int i = 0; i < cowards.size(); i++) 
@@ -864,23 +864,23 @@ public class Battle {
             }
                 else
             {
-                aggregateAttackerStrength += (int)(attackers.get(i).GetBattleStrengh()*0.85);
+                aggregateAttackerStrength += (int)(double)(attackers.get(i).GetBattleStrengh())*(0.85);
             }
         }
         /*GET BATTLE STRENGTH for Cowards*/
         for (int i = 0; i < cowards.size(); i++) 
         {
-            if (!attackers.get(i).isFleet)
+            if (!cowards.get(i).isFleet)
             {
                 aggregateCowardsStrength += cowards.get(i).GetBattleStrengh();
             }
                 else
             {
-                aggregateCowardsStrength += (int)(cowards.get(i).GetBattleStrengh()*0.85);
+                aggregateCowardsStrength += (int)(double)(cowards.get(i).GetBattleStrengh())*(0.85);
             }
         }
         
-        aggregateCowardsStrength = (int) ((double) aggregateCowardsStrength * 0.8);
+        aggregateCowardsStrength = (int) ((double) (aggregateCowardsStrength) * (0.8));
 
         if (randNum.nextDouble() > 0.75) /*Cowards are able to flee*/ 
         {

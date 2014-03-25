@@ -73,7 +73,7 @@ public class CombatUnit extends Game {
 
         // calculate the cumulative strength of the unit
         // strength is a function of faction political power, size, illness, and distance
-        strength = (faction.politicalPower / 100) * 25 + size - (illnessRating / 100) * 20 - distance;
+        strength = (faction.politicalPower / 100) * 25 + size - (illnessRating / 11) * 20 - distance;
 
         return strength;
     }
