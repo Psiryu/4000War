@@ -47,7 +47,7 @@ public class Battle {
         /*****Defenders Imply that the CombatUnit (or one of them) has not moved and battle initiated **/
         /***********************************************************************************************/
 
-        JOptionPane.showMessageDialog(null, "Collision Alert!!!!!/n"
+        JOptionPane.showMessageDialog(null, "Collision Alert!!!!!\n"
                 + "There is a collision of armies at " + node.name);
         
         
@@ -1025,7 +1025,7 @@ public class Battle {
         int yesNo;
         Object[] options = {"Battle", "Flee!"};
         
-                JOptionPane.showMessageDialog(null, "Collision Alert!!!!!/n"
+                JOptionPane.showMessageDialog(null, "Collision Alert!!!!!\n"
                         + "There is a collision of armies between " + redCombatUnitPreviousLocation.get(0).name
                         + " and " + redCombatUnitEndLocation.get(0).name);
                 
