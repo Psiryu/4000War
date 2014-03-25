@@ -441,7 +441,12 @@ public class MapEvent {
     public static void completeCombat(ArrayList<CombatUnit> redUnits, Boolean redVictor, ArrayList<CombatUnit> blueUnits, Boolean blueVictor, Node endLocation) {
         for (CombatUnit unit : redUnits) { // for each of the red units
             removeQueue.add(unit); // remove the movement records for each unit
-            if (!redVictor) { // if red lost, remove the units from play 
+            if (!redVictor) { // if red lost, remove the units from play
+                for (CombatInstance combat : combatQueue){
+                    if (combat.redUnits().contains(unit)){
+                        combatQueue.remove(combat);
+                    }
+                }
                 Scenario.redPlayer.combatUnits.remove(unit);
             } else { // if red won, move the unit to the intended location
                 int index = Scenario.redPlayer.combatUnits.indexOf(unit);
@@ -452,6 +457,11 @@ public class MapEvent {
         for (CombatUnit unit : blueUnits) { // repeat the processes for blue units
             removeQueue.add(unit);
             if (!blueVictor) {
+                for (CombatInstance combat : combatQueue){
+                    if (combat.blueUnits().contains(unit)){
+                        combatQueue.remove(combat);
+                    }
+                }
                 Scenario.bluePlayer.combatUnits.remove(unit);
             } else {
                 int index = Scenario.bluePlayer.combatUnits.indexOf(unit);
