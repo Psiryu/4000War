@@ -91,7 +91,7 @@ public class Player extends Game {
         setPoliticalPower(calculatedPoliticalPower);
         
         
-        JOptionPane.showMessageDialog(null, "Total distance: " + totalDistance + "Current Army: " + totalCurrentArmy / totalInitialArmy + "Turn Count: " + Game.turnCount);
+        //JOptionPane.showMessageDialog(null, "Total distance: " + totalDistance + "Current Army: " + totalCurrentArmy / totalInitialArmy + "Turn Count: " + Game.turnCount);
     }
 
     // Method to calculate the total dispersion of a faction's units
