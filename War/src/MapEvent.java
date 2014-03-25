@@ -550,9 +550,9 @@ public class MapEvent {
         sizes[2] = sumSize; // store the summed size
         health = (unit[0].illnessRating + unit[1].illnessRating) / 2; // calculate average health value
 
-        // cap the summed size to 15, a large unit
-        if (sumSize > 15) {
-            sumSize = 15;
+        // cap the summed size to 20, a large unit
+        if (sumSize > 20) {
+            sumSize = 20;
         }
 
         // for each of the sizes stored, calculate the scaled value
@@ -561,7 +561,7 @@ public class MapEvent {
                 scaled[i] = 0;
             } else if (sizes[i] < 11) { // scale 6..10 to 1 (medium)
                 scaled[i] = 1;
-            } else { // scale 11..15 to 2 (large)
+            } else { // scale 11..20 to 2 (large)
                 scaled[i] = 2;
             }
         }
@@ -574,7 +574,7 @@ public class MapEvent {
             } else if (sumSize < 11) {
                 sumSize = 10;
             } else {
-                sumSize = 15;
+                sumSize = 20;
             }
         }
 
