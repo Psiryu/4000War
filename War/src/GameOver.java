@@ -108,7 +108,7 @@ public class GameOver extends javax.swing.JFrame {
         Scenario.killSwitch();
 
         new MainMenu().setVisible(true);
-        GameOver.this.dispose();
+        this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

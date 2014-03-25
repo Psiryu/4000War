@@ -500,16 +500,20 @@ public class Map extends javax.swing.JFrame {
                     timer.stop();
                     Game.IsGameEnd();
                 }
-                if(Global.intGameOver == 1)
+                if(Global.intGameOver == 1){
+                    timer.stop();
                     GameOver();
-                String minutes = (Global.timer/60)+"";
-                String seconds = "";
-                if((Global.timer - (Global.timer/60*60)) >= 10)
-                    seconds = (Global.timer - (Global.timer/60*60)) +"";
-                else
-                    seconds = "0"+(Global.timer - (Global.timer/60*60));
-                            
-                labelTimer.setText(minutes+":"+seconds);
+                    
+                } else {
+                    String minutes = (Global.timer/60)+"";
+                    String seconds = "";
+                    if((Global.timer - (Global.timer/60*60)) >= 10)
+                        seconds = (Global.timer - (Global.timer/60*60)) +"";
+                    else
+                        seconds = "0"+(Global.timer - (Global.timer/60*60));
+
+                    labelTimer.setText(minutes+":"+seconds);
+                }
             }
         };
         timer = new Timer(1000,timerDone);
@@ -2043,8 +2047,10 @@ public class Map extends javax.swing.JFrame {
         //actions to finish the turn on th ebackend
         
         Game.IsGameEnd();        
-        if (Global.intGameOver == 1)
+        if (Global.intGameOver == 1) {
             GameOver();
+            timer.stop();
+        }
         
 
         //check for if the second player is an ai
@@ -2068,8 +2074,10 @@ public class Map extends javax.swing.JFrame {
             //ends turn again
             
             Game.IsGameEnd();
-            if(Global.intGameOver == 1)
+            if(Global.intGameOver == 1) {
                 GameOver();
+                timer.stop();
+            }
         }
 
         buttonNext.setVisible(true);
