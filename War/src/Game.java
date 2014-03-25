@@ -26,7 +26,7 @@ public class Game {
      and a max turn count is established.
      */
     public Game() {
-        maxTurnCount = 3;
+        maxTurnCount = 10;
     }
 
     /*
