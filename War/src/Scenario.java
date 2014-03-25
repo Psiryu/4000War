@@ -185,7 +185,7 @@ public class Scenario {
         }
 
         // initialize the combat units as per scenario parameters
-        listOfUnits.add(new CombatUnit(false, 0, 15, 0, listOfNodes[unitLocations.get(0)], bluePlayer));
+        listOfUnits.add(new CombatUnit(false, 0, 20, 0, listOfNodes[unitLocations.get(0)], bluePlayer));
         listOfUnits.add(new CombatUnit(false, 1, 10, 0, listOfNodes[unitLocations.get(1)], bluePlayer));
         listOfUnits.add(new CombatUnit(false, 2, 5, 0, listOfNodes[unitLocations.get(6)], bluePlayer));
         listOfUnits.add(new CombatUnit(true, 3, 5, 0, listOfNodes[unitLocations.get(2)], bluePlayer));

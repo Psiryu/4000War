@@ -134,7 +134,7 @@ public class Rumour {
 
             timeAsAFunction = randomGauss * (3 - units.get(i + 1));
 
-            if (timeAsAFunction > 1.1) {
+            if (timeAsAFunction > 1.5) {
                 if (random.nextGaussian() > 1.8) {
                     rumourList.add(random.nextInt(3));
                 }
@@ -147,11 +147,11 @@ public class Rumour {
 
             timeAsAFunction = randomGauss * (3 - units.get(i + 1));
 
-            if (timeAsAFunction > 0.9) {
+            if (timeAsAFunction > 0.5) {
                 ArrayList<Integer> neighbours = neighbourFind(nodeID);
                 int rand = random.nextInt(neighbours.size());
                 rumourList.set(0, neighbours.get(rand));
-            } else if (timeAsAFunction > 1.1) {
+            } else if (timeAsAFunction > 0.75) {
                 ArrayList<Integer> neighbours = neighbourFind(nodeID);
                 int rand = random.nextInt(neighbours.size());
                 neighbours = neighbourFind(neighbours.get(rand));

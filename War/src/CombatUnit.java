@@ -77,8 +77,8 @@ public class CombatUnit extends Game {
         // strength is a function of faction political power, size, illness, and distance
         strength = (faction.politicalPower / 100) * 25 + (size * 2) - (illnessRating / 11) * 20 - distance;
 
-        JOptionPane.showMessageDialog(null, faction.playerID + "'s unit has battle strength " + strength);
-        JOptionPane.showMessageDialog(null, "PP: " + faction.politicalPower + " S: " + size + " I: " + illnessRating + "D: " + distance);
+        //JOptionPane.showMessageDialog(null, faction.playerID + "'s unit has battle strength " + strength);
+        //JOptionPane.showMessageDialog(null, "PP: " + faction.politicalPower + " S: " + size + " I: " + illnessRating + "D: " + distance);
 
         return strength;
     }
