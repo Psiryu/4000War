@@ -20,7 +20,6 @@ public class Player extends Game {
     protected boolean isComp; // determine if this player is a computer
     protected int playerID; // player ID
     protected String playerName; // name of the player as per the scenario and chosen faction
-    protected int aggregateDistanceFromCapital; // distance from capital of all units
     protected int totalInitialArmy; // inital size of all units, sum
     protected int totalCurrentArmy; // current size of all units, sum
     protected Rumour rumours;
@@ -76,8 +75,10 @@ public class Player extends Game {
     public void AdjustPoliticalPower() {
         double calculatedPoliticalPower = 0; // temporary value to store the calculated current state
 
+        setCurrentArmyLevel();
+        
         // store the current total distance and cap at 20
-        int totalDistance = aggregateDistanceFromCapital;
+        int totalDistance = getAggDistance();
         if (totalDistance > 20) {
             totalDistance = 20;
         }
@@ -94,7 +95,7 @@ public class Player extends Game {
     }
 
     // Method to calculate the total dispersion of a faction's units
-    public void setAggDistance() {
+    public int getAggDistance() {
         int calculatedDistance = 0; // temporary storage of caculation
 
         // obtain the distance from capital for each unit based on the location value
@@ -107,7 +108,7 @@ public class Player extends Game {
         }
 
         // set the total distance based on calculation
-        aggregateDistanceFromCapital = calculatedDistance;
+        return calculatedDistance;
     }
 
     // Method to add a unit to a faction
@@ -130,6 +131,7 @@ public class Player extends Game {
 
         // set the total army size based on calculation
         totalInitialArmy = sumSize;
+        totalCurrentArmy = sumSize;
     }
 
     // Method to set the ongoing army size
