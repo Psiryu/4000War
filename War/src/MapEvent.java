@@ -157,7 +157,7 @@ public class MapEvent {
             processEvents(); // process the movements and detect collisions
             simulateCombat(); // send collision information to combat
             removeInstances(); // remove all the units from the movement registry
-        } while (combatUnitsRed.size() > 0 || combatUnitsRed != null);
+        } while (combatUnitsRed.size() > 0 && combatUnitsRed != null);
 
         clearRegistry(); // reset the class to be prepared for the next turn
     }
@@ -354,7 +354,8 @@ public class MapEvent {
      Battle class to determine the outcome
      */
     private static void simulateCombat() {
-        for (CombatInstance combat : combatQueue) { // for each entry in the combat list
+        ArrayList<CombatInstance> temp = new ArrayList<CombatInstance>();
+        for (CombatInstance combat : temp) { // for each entry in the combat list
             if (combat.isNode()) { // if it is a collision on node/location
                 // call the battle on node function with the appropriate parameters
                 battle.PVPdoCampBattleOnNode(combat.redEndLocation().get(0),
@@ -442,10 +443,14 @@ public class MapEvent {
         for (CombatUnit unit : redUnits) { // for each of the red units
             removeQueue.add(unit); // remove the movement records for each unit
             if (!redVictor) { // if red lost, remove the units from play
-                for (CombatInstance combat : combatQueue){
-                    if (combat.redUnits().contains(unit)){
-                        combatQueue.remove(combat);
+                ArrayList<CombatInstance> temp = new ArrayList<CombatInstance>();
+                for (CombatInstance combat : combatQueue) {
+                    if (combat.redUnits().contains(unit)) {
+                        temp.add(combat);
                     }
+                }
+                for (CombatInstance combat : temp) {
+                    combatQueue.remove(combat);
                 }
                 Scenario.redPlayer.combatUnits.remove(unit);
             } else { // if red won, move the unit to the intended location
@@ -457,10 +462,14 @@ public class MapEvent {
         for (CombatUnit unit : blueUnits) { // repeat the processes for blue units
             removeQueue.add(unit);
             if (!blueVictor) {
-                for (CombatInstance combat : combatQueue){
-                    if (combat.blueUnits().contains(unit)){
-                        combatQueue.remove(combat);
+                ArrayList<CombatInstance> temp = new ArrayList<CombatInstance>();
+                for (CombatInstance combat : combatQueue) {
+                    if (combat.blueUnits().contains(unit)) {
+                        temp.add(combat);
                     }
+                }
+                for (CombatInstance combat : temp) {
+                    combatQueue.remove(combat);
                 }
                 Scenario.bluePlayer.combatUnits.remove(unit);
             } else {
