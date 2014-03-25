@@ -135,7 +135,7 @@ public class Rumour {
             timeAsAFunction = randomGauss * (3 - units.get(i + 1));
 
             if (timeAsAFunction > 1.1) {
-                if (random.nextGaussian() > 1) {
+                if (random.nextGaussian() > 1.8) {
                     rumourList.add(random.nextInt(3));
                 }
                 return rumourList;
@@ -147,11 +147,11 @@ public class Rumour {
 
             timeAsAFunction = randomGauss * (3 - units.get(i + 1));
 
-            if (timeAsAFunction > 1.1) {
+            if (timeAsAFunction > 0.9) {
                 ArrayList<Integer> neighbours = neighbourFind(nodeID);
                 int rand = random.nextInt(neighbours.size());
                 rumourList.set(0, neighbours.get(rand));
-            } else if (timeAsAFunction > 1.9) {
+            } else if (timeAsAFunction > 1.1) {
                 ArrayList<Integer> neighbours = neighbourFind(nodeID);
                 int rand = random.nextInt(neighbours.size());
                 neighbours = neighbourFind(neighbours.get(rand));
@@ -172,7 +172,7 @@ public class Rumour {
 
             rumour = (randomGauss * sigma) / 9;
 
-            if (rumour >= 0.6 && rumour <= 0.8) {
+            if (rumour >= 0.4 && rumour <= 0.7) {
                 if (mean == 2) {
                     report = 0;
                     rumourList.add(0);
@@ -190,7 +190,7 @@ public class Rumour {
                     rumourList.add(1);
                     //JOptionPane.showMessageDialog(null, "At " + currentNode.name + ", rumour size " + report);
                 }
-            } else if (rumour >= 0.4 && rumour < 0.6) {
+            } else if (rumour >= 0.065 && rumour < 0.4) {
                 if (mean == 2) {
                     report = 1;
                     rumourList.add(1);
@@ -208,22 +208,13 @@ public class Rumour {
                     rumourList.add(0);
                     //JOptionPane.showMessageDialog(null, "At " + currentNode.name + ", rumour size " + report);
                 }
-            } else if (rumour < 0.4) {
+            } else if (rumour < 0.065) {
                 report = mean;
                 rumourList.add(mean);
             }
             //JOptionPane.showMessageDialog(null, "Rumour at: " + currentNode.name + " With weight: " + rumour + ", Mean: " + mean + ", Report: " + report);
         }
-
-        /*
-         if (mapEffect > 0.75) {
-         if (random.nextBoolean()) {
-         rumourList.add(random.nextInt(2));
-         rumourList.add(random.nextInt(2));
-         } else {
-         rumourList.add(random.nextInt(2));
-         }
-         }*/
+        
         return rumourList;
     }
 
