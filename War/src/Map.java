@@ -193,7 +193,7 @@ public class Map extends javax.swing.JFrame {
         labelPoliticalPower.setText("text");
         frameFloatingInfo.getContentPane().add(labelPoliticalPower, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 90, -1, -1));
 
-        labelSeason.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        labelSeason.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         labelSeason.setText("text");
         frameFloatingInfo.getContentPane().add(labelSeason, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, -1, -1));
 
@@ -565,13 +565,17 @@ public class Map extends javax.swing.JFrame {
         labelInfo1.setText(Scenario.listOfNodes[nodeSelected].name);
 
         String nodeType;
-        if (Scenario.listOfNodes[nodeSelected].isPort == true) {
+        if (Scenario.listOfNodes[nodeSelected].isCapitalBlue)
+            nodeType = "Blue capital";
+        else if (Scenario.listOfNodes[nodeSelected].isCapitalRed)
+            nodeType = "Red capital";
+        else if (Scenario.listOfNodes[nodeSelected].isPort == true) 
             nodeType = "Port town";
-        } else if (Scenario.listOfNodes[nodeSelected].isCity == true) {
+        else if (Scenario.listOfNodes[nodeSelected].isCity == true) 
             nodeType = "City";
-        } else {
+        else 
             nodeType = "Checkpoint";
-        }
+        
         labelInfo2.setText("Location type: " + nodeType);
 
         //displays current weather
