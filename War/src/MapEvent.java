@@ -157,7 +157,7 @@ public class MapEvent {
             processEvents(); // process the movements and detect collisions
             simulateCombat(); // send collision information to combat
             removeInstances(); // remove all the units from the movement registry
-        } while (combatUnitsRed.size() > 0 && combatUnitsRed != null);
+        } while (combatUnitsRed.size() > 0 || combatUnitsBlue.size() > 0);
 
         clearRegistry(); // reset the class to be prepared for the next turn
     }
