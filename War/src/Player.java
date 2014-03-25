@@ -85,8 +85,8 @@ public class Player extends Game {
 
         // store the current number of game turns and cap at 30
         // calculate the current level of political power
-        calculatedPoliticalPower = 100 - (20 - ((totalDistance / (totalDistanceMax * combatUnits.size())) * 20))
-                - (50 - (totalCurrentArmy / totalInitialArmy) * 50)
+        calculatedPoliticalPower = 100 - (20 - ((totalDistance / ((double)totalDistanceMax * (double)combatUnits.size())) * 20))
+                - (50 - ((double)totalCurrentArmy / (double)totalInitialArmy) * 50)
                 - ((Game.turnCount / Game.maxTurnCount) * 30);
         setPoliticalPower(calculatedPoliticalPower);
         
