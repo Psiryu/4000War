@@ -2029,6 +2029,9 @@ public class Map extends javax.swing.JFrame {
         list1.removeAll();
         ClearMenuInfo();
         ClearPopupMenu();
+        labelPoliticalPower.setText("");
+        labelCurPlayer.setText("");
+        panelMap.setVisible(false);
 
         Scenario.game.endTurn();
                 
@@ -2042,8 +2045,7 @@ public class Map extends javax.swing.JFrame {
             labelCurPlayer.setText("Red team's turn");
             buttonNext.setText("Red team, click here to proceed.");
         }
-
-        panelMap.setVisible(false);
+        
         //actions to finish the turn on th ebackend
         
         Game.IsGameEnd();        
