@@ -489,37 +489,38 @@ public class Map extends javax.swing.JFrame {
         } else {
             labelPoliticalPower.setText("Political power: " + Scenario.bluePlayer.politicalPower);
         }
-        
-        labelTurnCount.setText("Turn: 1/"+Game.maxTurnCount);
+
+        labelTurnCount.setText("Turn: 1/" + Game.maxTurnCount);
         //creates the timer for the match
         ActionListener timerDone = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
                 Global.timer--;
-                if(Global.timer == 0) {
+                if (Global.timer == 0) {
                     timer.stop();
                     Game.IsGameEnd();
                 }
-                if(Global.intGameOver == 1){
+                if (Global.intGameOver == 1) {
                     timer.stop();
                     GameOver();
-                    
-                } else {
-                    String minutes = (Global.timer/60)+"";
-                    String seconds = "";
-                    if((Global.timer - (Global.timer/60*60)) >= 10)
-                        seconds = (Global.timer - (Global.timer/60*60)) +"";
-                    else
-                        seconds = "0"+(Global.timer - (Global.timer/60*60));
 
-                    labelTimer.setText(minutes+":"+seconds);
+                } else {
+                    String minutes = (Global.timer / 60) + "";
+                    String seconds = "";
+                    if ((Global.timer - (Global.timer / 60 * 60)) >= 10) {
+                        seconds = (Global.timer - (Global.timer / 60 * 60)) + "";
+                    } else {
+                        seconds = "0" + (Global.timer - (Global.timer / 60 * 60));
+                    }
+
+                    labelTimer.setText(minutes + ":" + seconds);
                 }
             }
         };
-        timer = new Timer(1000,timerDone);
+        timer = new Timer(1000, timerDone);
         timer.start();
-    
-    //sets initial map node colours
+
+        //sets initial map node colours
         try {
             SetDefaultColours();
         } catch (IOException ex) {
@@ -532,9 +533,9 @@ public class Map extends javax.swing.JFrame {
         }
         SetColours();
     }
-    
+
     public void TimerDone() {
-        
+
     }
 
 //Action will control all node-based actions. Dimmed public because no need
@@ -565,17 +566,18 @@ public class Map extends javax.swing.JFrame {
         labelInfo1.setText(Scenario.listOfNodes[nodeSelected].name);
 
         String nodeType;
-        if (Scenario.listOfNodes[nodeSelected].isCapitalBlue)
+        if (Scenario.listOfNodes[nodeSelected].isCapitalBlue) {
             nodeType = "Blue capital";
-        else if (Scenario.listOfNodes[nodeSelected].isCapitalRed)
+        } else if (Scenario.listOfNodes[nodeSelected].isCapitalRed) {
             nodeType = "Red capital";
-        else if (Scenario.listOfNodes[nodeSelected].isPort == true) 
+        } else if (Scenario.listOfNodes[nodeSelected].isPort == true) {
             nodeType = "Port town";
-        else if (Scenario.listOfNodes[nodeSelected].isCity == true) 
+        } else if (Scenario.listOfNodes[nodeSelected].isCity == true) {
             nodeType = "City";
-        else 
+        } else {
             nodeType = "Checkpoint";
-        
+        }
+
         labelInfo2.setText("Location type: " + nodeType);
 
         //displays current weather
@@ -2038,7 +2040,7 @@ public class Map extends javax.swing.JFrame {
         panelMap.setVisible(false);
 
         Scenario.game.endTurn();
-                
+
         //for the next player
         if (Global.curPlayer == 0) {
             Global.curPlayer = 1;
@@ -2049,38 +2051,35 @@ public class Map extends javax.swing.JFrame {
             labelCurPlayer.setText("Red team's turn");
             buttonNext.setText("Red team, click here to proceed.");
         }
-        
-        //actions to finish the turn on th ebackend
-        
-        Game.IsGameEnd();        
+
+        //actions to finish the turn on the backend
+        Game.IsGameEnd();
         if (Global.intGameOver == 1) {
             GameOver();
             timer.stop();
         }
-        
 
         //check for if the second player is an ai
         if (Global.opponent == false) {
             //calls the AI
             AI.AI();
-            
+
             Scenario.game.endTurn();
-            
+
             //resets the curPlayer controller to the previous player
             if (Global.curPlayer == 0) {
                 Global.curPlayer = 1;
                 labelCurPlayer.setText("Blue team's turn");
-                buttonNext.setText("Blue team, click here to proceed.");            
+                buttonNext.setText("Blue team, click here to proceed.");
             } else {
                 Global.curPlayer = 0;
                 labelCurPlayer.setText("Red team's turn");
                 buttonNext.setText("Red team, click here to proceed.");
             }
-            
+
             //ends turn again
-            
             Game.IsGameEnd();
-            if(Global.intGameOver == 1) {
+            if (Global.intGameOver == 1) {
                 GameOver();
                 timer.stop();
             }
@@ -2088,40 +2087,42 @@ public class Map extends javax.swing.JFrame {
 
         buttonNext.setVisible(true);
 
-        int turns = (int)Game.turnCount + 1;
-        labelTurnCount.setText("Turn: " + (turns) +"/"+Game.maxTurnCount);
+        if (Global.intGameOver != 1) {
+            int turns = (int) Game.turnCount + 1;
+            labelTurnCount.setText("Turn: " + (turns) + "/" + Game.maxTurnCount);
 
-        //sets label that displays season
-        if (Global.season == 0) {
-            labelSeason.setText("Season: Winter");
-        } else if (Global.season == 1) {
-            labelSeason.setText("Season: Spring");
-        } else if (Global.season == 2) {
-            labelSeason.setText("Season: Summer");
-        } else if (Global.season == 3) {
-            labelSeason.setText("Season: Autumn");
-        }
+            //sets label that displays season
+            if (Global.season == 0) {
+                labelSeason.setText("Season: Winter");
+            } else if (Global.season == 1) {
+                labelSeason.setText("Season: Spring");
+            } else if (Global.season == 2) {
+                labelSeason.setText("Season: Summer");
+            } else if (Global.season == 3) {
+                labelSeason.setText("Season: Autumn");
+            }
 
-        //sets label that displays current political power level
-        if (Global.curPlayer == 0) {
-            labelPoliticalPower.setText("Political power: " + Scenario.redPlayer.politicalPower);
-        } else {
-            labelPoliticalPower.setText("Political power: " + Scenario.bluePlayer.politicalPower);
-        }
+            //sets label that displays current political power level
+            if (Global.curPlayer == 0) {
+                labelPoliticalPower.setText("Political power: " + Scenario.redPlayer.politicalPower);
+            } else {
+                labelPoliticalPower.setText("Political power: " + Scenario.bluePlayer.politicalPower);
+            }
 
-        //try catch for setting default node colours
-        try {
-            SetDefaultColours();
-        } catch (IOException ex) {
-            Logger.getLogger(Map.class.getName()).log(Level.SEVERE, null, ex);
+            //try catch for setting default node colours
+            try {
+                SetDefaultColours();
+            } catch (IOException ex) {
+                Logger.getLogger(Map.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            try {
+                SetEnemyColours();
+            } catch (IOException ex) {
+                Logger.getLogger(Map.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            //sets colours of nodes with current player's armies
+            SetColours();
         }
-        try {
-            SetEnemyColours();
-        } catch (IOException ex) {
-            Logger.getLogger(Map.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        //sets colours of nodes with current player's armies
-        SetColours();
     }//GEN-LAST:event_buttonFinishTurnActionPerformed
 
     private void buttonBackdropActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBackdropActionPerformed

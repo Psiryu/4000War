@@ -91,6 +91,7 @@ public class Game {
     void endTurn() {
         turnCount += 0.5; // increase the turn count
         if (turnCount % 1 == 0) { // if the turn count indicates that both players had their turn
+
             MapEvent.omnipresentSimulation(); // simulate movements and perform combat
 
             // update combat unit statistics
@@ -115,7 +116,7 @@ public class Game {
                 Scenario.bluePlayer.combatUnits.get(i).removeSupplies();
                 Scenario.bluePlayer.combatUnits.get(i).setDistanceFromCapital();
             }
-            
+
             // update the political power levels of each faction
             Scenario.redPlayer.AdjustPoliticalPower();
             Scenario.bluePlayer.AdjustPoliticalPower();
@@ -244,7 +245,7 @@ public class Game {
                 // delare a tie
                 if (Scenario.bluePlayer.combatUnits.get(0).isFleet && Scenario.redPlayer.combatUnits.get(0).isFleet) {
                     Global.gameSummary = "The game is tied!";
-                    Global.gameSummary2 = "Both players have only one combat " 
+                    Global.gameSummary2 = "Both players have only one combat "
                             + "unit left, and that combat unit "
                             + "is a naval fleet unit.";
 
