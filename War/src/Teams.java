@@ -149,6 +149,7 @@ public class Teams extends javax.swing.JFrame {
 
     private void buttonBeginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBeginActionPerformed
         //resets intgameover to 0, creates a new scenario and initializes mapevent
+        Scenario.killSwitch();
         Global.intGameOver = 0;
         Global.timer = 1200;
         Scenario scenario = new Scenario();

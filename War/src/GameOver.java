@@ -41,6 +41,7 @@ public class GameOver extends javax.swing.JFrame {
         labelBackground = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBounds(new java.awt.Rectangle(100, 100, 0, 0));
         setMaximumSize(new java.awt.Dimension(260, 310));
         setMinimumSize(new java.awt.Dimension(260, 310));
         setUndecorated(true);
@@ -75,7 +76,6 @@ public class GameOver extends javax.swing.JFrame {
 
         labelWinner.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         labelWinner.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        labelWinner.setText("jLabel1");
         getContentPane().add(labelWinner, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 220, -1));
 
         textWhy.setEditable(false);

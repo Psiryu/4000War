@@ -197,7 +197,7 @@ public class AI {
                 }
                 //sets weight to 1 if it is decremented to or below 0
                 if(weight <=0)
-                    weight = 4;
+                    weight = 3;
 
                 //adds randomness and decides if it should divide or not
                 //creates a random number generator
@@ -205,7 +205,7 @@ public class AI {
                 int divide = randomizer.nextInt(weight);
 
                 //determines if it will divide or not
-                if(divide < 4)
+                if(divide < 3)
                     dividers.add(killBots);
             }
         }
@@ -277,7 +277,7 @@ public class AI {
                         if(Scenario.listOfNodes[newLocation].isCapitalBlue || Scenario.listOfNodes[newLocation].isCapitalRed)
                             weighting[indexer] += 15;
                         if(robots.enemyIntelligence.get(indexer).isEmpty() == false)
-                            weighting[indexer] += 45;
+                            weighting[indexer] += 60;
                         if(controlledLocations.contains(newLocation))
                         {
                             weighting[indexer] -= 30;
@@ -304,7 +304,7 @@ public class AI {
                                 if(Scenario.listOfNodes[newLocation].isCapitalBlue || Scenario.listOfNodes[newLocation].isCapitalRed)
                                     weighting[indexer] += 15;
                                 if(robots.enemyIntelligence.get(indexer).isEmpty() == false)
-                                    weighting[indexer] += 35;
+                                    weighting[indexer] += 40;
                                 if(controlledLocations.contains(newLocation)) {
                                     weighting[indexer] -= 20;
                                     if(Scenario.listOfNodes[newLocation].suppliesAvailable < 3)
@@ -331,7 +331,7 @@ public class AI {
                                         if(Scenario.listOfNodes[newLocation].isCapitalBlue || Scenario.listOfNodes[newLocation].isCapitalRed)
                                             weighting[indexer] += 10;
                                         if(robots.enemyIntelligence.get(indexer).isEmpty() == false)
-                                            weighting[indexer] += 25;
+                                            weighting[indexer] += 30;
                                         if(controlledLocations.contains(newLocation)) {
                                             weighting[indexer] -= 10;
                                             if(Scenario.listOfNodes[newLocation].suppliesAvailable < 3)
@@ -346,8 +346,21 @@ public class AI {
 
                             }
                         }
+                        
                     } else
                         weighting[indexer] = 0; //assigns weight = 0 if path cannot be crossed
+
+                    
+                    //ensures non-fleets cannot use fleet-only roads, and that
+                    //fleets cannot travel during winter, and that armies
+                    //cannot travel on smaller capacity roads
+                    if(road.capacity == 0 && killBots.isFleet == false)
+                        weighting[indexer] = 0;
+                    else if (road.capacity == 0 && killBots.isFleet == true
+                            && Global.season == 0)
+                        weighting[indexer] = 0;
+                    if (road.capacity < killBots.size)
+                        weighting[indexer] = 0;
                     
                     //moves on to next location
                     indexer++;
