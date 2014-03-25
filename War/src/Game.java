@@ -93,10 +93,6 @@ public class Game {
         if (turnCount % 1 == 0) { // if the turn count indicates that both players had their turn
             MapEvent.omnipresentSimulation(); // simulate movements and perform combat
 
-            // update the political power levels of each faction
-            Scenario.redPlayer.AdjustPoliticalPower();
-            Scenario.bluePlayer.AdjustPoliticalPower();
-
             // update combat unit statistics
             for (int i = 0; i < Scenario.redPlayer.combatUnits.size(); i++) {
                 // determin the new time spent stationary
@@ -107,6 +103,8 @@ public class Game {
                 Scenario.redPlayer.combatUnits.get(i).setSize();
                 // decriment the supply level of the unit
                 Scenario.redPlayer.combatUnits.get(i).removeSupplies();
+                // set the total distance from capital
+                Scenario.redPlayer.combatUnits.get(i).setDistanceFromCapital();
             }
 
             // repeat the calculations for the blue faction
@@ -115,7 +113,12 @@ public class Game {
                 Scenario.bluePlayer.combatUnits.get(i).setIllnessRating();
                 Scenario.bluePlayer.combatUnits.get(i).setSize();
                 Scenario.bluePlayer.combatUnits.get(i).removeSupplies();
+                Scenario.bluePlayer.combatUnits.get(i).setDistanceFromCapital();
             }
+            
+            // update the political power levels of each faction
+            Scenario.redPlayer.AdjustPoliticalPower();
+            Scenario.bluePlayer.AdjustPoliticalPower();
 
             // recalculate the rumour/enemy intelligence information
             Scenario.redPlayer.generateRumourList();

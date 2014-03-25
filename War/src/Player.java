@@ -5,6 +5,7 @@
  */
 
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -22,6 +23,7 @@ public class Player extends Game {
     protected String playerName; // name of the player as per the scenario and chosen faction
     protected int totalInitialArmy; // inital size of all units, sum
     protected int totalCurrentArmy; // current size of all units, sum
+    protected int totalDistanceMax;
     protected Rumour rumours;
     protected ArrayList<ArrayList<Integer>> enemyIntelligence;
 
@@ -33,14 +35,13 @@ public class Player extends Game {
         isComp = _isComp;
         capital = _capital;
         playerName = _playerName;
-        
     }
-    
-    public void setUpRumours(){
+
+    public void setUpRumours() {
         rumours = new Rumour(playerID);
     }
-    
-    public void generateRumourList(){
+
+    public void generateRumourList() {
         rumours.updateUnitRegistry();
         enemyIntelligence = rumours.playerRumourSummary();
     }
@@ -51,9 +52,9 @@ public class Player extends Game {
     }
 
     // Method to set the political power level
-    public void setPoliticalPower(double x) {
+    private void setPoliticalPower(double x) {
         politicalPowerPreviousState = politicalPower; // store the previous state
-        politicalPower = (int)x; // update the current level
+        politicalPower = (int) x; // update the current level
 
         if (politicalPower < politicalPowerPreviousState) // if a difference between previous and current states is found
         {
@@ -75,46 +76,40 @@ public class Player extends Game {
     public void AdjustPoliticalPower() {
         double calculatedPoliticalPower = 0; // temporary value to store the calculated current state
 
+        totalDistanceMax = Scenario.findMaxDistance(playerID);
+
         setCurrentArmyLevel();
-        
+
         // store the current total distance and cap at 20
         int totalDistance = getAggDistance();
-        if (totalDistance > 20) {
-            totalDistance = 20;
-        }
 
         // store the current number of game turns and cap at 30
-
         // calculate the current level of political power
-        calculatedPoliticalPower = 100 - totalDistance - (int) (50 - ((double) totalCurrentArmy / (double) totalInitialArmy) * 50)
-                - (int) (30 - ((double) Game.turnCount / (double) Game.maxTurnCount) * 30);
+        calculatedPoliticalPower = 100 - (20 - ((totalDistance / (totalDistanceMax * totalCurrentArmy)) * 20))
+                - (50 - (totalCurrentArmy / totalInitialArmy) * 50)
+                - ((Game.turnCount / Game.maxTurnCount) * 30);
         setPoliticalPower(calculatedPoliticalPower);
+        
+        //JOptionPane.showMessageDialog(null, "Total distance: " + totalDistance + "Current Army: " + totalCurrentArmy / totalInitialArmy + "Turn Count: " + Game.turnCount);
     }
 
     // Method to calculate the total dispersion of a faction's units
-    public int getAggDistance() {
+    private int getAggDistance() {
         int calculatedDistance = 0; // temporary storage of caculation
 
         // obtain the distance from capital for each unit based on the location value
         for (int i = 0; i < combatUnits.size(); i++) {
-            if (playerName.equals("red")) {
+            if (playerID == 0) {
                 calculatedDistance += combatUnits.get(i).location.distanceFromCapitalRed;
             } else {
                 calculatedDistance += combatUnits.get(i).location.distanceFromCapitalBlue;
             }
         }
 
+        //JOptionPane.showMessageDialog(null, "Agg Distance "+calculatedDistance);
+
         // set the total distance based on calculation
         return calculatedDistance;
-    }
-
-    // Method to add a unit to a faction
-    public void addUnit(CombatUnit addition) {
-        combatUnits.add(addition);
-    }
-
-    public void removeUnit(CombatUnit removal) {
-        combatUnits.remove(removal);
     }
 
     // Method to set the initial army size

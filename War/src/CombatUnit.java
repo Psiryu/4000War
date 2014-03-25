@@ -1,3 +1,6 @@
+
+import javax.swing.JOptionPane;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -75,6 +78,9 @@ public class CombatUnit extends Game {
         // strength is a function of faction political power, size, illness, and distance
         strength = (faction.politicalPower / 100) * 25 + size - (illnessRating / 11) * 20 - distance;
 
+        JOptionPane.showMessageDialog(null, faction.playerID +"'s unit has battle strength "+ strength);
+        JOptionPane.showMessageDialog(null, faction.politicalPower +" "+size+" "+illnessRating);
+        
         return strength;
     }
 

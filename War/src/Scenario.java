@@ -195,10 +195,10 @@ public class Scenario {
         listOfUnits.add(new CombatUnit(true, 7, 5, 0, listOfNodes[unitLocations.get(5)], redPlayer));
         // add the units to their respective players
         for (int i = 0; i < 4; i++) {
-            bluePlayer.addUnit(listOfUnits.get(i));
+            bluePlayer.combatUnits.add(listOfUnits.get(i));
         }
         for (int i = 4; i < 8; i++) {
-            redPlayer.addUnit(listOfUnits.get(i));
+            redPlayer.combatUnits.add(listOfUnits.get(i));
         }
 
         for (CombatUnit unit : listOfUnits) {
@@ -206,9 +206,7 @@ public class Scenario {
         }
 
         // establish the current/initial armysize for each faction
-        redPlayer.setCurrentArmyLevel();
         redPlayer.setInitialArmyLevel();
-        bluePlayer.setCurrentArmyLevel();
         bluePlayer.setInitialArmyLevel();
 
         // with all units assigned, initialize the knowledge of enemy location for each player
@@ -216,6 +214,9 @@ public class Scenario {
         redPlayer.generateRumourList();
         bluePlayer.setUpRumours();
         bluePlayer.generateRumourList();
+
+        redPlayer.AdjustPoliticalPower();
+        bluePlayer.AdjustPoliticalPower();
     }
 
     /*
@@ -241,5 +242,24 @@ public class Scenario {
             }
         }
         return found;
+    }
+
+    public static int findMaxDistance(int playerID) {
+        int maxCheck = 0;
+        if (Scenario.redPlayer.playerID == playerID) {
+            for (Node location : Scenario.listOfNodes) {
+                if (location.distanceFromCapitalRed > maxCheck) {
+                    maxCheck = location.distanceFromCapitalRed;
+                }
+            }
+            return maxCheck;
+        } else {
+            for (Node location : Scenario.listOfNodes) {
+                if (location.distanceFromCapitalBlue > maxCheck) {
+                    maxCheck = location.distanceFromCapitalBlue;
+                }
+            }
+            return maxCheck;
+        }
     }
 }
