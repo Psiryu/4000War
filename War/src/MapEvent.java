@@ -49,6 +49,9 @@ public class MapEvent {
     private static ArrayList<ArrayList<Road>> redCombatRoadN = new ArrayList<ArrayList<Road>>(); // the road upon which red traveled to the conficted node
     private static ArrayList<ArrayList<Road>> blueCombatRoadN = new ArrayList<ArrayList<Road>>(); // the road upon which blue traveled to the conflicted node
     private static ArrayList<CombatUnit> removeQueue = new ArrayList<CombatUnit>();
+    private static ArrayList<Integer> postCombatUnit = new ArrayList<Integer>();
+    private static ArrayList<Road> postCombatRoad = new ArrayList<Road>();
+    private static ArrayList<Integer> postCombatNode = new ArrayList<Integer>();
 
     // Constructor for MapEvent
     public MapEvent() {
@@ -157,7 +160,7 @@ public class MapEvent {
             processEvents(); // process the movements and detect collisions
             simulateCombat(); // send collision information to combat
             removeInstances(); // remove all the units from the movement registry
-        } while (combatUnitsRed.size() > 0 || combatUnitsBlue.size() > 0);
+        } while (postCombatUnit.size() > 0);
 
         clearRegistry(); // reset the class to be prepared for the next turn
     }
@@ -344,6 +347,14 @@ public class MapEvent {
         blueCombatUnitEndLocationN.clear();
         redCombatRoadN.clear();
         blueCombatRoadN.clear();
+        
+        for (int i = 0; i < postCombatUnit.size(); i++){
+            addMovement(postCombatUnit.get(i), postCombatRoad.get(i), postCombatNode.get(i));
+        }
+        
+        postCombatUnit.clear();
+        postCombatRoad.clear();
+        postCombatNode.clear();
     }
 
     /*
@@ -354,8 +365,8 @@ public class MapEvent {
      Battle class to determine the outcome
      */
     private static void simulateCombat() {
-        ArrayList<CombatInstance> temp = new ArrayList<CombatInstance>();
-        for (CombatInstance combat : temp) { // for each entry in the combat list
+        //ArrayList<CombatInstance> temp = new ArrayList<CombatInstance>();
+        for (CombatInstance combat : combatQueue) { // for each entry in the combat list
             if (combat.isNode()) { // if it is a collision on node/location
                 // call the battle on node function with the appropriate parameters
                 battle.PVPdoCampBattleOnNode(combat.redEndLocation().get(0),
@@ -443,15 +454,15 @@ public class MapEvent {
         for (CombatUnit unit : redUnits) { // for each of the red units
             removeQueue.add(unit); // remove the movement records for each unit
             if (!redVictor) { // if red lost, remove the units from play
-                ArrayList<CombatInstance> temp = new ArrayList<CombatInstance>();
-                for (CombatInstance combat : combatQueue) {
-                    if (combat.redUnits().contains(unit)) {
-                        temp.add(combat);
-                    }
-                }
-                for (CombatInstance combat : temp) {
-                    combatQueue.remove(combat);
-                }
+//                ArrayList<CombatInstance> temp = new ArrayList<CombatInstance>();
+//                for (CombatInstance combat : combatQueue) {
+//                    if (combat.redUnits().contains(unit)) {
+//                        temp.add(combat);
+//                    }
+//                }
+//                for (CombatInstance combat : temp) {
+//                    combatQueue.remove(combat);
+//                }
                 Scenario.redPlayer.combatUnits.remove(unit);
             } else { // if red won, move the unit to the intended location
                 int index = Scenario.redPlayer.combatUnits.indexOf(unit);
@@ -462,15 +473,15 @@ public class MapEvent {
         for (CombatUnit unit : blueUnits) { // repeat the processes for blue units
             removeQueue.add(unit);
             if (!blueVictor) {
-                ArrayList<CombatInstance> temp = new ArrayList<CombatInstance>();
-                for (CombatInstance combat : combatQueue) {
-                    if (combat.blueUnits().contains(unit)) {
-                        temp.add(combat);
-                    }
-                }
-                for (CombatInstance combat : temp) {
-                    combatQueue.remove(combat);
-                }
+//                ArrayList<CombatInstance> temp = new ArrayList<CombatInstance>();
+//                for (CombatInstance combat : combatQueue) {
+//                    if (combat.blueUnits().contains(unit)) {
+//                        temp.add(combat);
+//                    }
+//                }
+//                for (CombatInstance combat : temp) {
+//                    combatQueue.remove(combat);
+//                }
                 Scenario.bluePlayer.combatUnits.remove(unit);
             } else {
                 int index = Scenario.bluePlayer.combatUnits.indexOf(unit);
@@ -492,7 +503,10 @@ public class MapEvent {
      */
     public static void successfullFlee(ArrayList<CombatUnit> units, Road road, int endLocationNum) {
         for (CombatUnit unit : units) { // for each of the units
-            addMovement(unit.cUnitID, road, endLocationNum); // add the movement for the units
+            postCombatUnit.add(unit.cUnitID);
+            postCombatRoad.add(road);
+            postCombatNode.add(endLocationNum);
+            //addMovement(unit.cUnitID, road, endLocationNum); // add the movement for the units
         }
     }
 
@@ -685,5 +699,8 @@ public class MapEvent {
         blueCombatUnitEndLocationN.clear();
         redCombatRoadN.clear();
         blueCombatRoadN.clear();
+        postCombatUnit.clear();
+        postCombatRoad.clear();
+        postCombatNode.clear();
     }
 }
