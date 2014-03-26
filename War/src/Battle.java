@@ -751,7 +751,7 @@ public class Battle {
                 {
                 
                     MapEvent.successfullFlee(cowards, Scenario.findRoad(node, cowardsPreviousLocation.get(0)), cowardsPreviousLocation.get(0).id);
-                    MapEvent.successfullFlee(attackers, Scenario.findRoad(node, attackerPreviousLocation.get(0)), node.id);
+                    MapEvent.successfullFlee(attackers, null, node.id);
 
                     
                     
@@ -762,7 +762,7 @@ public class Battle {
                 else
                 {
                     MapEvent.successfullFlee(cowards, Scenario.findRoad(node, cowardsPreviousLocation.get(0)), cowardsPreviousLocation.get(0).id);
-                    MapEvent.successfullFlee(attackers, Scenario.findRoad(node, attackerPreviousLocation.get(0)), node.id);
+                    MapEvent.successfullFlee(attackers,null, node.id);
                     
                     JOptionPane.showMessageDialog(null, "Blue Combat unit was able to retreat!!!\n"+
                         "\nNo battle was taken place");
