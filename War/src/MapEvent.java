@@ -78,6 +78,7 @@ public class MapEvent {
         for (Node location : Scenario.listOfNodes) {
             if (location.id == endLocationNum) {
                 endLocation = location;
+                break;
             }
         }
 
@@ -97,6 +98,17 @@ public class MapEvent {
                 if (CUnits.cUnitID == unitNum) {
                     unit = CUnits;
                     //JOptionPane.showMessageDialog(null, "BLUE UNIT FOUND!");
+                    break;
+                }
+            }
+        }
+        
+        if (unit == null){
+            currentPlayer = Scenario.redPlayer;
+            for (CombatUnit CUnits : Scenario.redPlayer.combatUnits) { // search the player's roster for the unit
+                if (CUnits.cUnitID == unitNum) {
+                    unit = CUnits;
+                    //JOptionPane.showMessageDialog(null, "RED UNIT FOUND!");
                     break;
                 }
             }
