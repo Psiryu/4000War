@@ -2,6 +2,7 @@
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
+import javax.swing.JOptionPane;
 
 /**
  * Scenario Class
@@ -27,10 +28,10 @@ public class Scenario {
     public static ArrayList<Integer> unitLocations; // initialize array to store unit locations
     public static Game game; // new game object
 
-    public Scenario (){
-        
+    public Scenario() {
+
     }
-    
+
     /*
      Method: Initialize
      Parameters: int _scenarioID -> the index of the chosen scenario based on user selection
@@ -84,8 +85,8 @@ public class Scenario {
         // storage of road capacity {0..2}, location a, and location b respectively
         int[][] locations = {{0, 0, 13}, {20, 1, 3}, {20, 2, 5}, {10, 3, 5}, {20, 3, 4}, {20, 4, 6}, {20, 6, 13}, {5, 5, 13}, {10, 7, 13}, {20, 8, 13}, {20, 8, 9}, {20, 9, 10}, {0, 10, 11}, {20, 11, 12}};
         // set up the arrays for roads and nodes
-        listOfRoads = new Road[14];
-        listOfNodes = new Node[14];
+        listOfRoads = new Road[capitalDistances.length];
+        listOfNodes = new Node[names.length];
 
         // for each of the cities
         for (int i = 0; i < 14; i++) {
@@ -96,7 +97,9 @@ public class Scenario {
             boolean redCapital = false;
             boolean blueCapital = false;
             boolean isPort = false;
-            switch (names[i]) { // assign properties based on the scenario
+            // add properties to the node based on scenario parameters
+            // indicate capital and if node is port
+            switch (names[i]) {
                 case "Roma":
                     blueCapital = true;
                     isPort = true;
