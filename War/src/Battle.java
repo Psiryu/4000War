@@ -47,7 +47,7 @@ public class Battle {
         /*****Defenders Imply that the CombatUnit (or one of them) has not moved and battle initiated **/
         /***********************************************************************************************/
 
-        JOptionPane.showMessageDialog(null, "Collision Alert!!!!!\n"
+        JOptionPane.showMessageDialog(null, "Collision Alert!\n"
                 + "There is a collision of armies at " + node.name);
         
         
@@ -229,7 +229,7 @@ public class Battle {
             MapEvent.completeCombat(red, false, blue, true, blueIntendedNode.get(0));
 
 
-            JOptionPane.showMessageDialog(null, "Blue wins and moves to their desired location");
+            JOptionPane.showMessageDialog(null, "Blue wins and moves to " + blueIntendedNode.get(0).name);
            
             
         } 
@@ -238,7 +238,7 @@ public class Battle {
             /*Red wins and moves to their desired location*/
             MapEvent.completeCombat(red, true, blue, false, redsIntendedNode.get(0));
 
-           JOptionPane.showMessageDialog(null, "Red wins and moves to their desired location");
+           JOptionPane.showMessageDialog(null, "Red wins and moves to "+ redsIntendedNode.get(0));
           
 
         } 
@@ -248,14 +248,14 @@ public class Battle {
                 /*Red wins and moves to their desired location*/
                 MapEvent.completeCombat(red, true, blue, false, redsIntendedNode.get(0));
 
-           JOptionPane.showMessageDialog(null, "Red wins and moves to their desired location");
+           JOptionPane.showMessageDialog(null, "Red wins and moves to "+ redsIntendedNode.get(0));
             } 
             else 
             {
                 /*Blue wins and moves to their desired location*/
                 MapEvent.completeCombat(red, false, blue, true, blueIntendedNode.get(0));
             }
-            JOptionPane.showMessageDialog(null, "Blue wins and moves to their desired location");
+            JOptionPane.showMessageDialog(null, "Blue wins and moves to " + blueIntendedNode.get(0) );
         }
 
     }
@@ -344,11 +344,11 @@ public class Battle {
                 
                 if (isCowards == "red")
                 {
-                    JOptionPane.showMessageDialog(null, "Red flees battle while Blue moves into their intended postion");
+                    JOptionPane.showMessageDialog(null, "Red flees battle while Blue moves to " + node.name);
                 }
                 else
                 {
-                    JOptionPane.showMessageDialog(null, "Blue flees battle while Red moves into their intended postion");
+                    JOptionPane.showMessageDialog(null, "Blue flees battle while Red moves to " + node.name);
 
                 }
             } 
@@ -364,7 +364,7 @@ public class Battle {
                         
                         MapEvent.completeCombat(cowards, true, attackers, false, node);
 
-                    JOptionPane.showMessageDialog(null, "Blue loses battle!! Their armies fall and Red moves into intended position");
+                    JOptionPane.showMessageDialog(null, "Blue loses battle!! Their armies fall and Red moves to " + node.name);
 
                     }
                     else
@@ -374,7 +374,7 @@ public class Battle {
                         MapEvent.completeCombat(attackers, false, cowards, true, node);
 
                         
-                    JOptionPane.showMessageDialog(null, "Red loses battle!! Their armies fall and Blue moves into intended position");
+                    JOptionPane.showMessageDialog(null, "Red loses battle!! Their armies fall and Blue moves to " + node.name);
                     }
 
                     /*Move Cowards into desired location*/
@@ -397,7 +397,7 @@ public class Battle {
                         
                         
                     JOptionPane.showMessageDialog(null, "Red is unable to Flee!! Red loses battle!!"
-                            + " Their armies fall and Blue moves into intended position\n");
+                            + " Their armies fall and Blue moves to  " + node.name);
 
                     }
                     else 
@@ -408,7 +408,7 @@ public class Battle {
                         
                         
                     JOptionPane.showMessageDialog(null, "Blue is unable to Flee!! Blue loses battle!!\n"
-                            + " Their armies fall and Red moves into intended position");
+                            + " Their armies fall and Red moves to " + node.name);
                     }
                 } 
                 else  /*****IF THE BATTLE STRENGTH IS TIED*****/
@@ -424,14 +424,14 @@ public class Battle {
                             MapEvent.completeCombat(cowards, false, attackers, true, node);
 
                             JOptionPane.showMessageDialog(null, "Red is unable to Flee!! Red loses battle!!\n"
-                                    + "Their armies fall and Blue moves into intended position");
+                                    + "Their armies fall and Blue moves to " + node.name);
                         }
                         else
                         {
                             MapEvent.completeCombat(attackers, true, cowards, false, node);
 
                             JOptionPane.showMessageDialog(null, "Blue is unable to Flee!! Blue loses battle!!\n"
-                                    + " Their armies fall and Red moves into intended position");
+                                    + " Their armies fall and Red moves to "+ node.name);
                         }
                     } 
                     else 
@@ -442,7 +442,7 @@ public class Battle {
                             MapEvent.completeCombat(cowards, true, attackers, false, node);
                             
                             JOptionPane.showMessageDialog(null, "Blue loses battle!!\n"
-                                    + "Their armies fall and Red moves into intended position");
+                                    + "Their armies fall and Red moves to "+ node.name);
                         }
                         else
                         { /*Cowards is blue*/ 
@@ -450,7 +450,7 @@ public class Battle {
                             MapEvent.completeCombat(attackers, false, cowards, true, node);
 
                             JOptionPane.showMessageDialog(null, "Red loses battle!!\n"
-                                    + "Their armies fall and Blue moves into intended position");
+                                    + "Their armies fall and Blue moves to "+ node.name);
                         }
                     }
                 }
@@ -471,7 +471,7 @@ public class Battle {
                         MapEvent.completeCombat(cowards, true, attackers, false, node);
 
                     JOptionPane.showMessageDialog(null, "Blue loses battle!!\n"
-                            + "Their armies fall and Red moves into the position where the battle took place");
+                            + "Their armies fall and Red moves to "+ node.name);
                     }
                     else
                     {
@@ -479,7 +479,7 @@ public class Battle {
                         MapEvent.completeCombat(attackers, false, cowards, true, node);
 
                         JOptionPane.showMessageDialog(null, "Red loses battle!!\n"
-                            + "Their armies fall and Blue moves into the position where the battle took place");
+                            + "Their armies fall and Blue moves to "+ node.name);
                     }
                 }
                 else if (aggregateCowardsBattleStrength < aggregateAttackersBattleStrength) 
@@ -494,7 +494,7 @@ public class Battle {
                         
                         /* Blue (attackers) moves into postion */
                         JOptionPane.showMessageDialog(null, "Red is unable to flee!! Blue wins battle!!\n"
-                                + "Their armies fall and Blue moves into the position where the battle took place");
+                                + "Their armies fall and Blue moves to "+ node.name);
                     }
                     else
                     {
@@ -506,7 +506,7 @@ public class Battle {
                         /* Red (attackers) moves into postion */
 
                         JOptionPane.showMessageDialog(null, "Blue is unable to flee!! Red wins battle!!\n"
-                                + "Their armies fall and Red moves into the position where the battle took place");
+                                + "Their armies fall and Red moves to "+ node.name);
                     }
                  } 
                 else 
@@ -522,7 +522,7 @@ public class Battle {
                             MapEvent.completeCombat(cowards, false, attackers, true, node);
 
                             JOptionPane.showMessageDialog(null, "Red is unable to flee!! Blue wins battle!!"
-                                    + "Their armies fall and Blue moves into the position where the battle took place");
+                                    + "Their armies fall and Blue moves to " + node.name);
                         }
                         else
                         {
@@ -531,7 +531,7 @@ public class Battle {
                             MapEvent.completeCombat(attackers, true, cowards, false, node);
 
                             JOptionPane.showMessageDialog(null, "Blue is unable to flee!! Red wins battle!!\n"
-                                    + "Their armies fall and Red moves into the position where the battle took place");
+                                    + "Their armies fall and Red moves to "+ node.name);
                         }  
                     } 
                     else 
@@ -543,7 +543,7 @@ public class Battle {
                             MapEvent.completeCombat(cowards, true, attackers, false, node);
 
                             JOptionPane.showMessageDialog(null, "Blue loses battle!!\n"
-                                    + "Their armies fall and Red moves into the position where the battle took place");
+                                    + "Their armies fall and Red moves to "+ node.name);
                         }
                         else
                         {
@@ -551,7 +551,7 @@ public class Battle {
                             MapEvent.completeCombat(attackers, false, cowards, true, node);
 
                             JOptionPane.showMessageDialog(null, "Red loses battle!!\n"
-                                    + "Their armies fall and Blue moves into the position where the battle took place");
+                                    + "Their armies fall and Blue moves to "+ node.name);
                         }
                     }
                 }
@@ -586,7 +586,7 @@ public class Battle {
                         MapEvent.completeCombat(cowards, false, attackers, true, node);
                         
                         JOptionPane.showMessageDialog(null, "Red are unable flees from their position therefore their unit is defeated!!!"+
-                                "\nBlue proceeds to intended postion");
+                                "\nBlue proceeds to "+ node.name);
                     }
                     else
                     {   
@@ -594,7 +594,7 @@ public class Battle {
                         MapEvent.completeCombat(attackers, true, cowards, false, node);
 
                        JOptionPane.showMessageDialog(null, "Blue are unable flees from their position therefore their unit is defeated!!!"+
-                                "\nRed proceeds to intended postion");
+                                "\nRed proceeds to "+ node.name);
                     }
                 } 
                 else 
@@ -623,12 +623,12 @@ public class Battle {
                     if (isCowards == "red")
                     {
                         JOptionPane.showMessageDialog(null, "Red flees from their position!!!\n"+
-                        "\nBlue proceeds to intended postion and no battle is taken place");
+                        "\nBlue proceeds to "+ node.name+" and no battle is taken place");
                     }
                     else
                     {
                         JOptionPane.showMessageDialog(null, "Blue flees from their position!!!\n"+
-                        "\nRed proceeds to intended postion and no battle is taken place");
+                        "\nRed proceeds to "+ node.name+" and no battle is taken place");
                     }
                 }
             }
@@ -649,7 +649,7 @@ public class Battle {
                         MapEvent.completeCombat(cowards, true, attackers, false, node);
 
                         JOptionPane.showMessageDialog(null, "Red Combat Unit defeats Blue Combat Unit!!!\n"+
-                        "\nRed will move to thier defended position");
+                        "\nRed will move to "+ node.name);
                     }
                     else 
                     {
@@ -660,7 +660,7 @@ public class Battle {
 
     
                       JOptionPane.showMessageDialog(null, "Blue Combat Unit defeats Red Combat unit !!!\n"+
-                        "\nBlue will move to thier defended position");
+                        "\nBlue will move to "+ node.name);
                     }
                 } 
                 else if (aggregateCowardsBattleStrength < aggregateAttackersBattleStrength) 
@@ -674,7 +674,7 @@ public class Battle {
 
                         
                     JOptionPane.showMessageDialog(null, "Blue Combat Unit defends their position and defeat Red!!!"+
-                        "\nBlue move to the defended position");
+                        "\nBlue moves to "+ node.name);
  
                     }
                     else
@@ -686,7 +686,7 @@ public class Battle {
 
                         
                         JOptionPane.showMessageDialog(null, "Red Combat Unit defends their position and defeat Blue!!!\n"+
-                            "\nRed move to the defended position");
+                            "\nRed moves to "+ node.name);
                     
                     }
                 } 
@@ -703,7 +703,7 @@ public class Battle {
                         MapEvent.completeCombat(cowards, false, attackers, true, node);
                         
                         JOptionPane.showMessageDialog(null, "Blue Combat Unit defends their position and defeats Red!!!\n"+
-                            "\nBlue move to the defended position");
+                            "\nBlue moves to "+ node.name);
                         }
                         else
                         { 
@@ -712,7 +712,7 @@ public class Battle {
                         MapEvent.completeCombat(attackers, true, cowards, false, node);
 
                             JOptionPane.showMessageDialog(null, "Red Combat Unit defends their position and defeat Blue!!!\n"+
-                                "\nRed move to the defended position");
+                                "\nRed move to "+ node.name);
                         }                       
                     } 
                     
@@ -728,7 +728,7 @@ public class Battle {
 
                             
                             JOptionPane.showMessageDialog(null, "Red Combat Unit defeat Blue Combat Unit!!!\n"+
-                            "\nRed will move to thier intended position");
+                            "\nRed will move to "+ node.name);
 
 
                         }
@@ -739,7 +739,7 @@ public class Battle {
                             MapEvent.completeCombat(attackers, false, cowards, true, node);
 
                             JOptionPane.showMessageDialog(null, "Blue Combat Unit defeat Red Combat !!!\n"+
-                                "\nBlue will move to thier intended position");
+                                "\nBlue will move to "+ node.name);
                         }
                     }
                 }
@@ -866,7 +866,7 @@ public class Battle {
                     MapEvent.completeCombat(cowards, false, attackers, true, attackersDesiredNode.get(0));
                     
                     JOptionPane.showMessageDialog(null, "Red Units Fall in battle"+
-                    "\nBlue Units move to their intended location");
+                    "\nBlue Units move to "+attackersDesiredNode.get(0).name);
                 }
                 else
                 {
@@ -874,7 +874,7 @@ public class Battle {
                     MapEvent.completeCombat(attackers, true, cowards, false, attackersDesiredNode.get(0));
 
                     JOptionPane.showMessageDialog(null, "Blue Units Fall in battle"+
-                    "\nRed Units move to their intended location");
+                    "\nRed Units move to "+attackersDesiredNode.get(0).name);
                     
                 }  
             } 
@@ -887,7 +887,7 @@ public class Battle {
                     MapEvent.completeCombat(cowards, true, attackers, false, cowardsDesiredNode.get(0));
 
                     JOptionPane.showMessageDialog(null, "Blue Units Fall in battle"+
-                    "\nRed Units move to their intended location");
+                    "\nRed Units move to "+cowardsDesiredNode.get(0).name);
                 }
                 else
                 {
@@ -895,7 +895,7 @@ public class Battle {
                     MapEvent.completeCombat(attackers, true, cowards, true, cowardsDesiredNode.get(0));
 
                     JOptionPane.showMessageDialog(null, "Red Units Fall in battle"+
-                    "\nBlue Units move to their intended location");
+                    "\nBlue Units move to "+cowardsDesiredNode.get(0).name);
                 }
             } 
             else 
@@ -910,7 +910,7 @@ public class Battle {
                         MapEvent.completeCombat(cowards, true, attackers, false, cowardsDesiredNode.get(0));
 
                         JOptionPane.showMessageDialog(null, "Blue Units Fall in battle"+
-                        "\nRed Units move to desired position");
+                        "\nRed Units move to "+cowardsDesiredNode.get(0).name);
                     }
                     else
                     {
@@ -918,7 +918,7 @@ public class Battle {
                         MapEvent.completeCombat(attackers, true, cowards, true, cowardsDesiredNode.get(0));
 
                         JOptionPane.showMessageDialog(null, "Red Units Fall in battle"+
-                        "\nBlue Units move to desired position");
+                        "\nBlue Units move to "+cowardsDesiredNode.get(0).name);
                     }
                     
                 }
@@ -931,7 +931,7 @@ public class Battle {
                         MapEvent.completeCombat(cowards, false, attackers, true, attackersDesiredNode.get(0));
 
                         JOptionPane.showMessageDialog(null, "Red Units Fall in battle"+
-                        "\nBlue Units move to desired position");
+                        "\nBlue Units move to "+attackersDesiredNode.get(0).name);
                     }
                     else
                     {
@@ -939,7 +939,7 @@ public class Battle {
                         MapEvent.completeCombat(attackers, true, cowards, false, attackersDesiredNode.get(0));
 
                         JOptionPane.showMessageDialog(null, "Blue Units Fall in battle"+
-                        "\nRed Units move to desired position");
+                        "\nRed Units move to "+attackersDesiredNode.get(0).name);
 
                     }
                     
@@ -960,7 +960,7 @@ public class Battle {
         int yesNo;
         Object[] options = {"Battle", "Flee!"};
         
-                JOptionPane.showMessageDialog(null, "Collision Alert!!!!!\n"
+                JOptionPane.showMessageDialog(null, "Collision Alert!\n"
                         + "There is a collision of armies between " + redCombatUnitPreviousLocation.get(0).name
                         + " and " + redCombatUnitEndLocation.get(0).name);
                 
