@@ -342,12 +342,12 @@ public class AI {
                         int increment = weight;
 
                         if(Scenario.listOfNodes[newLocation].isCapitalBlue || Scenario.listOfNodes[newLocation].isCapitalRed)
-                            weight += 10;
+                            weight += 15;
                         if(robots.enemyIntelligence.get(newLocation).size() > 1)
-                            weight += 40;
+                            weight += 50;
                         
                         if(weight == increment)
-                            weight+= 20;
+                            weight+= 30;
                         
                         for(Road road2 : Scenario.listOfRoads) {
                             if(road.locationA.id == newLocation || road.locationB.id == newLocation) {
@@ -379,12 +379,12 @@ public class AI {
                                         increment = weight;
 
                                         if(Scenario.listOfNodes[finalLocation].isCapitalBlue || Scenario.listOfNodes[finalLocation].isCapitalRed)
-                                            weight += 10;
+                                            weight += 5;
                                         if(robots.enemyIntelligence.get(finalLocation).size() > 1)
-                                            weight += 40;
+                                            weight += 30;
 
                                         if(weight == increment)
-                                            weight+= 20;
+                                            weight+= 10;
                                     }
                                 }
                             }
@@ -412,27 +412,7 @@ public class AI {
                 //checks which weighting is the highest
                 int indexer = 0;
                 int greatest = 0; int index = 0;
-                for(int highest : weights) {
-                    if(highest>greatest) {
-                        greatest = highest;
-                        index = indexer;
-                    }
-                    indexer++;
-                }
-
-                if(roads.get(index).locationA.id == killBots.location.id)
-                    FinalizeMovement(killBots, roads.get(index), roads.get(index).locationA.id);
-                else
-                    FinalizeMovement(killBots, roads.get(index), roads.get(index).locationB.id);
-            } else {
-                //creates a random number generator
-                Random randomizer = new Random();
-                //randomizes the number twice, to ensure randomness
-                int random = randomizer.nextInt(10);
-                if(random>3) {
-                    //checks which weighting is the highest
-                    int indexer = 0;
-                    int greatest = 0; int index = 0;
+                if(weights.isEmpty() == false) {
                     for(int highest : weights) {
                         if(highest>greatest) {
                             greatest = highest;
@@ -445,6 +425,30 @@ public class AI {
                         FinalizeMovement(killBots, roads.get(index), roads.get(index).locationA.id);
                     else
                         FinalizeMovement(killBots, roads.get(index), roads.get(index).locationB.id);
+                }
+            } else {
+                //creates a random number generator
+                Random randomizer = new Random();
+                //randomizes the number twice, to ensure randomness
+                int random = randomizer.nextInt(10);
+                if(random>3) {
+                    if(weights.isEmpty() == false) {
+                        //checks which weighting is the highest
+                        int indexer = 0;
+                        int greatest = 0; int index = 0;
+                        for(int highest : weights) {
+                            if(highest>greatest) {
+                                greatest = highest;
+                                index = indexer;
+                            }
+                            indexer++;
+                        }
+
+                        if(roads.get(index).locationA.id == killBots.location.id)
+                            FinalizeMovement(killBots, roads.get(index), roads.get(index).locationA.id);
+                        else
+                            FinalizeMovement(killBots, roads.get(index), roads.get(index).locationB.id);
+                    }
                 } else {
                     int upper = ferryRoad.size();
                     random = randomizer.nextInt((upper-1));
