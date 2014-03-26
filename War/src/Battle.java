@@ -1095,7 +1095,7 @@ public class Battle {
             }
         } else {
             for (int i = 0; i < Scenario.bluePlayer.enemyIntelligence.size(); i++) {
-                nodeValues = Scenario.redPlayer.enemyIntelligence.get(i);
+                nodeValues = Scenario.bluePlayer.enemyIntelligence.get(i);
                 if (nodeValues.get(0) == location.id) {
                     if (nodeValues.size() > 1) {
                         return true;
