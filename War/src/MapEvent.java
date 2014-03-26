@@ -52,6 +52,7 @@ public class MapEvent {
     private static ArrayList<Integer> postCombatUnit = new ArrayList<Integer>();
     private static ArrayList<Road> postCombatRoad = new ArrayList<Road>();
     private static ArrayList<Integer> postCombatNode = new ArrayList<Integer>();
+    //private static ArrayList<String> movements = new ArrayList<String>();
 
     // Constructor for MapEvent
     public MapEvent() {
@@ -77,6 +78,7 @@ public class MapEvent {
         for (Node location : Scenario.listOfNodes) {
             if (location.id == endLocationNum) {
                 endLocation = location;
+                break;
             }
         }
 
@@ -96,6 +98,17 @@ public class MapEvent {
                 if (CUnits.cUnitID == unitNum) {
                     unit = CUnits;
                     //JOptionPane.showMessageDialog(null, "BLUE UNIT FOUND!");
+                    break;
+                }
+            }
+        }
+        
+        if (unit == null){
+            currentPlayer = Scenario.redPlayer;
+            for (CombatUnit CUnits : Scenario.redPlayer.combatUnits) { // search the player's roster for the unit
+                if (CUnits.cUnitID == unitNum) {
+                    unit = CUnits;
+                    //JOptionPane.showMessageDialog(null, "RED UNIT FOUND!");
                     break;
                 }
             }
@@ -144,6 +157,7 @@ public class MapEvent {
                 blueUnitRoad.add(road);
                 blueUnitEnd.add(endLocation);
             }
+            //movements.add("AI moved unit: " + unit.cUnitID + " Size: " + unit.size + ", From " + unit.location.name + " To " + endLocation.name);
         }
     }
 
@@ -155,6 +169,12 @@ public class MapEvent {
      The lists will be consolidated, processed, and terminated.
      */
     public static void omnipresentSimulation() {
+        //String list = "";
+        //for (String movement : movements){
+        //    list = list + movement + "\n";
+        //}
+        //JOptionPane.showMessageDialog(null, list);
+        //movements.clear();
         do { // loop until all conflicts are resolved
             cleanList(); // consolidate the lists
             processEvents(); // process the movements and detect collisions
@@ -347,11 +367,11 @@ public class MapEvent {
         blueCombatUnitEndLocationN.clear();
         redCombatRoadN.clear();
         blueCombatRoadN.clear();
-        
-        for (int i = 0; i < postCombatUnit.size(); i++){
+
+        for (int i = 0; i < postCombatUnit.size(); i++) {
             addMovement(postCombatUnit.get(i), postCombatRoad.get(i), postCombatNode.get(i));
         }
-        
+
         postCombatUnit.clear();
         postCombatRoad.clear();
         postCombatNode.clear();
