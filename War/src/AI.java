@@ -450,13 +450,18 @@ public class AI {
                             FinalizeMovement(killBots, roads.get(index), roads.get(index).locationB.id);
                     }
                 } else {
-                    int upper = ferryRoad.size();
-                    random = randomizer.nextInt((upper-1));
-                    if(roads.get(random).locationA.id == killBots.location.id)
-                        FinalizeFerryMovement(killBots, idToFerry.get(random),ferryRoad.get(random), ferryRoad.get(random).locationA.id);
-                    else
-                        FinalizeFerryMovement(killBots, idToFerry.get(random),ferryRoad.get(random), ferryRoad.get(random).locationB.id);
-                    
+                    if(ferryRoad.isEmpty() == false) {
+                        int upper = ferryRoad.size();
+                        if(upper >1)
+                            random = randomizer.nextInt((upper-1));
+                        else
+                            random = 0;
+                        
+                        if(roads.get(random).locationA.id == killBots.location.id)
+                            FinalizeFerryMovement(killBots, idToFerry.get(random),ferryRoad.get(random), ferryRoad.get(random).locationA.id);
+                        else
+                            FinalizeFerryMovement(killBots, idToFerry.get(random),ferryRoad.get(random), ferryRoad.get(random).locationB.id);
+                    }
                 }
                 
             }
