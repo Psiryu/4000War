@@ -89,6 +89,7 @@ public class Map extends javax.swing.JFrame {
         labelInfo5 = new javax.swing.JLabel();
         labelInfo6 = new javax.swing.JLabel();
         panelMap = new javax.swing.JPanel();
+        nodePlaceholder0 = new javax.swing.JButton();
         nodePlaceholder1 = new javax.swing.JButton();
         nodePlaceholder2 = new javax.swing.JButton();
         nodePlaceholder3 = new javax.swing.JButton();
@@ -103,6 +104,23 @@ public class Map extends javax.swing.JFrame {
         nodePlaceholder12 = new javax.swing.JButton();
         nodePlaceholder13 = new javax.swing.JButton();
         nodePlaceholder14 = new javax.swing.JButton();
+        nodePlaceholder15 = new javax.swing.JButton();
+        jLabel0 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
         buttonMapImage = new javax.swing.JButton();
         buttonNext = new javax.swing.JButton();
         buttonBackdrop = new javax.swing.JButton();
@@ -138,10 +156,8 @@ public class Map extends javax.swing.JFrame {
 
         frameFloatingInfo.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         frameFloatingInfo.setBounds(new java.awt.Rectangle(860, 390, 0, 0));
-        frameFloatingInfo.setMaximumSize(new java.awt.Dimension(425, 300));
         frameFloatingInfo.setMinimumSize(new java.awt.Dimension(425, 300));
         frameFloatingInfo.setName(""); // NOI18N
-        frameFloatingInfo.setPreferredSize(new java.awt.Dimension(425, 300));
         frameFloatingInfo.setResizable(false);
         frameFloatingInfo.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -265,148 +281,246 @@ public class Map extends javax.swing.JFrame {
         panelMap.setOpaque(false);
         panelMap.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        nodePlaceholder0.setBackground(new java.awt.Color(0, 0, 0));
+        nodePlaceholder0.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/map-node-town.png"))); // NOI18N
+        nodePlaceholder0.setContentAreaFilled(false);
+        nodePlaceholder0.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nodePlaceholder0ActionPerformed(evt);
+            }
+        });
+        panelMap.add(nodePlaceholder0, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 270, 30, 30));
+
         nodePlaceholder1.setBackground(new java.awt.Color(0, 0, 0));
         nodePlaceholder1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/map-node-town.png"))); // NOI18N
+        nodePlaceholder1.setContentAreaFilled(false);
         nodePlaceholder1.setOpaque(false);
         nodePlaceholder1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 nodePlaceholder1ActionPerformed(evt);
             }
         });
-        panelMap.add(nodePlaceholder1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 410, 30, 30));
+        panelMap.add(nodePlaceholder1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 130, 30, 30));
 
         nodePlaceholder2.setBackground(new java.awt.Color(0, 0, 0));
         nodePlaceholder2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/map-node-town.png"))); // NOI18N
+        nodePlaceholder2.setContentAreaFilled(false);
         nodePlaceholder2.setOpaque(false);
         nodePlaceholder2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 nodePlaceholder2ActionPerformed(evt);
             }
         });
-        panelMap.add(nodePlaceholder2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 70, 30, 30));
+        panelMap.add(nodePlaceholder2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 70, 30, 30));
 
         nodePlaceholder3.setBackground(new java.awt.Color(0, 0, 0));
         nodePlaceholder3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/map-node-town.png"))); // NOI18N
+        nodePlaceholder3.setContentAreaFilled(false);
         nodePlaceholder3.setOpaque(false);
         nodePlaceholder3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 nodePlaceholder3ActionPerformed(evt);
             }
         });
-        panelMap.add(nodePlaceholder3, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 90, 30, 30));
+        panelMap.add(nodePlaceholder3, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 160, 30, 30));
 
         nodePlaceholder4.setBackground(new java.awt.Color(0, 0, 0));
         nodePlaceholder4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/map-node-town.png"))); // NOI18N
+        nodePlaceholder4.setContentAreaFilled(false);
         nodePlaceholder4.setOpaque(false);
         nodePlaceholder4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 nodePlaceholder4ActionPerformed(evt);
             }
         });
-        panelMap.add(nodePlaceholder4, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 140, 30, 30));
+        panelMap.add(nodePlaceholder4, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 220, 30, 30));
 
         nodePlaceholder5.setBackground(new java.awt.Color(0, 0, 0));
         nodePlaceholder5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/map-node-town.png"))); // NOI18N
+        nodePlaceholder5.setContentAreaFilled(false);
         nodePlaceholder5.setOpaque(false);
         nodePlaceholder5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 nodePlaceholder5ActionPerformed(evt);
             }
         });
-        panelMap.add(nodePlaceholder5, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 170, 30, 30));
+        panelMap.add(nodePlaceholder5, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 350, 30, 30));
 
         nodePlaceholder6.setBackground(new java.awt.Color(0, 0, 0));
-        nodePlaceholder6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/map-node-port.png"))); // NOI18N
+        nodePlaceholder6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/map-node-town.png"))); // NOI18N
+        nodePlaceholder6.setContentAreaFilled(false);
         nodePlaceholder6.setOpaque(false);
         nodePlaceholder6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 nodePlaceholder6ActionPerformed(evt);
             }
         });
-        panelMap.add(nodePlaceholder6, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 180, 30, 30));
+        panelMap.add(nodePlaceholder6, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 130, 30, 30));
 
         nodePlaceholder7.setBackground(new java.awt.Color(0, 0, 0));
         nodePlaceholder7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/map-node-town.png"))); // NOI18N
+        nodePlaceholder7.setContentAreaFilled(false);
         nodePlaceholder7.setOpaque(false);
         nodePlaceholder7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 nodePlaceholder7ActionPerformed(evt);
             }
         });
-        panelMap.add(nodePlaceholder7, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 200, 30, 30));
+        panelMap.add(nodePlaceholder7, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 290, 30, 30));
 
         nodePlaceholder8.setBackground(new java.awt.Color(0, 0, 0));
         nodePlaceholder8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/map-node-town.png"))); // NOI18N
+        nodePlaceholder8.setContentAreaFilled(false);
         nodePlaceholder8.setOpaque(false);
         nodePlaceholder8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 nodePlaceholder8ActionPerformed(evt);
             }
         });
-        panelMap.add(nodePlaceholder8, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 220, 30, 30));
+        panelMap.add(nodePlaceholder8, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 130, 30, 30));
 
         nodePlaceholder9.setBackground(new java.awt.Color(0, 0, 0));
         nodePlaceholder9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/map-node-town.png"))); // NOI18N
+        nodePlaceholder9.setContentAreaFilled(false);
         nodePlaceholder9.setOpaque(false);
         nodePlaceholder9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 nodePlaceholder9ActionPerformed(evt);
             }
         });
-        panelMap.add(nodePlaceholder9, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 260, 30, 30));
+        panelMap.add(nodePlaceholder9, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 270, 30, 30));
 
         nodePlaceholder10.setBackground(new java.awt.Color(0, 0, 0));
         nodePlaceholder10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/map-node-town.png"))); // NOI18N
+        nodePlaceholder10.setContentAreaFilled(false);
         nodePlaceholder10.setOpaque(false);
         nodePlaceholder10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 nodePlaceholder10ActionPerformed(evt);
             }
         });
-        panelMap.add(nodePlaceholder10, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 280, 30, 30));
+        panelMap.add(nodePlaceholder10, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 70, 30, 30));
 
         nodePlaceholder11.setBackground(new java.awt.Color(0, 0, 0));
-        nodePlaceholder11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/map-node-port.png"))); // NOI18N
+        nodePlaceholder11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/map-node-town.png"))); // NOI18N
+        nodePlaceholder11.setContentAreaFilled(false);
         nodePlaceholder11.setOpaque(false);
         nodePlaceholder11.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 nodePlaceholder11ActionPerformed(evt);
             }
         });
-        panelMap.add(nodePlaceholder11, new org.netbeans.lib.awtextra.AbsoluteConstraints(465, 291, 30, 30));
+        panelMap.add(nodePlaceholder11, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 180, 30, 30));
 
         nodePlaceholder12.setBackground(new java.awt.Color(0, 0, 0));
-        nodePlaceholder12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/map-node-port.png"))); // NOI18N
+        nodePlaceholder12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/map-node-town.png"))); // NOI18N
+        nodePlaceholder12.setContentAreaFilled(false);
         nodePlaceholder12.setOpaque(false);
         nodePlaceholder12.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 nodePlaceholder12ActionPerformed(evt);
             }
         });
-        panelMap.add(nodePlaceholder12, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 270, 30, 30));
+        panelMap.add(nodePlaceholder12, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 280, 30, 30));
 
         nodePlaceholder13.setBackground(new java.awt.Color(0, 0, 0));
         nodePlaceholder13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/map-node-town.png"))); // NOI18N
+        nodePlaceholder13.setContentAreaFilled(false);
         nodePlaceholder13.setOpaque(false);
         nodePlaceholder13.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 nodePlaceholder13ActionPerformed(evt);
             }
         });
-        panelMap.add(nodePlaceholder13, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 270, 30, 30));
+        panelMap.add(nodePlaceholder13, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 60, 30, 30));
 
         nodePlaceholder14.setBackground(new java.awt.Color(0, 0, 0));
-        nodePlaceholder14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/map-node-port.png"))); // NOI18N
+        nodePlaceholder14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/map-node-town.png"))); // NOI18N
+        nodePlaceholder14.setContentAreaFilled(false);
         nodePlaceholder14.setOpaque(false);
         nodePlaceholder14.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 nodePlaceholder14ActionPerformed(evt);
             }
         });
-        panelMap.add(nodePlaceholder14, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 230, 30, 30));
+        panelMap.add(nodePlaceholder14, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 170, 30, 30));
 
-        buttonMapImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Map1_Sulla.png"))); // NOI18N
-        buttonMapImage.setText("jButton1");
+        nodePlaceholder15.setBackground(new java.awt.Color(0, 0, 0));
+        nodePlaceholder15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/map-node-town.png"))); // NOI18N
+        nodePlaceholder15.setContentAreaFilled(false);
+        nodePlaceholder15.setOpaque(false);
+        nodePlaceholder15.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nodePlaceholder15ActionPerformed(evt);
+            }
+        });
+        panelMap.add(nodePlaceholder15, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 240, 30, 30));
+
+        jLabel0.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel0.setText("Rome");
+        panelMap.add(jLabel0, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 310, -1, -1));
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel1.setText("Aquileia");
+        panelMap.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, -1, -1));
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel2.setText("Mursa");
+        panelMap.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 50, -1, -1));
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel3.setText("Cibalae");
+        panelMap.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 180, -1, -1));
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel4.setText("Salona");
+        panelMap.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 230, -1, -1));
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel5.setText("Brundisium");
+        panelMap.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 380, -1, -1));
+
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel6.setText("Sirmium");
+        panelMap.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 100, -1, -1));
+
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel7.setText("Dyrrachium");
+        panelMap.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 320, -1, -1));
+
+        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel8.setText("Singidunum");
+        panelMap.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 170, -1, -1));
+
+        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel9.setText("Thessalonica");
+        panelMap.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 310, -1, -1));
+
+        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel10.setText("Ratiaria");
+        panelMap.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 40, -1, -1));
+
+        jLabel11.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel11.setText("Sardica");
+        panelMap.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 150, -1, -1));
+
+        jLabel12.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel12.setText("Heraclea");
+        panelMap.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 320, -1, -1));
+
+        jLabel13.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel13.setText("Marcianopolis");
+        panelMap.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 40, -1, -1));
+
+        jLabel14.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel14.setText("Adrianople");
+        panelMap.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 160, -1, -1));
+
+        jLabel15.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel15.setText("Constantinople");
+        panelMap.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 240, -1, -1));
+
+        buttonMapImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Scenario-1-Map.png"))); // NOI18N
         buttonMapImage.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         buttonMapImage.setContentAreaFilled(false);
         buttonMapImage.setIconTextGap(0);
@@ -420,7 +534,7 @@ public class Map extends javax.swing.JFrame {
         });
         panelMap.add(buttonMapImage, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
-        getContentPane().add(panelMap, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
+        getContentPane().add(panelMap, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 810, 470));
 
         buttonNext.setBackground(new java.awt.Color(255, 255, 255));
         buttonNext.setFont(new java.awt.Font("Times New Roman", 0, 36)); // NOI18N
@@ -1555,46 +1669,52 @@ public class Map extends javax.swing.JFrame {
             //switch case for current indexed button object to change
             switch (i) {
                 case 0:
-                    nodePlaceholder1.setIcon(img2);
+                    nodePlaceholder0.setIcon(img2);
                     break;
                 case 1:
-                    nodePlaceholder2.setIcon(img2);
+                    nodePlaceholder1.setIcon(img2);
                     break;
                 case 2:
-                    nodePlaceholder3.setIcon(img2);
+                    nodePlaceholder2.setIcon(img2);
                     break;
                 case 3:
-                    nodePlaceholder4.setIcon(img2);
+                    nodePlaceholder3.setIcon(img2);
                     break;
                 case 4:
-                    nodePlaceholder5.setIcon(img2);
+                    nodePlaceholder4.setIcon(img2);
                     break;
                 case 5:
-                    nodePlaceholder6.setIcon(img2);
+                    nodePlaceholder5.setIcon(img2);
                     break;
                 case 6:
-                    nodePlaceholder7.setIcon(img2);
+                    nodePlaceholder6.setIcon(img2);
                     break;
                 case 7:
-                    nodePlaceholder8.setIcon(img2);
+                    nodePlaceholder7.setIcon(img2);
                     break;
                 case 8:
-                    nodePlaceholder9.setIcon(img2);
+                    nodePlaceholder8.setIcon(img2);
                     break;
                 case 9:
-                    nodePlaceholder10.setIcon(img2);
+                    nodePlaceholder9.setIcon(img2);
                     break;
                 case 10:
-                    nodePlaceholder11.setIcon(img2);
+                    nodePlaceholder10.setIcon(img2);
                     break;
                 case 11:
-                    nodePlaceholder12.setIcon(img2);
+                    nodePlaceholder11.setIcon(img2);
                     break;
                 case 12:
-                    nodePlaceholder13.setIcon(img2);
+                    nodePlaceholder12.setIcon(img2);
                     break;
                 case 13:
+                    nodePlaceholder13.setIcon(img2);
+                    break;
+                case 14:
                     nodePlaceholder14.setIcon(img2);
+                    break;
+                case 15:
+                    nodePlaceholder15.setIcon(img2);
                     break;
             }
 
@@ -1648,46 +1768,52 @@ public class Map extends javax.swing.JFrame {
             //switch to change the node at index selected
             switch (indexer) {
                 case 0:
-                    nodePlaceholder1.setIcon(img2);
+                    nodePlaceholder0.setIcon(img2);
                     break;
                 case 1:
-                    nodePlaceholder2.setIcon(img2);
+                    nodePlaceholder1.setIcon(img2);
                     break;
                 case 2:
-                    nodePlaceholder3.setIcon(img2);
+                    nodePlaceholder2.setIcon(img2);
                     break;
                 case 3:
-                    nodePlaceholder4.setIcon(img2);
+                    nodePlaceholder3.setIcon(img2);
                     break;
                 case 4:
-                    nodePlaceholder5.setIcon(img2);
+                    nodePlaceholder4.setIcon(img2);
                     break;
                 case 5:
-                    nodePlaceholder6.setIcon(img2);
+                    nodePlaceholder5.setIcon(img2);
                     break;
                 case 6:
-                    nodePlaceholder7.setIcon(img2);
+                    nodePlaceholder6.setIcon(img2);
                     break;
                 case 7:
-                    nodePlaceholder8.setIcon(img2);
+                    nodePlaceholder7.setIcon(img2);
                     break;
                 case 8:
-                    nodePlaceholder9.setIcon(img2);
+                    nodePlaceholder8.setIcon(img2);
                     break;
                 case 9:
-                    nodePlaceholder10.setIcon(img2);
+                    nodePlaceholder9.setIcon(img2);
                     break;
                 case 10:
-                    nodePlaceholder11.setIcon(img2);
+                    nodePlaceholder10.setIcon(img2);
                     break;
                 case 11:
-                    nodePlaceholder12.setIcon(img2);
+                    nodePlaceholder11.setIcon(img2);
                     break;
                 case 12:
-                    nodePlaceholder13.setIcon(img2);
+                    nodePlaceholder12.setIcon(img2);
                     break;
                 case 13:
+                    nodePlaceholder13.setIcon(img2);
+                    break;
+                case 14:
                     nodePlaceholder14.setIcon(img2);
+                    break;
+                case 15:
+                    nodePlaceholder15.setIcon(img2);
                     break;
             }
         } else if (Global.curPlayer == 1) {
@@ -1696,46 +1822,52 @@ public class Map extends javax.swing.JFrame {
             ImageIcon img2 = new ImageIcon(img);
             switch (indexer) {
                 case 0:
-                    nodePlaceholder1.setIcon(img2);
+                    nodePlaceholder0.setIcon(img2);
                     break;
                 case 1:
-                    nodePlaceholder2.setIcon(img2);
+                    nodePlaceholder1.setIcon(img2);
                     break;
                 case 2:
-                    nodePlaceholder3.setIcon(img2);
+                    nodePlaceholder2.setIcon(img2);
                     break;
                 case 3:
-                    nodePlaceholder4.setIcon(img2);
+                    nodePlaceholder3.setIcon(img2);
                     break;
                 case 4:
-                    nodePlaceholder5.setIcon(img2);
+                    nodePlaceholder4.setIcon(img2);
                     break;
                 case 5:
-                    nodePlaceholder6.setIcon(img2);
+                    nodePlaceholder5.setIcon(img2);
                     break;
                 case 6:
-                    nodePlaceholder7.setIcon(img2);
+                    nodePlaceholder6.setIcon(img2);
                     break;
                 case 7:
-                    nodePlaceholder8.setIcon(img2);
+                    nodePlaceholder7.setIcon(img2);
                     break;
                 case 8:
-                    nodePlaceholder9.setIcon(img2);
+                    nodePlaceholder8.setIcon(img2);
                     break;
                 case 9:
-                    nodePlaceholder10.setIcon(img2);
+                    nodePlaceholder9.setIcon(img2);
                     break;
                 case 10:
-                    nodePlaceholder11.setIcon(img2);
+                    nodePlaceholder10.setIcon(img2);
                     break;
                 case 11:
-                    nodePlaceholder12.setIcon(img2);
+                    nodePlaceholder11.setIcon(img2);
                     break;
                 case 12:
-                    nodePlaceholder13.setIcon(img2);
+                    nodePlaceholder12.setIcon(img2);
                     break;
                 case 13:
+                    nodePlaceholder13.setIcon(img2);
+                    break;
+                case 14:
                     nodePlaceholder14.setIcon(img2);
+                    break;
+                case 15:
+                    nodePlaceholder15.setIcon(img2);
                     break;
             }
         }
@@ -1765,55 +1897,61 @@ public class Map extends javax.swing.JFrame {
 
                 switch (i) {
                     case 0:
-                        nodePlaceholder1.setIcon(img2);
+                        nodePlaceholder0.setIcon(img2);
                         break;
                     case 1:
-                        nodePlaceholder2.setIcon(img2);
+                        nodePlaceholder1.setIcon(img2);
                         break;
                     case 2:
-                        nodePlaceholder3.setIcon(img2);
+                        nodePlaceholder2.setIcon(img2);
                         break;
                     case 3:
-                        nodePlaceholder4.setIcon(img2);
+                        nodePlaceholder3.setIcon(img2);
                         break;
                     case 4:
-                        nodePlaceholder5.setIcon(img2);
+                        nodePlaceholder4.setIcon(img2);
                         break;
                     case 5:
-                        nodePlaceholder6.setIcon(img2);
+                        nodePlaceholder5.setIcon(img2);
                         break;
                     case 6:
-                        nodePlaceholder7.setIcon(img2);
+                        nodePlaceholder6.setIcon(img2);
                         break;
                     case 7:
-                        nodePlaceholder8.setIcon(img2);
+                        nodePlaceholder7.setIcon(img2);
                         break;
                     case 8:
-                        nodePlaceholder9.setIcon(img2);
+                        nodePlaceholder8.setIcon(img2);
                         break;
                     case 9:
-                        nodePlaceholder10.setIcon(img2);
+                        nodePlaceholder9.setIcon(img2);
                         break;
                     case 10:
-                        nodePlaceholder11.setIcon(img2);
+                        nodePlaceholder10.setIcon(img2);
                         break;
                     case 11:
-                        nodePlaceholder12.setIcon(img2);
+                        nodePlaceholder11.setIcon(img2);
                         break;
                     case 12:
-                        nodePlaceholder13.setIcon(img2);
+                        nodePlaceholder12.setIcon(img2);
                         break;
                     case 13:
+                        nodePlaceholder13.setIcon(img2);
+                        break;
+                    case 14:
                         nodePlaceholder14.setIcon(img2);
                         break;
+                    case 15:
+                        nodePlaceholder15.setIcon(img2);
+                        break;
                 }
-            }
 
             //increments i, which keeps track of indexing
             i++;
+            }
         }
     }
-
+    
     private void SetCurrentColour() throws IOException {
         //sets the node selected to a white background
         Image img;
@@ -1821,46 +1959,52 @@ public class Map extends javax.swing.JFrame {
         ImageIcon img2 = new ImageIcon(img);
         switch (nodeSelected) {
             case 0:
-                nodePlaceholder1.setIcon(img2);
+                nodePlaceholder0.setIcon(img2);
                 break;
             case 1:
-                nodePlaceholder2.setIcon(img2);
+                nodePlaceholder1.setIcon(img2);
                 break;
             case 2:
-                nodePlaceholder3.setIcon(img2);
+                nodePlaceholder2.setIcon(img2);
                 break;
             case 3:
-                nodePlaceholder4.setIcon(img2);
+                nodePlaceholder3.setIcon(img2);
                 break;
             case 4:
-                nodePlaceholder5.setIcon(img2);
+                nodePlaceholder4.setIcon(img2);
                 break;
             case 5:
-                nodePlaceholder6.setIcon(img2);
+                nodePlaceholder5.setIcon(img2);
                 break;
             case 6:
-                nodePlaceholder7.setIcon(img2);
+                nodePlaceholder6.setIcon(img2);
                 break;
             case 7:
-                nodePlaceholder8.setIcon(img2);
+                nodePlaceholder7.setIcon(img2);
                 break;
             case 8:
-                nodePlaceholder9.setIcon(img2);
+                nodePlaceholder8.setIcon(img2);
                 break;
             case 9:
-                nodePlaceholder10.setIcon(img2);
+                nodePlaceholder9.setIcon(img2);
                 break;
             case 10:
-                nodePlaceholder11.setIcon(img2);
+                nodePlaceholder10.setIcon(img2);
                 break;
             case 11:
-                nodePlaceholder12.setIcon(img2);
+                nodePlaceholder11.setIcon(img2);
                 break;
             case 12:
-                nodePlaceholder13.setIcon(img2);
+                nodePlaceholder12.setIcon(img2);
                 break;
             case 13:
+                nodePlaceholder13.setIcon(img2);
+                break;
+            case 14:
                 nodePlaceholder14.setIcon(img2);
+                break;
+            case 15:
+                nodePlaceholder15.setIcon(img2);
                 break;
         }
     }
@@ -1904,75 +2048,10 @@ public class Map extends javax.swing.JFrame {
      the selected node's index value, sets the globals for the selected
      node's x and y values on the gui, then calls to the Action method */
 
-    private void nodePlaceholder1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nodePlaceholder1ActionPerformed
+    private void nodePlaceholder0ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nodePlaceholder0ActionPerformed
         nodeSelected = 0;
         Action();
-    }//GEN-LAST:event_nodePlaceholder1ActionPerformed
-
-    private void nodePlaceholder2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nodePlaceholder2ActionPerformed
-        nodeSelected = 1; 
-        Action();
-    }//GEN-LAST:event_nodePlaceholder2ActionPerformed
-
-    private void nodePlaceholder3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nodePlaceholder3ActionPerformed
-        nodeSelected = 2;
-        Action();
-    }//GEN-LAST:event_nodePlaceholder3ActionPerformed
-
-    private void nodePlaceholder4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nodePlaceholder4ActionPerformed
-        nodeSelected = 3;
-        Action();
-    }//GEN-LAST:event_nodePlaceholder4ActionPerformed
-
-    private void nodePlaceholder5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nodePlaceholder5ActionPerformed
-        nodeSelected = 4;
-        Action();
-    }//GEN-LAST:event_nodePlaceholder5ActionPerformed
-
-    private void nodePlaceholder6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nodePlaceholder6ActionPerformed
-        nodeSelected = 5;
-        Action();
-    }//GEN-LAST:event_nodePlaceholder6ActionPerformed
-
-    private void nodePlaceholder7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nodePlaceholder7ActionPerformed
-        nodeSelected = 6;
-        Action();
-    }//GEN-LAST:event_nodePlaceholder7ActionPerformed
-
-    private void nodePlaceholder8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nodePlaceholder8ActionPerformed
-        nodeSelected = 7;
-        Action();
-    }//GEN-LAST:event_nodePlaceholder8ActionPerformed
-
-    private void nodePlaceholder9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nodePlaceholder9ActionPerformed
-        nodeSelected = 8;
-        Action();
-    }//GEN-LAST:event_nodePlaceholder9ActionPerformed
-
-    private void nodePlaceholder10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nodePlaceholder10ActionPerformed
-        nodeSelected = 9;
-        Action();
-    }//GEN-LAST:event_nodePlaceholder10ActionPerformed
-
-    private void nodePlaceholder11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nodePlaceholder11ActionPerformed
-        nodeSelected = 10;
-        Action();
-    }//GEN-LAST:event_nodePlaceholder11ActionPerformed
-
-    private void nodePlaceholder12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nodePlaceholder12ActionPerformed
-        nodeSelected = 11;
-        Action();
-    }//GEN-LAST:event_nodePlaceholder12ActionPerformed
-
-    private void nodePlaceholder13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nodePlaceholder13ActionPerformed
-        nodeSelected = 12;
-        Action();
-    }//GEN-LAST:event_nodePlaceholder13ActionPerformed
-
-    private void nodePlaceholder14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nodePlaceholder14ActionPerformed
-        nodeSelected = 13;
-        Action();
-    }//GEN-LAST:event_nodePlaceholder14ActionPerformed
+    }//GEN-LAST:event_nodePlaceholder0ActionPerformed
 
     private void menuItemCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemCloseActionPerformed
         //a base menu item always added to the popup menu that, when clicked,
@@ -2144,6 +2223,81 @@ public class Map extends javax.swing.JFrame {
         SetColours();
     }//GEN-LAST:event_buttonBackdropActionPerformed
 
+    private void nodePlaceholder1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nodePlaceholder1ActionPerformed
+        nodeSelected = 1;
+        Action();
+    }//GEN-LAST:event_nodePlaceholder1ActionPerformed
+
+    private void nodePlaceholder2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nodePlaceholder2ActionPerformed
+        nodeSelected = 2;
+        Action();
+    }//GEN-LAST:event_nodePlaceholder2ActionPerformed
+
+    private void nodePlaceholder3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nodePlaceholder3ActionPerformed
+        nodeSelected = 3;
+        Action();
+    }//GEN-LAST:event_nodePlaceholder3ActionPerformed
+
+    private void nodePlaceholder4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nodePlaceholder4ActionPerformed
+        nodeSelected = 4;
+        Action();
+    }//GEN-LAST:event_nodePlaceholder4ActionPerformed
+
+    private void nodePlaceholder5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nodePlaceholder5ActionPerformed
+        nodeSelected = 5;
+        Action();
+    }//GEN-LAST:event_nodePlaceholder5ActionPerformed
+
+    private void nodePlaceholder6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nodePlaceholder6ActionPerformed
+        nodeSelected = 6;
+        Action();
+    }//GEN-LAST:event_nodePlaceholder6ActionPerformed
+
+    private void nodePlaceholder7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nodePlaceholder7ActionPerformed
+        nodeSelected = 7;
+        Action();
+    }//GEN-LAST:event_nodePlaceholder7ActionPerformed
+
+    private void nodePlaceholder8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nodePlaceholder8ActionPerformed
+        nodeSelected = 8;
+        Action();
+    }//GEN-LAST:event_nodePlaceholder8ActionPerformed
+
+    private void nodePlaceholder9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nodePlaceholder9ActionPerformed
+        nodeSelected = 9;
+        Action();
+    }//GEN-LAST:event_nodePlaceholder9ActionPerformed
+
+    private void nodePlaceholder10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nodePlaceholder10ActionPerformed
+        nodeSelected = 10;
+        Action();
+    }//GEN-LAST:event_nodePlaceholder10ActionPerformed
+
+    private void nodePlaceholder11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nodePlaceholder11ActionPerformed
+        nodeSelected = 11;
+        Action();
+    }//GEN-LAST:event_nodePlaceholder11ActionPerformed
+
+    private void nodePlaceholder12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nodePlaceholder12ActionPerformed
+        nodeSelected = 12;
+        Action();
+    }//GEN-LAST:event_nodePlaceholder12ActionPerformed
+
+    private void nodePlaceholder13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nodePlaceholder13ActionPerformed
+        nodeSelected = 13;
+        Action();
+    }//GEN-LAST:event_nodePlaceholder13ActionPerformed
+
+    private void nodePlaceholder14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nodePlaceholder14ActionPerformed
+        nodeSelected = 14;
+        Action();
+    }//GEN-LAST:event_nodePlaceholder14ActionPerformed
+
+    private void nodePlaceholder15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nodePlaceholder15ActionPerformed
+        nodeSelected = 15;
+        Action();
+    }//GEN-LAST:event_nodePlaceholder15ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -2203,6 +2357,22 @@ public class Map extends javax.swing.JFrame {
     private javax.swing.JToggleButton buttonMenu;
     private javax.swing.JButton buttonNext;
     private javax.swing.JFrame frameFloatingInfo;
+    private javax.swing.JLabel jLabel0;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
@@ -2223,12 +2393,14 @@ public class Map extends javax.swing.JFrame {
     private java.awt.List list1;
     private javax.swing.JPanel menuInfo;
     private javax.swing.JMenuItem menuItemClose;
+    private javax.swing.JButton nodePlaceholder0;
     private javax.swing.JButton nodePlaceholder1;
     private javax.swing.JButton nodePlaceholder10;
     private javax.swing.JButton nodePlaceholder11;
     private javax.swing.JButton nodePlaceholder12;
     private javax.swing.JButton nodePlaceholder13;
     private javax.swing.JButton nodePlaceholder14;
+    private javax.swing.JButton nodePlaceholder15;
     private javax.swing.JButton nodePlaceholder2;
     private javax.swing.JButton nodePlaceholder3;
     private javax.swing.JButton nodePlaceholder4;
