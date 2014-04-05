@@ -28,12 +28,11 @@ public class Player extends Game {
     protected ArrayList<ArrayList<Integer>> enemyIntelligence;
 
     // Constuctor of the player object
-    public Player(boolean _isComp, Node _capital, int id, String _playerName) {
+    public Player(boolean _isComp, int id, String _playerName) {
         // obtain the information for the player parameters
         playerID = id;
         politicalPower = 100;
         isComp = _isComp;
-        capital = _capital;
         playerName = _playerName;
     }
 
