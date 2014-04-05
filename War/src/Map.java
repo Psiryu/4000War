@@ -1,5 +1,6 @@
 
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Image;
 import java.awt.MouseInfo;
 import java.awt.Toolkit;
@@ -13,6 +14,7 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JMenuItem;
 import javax.swing.Timer;
+import javax.swing.UIManager;
 
 
 /*
@@ -35,11 +37,12 @@ public class Map extends javax.swing.JFrame {
     //nodeSelection is used for selecting a node
     public int nodeSelected = 0;
     public Timer timer;
-
+    //public Font("Segoe UI",0,18);
     /**
      * Creates new form Map
      */
     public Map() {
+        
         initComponents();
 
         //clears off the information panel
@@ -104,13 +107,14 @@ public class Map extends javax.swing.JFrame {
         buttonNext = new javax.swing.JButton();
         buttonBackdrop = new javax.swing.JButton();
 
-        popupMenu.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        popupMenu.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         popupMenu.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 popupMenuFocusLost(evt);
             }
         });
 
+        menuItemClose.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         menuItemClose.setText("Close Menu");
         menuItemClose.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -120,10 +124,13 @@ public class Map extends javax.swing.JFrame {
         popupMenu.add(menuItemClose);
 
         jMenu1.setText("jMenu1");
+        jMenu1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
 
+        jMenuItem1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jMenuItem1.setText("jMenuItem1");
         jMenu1.add(jMenuItem1);
 
+        jMenuItem2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jMenuItem2.setText("jMenuItem2");
         jMenu1.add(jMenuItem2);
 
@@ -742,6 +749,7 @@ public class Map extends javax.swing.JFrame {
             //creates the menu item for movement, as only one army being
             //present is the only requirement for it
             final JMenuItem menuItemMove = new JMenuItem("Movement");
+                menuItemMove.setFont(new Font("Segoe UI",Font.PLAIN,18));
             //adds the action for when this item is clicked
             menuItemMove.addActionListener(new ActionListener() {
                 @Override
@@ -759,6 +767,7 @@ public class Map extends javax.swing.JFrame {
         if (divisableArmy.equals(true)) {
             //creates the menu item for dividing
             final JMenuItem menuItemDivide = new JMenuItem("Divide");
+                    menuItemDivide.setFont(new Font("Segoe UI",Font.PLAIN,18));
             //adds the action for when this item is clicked
             menuItemDivide.addActionListener(new ActionListener() {
                 @Override
@@ -774,6 +783,7 @@ public class Map extends javax.swing.JFrame {
         if (mergableArmy.equals(true)) {
             //creates the menu item for merging
             final JMenuItem menuItemMerge = new JMenuItem("Merge");
+                menuItemMerge.setFont(new Font("Segoe UI",Font.PLAIN,18));
             //adds the action for when this item is clicked
             menuItemMerge.addActionListener(new ActionListener() {
                 @Override
@@ -818,6 +828,7 @@ public class Map extends javax.swing.JFrame {
                 //creates the item for this army unit on this location.
                 //The action is to send current armyToMove to MoveTo method.
                 JMenuItem menuItemMove = new JMenuItem(armySize);
+                    menuItemMove.setFont(new Font("Segoe UI",Font.PLAIN,18));
                 menuItemMove.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent event) {
@@ -851,6 +862,7 @@ public class Map extends javax.swing.JFrame {
                     final String movingTo = roads.locationB.name;
                     //creates the menu item for this road
                     JMenuItem menuItemMove = new JMenuItem(movingTo);
+                        menuItemMove.setFont(new Font("Segoe UI",Font.PLAIN,18));
                     final Road roads2 = roads;
                     final String listText = (ConvertFullSize(army[0][1], army[0][3])
                             + "army unit will move from " + roads.locationA.name + " to "
@@ -889,6 +901,7 @@ public class Map extends javax.swing.JFrame {
                         final String movingTo = roads.locationB.name;
                         //creates the menu item for this road
                         JMenuItem menuItemMove = new JMenuItem(movingTo);
+                            menuItemMove.setFont(new Font("Segoe UI",Font.PLAIN,18));
                         final Road roads2 = roads;
                         final String listText = (ConvertFullSize(army[0][1], army[0][3])
                                 + "army unit will move from " + roads.locationA.name + " to "
@@ -931,6 +944,7 @@ public class Map extends javax.swing.JFrame {
                                 String movingToFerry = roads.locationB.name;
                                 //creates the menu item for this road
                                 JMenuItem menuItemMove2 = new JMenuItem("Ferry small army to " + movingToFerry);
+                                    menuItemMove2.setFont(new Font("Segoe UI",Font.PLAIN,18));
                                 final Road roads3 = roads;
                                 final String listText2 = (ConvertFullSize(army[0][1], army[0][3])
                                         + "army unit will ferry a small army from " + roads.locationA.name + " to "
@@ -972,6 +986,7 @@ public class Map extends javax.swing.JFrame {
                     final String movingTo = roads.locationA.name;
                     //creates the menu item for this road
                     JMenuItem menuItemMove = new JMenuItem(movingTo);
+                        menuItemMove.setFont(new Font("Segoe UI",Font.PLAIN,18));
                     final Road roads2 = roads;
                     final String listText = (ConvertFullSize(army[0][1], army[0][3])
                             + "army unit will move from " + roads.locationB.name + " to "
@@ -1008,6 +1023,7 @@ public class Map extends javax.swing.JFrame {
                         final String movingTo = roads.locationA.name;
                         //creates the menu item for this road
                         JMenuItem menuItemMove = new JMenuItem(movingTo);
+                            menuItemMove.setFont(new Font("Segoe UI",Font.PLAIN,18));
                         final Road roads2 = roads;
                         final String listText = (ConvertFullSize(army[0][1], army[0][3])
                                 + "army unit will move from " + roads.locationB.name + " to "
@@ -1050,6 +1066,7 @@ public class Map extends javax.swing.JFrame {
                                 final String movingTo2 = roads.locationA.name;
                                 //creates the menu item for this road
                                 JMenuItem menuItemMove2 = new JMenuItem("Ferry small army to " + movingTo2);
+                                    menuItemMove2.setFont(new Font("Segoe UI",Font.PLAIN,18));
                                 final Road roads22 = roads;
                                 final String listText2 = (ConvertFullSize(army[0][1], army[0][3])
                                         + "army unit will ferry a small army from " + roads.locationB.name + " to "
@@ -1092,6 +1109,7 @@ public class Map extends javax.swing.JFrame {
                 final String movingTo = roads.locationA.name;
                 //creates the menu item for this road
                 JMenuItem menuItemMove = new JMenuItem("Stay at " + movingTo);
+                    menuItemMove.setFont(new Font("Segoe UI",Font.PLAIN,18));
                 final Road roads2 = roads;
                 final String listText = (ConvertFullSize(army[0][1], army[0][3])
                         + "army unit will remain at " + roads.locationA.name);
@@ -1126,6 +1144,7 @@ public class Map extends javax.swing.JFrame {
                 final String movingTo = "Stay at " + roads.locationB.name;
                 //creates the menu item for this road
                 JMenuItem menuItemMove = new JMenuItem(movingTo);
+                    menuItemMove.setFont(new Font("Segoe UI",Font.PLAIN,18));
                 final Road roads2 = roads;
                 final String listText = (ConvertFullSize(army[0][1], army[0][3])
                         + "army unit will remain at " + roads.locationB.name);
@@ -1177,6 +1196,7 @@ public class Map extends javax.swing.JFrame {
                 if (army[i][1] > 5) {
                     //creates the menu item for this army to divide
                     JMenuItem menuItemMove = new JMenuItem(ConvertFullSize(army[i][1], army[i][3]));
+                        menuItemMove.setFont(new Font("Segoe UI",Font.PLAIN,18));
                     final int i2 = i;
                     final String listItem = (ConvertFullSize(army[i][1], army[i][3]))
                             + "army at " + (Scenario.listOfNodes[nodeSelected].name)
@@ -1254,6 +1274,7 @@ public class Map extends javax.swing.JFrame {
                                     final int size = army.size;
 
                                     JMenuItem menuItemMerged = new JMenuItem(ConvertFullSize(army.size, isFleet));
+                                        menuItemMerged.setFont(new Font("Segoe UI",Font.PLAIN,18));
                                     menuItemMerged.addActionListener(new ActionListener() {
                                         @Override
                                         public void actionPerformed(ActionEvent event) {
@@ -1290,6 +1311,7 @@ public class Map extends javax.swing.JFrame {
                                 final int size = army.size;
 
                                 JMenuItem menuItemMerged = new JMenuItem(ConvertFullSize(army.size, isFleet));
+                                    menuItemMerged.setFont(new Font("Segoe UI",Font.PLAIN,18));
                                 menuItemMerged.addActionListener(new ActionListener() {
                                     @Override
                                     public void actionPerformed(ActionEvent event) {
@@ -1337,6 +1359,7 @@ public class Map extends javax.swing.JFrame {
                                     + " have merged";
 
                             JMenuItem menuItemMerge = new JMenuItem(ConvertFullSize(army.size, isFleet));
+                                menuItemMerge.setFont(new Font("Segoe UI",Font.PLAIN,18));
                             menuItemMerge.addActionListener(new ActionListener() {
                                 @Override
                                 public void actionPerformed(ActionEvent event) {
@@ -1393,6 +1416,7 @@ public class Map extends javax.swing.JFrame {
                                     + " have merged";
 
                             JMenuItem menuItemMerge = new JMenuItem(ConvertFullSize(army.size, isFleet));
+                                menuItemMerge.setFont(new Font("Segoe UI",Font.PLAIN,18));
                             menuItemMerge.addActionListener(new ActionListener() {
                                 @Override
                                 public void actionPerformed(ActionEvent event) {
