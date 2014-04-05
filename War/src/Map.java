@@ -1,5 +1,8 @@
 
+import java.awt.Dimension;
 import java.awt.Image;
+import java.awt.MouseInfo;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
@@ -9,7 +12,6 @@ import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JMenuItem;
-import javax.swing.JOptionPane;
 import javax.swing.Timer;
 
 
@@ -45,6 +47,7 @@ public class Map extends javax.swing.JFrame {
         buttonNext.setVisible(false);
         frameFloatingInfo.setVisible(true);
 
+        //calls to a game frontend initializing method
         GameStart();
     }
 
@@ -75,7 +78,6 @@ public class Map extends javax.swing.JFrame {
         labelTimer = new javax.swing.JLabel();
         list1 = new java.awt.List();
         labelBackdrop = new javax.swing.JLabel();
-        butonX = new javax.swing.JButton();
         menuInfo = new javax.swing.JPanel();
         labelInfo1 = new javax.swing.JLabel();
         labelInfo2 = new javax.swing.JLabel();
@@ -127,25 +129,24 @@ public class Map extends javax.swing.JFrame {
 
         popupMenu.add(jMenu1);
 
-        frameFloatingInfo.setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        frameFloatingInfo.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         frameFloatingInfo.setBounds(new java.awt.Rectangle(860, 390, 0, 0));
-        frameFloatingInfo.setMaximumSize(new java.awt.Dimension(420, 275));
-        frameFloatingInfo.setMinimumSize(new java.awt.Dimension(420, 275));
+        frameFloatingInfo.setMaximumSize(new java.awt.Dimension(425, 300));
+        frameFloatingInfo.setMinimumSize(new java.awt.Dimension(425, 300));
         frameFloatingInfo.setName(""); // NOI18N
-        frameFloatingInfo.setUndecorated(true);
-        frameFloatingInfo.setPreferredSize(new java.awt.Dimension(420, 275));
+        frameFloatingInfo.setPreferredSize(new java.awt.Dimension(425, 300));
         frameFloatingInfo.setResizable(false);
         frameFloatingInfo.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         labelTurnCount.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         labelTurnCount.setText("Turn: 1");
-        frameFloatingInfo.getContentPane().add(labelTurnCount, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 70, -1, -1));
+        frameFloatingInfo.getContentPane().add(labelTurnCount, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 80, -1, -1));
 
         labelCurPlayer.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         labelCurPlayer.setText("text");
-        frameFloatingInfo.getContentPane().add(labelCurPlayer, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 70, -1, -1));
+        frameFloatingInfo.getContentPane().add(labelCurPlayer, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 80, -1, -1));
 
-        buttonFinishTurn.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        buttonFinishTurn.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         buttonFinishTurn.setText("Finish Turn");
         buttonFinishTurn.setContentAreaFilled(false);
         buttonFinishTurn.addActionListener(new java.awt.event.ActionListener() {
@@ -153,7 +154,7 @@ public class Map extends javax.swing.JFrame {
                 buttonFinishTurnActionPerformed(evt);
             }
         });
-        frameFloatingInfo.getContentPane().add(buttonFinishTurn, new org.netbeans.lib.awtextra.AbsoluteConstraints(277, 10, -1, 40));
+        frameFloatingInfo.getContentPane().add(buttonFinishTurn, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 10, -1, 40));
 
         buttonMenu.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         buttonMenu.setText("Main Menu");
@@ -182,82 +183,70 @@ public class Map extends javax.swing.JFrame {
         labelOpponent.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         labelOpponent.setText("text");
         labelOpponent.setName("labelOpponent"); // NOI18N
-        frameFloatingInfo.getContentPane().add(labelOpponent, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, -1, -1));
+        frameFloatingInfo.getContentPane().add(labelOpponent, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, -1, -1));
 
         labelScenario.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         labelScenario.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         labelScenario.setText("text");
-        frameFloatingInfo.getContentPane().add(labelScenario, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 70, -1, -1));
+        frameFloatingInfo.getContentPane().add(labelScenario, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 80, -1, -1));
 
         labelPoliticalPower.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         labelPoliticalPower.setText("text");
-        frameFloatingInfo.getContentPane().add(labelPoliticalPower, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 90, -1, -1));
+        frameFloatingInfo.getContentPane().add(labelPoliticalPower, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 100, -1, -1));
 
         labelSeason.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         labelSeason.setText("text");
-        frameFloatingInfo.getContentPane().add(labelSeason, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, -1, -1));
+        frameFloatingInfo.getContentPane().add(labelSeason, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, -1, -1));
 
         labelTimer.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        frameFloatingInfo.getContentPane().add(labelTimer, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 90, -1, -1));
+        frameFloatingInfo.getContentPane().add(labelTimer, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 100, 110, 10));
 
         list1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        frameFloatingInfo.getContentPane().add(list1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 400, 140));
+        frameFloatingInfo.getContentPane().add(list1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, 380, 130));
 
         labelBackdrop.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/MapScreen-Side-backdrop.png"))); // NOI18N
         labelBackdrop.setToolTipText(null);
         frameFloatingInfo.getContentPane().add(labelBackdrop, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 420, -1));
 
-        frameFloatingInfo.getAccessibleContext().setAccessibleParent(frameFloatingInfo);
-
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(204, 255, 255));
-        setMaximumSize(new java.awt.Dimension(860, 560));
-        setMinimumSize(new java.awt.Dimension(860, 560));
-        setUndecorated(true);
+        setMaximumSize(new java.awt.Dimension(865, 588));
+        setMinimumSize(new java.awt.Dimension(865, 588));
+        setPreferredSize(new java.awt.Dimension(865, 588));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        butonX.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/X.png"))); // NOI18N
-        butonX.setBorderPainted(false);
-        butonX.setContentAreaFilled(false);
-        butonX.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                butonXActionPerformed(evt);
-            }
-        });
-        getContentPane().add(butonX, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 0, 20, -1));
 
         menuInfo.setMaximumSize(new java.awt.Dimension(700, 70));
         menuInfo.setMinimumSize(new java.awt.Dimension(700, 70));
         menuInfo.setOpaque(false);
         menuInfo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        labelInfo1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        labelInfo1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         labelInfo1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         labelInfo1.setText("city name");
         menuInfo.add(labelInfo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, -1, -1));
 
-        labelInfo2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        labelInfo2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         labelInfo2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         labelInfo2.setText("node type");
         menuInfo.add(labelInfo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 10, -1, -1));
 
-        labelInfo3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        labelInfo3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         labelInfo3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         labelInfo3.setText("supplies");
         menuInfo.add(labelInfo3, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 10, -1, -1));
 
-        labelInfo4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        labelInfo4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         labelInfo4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         labelInfo4.setText("weather");
         menuInfo.add(labelInfo4, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 10, -1, -1));
 
-        labelInfo5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        labelInfo5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         labelInfo5.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         labelInfo5.setText("player's armies");
         menuInfo.add(labelInfo5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, -1, -1));
 
-        labelInfo6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        labelInfo6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         labelInfo6.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         labelInfo6.setText("enemy's armies");
         menuInfo.add(labelInfo6, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 40, -1, -1));
@@ -495,21 +484,35 @@ public class Map extends javax.swing.JFrame {
         ActionListener timerDone = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
+                //decrements the timer
                 Global.timer--;
+                //checks if timer has reached 0
                 if (Global.timer == 0) {
+                    //stops the timer and ends the game
                     timer.stop();
                     Game.IsGameEnd();
                 }
                 if (Global.intGameOver == 1) {
+                    //also checks if game has ended by other means
+                    //and stops the timer and calls gameover
                     timer.stop();
                     GameOver();
 
                 } else {
+                    //else, it displays teh current time on the sidescreen
+                    //minuts is straightforward int/60
                     String minutes = (Global.timer / 60) + "";
+                    //seconds is a little more complex
                     String seconds = "";
+                    //first it checks if there are less than ten seconds
+                    //remaining, per minute or otherwise
                     if ((Global.timer - (Global.timer / 60 * 60)) >= 10) {
+                        //sets the seconds to be the int/60 (for minutes)
+                        //SUBTRACTED from the int, so only the amount of
+                        //seconds in the count remains
                         seconds = (Global.timer - (Global.timer / 60 * 60)) + "";
                     } else {
+                        //adds a 0 to the start if less than ten
                         seconds = "0" + (Global.timer - (Global.timer / 60 * 60));
                     }
 
@@ -517,6 +520,7 @@ public class Map extends javax.swing.JFrame {
                 }
             }
         };
+        //sets up the timer for new timers at game start
         timer = new Timer(1000, timerDone);
         timer.start();
 
@@ -541,7 +545,11 @@ public class Map extends javax.swing.JFrame {
 //Action will control all node-based actions. Dimmed public because no need
 //for hidden values, and allows information to be passed more easily
     public void Action() {
-        //DISPLAY SUPPLY LEVEL TOO ----------------------------------------------------------------------
+        //obtains the x and y coordinates of the mouse
+        x = MouseInfo.getPointerInfo().getLocation().x;
+        y = MouseInfo.getPointerInfo().getLocation().y; 
+        
+        //sets node colours
         ClearMenuInfo();
         try {
             SetDefaultColours();
@@ -1874,99 +1882,71 @@ public class Map extends javax.swing.JFrame {
 
     private void nodePlaceholder1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nodePlaceholder1ActionPerformed
         nodeSelected = 0;
-        x = nodePlaceholder1.getX();
-        y = nodePlaceholder1.getY();
         Action();
     }//GEN-LAST:event_nodePlaceholder1ActionPerformed
 
     private void nodePlaceholder2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nodePlaceholder2ActionPerformed
-        nodeSelected = 1;
-        x = nodePlaceholder2.getX();
-        y = nodePlaceholder2.getY();
+        nodeSelected = 1; 
         Action();
     }//GEN-LAST:event_nodePlaceholder2ActionPerformed
 
     private void nodePlaceholder3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nodePlaceholder3ActionPerformed
         nodeSelected = 2;
-        x = nodePlaceholder3.getX();
-        y = nodePlaceholder3.getY();
         Action();
     }//GEN-LAST:event_nodePlaceholder3ActionPerformed
 
     private void nodePlaceholder4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nodePlaceholder4ActionPerformed
         nodeSelected = 3;
-        x = nodePlaceholder4.getX();
-        y = nodePlaceholder4.getY();
         Action();
     }//GEN-LAST:event_nodePlaceholder4ActionPerformed
 
     private void nodePlaceholder5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nodePlaceholder5ActionPerformed
         nodeSelected = 4;
-        x = nodePlaceholder5.getX();
-        y = nodePlaceholder5.getY();
         Action();
     }//GEN-LAST:event_nodePlaceholder5ActionPerformed
 
     private void nodePlaceholder6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nodePlaceholder6ActionPerformed
         nodeSelected = 5;
-        x = nodePlaceholder6.getX();
-        y = nodePlaceholder6.getY();
         Action();
     }//GEN-LAST:event_nodePlaceholder6ActionPerformed
 
     private void nodePlaceholder7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nodePlaceholder7ActionPerformed
         nodeSelected = 6;
-        x = nodePlaceholder7.getX();
-        y = nodePlaceholder7.getY();
         Action();
     }//GEN-LAST:event_nodePlaceholder7ActionPerformed
 
     private void nodePlaceholder8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nodePlaceholder8ActionPerformed
         nodeSelected = 7;
-        x = nodePlaceholder8.getX();
-        y = nodePlaceholder8.getY();
         Action();
     }//GEN-LAST:event_nodePlaceholder8ActionPerformed
 
     private void nodePlaceholder9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nodePlaceholder9ActionPerformed
         nodeSelected = 8;
-        x = nodePlaceholder9.getX();
-        y = nodePlaceholder9.getY();
         Action();
     }//GEN-LAST:event_nodePlaceholder9ActionPerformed
 
     private void nodePlaceholder10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nodePlaceholder10ActionPerformed
         nodeSelected = 9;
-        x = nodePlaceholder10.getX();
-        y = nodePlaceholder10.getY();
         Action();
     }//GEN-LAST:event_nodePlaceholder10ActionPerformed
 
     private void nodePlaceholder11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nodePlaceholder11ActionPerformed
         nodeSelected = 10;
-        x = nodePlaceholder11.getX();
-        y = nodePlaceholder11.getY();
         Action();
     }//GEN-LAST:event_nodePlaceholder11ActionPerformed
 
     private void nodePlaceholder12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nodePlaceholder12ActionPerformed
         nodeSelected = 11;
-        x = nodePlaceholder12.getX();
-        y = nodePlaceholder12.getY();
         Action();
     }//GEN-LAST:event_nodePlaceholder12ActionPerformed
 
     private void nodePlaceholder13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nodePlaceholder13ActionPerformed
         nodeSelected = 12;
-        x = nodePlaceholder13.getX();
-        y = nodePlaceholder13.getY();
         Action();
     }//GEN-LAST:event_nodePlaceholder13ActionPerformed
 
     private void nodePlaceholder14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nodePlaceholder14ActionPerformed
         nodeSelected = 13;
-        x = nodePlaceholder14.getX();
-        y = nodePlaceholder14.getY();
         Action();
     }//GEN-LAST:event_nodePlaceholder14ActionPerformed
 
@@ -2140,10 +2120,6 @@ public class Map extends javax.swing.JFrame {
         SetColours();
     }//GEN-LAST:event_buttonBackdropActionPerformed
 
-    private void butonXActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butonXActionPerformed
-        System.exit(0);
-    }//GEN-LAST:event_butonXActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -2196,7 +2172,6 @@ public class Map extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton butonX;
     private javax.swing.JButton buttonBackdrop;
     private javax.swing.JButton buttonExit;
     private javax.swing.JButton buttonFinishTurn;

@@ -1,4 +1,6 @@
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import javax.swing.JOptionPane;
 
 /*
@@ -18,6 +20,10 @@ public class MainMenu extends javax.swing.JFrame {
      */
     public MainMenu() {
         initComponents();
+        //sets window to be centered
+        Dimension dimensions = Toolkit.getDefaultToolkit().getScreenSize();
+        this.setLocation(dimensions.width/2-this.getSize().width/2, dimensions.height/2-this.getSize().height/2);
+        //ensures the opponent is reset, in case user hit main menu during a match
         Global.opponent = false;
         Global.ResetGlobals();
     }
@@ -32,7 +38,6 @@ public class MainMenu extends javax.swing.JFrame {
     private void initComponents() {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
-        butonX = new javax.swing.JButton();
         labelTitle = new javax.swing.JLabel();
         buttonScenario1 = new javax.swing.JButton();
         buttonScenario2 = new javax.swing.JButton();
@@ -42,15 +47,101 @@ public class MainMenu extends javax.swing.JFrame {
         buttonEnd = new javax.swing.JButton();
         buttonHowTo = new javax.swing.JButton();
         labelBackgroundImage = new javax.swing.JLabel();
+        butonX = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(204, 204, 204));
         setBounds(new java.awt.Rectangle(100, 100, 0, 0));
-        setMaximumSize(new java.awt.Dimension(362, 253));
-        setMinimumSize(new java.awt.Dimension(362, 253));
-        setUndecorated(true);
+        setMaximumSize(new java.awt.Dimension(605, 520));
+        setMinimumSize(new java.awt.Dimension(605, 520));
+        setPreferredSize(new java.awt.Dimension(605, 520));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        labelTitle.setFont(new java.awt.Font("Times New Roman", 1, 48)); // NOI18N
+        labelTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelTitle.setText("Roman Civil War");
+        getContentPane().add(labelTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 30, 450, 60));
+
+        buttonScenario1.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
+        buttonScenario1.setText("Scenario 1");
+        buttonScenario1.setContentAreaFilled(false);
+        buttonScenario1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonScenario1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(buttonScenario1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 260, 120));
+
+        buttonScenario2.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
+        buttonScenario2.setText("Scenario 2");
+        buttonScenario2.setContentAreaFilled(false);
+        buttonScenario2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonScenario2ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(buttonScenario2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 250, 260, 110));
+
+        buttonScenario3.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
+        buttonScenario3.setText("Scenario 3");
+        buttonScenario3.setContentAreaFilled(false);
+        buttonScenario3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonScenario3ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(buttonScenario3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 360, 260, 110));
+
+        buttonGroup1.add(radioAI);
+        radioAI.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        radioAI.setSelected(true);
+        radioAI.setText("Against AI");
+        radioAI.setContentAreaFilled(false);
+        radioAI.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radioAIActionPerformed(evt);
+            }
+        });
+        getContentPane().add(radioAI, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 130, 180, 70));
+
+        buttonGroup1.add(radioPlayer);
+        radioPlayer.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        radioPlayer.setText("Against Player");
+        radioPlayer.setContentAreaFilled(false);
+        radioPlayer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radioPlayerActionPerformed(evt);
+            }
+        });
+        getContentPane().add(radioPlayer, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 200, 180, 70));
+
+        buttonEnd.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        buttonEnd.setText("End Game");
+        buttonEnd.setContentAreaFilled(false);
+        buttonEnd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonEndActionPerformed(evt);
+            }
+        });
+        getContentPane().add(buttonEnd, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 400, 260, 70));
+
+        buttonHowTo.setFont(new java.awt.Font("Times New Roman", 1, 32)); // NOI18N
+        buttonHowTo.setText("How to Play");
+        buttonHowTo.setContentAreaFilled(false);
+        buttonHowTo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonHowToActionPerformed(evt);
+            }
+        });
+        getContentPane().add(buttonHowTo, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 320, 260, 80));
+
+        labelBackgroundImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/MainMenu-Backdrop.png"))); // NOI18N
+        labelBackgroundImage.setToolTipText(null);
+        labelBackgroundImage.setMaximumSize(new java.awt.Dimension(440, 450));
+        labelBackgroundImage.setMinimumSize(new java.awt.Dimension(440, 450));
+        labelBackgroundImage.setPreferredSize(new java.awt.Dimension(440, 450));
+        getContentPane().add(labelBackgroundImage, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 620, 500));
 
         butonX.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/X.png"))); // NOI18N
         butonX.setBorderPainted(false);
@@ -62,88 +153,6 @@ public class MainMenu extends javax.swing.JFrame {
         });
         getContentPane().add(butonX, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 0, 20, -1));
 
-        labelTitle.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
-        labelTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        labelTitle.setText("Roman Civil War");
-        getContentPane().add(labelTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 10, 290, 50));
-
-        buttonScenario1.setFont(new java.awt.Font("Times New Roman", 0, 26)); // NOI18N
-        buttonScenario1.setText("Scenario 1");
-        buttonScenario1.setContentAreaFilled(false);
-        buttonScenario1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonScenario1ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(buttonScenario1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, 150, 60));
-
-        buttonScenario2.setFont(new java.awt.Font("Times New Roman", 0, 26)); // NOI18N
-        buttonScenario2.setText("Scenario 2");
-        buttonScenario2.setContentAreaFilled(false);
-        buttonScenario2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonScenario2ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(buttonScenario2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, 150, 60));
-
-        buttonScenario3.setFont(new java.awt.Font("Times New Roman", 0, 26)); // NOI18N
-        buttonScenario3.setText("Scenario 3");
-        buttonScenario3.setContentAreaFilled(false);
-        buttonScenario3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonScenario3ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(buttonScenario3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 210, 150, 60));
-
-        buttonGroup1.add(radioAI);
-        radioAI.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        radioAI.setSelected(true);
-        radioAI.setText("Against AI");
-        radioAI.setContentAreaFilled(false);
-        radioAI.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                radioAIActionPerformed(evt);
-            }
-        });
-        getContentPane().add(radioAI, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 90, 110, -1));
-
-        buttonGroup1.add(radioPlayer);
-        radioPlayer.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        radioPlayer.setText("Against Player");
-        radioPlayer.setContentAreaFilled(false);
-        radioPlayer.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                radioPlayerActionPerformed(evt);
-            }
-        });
-        getContentPane().add(radioPlayer, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 130, -1, -1));
-
-        buttonEnd.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        buttonEnd.setText("End Game");
-        buttonEnd.setContentAreaFilled(false);
-        buttonEnd.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonEndActionPerformed(evt);
-            }
-        });
-        getContentPane().add(buttonEnd, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 240, 150, 40));
-
-        buttonHowTo.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        buttonHowTo.setText("How to Play");
-        buttonHowTo.setContentAreaFilled(false);
-        buttonHowTo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonHowToActionPerformed(evt);
-            }
-        });
-        getContentPane().add(buttonHowTo, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 200, 150, 40));
-
-        labelBackgroundImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/MainMenu-Backdrop.png"))); // NOI18N
-        labelBackgroundImage.setToolTipText(null);
-        getContentPane().add(labelBackgroundImage, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 390, 300));
-
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -154,21 +163,15 @@ public class MainMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonScenario1ActionPerformed
 
     private void buttonScenario2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonScenario2ActionPerformed
-//        Global.intScenario = 2;
-//        new Teams().setVisible(true);
-//        MainMenu.this.dispose();
-        
-        JOptionPane.showMessageDialog(null,
-    "There is presently only one scenario, please select scenario 1, sorry.");
+        Global.intScenario = 2;
+        new Teams().setVisible(true);
+        MainMenu.this.dispose();
     }//GEN-LAST:event_buttonScenario2ActionPerformed
 
     private void buttonScenario3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonScenario3ActionPerformed
-//        Global.intScenario = 3;
-//        new Teams().setVisible(true);
-//        MainMenu.this.dispose();
-        
-        JOptionPane.showMessageDialog(null,
-    "There is presently only one scenario, please select scenario 1, sorry.");
+        Global.intScenario = 3;
+        new Teams().setVisible(true);
+        MainMenu.this.dispose();
     }//GEN-LAST:event_buttonScenario3ActionPerformed
 
     private void radioAIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioAIActionPerformed

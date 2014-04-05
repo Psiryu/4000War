@@ -1,4 +1,6 @@
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import javax.swing.JFrame;
 
 /*
@@ -18,6 +20,10 @@ public class HowToPlay extends javax.swing.JFrame {
      */
     public HowToPlay() {
         initComponents();
+        
+        //sets window to be centered
+        Dimension dimensions = Toolkit.getDefaultToolkit().getScreenSize();
+        this.setLocation(dimensions.width/2-this.getSize().width/2, dimensions.height/2-this.getSize().height/2);
     }
 
     /**
@@ -44,10 +50,10 @@ public class HowToPlay extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBounds(new java.awt.Rectangle(100, 100, 0, 0));
-        setMaximumSize(new java.awt.Dimension(475, 275));
-        setMinimumSize(new java.awt.Dimension(475, 275));
+        setMaximumSize(new java.awt.Dimension(600, 350));
+        setMinimumSize(new java.awt.Dimension(600, 350));
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(475, 275));
+        setPreferredSize(new java.awt.Dimension(600, 350));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -151,7 +157,7 @@ public class HowToPlay extends javax.swing.JFrame {
 
         labelBackdrop.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/HelpScreen-backdrop.png"))); // NOI18N
         labelBackdrop.setToolTipText(null);
-        getContentPane().add(labelBackdrop, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 480, -1));
+        getContentPane().add(labelBackdrop, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 500, 300));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

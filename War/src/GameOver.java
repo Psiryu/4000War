@@ -1,4 +1,6 @@
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import javax.swing.JScrollPane;
 
 /*
@@ -19,6 +21,10 @@ public class GameOver extends javax.swing.JFrame {
     public GameOver() {
         initComponents();
         
+        //sets window to be centered
+        Dimension dimensions = Toolkit.getDefaultToolkit().getScreenSize();
+        this.setLocation(dimensions.width/2-this.getSize().width/2, dimensions.height/2-this.getSize().height/2);
+        
         labelWinner.setText(Global.gameSummary);
         textWhy.setText(Global.gameSummary2);
     }
@@ -32,7 +38,6 @@ public class GameOver extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        butonX = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         labelGameOver = new javax.swing.JLabel();
         labelWinner = new javax.swing.JLabel();
@@ -42,22 +47,13 @@ public class GameOver extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBounds(new java.awt.Rectangle(100, 100, 0, 0));
-        setMaximumSize(new java.awt.Dimension(260, 310));
-        setMinimumSize(new java.awt.Dimension(260, 310));
-        setUndecorated(true);
+        setMaximumSize(new java.awt.Dimension(605, 515));
+        setMinimumSize(new java.awt.Dimension(605, 515));
+        setPreferredSize(new java.awt.Dimension(605, 520));
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        butonX.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/X.png"))); // NOI18N
-        butonX.setBorderPainted(false);
-        butonX.setContentAreaFilled(false);
-        butonX.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                butonXActionPerformed(evt);
-            }
-        });
-        getContentPane().add(butonX, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 0, 20, -1));
-
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jButton1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jButton1.setText("Main Menu");
         jButton1.setBorderPainted(false);
         jButton1.setContentAreaFilled(false);
@@ -66,17 +62,17 @@ public class GameOver extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, 240, 60));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 410, 530, 60));
 
         labelGameOver.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         labelGameOver.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelGameOver.setText("Game over!");
         labelGameOver.setToolTipText(null);
-        getContentPane().add(labelGameOver, new org.netbeans.lib.awtextra.AbsoluteConstraints(-3, 10, 240, 60));
+        getContentPane().add(labelGameOver, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 530, 70));
 
         labelWinner.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         labelWinner.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        getContentPane().add(labelWinner, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 220, -1));
+        getContentPane().add(labelWinner, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, 220, 40));
 
         textWhy.setEditable(false);
         textWhy.setColumns(20);
@@ -90,18 +86,17 @@ public class GameOver extends javax.swing.JFrame {
         textWhy.setOpaque(false);
         jScrollPane1.setViewportView(textWhy);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 240, 100));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, 560, 160));
 
         labelBackground.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/TeamSelect-backdrop.png"))); // NOI18N
         labelBackground.setToolTipText(null);
-        getContentPane().add(labelBackground, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 260, 310));
+        labelBackground.setMaximumSize(new java.awt.Dimension(605, 520));
+        labelBackground.setMinimumSize(new java.awt.Dimension(605, 520));
+        labelBackground.setPreferredSize(new java.awt.Dimension(605, 520));
+        getContentPane().add(labelBackground, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 610, 500));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void butonXActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butonXActionPerformed
-        System.exit(0);
-    }//GEN-LAST:event_butonXActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         //button for quitting current scenario and returning to main menu
@@ -147,7 +142,6 @@ public class GameOver extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton butonX;
     private javax.swing.JButton jButton1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel labelBackground;
