@@ -9,8 +9,6 @@ import javax.swing.JOptionPane;
 /**
  * CombatUnit Class
  *
- * @author Jason Englehart
- *
  * This class outlines the construction, storage and use of the CombatUnit
  * object. The CombatUnit object outlines the entities which the player
  * manipulates through the interface. CombatUnits interact with each other

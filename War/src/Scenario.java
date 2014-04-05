@@ -7,8 +7,6 @@ import javax.swing.JOptionPane;
 /**
  * Scenario Class
  *
- * @author Ben Yntema
- *
  * Through this class, the preliminary game information is tabulated and
  * established based on the parameters of the chosen scenario. This class
  * initializes the properties of the game and subsequent player, units, and map

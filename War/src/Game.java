@@ -5,8 +5,6 @@ import javax.swing.JOptionPane;
 /**
  * Game Class
  *
- * @author Jason Englehart
- *
  * This class stores information regarding the game state and variables that
  * effect the overall behavior of the map.
  *
