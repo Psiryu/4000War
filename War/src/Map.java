@@ -1,9 +1,7 @@
 
-import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.MouseInfo;
-import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
@@ -14,7 +12,6 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JMenuItem;
 import javax.swing.Timer;
-import javax.swing.UIManager;
 
 
 /*
@@ -849,12 +846,14 @@ public class Map extends javax.swing.JFrame {
             //present is the only requirement for it
             final JMenuItem menuItemMove = new JMenuItem("Movement");
                 menuItemMove.setFont(new Font("Segoe UI",Font.PLAIN,18));
+                
             //adds the action for when this item is clicked
             menuItemMove.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent event) {
                     //sends the army list to InitializeMovement when clicked
                     InitializeMovement(armies);
+                    
                 }
             });
 

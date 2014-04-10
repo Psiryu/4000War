@@ -62,7 +62,7 @@ public class GameOver extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 410, 530, 60));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 410, 530, 50));
 
         labelGameOver.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         labelGameOver.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -72,10 +72,11 @@ public class GameOver extends javax.swing.JFrame {
 
         labelWinner.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         labelWinner.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        getContentPane().add(labelWinner, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, 220, 40));
+        getContentPane().add(labelWinner, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, 560, 40));
 
         textWhy.setEditable(false);
         textWhy.setColumns(20);
+        textWhy.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         textWhy.setLineWrap(true);
         textWhy.setRows(5);
         textWhy.setToolTipText(null);

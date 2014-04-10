@@ -36,7 +36,6 @@ public class HowToPlay extends javax.swing.JFrame {
     private void initComponents() {
 
         groupHelpTypes = new javax.swing.ButtonGroup();
-        butonX = new javax.swing.JButton();
         buttonMenu = new javax.swing.JToggleButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         textHelp = new javax.swing.JTextArea();
@@ -50,24 +49,13 @@ public class HowToPlay extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBounds(new java.awt.Rectangle(100, 100, 0, 0));
-        setMaximumSize(new java.awt.Dimension(600, 350));
-        setMinimumSize(new java.awt.Dimension(600, 350));
-        setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(600, 350));
+        setMaximumSize(new java.awt.Dimension(605, 520));
+        setMinimumSize(new java.awt.Dimension(605, 520));
+        setPreferredSize(new java.awt.Dimension(605, 520));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        butonX.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/X.png"))); // NOI18N
-        butonX.setBorderPainted(false);
-        butonX.setContentAreaFilled(false);
-        butonX.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                butonXActionPerformed(evt);
-            }
-        });
-        getContentPane().add(butonX, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 0, 20, -1));
-
-        buttonMenu.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        buttonMenu.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         buttonMenu.setText("Main Menu");
         buttonMenu.setToolTipText(null);
         buttonMenu.setBorder(null);
@@ -77,11 +65,11 @@ public class HowToPlay extends javax.swing.JFrame {
                 buttonMenuActionPerformed(evt);
             }
         });
-        getContentPane().add(buttonMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 1, 110, 50));
+        getContentPane().add(buttonMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 190, 70));
 
         textHelp.setEditable(false);
         textHelp.setColumns(20);
-        textHelp.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        textHelp.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         textHelp.setLineWrap(true);
         textHelp.setRows(5);
         textHelp.setText("Select an item from the sidebar to learn more about it!");
@@ -93,9 +81,10 @@ public class HowToPlay extends javax.swing.JFrame {
         textHelp.setOpaque(false);
         jScrollPane1.setViewportView(textHelp);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(151, 63, 310, 190));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 120, 370, 330));
 
         groupHelpTypes.add(radioBasics);
+        radioBasics.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         radioBasics.setText("The Basics");
         radioBasics.setContentAreaFilled(false);
         radioBasics.addActionListener(new java.awt.event.ActionListener() {
@@ -103,9 +92,10 @@ public class HowToPlay extends javax.swing.JFrame {
                 radioBasicsActionPerformed(evt);
             }
         });
-        getContentPane().add(radioBasics, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 100, -1));
+        getContentPane().add(radioBasics, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 100, -1));
 
         groupHelpTypes.add(radioMap);
+        radioMap.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         radioMap.setText("Map Screen");
         radioMap.setContentAreaFilled(false);
         radioMap.addActionListener(new java.awt.event.ActionListener() {
@@ -113,9 +103,10 @@ public class HowToPlay extends javax.swing.JFrame {
                 radioMapActionPerformed(evt);
             }
         });
-        getContentPane().add(radioMap, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, -1, -1));
+        getContentPane().add(radioMap, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, -1, -1));
 
         groupHelpTypes.add(radioMapNodes);
+        radioMapNodes.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         radioMapNodes.setText("Map Nodes");
         radioMapNodes.setContentAreaFilled(false);
         radioMapNodes.addActionListener(new java.awt.event.ActionListener() {
@@ -123,9 +114,10 @@ public class HowToPlay extends javax.swing.JFrame {
                 radioMapNodesActionPerformed(evt);
             }
         });
-        getContentPane().add(radioMapNodes, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, -1, -1));
+        getContentPane().add(radioMapNodes, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 210, -1, -1));
 
         groupHelpTypes.add(radioActions);
+        radioActions.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         radioActions.setText("Actions");
         radioActions.setContentAreaFilled(false);
         radioActions.addActionListener(new java.awt.event.ActionListener() {
@@ -133,9 +125,10 @@ public class HowToPlay extends javax.swing.JFrame {
                 radioActionsActionPerformed(evt);
             }
         });
-        getContentPane().add(radioActions, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, -1, -1));
+        getContentPane().add(radioActions, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 250, -1, -1));
 
         groupHelpTypes.add(radioBattles);
+        radioBattles.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         radioBattles.setText("Battles");
         radioBattles.setContentAreaFilled(false);
         radioBattles.addActionListener(new java.awt.event.ActionListener() {
@@ -143,9 +136,10 @@ public class HowToPlay extends javax.swing.JFrame {
                 radioBattlesActionPerformed(evt);
             }
         });
-        getContentPane().add(radioBattles, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, 100, -1));
+        getContentPane().add(radioBattles, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 290, 100, -1));
 
         groupHelpTypes.add(radioVictory);
+        radioVictory.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         radioVictory.setText("Victory");
         radioVictory.setContentAreaFilled(false);
         radioVictory.addActionListener(new java.awt.event.ActionListener() {
@@ -153,11 +147,11 @@ public class HowToPlay extends javax.swing.JFrame {
                 radioVictoryActionPerformed(evt);
             }
         });
-        getContentPane().add(radioVictory, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 220, 100, -1));
+        getContentPane().add(radioVictory, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 330, 100, -1));
 
         labelBackdrop.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/HelpScreen-backdrop.png"))); // NOI18N
         labelBackdrop.setToolTipText(null);
-        getContentPane().add(labelBackdrop, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 500, 300));
+        getContentPane().add(labelBackdrop, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 600, 500));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -182,6 +176,7 @@ public class HowToPlay extends javax.swing.JFrame {
                 + "of both teams, and the type of battle (if one side is defending"
                 + " inside an annexed node or if the collision has occured"
                 + " on road).");
+        textHelp.setCaretPosition(0);
     }//GEN-LAST:event_radioBattlesActionPerformed
 
     private void radioBasicsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioBasicsActionPerformed
@@ -193,7 +188,7 @@ public class HowToPlay extends javax.swing.JFrame {
                 "followed by which team (represented as 'red' or 'blue') " +
                 "in that scenario you want to fight alongside." +
                 "\n\n   ");
-        
+        textHelp.setCaretPosition(0);
     }//GEN-LAST:event_radioBasicsActionPerformed
 
     private void radioVictoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioVictoryActionPerformed
@@ -221,11 +216,8 @@ public class HowToPlay extends javax.swing.JFrame {
                 + " limit before the game has ended. If the timer runs out, "
                 + "a winner will be determined via political power and army "
                 + "units remaining.");
+        textHelp.setCaretPosition(0);
     }//GEN-LAST:event_radioVictoryActionPerformed
-
-    private void butonXActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butonXActionPerformed
-        System.exit(0);
-    }//GEN-LAST:event_butonXActionPerformed
 
     private void radioMapNodesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioMapNodesActionPerformed
         textHelp.setText("The map screen contains location markers " +
@@ -257,6 +249,7 @@ public class HowToPlay extends javax.swing.JFrame {
                 "     White: The node you have highlighted will turn white " +
                 "as an easy way to keep track of which node you are presently " +
                 "looking at the information of.");
+        textHelp.setCaretPosition(0);
     }//GEN-LAST:event_radioMapNodesActionPerformed
 
     private void radioMapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioMapActionPerformed
@@ -281,6 +274,7 @@ public class HowToPlay extends javax.swing.JFrame {
                 "is, and your current political power level). It also contains" +
                 " a list of all actions you are commiting each turn, as a " +
                 "general reminder for you.");
+        textHelp.setCaretPosition(0);
     }//GEN-LAST:event_radioMapActionPerformed
 
     private void radioActionsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioActionsActionPerformed
@@ -325,6 +319,7 @@ public class HowToPlay extends javax.swing.JFrame {
                 + "to be found by enemy spies, and you will lose poliical"
                 + " power (political power is explained in the 'victory' section)"
                 + " for every army you do not use each turn.");
+        textHelp.setCaretPosition(0);
     }//GEN-LAST:event_radioActionsActionPerformed
 
     /**
@@ -364,7 +359,6 @@ public class HowToPlay extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton butonX;
     private javax.swing.JToggleButton buttonMenu;
     private javax.swing.ButtonGroup groupHelpTypes;
     private javax.swing.JScrollPane jScrollPane1;
