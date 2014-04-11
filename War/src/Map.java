@@ -286,7 +286,7 @@ public class Map extends javax.swing.JFrame {
                 nodePlaceholder0ActionPerformed(evt);
             }
         });
-        panelMap.add(nodePlaceholder0, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 270, 30, 30));
+        panelMap.add(nodePlaceholder0, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 240, 30, 30));
 
         nodePlaceholder1.setBackground(new java.awt.Color(0, 0, 0));
         nodePlaceholder1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/map-node-town.png"))); // NOI18N
@@ -296,7 +296,7 @@ public class Map extends javax.swing.JFrame {
                 nodePlaceholder1ActionPerformed(evt);
             }
         });
-        panelMap.add(nodePlaceholder1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 130, 30, 30));
+        panelMap.add(nodePlaceholder1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 40, 30, 30));
 
         nodePlaceholder2.setBackground(new java.awt.Color(0, 0, 0));
         nodePlaceholder2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/map-node-town.png"))); // NOI18N
@@ -306,7 +306,7 @@ public class Map extends javax.swing.JFrame {
                 nodePlaceholder2ActionPerformed(evt);
             }
         });
-        panelMap.add(nodePlaceholder2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 70, 30, 30));
+        panelMap.add(nodePlaceholder2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 60, 30, 30));
 
         nodePlaceholder3.setBackground(new java.awt.Color(0, 0, 0));
         nodePlaceholder3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/map-node-town.png"))); // NOI18N
@@ -316,7 +316,7 @@ public class Map extends javax.swing.JFrame {
                 nodePlaceholder3ActionPerformed(evt);
             }
         });
-        panelMap.add(nodePlaceholder3, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 160, 30, 30));
+        panelMap.add(nodePlaceholder3, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 140, 30, 30));
 
         nodePlaceholder4.setBackground(new java.awt.Color(0, 0, 0));
         nodePlaceholder4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/map-node-town.png"))); // NOI18N
@@ -326,7 +326,7 @@ public class Map extends javax.swing.JFrame {
                 nodePlaceholder4ActionPerformed(evt);
             }
         });
-        panelMap.add(nodePlaceholder4, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 220, 30, 30));
+        panelMap.add(nodePlaceholder4, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 190, 30, 30));
 
         nodePlaceholder5.setBackground(new java.awt.Color(0, 0, 0));
         nodePlaceholder5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/map-node-town.png"))); // NOI18N
@@ -346,7 +346,7 @@ public class Map extends javax.swing.JFrame {
                 nodePlaceholder6ActionPerformed(evt);
             }
         });
-        panelMap.add(nodePlaceholder6, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 130, 30, 30));
+        panelMap.add(nodePlaceholder6, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 130, 30, 30));
 
         nodePlaceholder7.setBackground(new java.awt.Color(0, 0, 0));
         nodePlaceholder7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/map-node-town.png"))); // NOI18N
@@ -356,7 +356,7 @@ public class Map extends javax.swing.JFrame {
                 nodePlaceholder7ActionPerformed(evt);
             }
         });
-        panelMap.add(nodePlaceholder7, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 290, 30, 30));
+        panelMap.add(nodePlaceholder7, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 250, 30, 30));
 
         nodePlaceholder8.setBackground(new java.awt.Color(0, 0, 0));
         nodePlaceholder8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/map-node-town.png"))); // NOI18N
@@ -366,7 +366,7 @@ public class Map extends javax.swing.JFrame {
                 nodePlaceholder8ActionPerformed(evt);
             }
         });
-        panelMap.add(nodePlaceholder8, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 130, 30, 30));
+        panelMap.add(nodePlaceholder8, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 130, 30, 30));
 
         nodePlaceholder9.setBackground(new java.awt.Color(0, 0, 0));
         nodePlaceholder9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/map-node-town.png"))); // NOI18N
@@ -376,7 +376,7 @@ public class Map extends javax.swing.JFrame {
                 nodePlaceholder9ActionPerformed(evt);
             }
         });
-        panelMap.add(nodePlaceholder9, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 270, 30, 30));
+        panelMap.add(nodePlaceholder9, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 270, 30, 30));
 
         nodePlaceholder10.setBackground(new java.awt.Color(0, 0, 0));
         nodePlaceholder10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/map-node-town.png"))); // NOI18N
@@ -396,7 +396,7 @@ public class Map extends javax.swing.JFrame {
                 nodePlaceholder11ActionPerformed(evt);
             }
         });
-        panelMap.add(nodePlaceholder11, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 180, 30, 30));
+        panelMap.add(nodePlaceholder11, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 190, 30, 30));
 
         nodePlaceholder12.setBackground(new java.awt.Color(0, 0, 0));
         nodePlaceholder12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/map-node-town.png"))); // NOI18N
@@ -406,7 +406,7 @@ public class Map extends javax.swing.JFrame {
                 nodePlaceholder12ActionPerformed(evt);
             }
         });
-        panelMap.add(nodePlaceholder12, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 280, 30, 30));
+        panelMap.add(nodePlaceholder12, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 290, 30, 30));
 
         nodePlaceholder13.setBackground(new java.awt.Color(0, 0, 0));
         nodePlaceholder13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/map-node-town.png"))); // NOI18N
@@ -416,7 +416,7 @@ public class Map extends javax.swing.JFrame {
                 nodePlaceholder13ActionPerformed(evt);
             }
         });
-        panelMap.add(nodePlaceholder13, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 60, 30, 30));
+        panelMap.add(nodePlaceholder13, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 60, 30, 30));
 
         nodePlaceholder14.setBackground(new java.awt.Color(0, 0, 0));
         nodePlaceholder14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/map-node-town.png"))); // NOI18N
@@ -436,27 +436,27 @@ public class Map extends javax.swing.JFrame {
                 nodePlaceholder15ActionPerformed(evt);
             }
         });
-        panelMap.add(nodePlaceholder15, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 240, 30, 30));
+        panelMap.add(nodePlaceholder15, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 240, 30, 30));
 
         jLabel0.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel0.setText("Rome");
-        panelMap.add(jLabel0, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 310, -1, -1));
+        panelMap.add(jLabel0, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 280, -1, -1));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setText("Aquileia");
-        panelMap.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, -1, -1));
+        panelMap.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 20, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setText("Mursa");
-        panelMap.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 50, -1, -1));
+        panelMap.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 40, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel3.setText("Cibalae");
-        panelMap.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 180, -1, -1));
+        panelMap.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 120, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setText("Salona");
-        panelMap.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 230, -1, -1));
+        panelMap.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 190, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel5.setText("Brundisium");
@@ -464,43 +464,43 @@ public class Map extends javax.swing.JFrame {
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel6.setText("Sirmium");
-        panelMap.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 100, -1, -1));
+        panelMap.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 160, -1, -1));
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel7.setText("Dyrrachium");
-        panelMap.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 320, -1, -1));
+        panelMap.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 290, -1, -1));
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel8.setText("Singidunum");
-        panelMap.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 170, -1, -1));
+        panelMap.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 110, -1, -1));
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel9.setText("Thessalonica");
-        panelMap.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 310, -1, -1));
+        panelMap.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 310, -1, -1));
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel10.setText("Ratiaria");
-        panelMap.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 40, -1, -1));
+        panelMap.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 50, -1, -1));
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel11.setText("Sardica");
-        panelMap.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 150, -1, -1));
+        panelMap.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 170, -1, -1));
 
         jLabel12.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel12.setText("Heraclea");
-        panelMap.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 320, -1, -1));
+        panelMap.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 310, -1, -1));
 
         jLabel13.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel13.setText("Marcianopolis");
-        panelMap.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 40, -1, -1));
+        panelMap.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 40, -1, -1));
 
         jLabel14.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel14.setText("Adrianople");
-        panelMap.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 160, -1, -1));
+        panelMap.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 170, -1, -1));
 
         jLabel15.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel15.setText("Constantinople");
-        panelMap.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 240, -1, -1));
+        panelMap.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 240, -1, -1));
 
         buttonMapImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Scenario-1-Map.png"))); // NOI18N
         buttonMapImage.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
