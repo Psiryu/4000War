@@ -1098,11 +1098,8 @@ public class Battle {
     }
 
     private boolean IsPreemptive(Node location, int playerID) {
-        ArrayList<Integer> nodeValues;
-
         if (Scenario.redPlayer.playerID == playerID) {
-            for (int i = 0; i < Scenario.redPlayer.enemyIntelligence.size(); i++) {
-                nodeValues = Scenario.redPlayer.enemyIntelligence.get(i);
+            for (ArrayList<Integer> nodeValues : Scenario.redPlayer.enemyIntelligence) {
                 if (nodeValues.get(0) == location.id) {
                     if (nodeValues.size() > 1) {
                         return true;
@@ -1112,8 +1109,7 @@ public class Battle {
                 }
             }
         } else {
-            for (int i = 0; i < Scenario.bluePlayer.enemyIntelligence.size(); i++) {
-                nodeValues = Scenario.bluePlayer.enemyIntelligence.get(i);
+            for (ArrayList<Integer> nodeValues : Scenario.bluePlayer.enemyIntelligence) {
                 if (nodeValues.get(0) == location.id) {
                     if (nodeValues.size() > 1) {
                         return true;
