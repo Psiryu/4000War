@@ -20,9 +20,13 @@ public class Global {
     public static int curPlayer; //global variable for keeping track of whos turn it is
     public static String gameSummary; //will be populated with whom the winner of a match was
     public static String gameSummary2; //will be populated with why the winner won
-    public static int intGameOver;
-    
+    public static int intGameOver;    
     public static int timer; // Value to overidden in other compnent. game is to have time limit.
+    
+    public static String redPreEmptiveToString;
+    public static String bluePreEmptiveToString;
+    
+    
     
     
     public static void ResetGlobals() {
@@ -36,5 +40,9 @@ public class Global {
         mapEvent = null;
         curPlayer = 0; //global variable for keeping track of whos turn it is
         gameSummary = "";
+        gameSummary2 = "";
+        intGameOver = 0;
+        redPreEmptiveToString = "";
+        bluePreEmptiveToString = "";
     }
 }

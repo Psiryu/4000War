@@ -73,10 +73,12 @@ public class Battle {
             redDecisionToFight = true;
             /*Reds decision to fight is true by default if preemptive*/
             
-            JOptionPane.showMessageDialog(null, "Red Team is force to fight because his move was a pre emptive attack");
+            Global.redPreEmptiveToString = "Red Team is force to fight because his move was a pre emptive attack\n";
+            
         }
         else
         {
+            Global.redPreEmptiveToString ="";
             /*PRRRRRRRRRRRRRRRRRREEEEEEEEEEEEEEEEEEEEEMMMMMM*/
             /*you question box is here*/
             if (Global.opponent == true) /*PVP*/
@@ -117,11 +119,11 @@ public class Battle {
         {
             blueDecisionToFight = true;
             /*Reds decision to fight is true by default if preemptive*/
-            
-            JOptionPane.showMessageDialog(null, "Blue Team is force to fight because his move was a pre emptive attack");
+            Global.bluePreEmptiveToString = "Blue Team is force to fight because his move was a pre emptive attack\n";
         }
         else
         {
+            Global.bluePreEmptiveToString = "";
             /*PRRRRRRRRRRRRRRRRRREEEEEEEEEEEEEEEEEEEEEMMMMMM*/
             /*you question box is here*/
             if (Global.opponent == true) /*PVP*/
@@ -229,7 +231,8 @@ public class Battle {
             MapEvent.completeCombat(red, false, blue, true, blueIntendedNode.get(0));
 
 
-            JOptionPane.showMessageDialog(null, "Blue wins and moves to " + blueIntendedNode.get(0).name);
+            JOptionPane.showMessageDialog(null, Global.redPreEmptiveToString + Global.bluePreEmptiveToString+
+                    "Blue wins and moves to " + blueIntendedNode.get(0).name);
            
             
         } 
@@ -238,7 +241,8 @@ public class Battle {
             /*Red wins and moves to their desired location*/
             MapEvent.completeCombat(red, true, blue, false, redsIntendedNode.get(0));
 
-           JOptionPane.showMessageDialog(null, "Red wins and moves to "+ redsIntendedNode.get(0));
+           JOptionPane.showMessageDialog(null,  Global.redPreEmptiveToString + Global.bluePreEmptiveToString+
+                   "Red wins and moves to "+ redsIntendedNode.get(0).name);
           
 
         } 
@@ -248,14 +252,16 @@ public class Battle {
                 /*Red wins and moves to their desired location*/
                 MapEvent.completeCombat(red, true, blue, false, redsIntendedNode.get(0));
 
-           JOptionPane.showMessageDialog(null, "Red wins and moves to "+ redsIntendedNode.get(0));
+           JOptionPane.showMessageDialog(null,  Global.redPreEmptiveToString + Global.bluePreEmptiveToString+
+                   "Red wins and moves to "+ redsIntendedNode.get(0).name);
             } 
             else 
             {
                 /*Blue wins and moves to their desired location*/
                 MapEvent.completeCombat(red, false, blue, true, blueIntendedNode.get(0));
             }
-            JOptionPane.showMessageDialog(null, "Blue wins and moves to " + blueIntendedNode.get(0) );
+            JOptionPane.showMessageDialog(null,  Global.redPreEmptiveToString + Global.bluePreEmptiveToString+
+                    "Blue wins and moves to " + blueIntendedNode.get(0).name );
         }
 
     }
@@ -344,11 +350,11 @@ public class Battle {
                 
                 if (isCowards == "red")
                 {
-                    JOptionPane.showMessageDialog(null, "Red flees battle while Blue moves to " + node.name);
+                    JOptionPane.showMessageDialog(null,Global.redPreEmptiveToString + Global.bluePreEmptiveToString+ "Red flees battle while Blue moves to " + node.name);
                 }
                 else
                 {
-                    JOptionPane.showMessageDialog(null, "Blue flees battle while Red moves to " + node.name);
+                    JOptionPane.showMessageDialog(null,Global.redPreEmptiveToString + Global.bluePreEmptiveToString+ "Blue flees battle while Red moves to " + node.name);
 
                 }
             } 
@@ -364,7 +370,7 @@ public class Battle {
                         
                         MapEvent.completeCombat(cowards, true, attackers, false, node);
 
-                    JOptionPane.showMessageDialog(null, "Blue loses battle!! Their armies fall and Red moves to " + node.name);
+                    JOptionPane.showMessageDialog(null, Global.redPreEmptiveToString + Global.bluePreEmptiveToString+"Blue loses battle!! Their armies fall and Red moves to " + node.name);
 
                     }
                     else
@@ -374,7 +380,7 @@ public class Battle {
                         MapEvent.completeCombat(attackers, false, cowards, true, node);
 
                         
-                    JOptionPane.showMessageDialog(null, "Red loses battle!! Their armies fall and Blue moves to " + node.name);
+                    JOptionPane.showMessageDialog(null,Global.redPreEmptiveToString + Global.bluePreEmptiveToString+ "Red loses battle!! Their armies fall and Blue moves to " + node.name);
                     }
 
                     /*Move Cowards into desired location*/
@@ -396,7 +402,7 @@ public class Battle {
                         MapEvent.completeCombat(cowards, false, attackers, true, node);
                         
                         
-                    JOptionPane.showMessageDialog(null, "Red is unable to Flee!! Red loses battle!!"
+                    JOptionPane.showMessageDialog(null, Global.redPreEmptiveToString + Global.bluePreEmptiveToString+"Red is unable to Flee!! Red loses battle!!"
                             + " Their armies fall and Blue moves to  " + node.name);
 
                     }
@@ -407,7 +413,7 @@ public class Battle {
                         MapEvent.completeCombat(attackers, true, cowards, false, node);
                         
                         
-                    JOptionPane.showMessageDialog(null, "Blue is unable to Flee!! Blue loses battle!!\n"
+                    JOptionPane.showMessageDialog(null, Global.redPreEmptiveToString + Global.bluePreEmptiveToString+"Blue is unable to Flee!! Blue loses battle!!\n"
                             + " Their armies fall and Red moves to " + node.name);
                     }
                 } 
@@ -423,14 +429,14 @@ public class Battle {
                             
                             MapEvent.completeCombat(cowards, false, attackers, true, node);
 
-                            JOptionPane.showMessageDialog(null, "Red is unable to Flee!! Red loses battle!!\n"
+                            JOptionPane.showMessageDialog(null,Global.redPreEmptiveToString + Global.bluePreEmptiveToString+ "Red is unable to Flee!! Red loses battle!!\n"
                                     + "Their armies fall and Blue moves to " + node.name);
                         }
                         else
                         {
                             MapEvent.completeCombat(attackers, true, cowards, false, node);
 
-                            JOptionPane.showMessageDialog(null, "Blue is unable to Flee!! Blue loses battle!!\n"
+                            JOptionPane.showMessageDialog(null,Global.redPreEmptiveToString + Global.bluePreEmptiveToString+ "Blue is unable to Flee!! Blue loses battle!!\n"
                                     + " Their armies fall and Red moves to "+ node.name);
                         }
                     } 
@@ -441,7 +447,7 @@ public class Battle {
                         {
                             MapEvent.completeCombat(cowards, true, attackers, false, node);
                             
-                            JOptionPane.showMessageDialog(null, "Blue loses battle!!\n"
+                            JOptionPane.showMessageDialog(null,Global.redPreEmptiveToString + Global.bluePreEmptiveToString+ "Blue loses battle!!\n"
                                     + "Their armies fall and Red moves to "+ node.name);
                         }
                         else
@@ -449,7 +455,7 @@ public class Battle {
                             
                             MapEvent.completeCombat(attackers, false, cowards, true, node);
 
-                            JOptionPane.showMessageDialog(null, "Red loses battle!!\n"
+                            JOptionPane.showMessageDialog(null,Global.redPreEmptiveToString + Global.bluePreEmptiveToString+ "Red loses battle!!\n"
                                     + "Their armies fall and Blue moves to "+ node.name);
                         }
                     }
@@ -470,7 +476,7 @@ public class Battle {
                         /*Attacker Blue dies*/
                         MapEvent.completeCombat(cowards, true, attackers, false, node);
 
-                    JOptionPane.showMessageDialog(null, "Blue loses battle!!\n"
+                    JOptionPane.showMessageDialog(null,Global.redPreEmptiveToString + Global.bluePreEmptiveToString+ "Blue loses battle!!\n"
                             + "Their armies fall and Red moves to "+ node.name);
                     }
                     else
@@ -478,7 +484,7 @@ public class Battle {
                         /*Attcker Red Dies*/
                         MapEvent.completeCombat(attackers, false, cowards, true, node);
 
-                        JOptionPane.showMessageDialog(null, "Red loses battle!!\n"
+                        JOptionPane.showMessageDialog(null, Global.redPreEmptiveToString + Global.bluePreEmptiveToString+"Red loses battle!!\n"
                             + "Their armies fall and Blue moves to "+ node.name);
                     }
                 }
@@ -493,7 +499,7 @@ public class Battle {
                         MapEvent.completeCombat(cowards, false, attackers, true, node);
                         
                         /* Blue (attackers) moves into postion */
-                        JOptionPane.showMessageDialog(null, "Red is unable to flee!! Blue wins battle!!\n"
+                        JOptionPane.showMessageDialog(null,Global.redPreEmptiveToString + Global.bluePreEmptiveToString+ "Red is unable to flee!! Blue wins battle!!\n"
                                 + "Their armies fall and Blue moves to "+ node.name);
                     }
                     else
@@ -505,7 +511,7 @@ public class Battle {
                         
                         /* Red (attackers) moves into postion */
 
-                        JOptionPane.showMessageDialog(null, "Blue is unable to flee!! Red wins battle!!\n"
+                        JOptionPane.showMessageDialog(null,Global.redPreEmptiveToString + Global.bluePreEmptiveToString+ "Blue is unable to flee!! Red wins battle!!\n"
                                 + "Their armies fall and Red moves to "+ node.name);
                     }
                  } 
@@ -521,7 +527,7 @@ public class Battle {
                             
                             MapEvent.completeCombat(cowards, false, attackers, true, node);
 
-                            JOptionPane.showMessageDialog(null, "Red is unable to flee!! Blue wins battle!!"
+                            JOptionPane.showMessageDialog(null,Global.redPreEmptiveToString + Global.bluePreEmptiveToString+ "Red is unable to flee!! Blue wins battle!!"
                                     + "Their armies fall and Blue moves to " + node.name);
                         }
                         else
@@ -530,7 +536,7 @@ public class Battle {
                             /*Coward Blue Dies*/
                             MapEvent.completeCombat(attackers, true, cowards, false, node);
 
-                            JOptionPane.showMessageDialog(null, "Blue is unable to flee!! Red wins battle!!\n"
+                            JOptionPane.showMessageDialog(null,Global.redPreEmptiveToString + Global.bluePreEmptiveToString+ "Blue is unable to flee!! Red wins battle!!\n"
                                     + "Their armies fall and Red moves to "+ node.name);
                         }  
                     } 
@@ -542,7 +548,7 @@ public class Battle {
                             /*Attacker Blue dies*/
                             MapEvent.completeCombat(cowards, true, attackers, false, node);
 
-                            JOptionPane.showMessageDialog(null, "Blue loses battle!!\n"
+                            JOptionPane.showMessageDialog(null,Global.redPreEmptiveToString + Global.bluePreEmptiveToString+ "Blue loses battle!!\n"
                                     + "Their armies fall and Red moves to "+ node.name);
                         }
                         else
@@ -550,7 +556,7 @@ public class Battle {
                             /*Attcker Red Dies*/
                             MapEvent.completeCombat(attackers, false, cowards, true, node);
 
-                            JOptionPane.showMessageDialog(null, "Red loses battle!!\n"
+                            JOptionPane.showMessageDialog(null,Global.redPreEmptiveToString + Global.bluePreEmptiveToString+ "Red loses battle!!\n"
                                     + "Their armies fall and Blue moves to "+ node.name);
                         }
                     }
@@ -585,7 +591,7 @@ public class Battle {
                     {
                         MapEvent.completeCombat(cowards, false, attackers, true, node);
                         
-                        JOptionPane.showMessageDialog(null, "Red are unable flees from their position therefore their unit is defeated!!!"+
+                        JOptionPane.showMessageDialog(null,Global.redPreEmptiveToString + Global.bluePreEmptiveToString+ "Red are unable flees from their position therefore their unit is defeated!!!"+
                                 "\nBlue proceeds to "+ node.name);
                     }
                     else
@@ -593,7 +599,7 @@ public class Battle {
                         /*Coward is blue and they die*/
                         MapEvent.completeCombat(attackers, true, cowards, false, node);
 
-                       JOptionPane.showMessageDialog(null, "Blue are unable flees from their position therefore their unit is defeated!!!"+
+                       JOptionPane.showMessageDialog(null,Global.redPreEmptiveToString + Global.bluePreEmptiveToString+ "Blue are unable flees from their position therefore their unit is defeated!!!"+
                                 "\nRed proceeds to "+ node.name);
                     }
                 } 
@@ -622,12 +628,12 @@ public class Battle {
 
                     if (isCowards == "red")
                     {
-                        JOptionPane.showMessageDialog(null, "Red flees from their position!!!\n"+
+                        JOptionPane.showMessageDialog(null,Global.redPreEmptiveToString + Global.bluePreEmptiveToString+ "Red flees from their position!!!\n"+
                         "\nBlue proceeds to "+ node.name+" and no battle is taken place");
                     }
                     else
                     {
-                        JOptionPane.showMessageDialog(null, "Blue flees from their position!!!\n"+
+                        JOptionPane.showMessageDialog(null,Global.redPreEmptiveToString + Global.bluePreEmptiveToString+ "Blue flees from their position!!!\n"+
                         "\nRed proceeds to "+ node.name+" and no battle is taken place");
                     }
                 }
@@ -648,7 +654,7 @@ public class Battle {
                         
                         MapEvent.completeCombat(cowards, true, attackers, false, node);
 
-                        JOptionPane.showMessageDialog(null, "Red Combat Unit defeats Blue Combat Unit!!!\n"+
+                        JOptionPane.showMessageDialog(null,Global.redPreEmptiveToString + Global.bluePreEmptiveToString+ "Red Combat Unit defeats Blue Combat Unit!!!\n"+
                         "\nRed will move to "+ node.name);
                     }
                     else 
@@ -659,7 +665,7 @@ public class Battle {
                         MapEvent.completeCombat(attackers, false, cowards, true, node);
 
     
-                      JOptionPane.showMessageDialog(null, "Blue Combat Unit defeats Red Combat unit !!!\n"+
+                      JOptionPane.showMessageDialog(null,Global.redPreEmptiveToString + Global.bluePreEmptiveToString+ "Blue Combat Unit defeats Red Combat unit !!!\n"+
                         "\nBlue will move to "+ node.name);
                     }
                 } 
@@ -673,7 +679,7 @@ public class Battle {
                         MapEvent.completeCombat(cowards, false, attackers, true, node);
 
                         
-                    JOptionPane.showMessageDialog(null, "Blue Combat Unit defends their position and defeat Red!!!"+
+                    JOptionPane.showMessageDialog(null,Global.redPreEmptiveToString + Global.bluePreEmptiveToString+ "Blue Combat Unit defends their position and defeat Red!!!"+
                         "\nBlue moves to "+ node.name);
  
                     }
@@ -685,7 +691,7 @@ public class Battle {
                         MapEvent.completeCombat(attackers, true, cowards, false, node);
 
                         
-                        JOptionPane.showMessageDialog(null, "Red Combat Unit defends their position and defeat Blue!!!\n"+
+                        JOptionPane.showMessageDialog(null,Global.redPreEmptiveToString + Global.bluePreEmptiveToString+ "Red Combat Unit defends their position and defeat Blue!!!\n"+
                             "\nRed moves to "+ node.name);
                     
                     }
@@ -702,7 +708,7 @@ public class Battle {
 
                         MapEvent.completeCombat(cowards, false, attackers, true, node);
                         
-                        JOptionPane.showMessageDialog(null, "Blue Combat Unit defends their position and defeats Red!!!\n"+
+                        JOptionPane.showMessageDialog(null,Global.redPreEmptiveToString + Global.bluePreEmptiveToString+ "Blue Combat Unit defends their position and defeats Red!!!\n"+
                             "\nBlue moves to "+ node.name);
                         }
                         else
@@ -711,7 +717,7 @@ public class Battle {
                             /*Blue Combat Unit dies*/
                         MapEvent.completeCombat(attackers, true, cowards, false, node);
 
-                            JOptionPane.showMessageDialog(null, "Red Combat Unit defends their position and defeat Blue!!!\n"+
+                            JOptionPane.showMessageDialog(null,Global.redPreEmptiveToString + Global.bluePreEmptiveToString+ "Red Combat Unit defends their position and defeat Blue!!!\n"+
                                 "\nRed move to "+ node.name);
                         }                       
                     } 
@@ -727,7 +733,7 @@ public class Battle {
                             MapEvent.completeCombat(cowards, true, attackers, false, node);
 
                             
-                            JOptionPane.showMessageDialog(null, "Red Combat Unit defeat Blue Combat Unit!!!\n"+
+                            JOptionPane.showMessageDialog(null,Global.redPreEmptiveToString + Global.bluePreEmptiveToString+ "Red Combat Unit defeat Blue Combat Unit!!!\n"+
                             "\nRed will move to "+ node.name);
 
 
@@ -738,7 +744,7 @@ public class Battle {
                             /*Red dies*/
                             MapEvent.completeCombat(attackers, false, cowards, true, node);
 
-                            JOptionPane.showMessageDialog(null, "Blue Combat Unit defeat Red Combat !!!\n"+
+                            JOptionPane.showMessageDialog(null,Global.redPreEmptiveToString + Global.bluePreEmptiveToString+ "Blue Combat Unit defeat Red Combat !!!\n"+
                                 "\nBlue will move to "+ node.name);
                         }
                     }
@@ -755,7 +761,7 @@ public class Battle {
 
                     
                     
-                    JOptionPane.showMessageDialog(null, "Red Combat unit was able to retreat!!!\n"+
+                    JOptionPane.showMessageDialog(null,Global.redPreEmptiveToString + Global.bluePreEmptiveToString+ "Red Combat unit was able to retreat!!!\n"+
                     "\nNo battle was taken place");
                     
                 }
@@ -764,7 +770,7 @@ public class Battle {
                     MapEvent.successfullFlee(cowards, Scenario.findRoad(node, cowardsPreviousLocation.get(0)), cowardsPreviousLocation.get(0).id);
                     MapEvent.successfullFlee(attackers,null, node.id);
                     
-                    JOptionPane.showMessageDialog(null, "Blue Combat unit was able to retreat!!!\n"+
+                    JOptionPane.showMessageDialog(null,Global.redPreEmptiveToString + Global.bluePreEmptiveToString+ "Blue Combat unit was able to retreat!!!\n"+
                         "\nNo battle was taken place");
                 }
             }
@@ -846,12 +852,14 @@ public class Battle {
  
             if(isCowards == "red")
             {
-                JOptionPane.showMessageDialog(null, "Red Combat Units decide to retreat "
+                JOptionPane.showMessageDialog(null, Global.redPreEmptiveToString + Global.bluePreEmptiveToString
+                        + "Red Combat Units decide to retreat "
                         + "\nNo battle was taken place, However both units move intended locations");
             }
             else
             {
-                JOptionPane.showMessageDialog(null, "Blue Combat Units decide to retreat "
+                JOptionPane.showMessageDialog(null, Global.redPreEmptiveToString + Global.bluePreEmptiveToString
+                        + "Blue Combat Units decide to retreat "
                         +"\nNo battle was taken place, However both units move intended locations");
             }
         }
@@ -865,15 +873,17 @@ public class Battle {
                     /*Red Combat Army Falls in battle Blue Moves into position*/
                     MapEvent.completeCombat(cowards, false, attackers, true, attackersDesiredNode.get(0));
                     
-                    JOptionPane.showMessageDialog(null, "Red Units Fall in battle"+
-                    "\nBlue Units move to "+attackersDesiredNode.get(0).name);
+                    JOptionPane.showMessageDialog(null, Global.redPreEmptiveToString + Global.bluePreEmptiveToString+
+                            "Red Units Fall in battle"+
+                            "\nBlue Units move to "+attackersDesiredNode.get(0).name);
                 }
                 else
                 {
                     /*Red Combat Army Falls in battle Blue Moves into position*/
                     MapEvent.completeCombat(attackers, true, cowards, false, attackersDesiredNode.get(0));
 
-                    JOptionPane.showMessageDialog(null, "Blue Units Fall in battle"+
+                    JOptionPane.showMessageDialog(null, Global.redPreEmptiveToString + Global.bluePreEmptiveToString+
+                            "Blue Units Fall in battle"+
                     "\nRed Units move to "+attackersDesiredNode.get(0).name);
                     
                 }  
@@ -886,7 +896,8 @@ public class Battle {
                     /*red team defeats blue and moves to desired lovation*/
                     MapEvent.completeCombat(cowards, true, attackers, false, cowardsDesiredNode.get(0));
 
-                    JOptionPane.showMessageDialog(null, "Blue Units Fall in battle"+
+                    JOptionPane.showMessageDialog(null, Global.redPreEmptiveToString + Global.bluePreEmptiveToString+
+                            "Blue Units Fall in battle"+
                     "\nRed Units move to "+cowardsDesiredNode.get(0).name);
                 }
                 else
@@ -894,7 +905,8 @@ public class Battle {
                     /*blue team defeats red and moves to desired lovation*/
                     MapEvent.completeCombat(attackers, true, cowards, true, cowardsDesiredNode.get(0));
 
-                    JOptionPane.showMessageDialog(null, "Red Units Fall in battle"+
+                    JOptionPane.showMessageDialog(null, Global.redPreEmptiveToString + Global.bluePreEmptiveToString+
+                            "Red Units Fall in battle"+
                     "\nBlue Units move to "+cowardsDesiredNode.get(0).name);
                 }
             } 
@@ -909,7 +921,8 @@ public class Battle {
                         /*red team defeats blue and moves to desired lovation*/
                         MapEvent.completeCombat(cowards, true, attackers, false, cowardsDesiredNode.get(0));
 
-                        JOptionPane.showMessageDialog(null, "Blue Units Fall in battle"+
+                        JOptionPane.showMessageDialog(null, Global.redPreEmptiveToString + Global.bluePreEmptiveToString+
+                                "Blue Units Fall in battle"+
                         "\nRed Units move to "+cowardsDesiredNode.get(0).name);
                     }
                     else
@@ -917,7 +930,8 @@ public class Battle {
                         /*blue team defeats red and moves to desired lovation*/
                         MapEvent.completeCombat(attackers, true, cowards, true, cowardsDesiredNode.get(0));
 
-                        JOptionPane.showMessageDialog(null, "Red Units Fall in battle"+
+                        JOptionPane.showMessageDialog(null,Global.redPreEmptiveToString + Global.bluePreEmptiveToString+ 
+                                "Red Units Fall in battle"+
                         "\nBlue Units move to "+cowardsDesiredNode.get(0).name);
                     }
                     
@@ -930,7 +944,8 @@ public class Battle {
                         /*Red Combat Army Falls in battle Blue Moves into position*/
                         MapEvent.completeCombat(cowards, false, attackers, true, attackersDesiredNode.get(0));
 
-                        JOptionPane.showMessageDialog(null, "Red Units Fall in battle"+
+                        JOptionPane.showMessageDialog(null,Global.redPreEmptiveToString + Global.bluePreEmptiveToString+ 
+                                "Red Units Fall in battle"+
                         "\nBlue Units move to "+attackersDesiredNode.get(0).name);
                     }
                     else
@@ -938,7 +953,8 @@ public class Battle {
                         /*Red Combat Army Falls in battle Blue Moves into position*/
                         MapEvent.completeCombat(attackers, true, cowards, false, attackersDesiredNode.get(0));
 
-                        JOptionPane.showMessageDialog(null, "Blue Units Fall in battle"+
+                        JOptionPane.showMessageDialog(null,Global.redPreEmptiveToString + Global.bluePreEmptiveToString+ 
+                                "Blue Units Fall in battle"+
                         "\nRed Units move to "+attackersDesiredNode.get(0).name);
 
                     }
@@ -969,11 +985,12 @@ public class Battle {
         {
             redDecisionToFight = true;
             /*Reds decision to fight is true by default if preemptive*/
+            Global.redPreEmptiveToString = "Red Team is force to fight because his move was a pre emptive attack\n";
             
-            JOptionPane.showMessageDialog(null, "Red Team is force to fight because his move was a pre emptive attack");
         }
         else
         {
+            Global.redPreEmptiveToString = "";
             /*PRRRRRRRRRRRRRRRRRREEEEEEEEEEEEEEEEEEEEEMMMMMM*/
             /*you question box is here*/
             if (Global.opponent == true) /*PVP*/
@@ -1018,11 +1035,12 @@ public class Battle {
         {
             blueDecisionToFight = true;
             /*Reds decision to fight is true by default if preemptive*/
-            
-            JOptionPane.showMessageDialog(null, "Blue Team is force to fight because his move was a pre emptive attack");
+            Global.bluePreEmptiveToString = "Blue Team is force to fight because his move was a pre emptive attack\n";
+
         }
         else
         {
+            Global.bluePreEmptiveToString = "";
             /*PRRRRRRRRRRRRRRRRRREEEEEEEEEEEEEEEEEEEEEMMMMMM*/
             /*you question box is here*/
             if (Global.opponent == true) /*PVP*/
