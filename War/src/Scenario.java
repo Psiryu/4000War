@@ -56,7 +56,7 @@ public class Scenario {
 				// is red capital, is blue capital, is port
 				locationProperties = new boolean[][]{{true, false, false}, {false, false, false}, {false, false, false}, {false, false, false}, {false, false, false}, {false, false, false}, {false, false, false}, {false, false, false}, {false, false, false}, {false, false, false}, {false, false, false}, {false, false, false}, {false, false, false}, {false, false, false}, {false, false, false}, {false, true, false}};
 				// road capacity, start location for road, end location for road
-				locations = new int[][]{{2, 0, 5}, {2, 0, 1}, {1, 1, 2}, {1, 1, 3}, {1, 1, 4}, {2, 2, 6}, {2, 3, 6}, {1, 4, 7}, {1, 5, 7}, {1, 6, 8}, {1, 7, 9}, {2, 8, 12}, {1, 8, 11}, {1, 9, 11}, {2, 10, 13}, {2, 11, 14}, {2, 9, 12}, {2, 13, 14}, {2, 14, 15}, {2, 12, 15}};
+				locations = new int[][]{{20, 0, 5}, {20, 0, 1}, {10, 1, 2}, {10, 1, 3}, {10, 1, 4}, {20, 2, 6}, {20, 3, 6}, {10, 4, 7}, {10, 5, 7}, {10, 6, 8}, {10, 7, 9}, {20, 8, 12}, {10, 8, 11}, {10, 9, 11}, {20, 10, 13}, {20, 11, 14}, {20, 9, 12}, {20, 13, 14}, {20, 14, 15}, {20, 12, 15}};
 				// true if the road is a naval only route
 				isNavalRoute = new boolean[]{false, false, false, false, false, false, false, false, true, false, false, false, false, false, false, false, false, false, false, false};
 
@@ -210,6 +210,7 @@ public class Scenario {
 //				isNaval = true;
 //			}
 			// initialize each of the new roads
+			JOptionPane.showMessageDialog(null, "New road created between "+ names[locations[j][1]] + " and "+ names[locations[j][2]] + " with capacity " + locations[j][0]);
 			listOfRoads[j] = new Road(j, locations[j][0], listOfNodes[locations[j][1]], listOfNodes[locations[j][2]], isNavalRoute[j]);
 		}
 	}
