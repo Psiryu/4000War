@@ -210,7 +210,7 @@ public class Scenario {
 //				isNaval = true;
 //			}
 			// initialize each of the new roads
-			JOptionPane.showMessageDialog(null, "New road created between "+ names[locations[j][1]] + " and "+ names[locations[j][2]] + " with capacity " + locations[j][0]);
+			//JOptionPane.showMessageDialog(null, "New road created between "+ names[locations[j][1]] + " and "+ names[locations[j][2]] + " with capacity " + locations[j][0]);
 			listOfRoads[j] = new Road(j, locations[j][0], listOfNodes[locations[j][1]], listOfNodes[locations[j][2]], isNavalRoute[j]);
 		}
 	}
