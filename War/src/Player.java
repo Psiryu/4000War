@@ -46,7 +46,7 @@ public class Player extends Game {
     }
 
     // Method to get political power level
-    public int getPolitcalPower() {
+    public int getPoliticalPower() {
         return politicalPower;
     }
 
