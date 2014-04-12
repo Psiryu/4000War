@@ -1122,4 +1122,251 @@ public class Battle {
 
         return false;
     }
+    
+    public String battleStatus(Node node, int redBatStr,
+            int bluBatStr, ArrayList<CombatUnit> redCombatUnit, 
+            ArrayList<CombatUnit> bluCombatUnit, String tieBreaker,
+            boolean redFlee, boolean bluFlee)
+    {
+        String returnStr = "";
+        
+        int redSmallCount=0;
+        int redMedCount=0; 
+        int redLargeCount=0;
+        
+        String redArmyCount ="";
+        
+        int bluSmallCount=0;
+        int bluMedCount=0; 
+        int bluLargeCount=0;
+        
+        String bluArmyCount = "";
+        
+        /*COUNTING THE ARMIES INVOLVED IN THE BATTLE*/
+        
+        for(int i=0; i < redCombatUnit.size(); i++ )
+        {
+            if (redCombatUnit.get(i).size <6)
+            {
+                redSmallCount++;
+            }
+            else if (redCombatUnit.get(i).size <11)
+            {
+                redMedCount++;
+            }
+            else
+            {
+                redLargeCount++;
+            }
+        }
+        
+        /*IMPLEMENTING THE TO STRING OPERATION*/
+        
+        if (redSmallCount >0 && redMedCount > 0 && redLargeCount > 0)
+        {
+            redArmyCount = redSmallCount + "Small Combat Unit(s), " + redMedCount + "Medium Combat Unit(s), " + redLargeCount+ "Large Combat Unit(s) ";
+        }
+        else if(redSmallCount >0 && redMedCount > 0)
+        {
+            redArmyCount = redSmallCount + "Small Combat Unit(s), " + redMedCount + "Medium Combat Unit(s) ";
+        }
+        else if (redSmallCount >0 && redLargeCount > 0)
+        {
+            redArmyCount = redSmallCount + "Small Combat Unit(s), " + redLargeCount+ "Large Combat Unit(s) ";
+        }
+        else if  (redMedCount > 0 && redLargeCount > 0)
+        {
+            redArmyCount = redMedCount + "Medium Combat Unit(s), " + redLargeCount+ "Large Combat Unit(s) ";
+        }
+        else if(redSmallCount >0)
+        {
+            redArmyCount = redSmallCount + "Small Combat Unit(s) ";
+        }
+        else if (redMedCount > 0)
+        {
+            redArmyCount = redMedCount + "Medium Combat Unit(s) ";
+        }
+        else
+        {
+            redArmyCount = redLargeCount+ "Large Combat Unit(s) ";
+        }
+        
+        /*COUNTING THE ARMIES INVOLVED IN THE BATTLE FOR BLUE*/
+        
+        for(int i=0; i < bluCombatUnit.size(); i++ )
+        {
+            if (bluCombatUnit.get(i).size <6)
+            {
+                bluSmallCount++;
+            }
+            else if (redCombatUnit.get(i).size <11)
+            {
+                bluMedCount++;
+            }
+            else
+            {
+                bluLargeCount++;
+            }
+        }
+        
+        /*IMPLEMENTING THE TO STRING OPERATION*/
+        
+        if (bluSmallCount >0 && bluMedCount > 0 && bluLargeCount > 0)
+        {
+            bluArmyCount = bluSmallCount + "Small Combat Unit(s), " + bluMedCount + "Medium Combat Unit(s), " + bluLargeCount+ "Large Combat Unit(s) ";
+        }
+        else if(bluSmallCount >0 && bluMedCount > 0)
+        {
+            bluArmyCount = bluSmallCount + "Small Combat Unit(s), " + bluMedCount + "Medium Combat Unit(s) ";
+        }
+        else if (bluSmallCount >0 && bluLargeCount > 0)
+        {
+            bluArmyCount = bluSmallCount + "Small Combat Unit(s), " + bluLargeCount+ "Large Combat Unit(s) ";
+        }
+        else if  (bluMedCount > 0 && bluLargeCount > 0)
+        {
+            bluArmyCount = bluMedCount + "Medium Combat Unit(s), " + bluLargeCount+ "Large Combat Unit(s) ";
+        }
+        else if(bluSmallCount >0)
+        {
+            bluArmyCount = bluSmallCount + "Small Combat Unit(s) ";
+        }
+        else if (bluMedCount > 0)
+        {
+            bluArmyCount = bluMedCount + "Medium Combat Unit(s) ";
+        }
+        else
+        {
+            bluArmyCount = bluLargeCount+ "Large Combat Unit(s) ";
+        }
+        
+        
+        String magnitudeOfVictory ="";
+        if (Math.abs(bluBatStr - redBatStr)>35)
+        {
+            magnitudeOfVictory = " Decimated ";
+        }
+        else if (Math.abs(bluBatStr - redBatStr)>25)
+        {
+            magnitudeOfVictory = " Crushed ";
+        }
+        else if (Math.abs(bluBatStr - redBatStr)>15)
+        {
+            magnitudeOfVictory = " Defeated ";
+        }
+        else
+        {
+            magnitudeOfVictory = " Overcame ";
+        }
+        
+    
+        if (redFlee)
+        {
+            if(redBatStr > bluBatStr)
+            {
+                returnStr = "In the midst of Red Team fleeing with thier " + redArmyCount + 
+                        ", \nBlue's army caught up to Red army with thier\n"
+                        + bluArmyCount +".\n"
+                        + "But Red team turned arount and"+magnitudeOfVictory+"\n"
+                        + " them then moved to "+ node.name;
+            }
+            else if (redBatStr < bluBatStr)
+            {
+                returnStr = "While chasing the Red Army, Blue's army caught up with their\n"
+                        + bluArmyCount + "and" +magnitudeOfVictory+ "Red's Army of\n"
+                        + redArmyCount + "then proceeded to "+node.name;
+            }
+            else
+            {
+                if (tieBreaker == "red")
+                {
+                    returnStr = "Blue team with their "+ bluArmyCount +"caught up to Red's Army of"
+                            + redArmyCount + "but Red\n"
+                            + "turned arount and fought back. It was a close battle,\n"
+                            + "but Red Team was victorious and moved to " + node.name;
+                }
+                else
+                {
+                    returnStr = "Blue team with their "+ bluArmyCount +"caught up to Red's Army of"
+                            + redArmyCount + "but Red\n"
+                            + "turned arount and fought back. It was a close battle,\n"
+                            + "but Blue Team was victorious and moved to " + node.name;
+                }
+            }
+        }
+        else if (bluFlee)
+        {
+            if(redBatStr < bluBatStr)
+            {
+                returnStr = "In the midst of blue fleeing thier " + bluArmyCount + 
+                        ", \nRed's army caught up to Blue's army with thier\n"
+                        + redArmyCount +".\n "
+                        + "But Blue team turned arount and "+magnitudeOfVictory+"\n"
+                        + " them then moved to "+ node.name;
+            }
+            else if (redBatStr > bluBatStr)
+            {
+                returnStr = "While chasing the Blue Army, Red's army caught up with their\n"
+                        + redArmyCount + "and" +magnitudeOfVictory+ "Blue's Army of\n"
+                        + bluArmyCount + "then proceeded to "+node.name;
+            }
+            else
+            {
+                if (tieBreaker == "red")
+                {
+                    returnStr = "Red team with their "+ redArmyCount +"caught up to Blue's Army of"
+                            + bluArmyCount + "but Blue\n"
+                            + "turned arount and fought back. It was a close battle,\n"
+                            + "but Red Team was victorious and moved to " + node.name;
+                }
+                else
+                {
+                    returnStr = "Red team with their "+ redArmyCount +"caught up to Blue's Army of"
+                            + bluArmyCount + "but Blue\n"
+                            + "turned arount and fought back. It was a close battle,\n"
+                            + "but Blue Team was victorious and moved to " + node.name;
+                }
+            }
+        }
+        else
+        {
+            if(redBatStr < bluBatStr)
+            {
+                returnStr = "Blue Team arrives with " + bluArmyCount + ""
+                        + "\nand Red Team arrives with"+ redArmyCount +
+                        "\nBlue Team " + magnitudeOfVictory + "Red Team"
+                        + "and moves to "+ node.name;
+            }
+            else if (redBatStr > bluBatStr)
+            {
+                returnStr = "Blue Team arrives with " + bluArmyCount + ""
+                        + "\nand Red Team arrives with"+ redArmyCount +
+                        "\nRed Team " + magnitudeOfVictory + "Blue Team"
+                        + "and moves to "+ node.name;
+            }
+            else
+            {
+                if (tieBreaker == "red")
+                {
+                   returnStr = "Blue Team arrives with " + bluArmyCount + ""
+                        + "\nand Red Team arrives with"+ redArmyCount +
+                        "\nIt was a close battle...\n"
+                        + "Red Team " + magnitudeOfVictory + "Blue Team"
+                        + "and moves to "+ node.name; 
+                }
+                else
+                {
+                    returnStr = "Blue Team arrives with " + bluArmyCount + ""
+                        + "\nand Red Team arrives with"+ redArmyCount +
+                        "\nIt was a close battle...\n"
+                        + "Blue Team " + magnitudeOfVictory + "Red Team"
+                        + "and moves to "+ node.name;
+                }
+            }
+        }
+        
+        return returnStr;
+    }
 }
+
+
