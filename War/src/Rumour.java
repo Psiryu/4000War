@@ -5,278 +5,349 @@ import java.util.Arrays;
 import java.util.Random;
 import javax.swing.JOptionPane;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 /**
+ * Rumour class
  *
- * @author Ben
+ * Description: The Rumour object is constructed and maintained in this class.
+ * Rumours represent an abstraction of unit locations based on location
+ * properties (fog), time the unit has spent stationary, and randomness. True
+ * unit data is read from an opponents roster, manipulated, then returned.
+ * Methods exist to provide a baseline for Rumour accuracy based on the
+ * strategic position of a faction's units and overall faction health. The
+ * result of these methods allow for the data abstraction to take place.
+ *
+ * Usage: Rumour objects are initialized and maintained in the Player object.
+ * Data from the Rumours stored in Player are read from inside Battle in order
+ * to determine if a preemptive attach took place.
+ *
+ * Maintenance notes: This class relies heavily on Scenario, Node, and Road
+ * classes. Any modifications in these classes should be reviewed in Rumour. It
+ * is possible that modification to the weighting of rumour abstraction (the
+ * degree to which a value is obscured) requires revision. These numbers can be
+ * modified in the reportRumour method.
  */
 public class Rumour {
 
-    public Node[] listOfNodes = Scenario.listOfNodes; // storage of available location
-    public ArrayList<CombatUnit> listOfUnitsRed = new ArrayList<CombatUnit>(); // storage of current red units
-    public ArrayList<CombatUnit> listOfUnitsBlue = new ArrayList<CombatUnit>(); // storage of current blue units
-    public Random random = new Random(); // establish a random variable
-    public int maximum;
-    public Player currentPlayer;
+	public Node[] listOfNodes = Scenario.listOfNodes; // storage of available location
+	public ArrayList<CombatUnit> listOfUnitsRed = new ArrayList<CombatUnit>(); // storage of current red units
+	public ArrayList<CombatUnit> listOfUnitsBlue = new ArrayList<CombatUnit>(); // storage of current blue units
+	public Random random = new Random(); // establish a random variable
+	public int maximum; // the maximum fog value based on player specific attributes
+	public Player currentPlayer; // the player to which the Rumour object belongs
 
-    // Constructor of the rumour system
-    public Rumour(int currentPlayerID) {
-        // set the necessary parameters
-        listOfNodes = Scenario.listOfNodes;
-        listOfUnitsRed = new ArrayList<CombatUnit>();
-        listOfUnitsBlue = new ArrayList<CombatUnit>();
-        // determine the player to be used
-        if (Scenario.redPlayer.playerID == currentPlayerID) {
-            currentPlayer = Scenario.redPlayer;
-        } else {
-            currentPlayer = Scenario.bluePlayer;
-        }
-        maximum = (collectedMapFog(currentPlayer.combatUnits.size())) + 200;
-    }
+	/*
+	 Method: Rumour
+	 Input Parameters: int currentPlayerID -> the id belonging to the player to which this Rumour belongs
+	 Output Parameters: none
 
-    private int collectedMapFog(int numUnits) {
-        int largestConnections = 0;
-        int[] connections = connectedNodes();
+	 This is the constructor for the Rumour object. Information is drawn from
+	 Scenario and Player in order to establish a baseline for rumour generation
+	 */
+	public Rumour(int currentPlayerID) {
+		listOfNodes = Scenario.listOfNodes; // store the list of locations
+		// initialize the unit lists
+		listOfUnitsRed = new ArrayList<CombatUnit>();
+		listOfUnitsBlue = new ArrayList<CombatUnit>();
+		// determine the player to be used
+		if (Scenario.redPlayer.playerID == currentPlayerID) {
+			currentPlayer = Scenario.redPlayer;
+		} else {
+			currentPlayer = Scenario.bluePlayer;
+		}
+		maximum = (collectedMapFog(currentPlayer.combatUnits.size())) + 200; // set the maximum possible fog value for the player, call to collectedMapFog
+	}
 
-        for (int i = connections.length - 1; i >= (connections.length - numUnits); i--) {
-            largestConnections += connections[i];
-        }
-        return largestConnections;
-    }
+	/*
+	 Method: collectedMapFog
+	 Input Parameters: int numUnits -> the number of units in the factions roster at scenario initialization
+	 Output Parameters: int largestConnections -> sum of all the largest possible fog values
 
-    private int[] connectedNodes() {
-        int calculated[] = new int[Scenario.listOfNodes.length];
-        int tempCalc = 0;
+	 This method obtains an ordered list of nodal fog values from connectedNodes
+	 and generates a sum for the largest possible values occupied by individual 
+	 units held by a faction.
+	 */
+	private int collectedMapFog(int numUnits) {
+		int largestConnections = 0; // initialize the summation
+		int[] connections = connectedNodes(); // obtain an ordered list of fog values
 
-        for (int i = 0; i < Scenario.listOfNodes.length; i++) {
-            for (int j = 0; j < Scenario.listOfRoads.length; j++) {
-                if (Scenario.listOfRoads[j].locationA.id == listOfNodes[i].id || Scenario.listOfRoads[j].locationB.id == listOfNodes[i].id) {
-                    tempCalc += Scenario.listOfRoads[j].fogValue;
-                }
-            }
-            calculated[i] = tempCalc + Scenario.listOfNodes[i].fogValue;
-            tempCalc = 0;
-        }
-        Arrays.sort(calculated);
-        return calculated;
-    }
+		// for the ith largest fog values, where i is the number of units held by a faction
+		for (int i = connections.length - 1; i >= (connections.length - numUnits); i--) {
+			largestConnections += connections[i]; // sum the values
+		}
+		return largestConnections;
+	}
 
-    // Method to update the rumour awareness of current units
-    public void updateUnitRegistry() {
-        // set the new unit lists
-        listOfUnitsRed = Scenario.redPlayer.combatUnits;
-        listOfUnitsBlue = Scenario.bluePlayer.combatUnits;
-    }
+	/*
+	 Method: connectedNodes
+	 Input Parameters: none
+	 Output Parameters: int[] calculated -> ordered list of fog values based on Scenario parameters
 
-    private double playerFogValueUpdate() {
-        Node currentNode;
-        int roadFogSum = 0;
-        int nodeFogSum = 0;
-        int fogSum;
-        int randomFog;
-        double calculatedFog;
+	 This method reads the road and node information from Scenario then assembles
+	 an ordered list of fog values, sorted largest to smallest.
+	 */
+	private int[] connectedNodes() {
+		int calculated[] = new int[Scenario.listOfNodes.length]; // initialize array with size equal to the number of nodes
+		int tempCalc = 0; // temporary storage of the sum for the nodal value
 
-        for (int i = 0; i < currentPlayer.combatUnits.size(); i++) {
-            currentNode = currentPlayer.combatUnits.get(i).location;
+		for (int i = 0; i < Scenario.listOfNodes.length; i++) { // for each node in Scenario
+			for (int j = 0; j < Scenario.listOfRoads.length; j++) { // for each road in Scenario
+				// Check if the road connects to the node
+				if (Scenario.listOfRoads[j].locationA.id == listOfNodes[i].id || Scenario.listOfRoads[j].locationB.id == listOfNodes[i].id) {
+					// if the road connects, add the fog value
+					tempCalc += Scenario.listOfRoads[j].fogValue;
+				}
+			}
+			calculated[i] = tempCalc + Scenario.listOfNodes[i].fogValue; // add the node fog value
+			tempCalc = 0; // reset the temporary value
+		}
+		Arrays.sort(calculated); // sort in hierarchical order
+		return calculated;
+	}
 
-            for (int j = 0; j < Scenario.listOfRoads.length; j++) {
-                if (Scenario.listOfRoads[j].locationA.id == currentNode.id || Scenario.listOfRoads[j].locationB.id == currentNode.id) {
-                    roadFogSum += Scenario.listOfRoads[j].fogValue;
-                }
-            }
+	/*
+	 Method: playerRumourSummary
+	 Input Parameters: none
+	 Output Parameters: ArrayList<ArrayList<Integer>> assembled -> the list of rumour lists generated by reportRumour
 
-            nodeFogSum += currentNode.fogValue;
-        }
+	 This method goes through each of the nodes in Scenario and prompts reportRumour
+	 to generate a list of rumours based on the true information in that node.
+	 Each node has a list that may also contain additional rumour details.
+	 */
+	public ArrayList<ArrayList<Integer>> playerRumourSummary() {
+		ArrayList<Integer> temp; // temporary storage of the rumour list
+		ArrayList<ArrayList<Integer>> assembled = new ArrayList<ArrayList<Integer>>(); // initialize the assembled list
 
-        randomFog = (int) (random.nextDouble() * 100);
-        fogSum = nodeFogSum + roadFogSum + currentPlayer.politicalPower + randomFog;
+		for (Node listOfNode : Scenario.listOfNodes) { // for each node in Scenario
+			temp = reportRumour(listOfNode.id); // generate rumours for the given node
+			assembled.add(temp); // add rumours to list
+		}
 
-        calculatedFog = (double) fogSum / maximum;
+		return assembled;
+	}
 
-	//JOptionPane.showMessageDialog(null, "A fog value was found of " + calculatedFog);
-	
-        return calculatedFog;
-    }
+	/*
+	 Method: reportRumour
+	 Input Parameters: int nodeID -> the id belonging to the node to be evaluated
+	 Output Parameters: ArrayList<Integer> rumourList -> list resulting from abstraction of true values
 
-    public ArrayList<ArrayList<Integer>> playerRumourSummary() {
-        ArrayList<Integer> temp;
-        ArrayList<ArrayList<Integer>> assembled = new ArrayList<ArrayList<Integer>>();
+	 reportRumour reads data from the node given in the method call, then through
+	 statistical manipulation, a rumour is generated that reflects what could be
+	 located at the given node.
+	 In this method the following scheme is followed:
+	 0 - small unit
+	 1 - medium unit
+	 2 - large unit
+	 3 - fleet unit
+	 */
+	private ArrayList<Integer> reportRumour(int nodeID) {
+		Node currentNode = Scenario.listOfNodes[nodeID]; // obtain the node by ID
+		ArrayList<Integer> rumourList = new ArrayList<Integer>(); // intitialize rumour list
+		ArrayList<Integer> units = nodeOccupancy(nodeID); // obtain a list of units based on result from nodeOccupancy
+		double fogUpdate = playerFogValueUpdate(); // obtain the present fog value for the player from playerFogUpdate
+		double mapEffect = (1.0 - fogUpdate) * 9; // convert the fogUpdate value into inverse ratio
+		double sigma; // value to capture deviations from the mean
+		double timeAsAFunction; // value obtained from skewing a distribution based on time stationary
+		double randomGauss; // value obtain from sampling a gaussian distribution
+		int mean; // value representing the 0 sigma, or the true nodal value
+		double rumour; // the value obtained by sampling a distribution for the rumoured value
 
-        for (Node listOfNode : Scenario.listOfNodes) {
-            temp = reportRumour(listOfNode.id);
-            assembled.add(temp);
-        }
+		rumourList.add(currentNode.id); // store the node ID at the start of the list
 
-        return assembled;
-    }
+		for (int i = 0; i < units.size(); i++) { // for each of the units on the node
+			do { // sample a gaussian distribution for a value x such that 0<x<1
+				randomGauss = abs(random.nextGaussian());
+			} while (randomGauss > 1);
 
-    private ArrayList<Integer> reportRumour(int nodeID) {
-	Node currentNode = Scenario.listOfNodes[nodeID];
-	//JOptionPane.showMessageDialog(null, "Starting evaluation on  node " + currentNode.name);
-        ArrayList<Integer> rumourList = new ArrayList<Integer>();        
-        ArrayList<Integer> units = nodeOccupancy(nodeID);
-        double fogUpdate = playerFogValueUpdate();
-        double mapEffect = (1.0 - fogUpdate) * 9;
-        double sigma;
-        double timeAsAFunction;
-        double randomGauss;
-        int mean;
-        double rumour;
-        int report = 99;
+			// manipulate the value based on the unit's time stationary, a larger value results in a result closer to 0
+			timeAsAFunction = randomGauss * (3 - units.get(i + 1));
 
-        rumourList.add(currentNode.id);
-	
-	//JOptionPane.showMessageDialog(null, "Evaluating node " + currentNode.name);
+			// with a small probability, ignore the true values and report an entirely false rumour
+			if (timeAsAFunction > 1.5) {
+				if (random.nextGaussian() > 1.8) { // with a small probability, report random unit rumour
+					rumourList.add(random.nextInt(3));
+					//JOptionPane.showMessageDialog(null, "Added false rumour at " + currentNode.name);
+				}
+				return rumourList; // return either no rumours or a false rumour
+			}
 
-        for (int i = 0; i < units.size(); i++) {
-            do {
-                randomGauss = abs(random.nextGaussian());
-            } while (randomGauss > 1);
+			do { // sample a gaussian distribution for a value x such that 0<x<1
+				randomGauss = abs(random.nextGaussian());
+			} while (randomGauss > 1);
 
-            timeAsAFunction = randomGauss * (3 - units.get(i + 1));
+			// manipulate the value based on the unit's time stationary, a larger value results in a result closer to 0
+			timeAsAFunction = randomGauss * (3 - units.get(i + 1));
 
-            if (timeAsAFunction > 1.5) {
-                if (random.nextGaussian() > 1.8) {
-                    rumourList.add(random.nextInt(3));
-		    JOptionPane.showMessageDialog(null, "Added false rumour at " + currentNode.name);
-                }
-                return rumourList;
-            }
+			// if the sample indicates high variance, distort the rumour location
+			if (timeAsAFunction > 0.5) {
+				ArrayList<Integer> neighbours = neighbourFind(nodeID); // find the neighbouring nodes
+				int rand = random.nextInt(neighbours.size()); // chose random neighbour
+				rumourList.set(0, neighbours.get(rand)); // change the ID entry to reflect random selection
+			} else if (timeAsAFunction > 0.75) { // repeat with 2 degrees of neighbours
+				ArrayList<Integer> neighbours = neighbourFind(nodeID);
+				int rand = random.nextInt(neighbours.size());
+				neighbours = neighbourFind(neighbours.get(rand));
+				rand = random.nextInt(neighbours.size());
+				rumourList.set(0, neighbours.get(rand));
+			}
 
-            do {
-                randomGauss = abs(random.nextGaussian());
-            } while (randomGauss > 1);
+			mean = units.get(i); // obtain the true value
+			i++; // maintain counter consistency by incrementing counter
+			sigma = mapEffect - (3 * units.get(i)); // obtain standard deviations based on time stationary and player fog value
+			if (sigma < 0) { // ensure value is not negative
+				sigma = 0;
+			}
 
-            timeAsAFunction = randomGauss * (3 - units.get(i + 1));
+			do { // sample a gaussian distribution for a value x such that 0<x<1
+				randomGauss = abs(random.nextGaussian());
+			} while (randomGauss > 1);
 
-            if (timeAsAFunction > 0.5) {
-                ArrayList<Integer> neighbours = neighbourFind(nodeID);
-                int rand = random.nextInt(neighbours.size());
-                rumourList.set(0, neighbours.get(rand));
-            } else if (timeAsAFunction > 0.75) {
-                ArrayList<Integer> neighbours = neighbourFind(nodeID);
-                int rand = random.nextInt(neighbours.size());
-                neighbours = neighbourFind(neighbours.get(rand));
-                rand = random.nextInt(neighbours.size());
-                rumourList.set(0, neighbours.get(rand));
-            }
+			rumour = (randomGauss * sigma) / 9; // generate value between 0 and 1 indicating rumour accuracy, 0 being true and 1 indicating no accuracy
 
-            mean = units.get(i);
-            i++;
-            sigma = mapEffect - (3 * units.get(i));
-            if (sigma < 0) {
-                sigma = 0;
-            }
+			// if rumour is significantly deviated, then no rumour is generated
+			if (rumour >= 0.4 && rumour <= 0.7) { // if rumour deviation between 0.4 and 0.7
+				if (mean == 2) { // report large as small
+					rumourList.add(0);
+				} else if (mean == 1) { // report medium as small
+					rumourList.add(0);
+				} else if (mean == 0) { // report small as large
+					rumourList.add(2);
+				} else { // report fleet as medium 
+					rumourList.add(1);
+				}
+			} else if (rumour >= 0.065 && rumour < 0.4) { // if rumour deviation between 0.065 and 0.4
+				if (mean == 2) { // report large as medium
+					rumourList.add(1);
+				} else if (mean == 1) { // report medium as large
+					rumourList.add(2);
+				} else if (mean == 0) { // report small as medium
+					rumourList.add(1);
+				} else { // report fleet as small
+					rumourList.add(0);
+				}
+			} else if (rumour < 0.065) { // if rumour deviation less than 0.065
+				rumourList.add(mean); // report true value
+			}
+			//JOptionPane.showMessageDialog(null, "Rumour at: " + currentNode.name + " With weight: " + rumour + ", Mean: " + mean + ", Report: " + rumourList.get(i+1));
+		}
 
-            do {
-                randomGauss = abs(random.nextGaussian());
-            } while (randomGauss > 1);
+		return rumourList;
+	}
 
-            rumour = (randomGauss * sigma) / 9;
+	/*
+	 Method: nodeOccupancy
+	 Input Parameters: int nodeID -> ID of the nodal location to be evaluated
+	 Output Parameters: ArrayList<Integer> units -> list of unit sizes located on the given node
 
-            if (rumour >= 0.4 && rumour <= 0.7) {
-                if (mean == 2) {
-                    report = 0;
-                    rumourList.add(0);
-                    //JOptionPane.showMessageDialog(null, "At " + currentNode.name + ", rumour size " + report);
-                } else if (mean == 1) {
-                    report = 0;
-                    rumourList.add(0);
-                    //JOptionPane.showMessageDialog(null, "At " + currentNode.name + ", rumour size " + report);
-                } else if (mean == 0) {
-                    report = 2;
-                    rumourList.add(2);
-                    //JOptionPane.showMessageDialog(null, "At " + currentNode.name + ", rumour size " + report);
-                } else {
-                    report = 1;
-                    rumourList.add(1);
-                    //JOptionPane.showMessageDialog(null, "At " + currentNode.name + ", rumour size " + report);
-                }
-            } else if (rumour >= 0.065 && rumour < 0.4) {
-                if (mean == 2) {
-                    report = 1;
-                    rumourList.add(1);
-                    //JOptionPane.showMessageDialog(null, "At " + currentNode.name + ", rumour size " + report);
-                } else if (mean == 1) {
-                    report = 2;
-                    rumourList.add(2);
-                    //JOptionPane.showMessageDialog(null, "At " + currentNode.name + ", rumour size " + report);
-                } else if (mean == 0) {
-                    report = 1;
-                    rumourList.add(1);
-                    //JOptionPane.showMessageDialog(null, "At " + currentNode.name + ", rumour size " + report);
-                } else {
-                    report = 0;
-                    rumourList.add(0);
-                    //JOptionPane.showMessageDialog(null, "At " + currentNode.name + ", rumour size " + report);
-                }
-            } else if (rumour < 0.065) {
-                rumourList.add(mean);
-            }
-            //JOptionPane.showMessageDialog(null, "Rumour at: " + currentNode.name + " With weight: " + rumour + ", Mean: " + mean + ", Report: " + report);
-        }
-        
-        return rumourList;
-    }
+	This method determines if there are enemy units located on a node. If a
+	unit is found, it's size is added to the output list. Unit size x is converted
+	based on the following rules:
+		x <=5 is 0
+		x <=10 is 1
+		x <= 20 is 2
+	If the unit is a fleet, the converted size is 3.
+	 */
+	private ArrayList<Integer> nodeOccupancy(int nodeID) {
+		Node currentNode = Scenario.listOfNodes[nodeID]; // obtain reference to correct Scenario node
+		ArrayList<Integer> units = new ArrayList<Integer>(); // initialize the unit list
+		Player currentOpponent; // reference to the opponent of the current player
+		int scaledSize; // the scaled size of the unit, based on the method rules
 
-    private ArrayList<Integer> neighbourFind(int nodeID) {
-        ArrayList<Integer> neighbours = new ArrayList<Integer>();
+		// determine the player to be used
+		if (currentPlayer.playerID == Scenario.redPlayer.playerID) {
+			currentOpponent = Scenario.bluePlayer;
+		} else {
+			currentOpponent = Scenario.redPlayer;
+		}
 
-        for (Road listOfRoad : Scenario.listOfRoads) {
-            if (listOfRoad.locationA.id == nodeID) {
-                neighbours.add(listOfRoad.locationB.id);
-            } else if (listOfRoad.locationB.id == nodeID) {
-                neighbours.add(listOfRoad.locationA.id);
-            }
-        }
+		for (int i = 0; i < currentOpponent.combatUnits.size(); i++) { // for each of the player's units
+			if (currentOpponent.combatUnits.get(i).location.id == currentNode.id) { // if they are on the selected node
+				// scale the size
+				if (currentOpponent.combatUnits.get(i).size > 10) {
+					scaledSize = 2;
+				} else if (currentOpponent.combatUnits.get(i).size > 5) {
+					scaledSize = 1;
+				} else {
+					scaledSize = 0;
+				}
+				if (currentOpponent.combatUnits.get(i).isFleet) {
+					scaledSize = 3;
+				}
+				units.add(scaledSize); // add the size to the list
+				units.add(currentOpponent.combatUnits.get(i).timeStationary); // add the stationary time to the list
+			}
+		}
+		return units;
+	}
 
-        return neighbours;
-    }
+	/*
+	 Method: playerFogUpdate
+	 Input Parameters: none
+	 Output Parameters: double calculatedFog -> the fog value based on the player's unit attributes
 
-    private ArrayList<Integer> nodeOccupancy(int nodeID) {
-        Node currentNode = Scenario.listOfNodes[nodeID];
-        ArrayList<Integer> units = new ArrayList<Integer>();
-        Player currentOpponent;
-        int scaledSize;
+	 This method obtains the cumulative fog value for the player based on their
+	 current unit roster. The unit's location fog value is summed with all other
+	 unit's then converted to a ratio based on the maximum value possible for the
+	 player.
+	 */
+	private double playerFogValueUpdate() {
+		Node currentNode; // pointer to the node occupied by the unit being evaluated
+		int roadFogSum = 0; // sum of all road fog values surrounding units
+		int nodeFogSum = 0; // sum of all node fog values occupied by units
+		int fogSum; // total fog value for a player
+		int randomFog; // randomly generated aspect of fog calculation
+		double calculatedFog; // the resulting ration value
 
-        // determine the player to be used
-        if (currentPlayer.playerID == Scenario.redPlayer.playerID) {
-            currentOpponent = Scenario.bluePlayer;
-        } else {
-            currentOpponent = Scenario.redPlayer;
-        }
+		for (int i = 0; i < currentPlayer.combatUnits.size(); i++) { // for each unit in a player's roster
+			currentNode = currentPlayer.combatUnits.get(i).location; // set the location
 
-        for (int i = 0; i < currentOpponent.combatUnits.size(); i++) {
-            if (currentOpponent.combatUnits.get(i).location.id == currentNode.id) {
-                if (currentOpponent.combatUnits.get(i).size > 10) {
-                    scaledSize = 2;
-                } else if (currentOpponent.combatUnits.get(i).size > 5) {
-                    scaledSize = 1;
-                } else {
-                    scaledSize = 0;
-                }
-                if (currentOpponent.combatUnits.get(i).isFleet) {
-                    scaledSize = 3;
-                }
-		//JOptionPane.showMessageDialog(null, "Unit detected at "+ currentNode.name);
-                units.add(scaledSize);
-                units.add(currentOpponent.combatUnits.get(i).timeStationary);
-            }
-        }
+			for (int j = 0; j < Scenario.listOfRoads.length; j++) { // sum the fog values for all connected roads
+				if (Scenario.listOfRoads[j].locationA.id == currentNode.id || Scenario.listOfRoads[j].locationB.id == currentNode.id) {
+					roadFogSum += Scenario.listOfRoads[j].fogValue;
+				}
+			}
+			nodeFogSum += currentNode.fogValue; // add the node fog value
+		}
 
-        return units;
-    }
-    /*
-     From here we need to establish how to translate our fog functions
-     FogOfWar = [(L+[surz])*numA[i]]+PoliticalPower+random
-     where: L = location value {0..10}
-     surz = surrounding path values {0..4}
-     PoliticalPower {0..30}
-     random {-100..100}
-     0 < FogOfWar < 100
-     */
+		randomFog = (int) (random.nextDouble() * 100); // generate the random fog attribute, from 0 to 100
+		fogSum = nodeFogSum + roadFogSum + currentPlayer.politicalPower + randomFog; // sum all fog values
+		calculatedFog = (double) fogSum / maximum; // generate the ratio value
+		return calculatedFog;
+	}
+
+	/*
+	 Method: neighbourFind
+	 Input Parameters: int nodeID -> ID of the node to be referenced
+	 Output Parameters: ArrayList<Integer> neighbours -> the list of node IDs that are immediately accessible to the node
+
+	This method checks for nodal neighbours based on the start and end location
+	of the roads listed in the Scenario. A list of all found neighbour IDs is
+	returned. 
+	 */
+	private ArrayList<Integer> neighbourFind(int nodeID) {
+		ArrayList<Integer> neighbours = new ArrayList<Integer>(); // initialize list of neighbour IDs
+
+		for (Road listOfRoad : Scenario.listOfRoads) { // for each road in the Scenario
+			if (listOfRoad.locationA.id == nodeID) { // if the given node is location A
+				neighbours.add(listOfRoad.locationB.id); // add location B to the list
+			} else if (listOfRoad.locationB.id == nodeID) { // if the given node is location B
+				neighbours.add(listOfRoad.locationA.id); // add the location A to the list
+			}
+		}
+
+		return neighbours;
+	}
+
+	/*
+	 Method: updateUnitRegistery
+	 Input Parameters: none
+	 Output Parameters: none
+
+	 This method is called to at turn's end and updates the Rumour's awareness
+	 of the units that are currently in play.
+	 */
+	public void updateUnitRegistry() {
+		// set the new unit lists
+		listOfUnitsRed = Scenario.redPlayer.combatUnits;
+		listOfUnitsBlue = Scenario.bluePlayer.combatUnits;
+	}
 }

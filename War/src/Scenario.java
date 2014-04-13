@@ -7,13 +7,23 @@ import javax.swing.JOptionPane;
 /**
  * Scenario Class
  *
- * Through this class, the preliminary game information is tabulated and
- * established based on the parameters of the chosen scenario. This class
- * initializes the properties of the game and subsequent player, units, and map
- * properties.
+ * Description: Through this class, the preliminary game information is
+ * tabulated and established based on the parameters of the chosen scenario.
+ * This class initializes the properties of the game and subsequent player,
+ * units, and map properties. Data in the form of arrays contain information
+ * needed to initialize the game state and map properties.
  *
- * Data in the form of arrays contain information needed to initialize the game
- * state and map properties.
+ * Usage: Scenario is initialized in Team when the user opts to begin the game.
+ * After that, Scenario is called to when a class requires knowledge regarding
+ * players or map properties. Each variable used in Scenario is accessible by
+ * referencing Scenario.X, where X is the name of the variable.
+ *
+ * Maintenance notes: New scenarios can be added to the Initialize method. To do
+ * so, add: - a new case in the switch statement - populate with data either
+ * using the template provided or by referencing the format of other switches
+ * Modifications to current scenarios can be done by modifying the reference
+ * arrays in each switch case. Additional information can be found in the
+ * Maintenance Manual.
  */
 public class Scenario {
 
@@ -25,19 +35,28 @@ public class Scenario {
 	public static Random random = new Random(); // random number for use in unit placement
 	public static ArrayList<Integer> unitLocations; // initialize array to store unit locations
 	public static Game game; // new game object
-	public static String[] names;
-	public static int[][] capitalDistances;
-	public static int[][] locations;
-	public static boolean[][] locationProperties;
-	public static boolean[] isNavalRoute;
+	public static String[] names; // the names of the scenario locations
+	public static int[][] capitalDistances; // the number of nodes between a location and a capital
+	public static int[][] locations; // road properties, including capacity, start location, and end location
+	public static boolean[][] locationProperties; // additional location information including is red capital, is blue capital, and is port
+	public static boolean[] isNavalRoute; // additional property for roads indicating if route traverses body of water
+	public static boolean[] isCity; // additional location property, true if the location is a city, false if checkpoint
 
+	/*
+	 Method: Scenario
+	 Input Parameters: none 
+	 Output Parameters: none
+
+	 The constructor for the Scenario object, no content needed
+	 */
 	public Scenario() {
 
 	}
 
 	/*
 	 Method: Initialize
-	 Parameters: int _scenarioID -> the index of the chosen scenario based on user selection
+	 Input 0Parameters: int _scenarioID -> the index of the chosen scenario based on user selection
+	 Output Parameters: none
     
 	 Initialize selects the data from which to draw upon when setting up the game
 	 state.
@@ -47,7 +66,7 @@ public class Scenario {
 		game.updateWeather(); // set the weather conditions
 		game.setMaxTurnCount(20); // set the maximum turn count
 		setPlayers(); // set the players based on faction properties
-		switch (_scenarioID) { // perform correct scenario operations
+		switch (_scenarioID) { // perform correct scenario operations, each case capturing the selection
 			case 0:
 				// strings for each location name
 				names = new String[]{"Rome", "Aquileia", "Mursa", "Cibalea", "Salona", "Brundisium", "Sirmium", "Dyrrachium", "Singidunum", "Thessalonica", "Ratiaria", "Sardica", "Heralea", "Marcianopolis", "Adrianople", "Constantinople"};
@@ -55,6 +74,8 @@ public class Scenario {
 				capitalDistances = new int[][]{{0, 5}, {1, 5}, {2, 5}, {2, 5}, {2, 4}, {1, 4}, {3, 4}, {2, 3}, {4, 3}, {3, 2}, {5, 3}, {5, 2}, {4, 1}, {6, 2}, {6, 1}, {5, 0}};
 				// is red capital, is blue capital, is port
 				locationProperties = new boolean[][]{{true, false, false}, {false, false, false}, {false, false, false}, {false, false, false}, {false, false, false}, {false, false, false}, {false, false, false}, {false, false, false}, {false, false, false}, {false, false, false}, {false, false, false}, {false, false, false}, {false, false, false}, {false, false, false}, {false, false, false}, {false, true, false}};
+				// is the location a city?
+				isCity = new boolean[]{true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true};
 				// road capacity, start location for road, end location for road
 				locations = new int[][]{{20, 0, 5}, {20, 0, 1}, {10, 1, 2}, {10, 1, 3}, {10, 1, 4}, {20, 2, 6}, {20, 3, 6}, {10, 4, 7}, {10, 5, 7}, {10, 6, 8}, {10, 7, 9}, {20, 8, 12}, {10, 8, 11}, {10, 9, 11}, {20, 10, 13}, {20, 11, 14}, {20, 9, 12}, {20, 13, 14}, {20, 14, 15}, {20, 12, 15}};
 				// true if the road is a naval only route
@@ -85,6 +106,8 @@ public class Scenario {
 				capitalDistances = new int[][]{{0, 5}, {1, 5}, {2, 5}, {2, 5}, {2, 4}, {1, 4}, {3, 4}, {2, 3}, {4, 3}, {3, 2}, {5, 3}, {5, 2}, {4, 1}, {6, 2}, {6, 1}, {5, 0}};
 				// is red capital, is blue capital, is port
 				locationProperties = new boolean[][]{{true, false, false}, {false, false, false}, {false, false, false}, {false, false, false}, {false, false, false}, {false, false, false}, {false, false, false}, {false, false, false}, {false, false, false}, {false, false, false}, {false, false, false}, {false, false, false}, {false, false, false}, {false, false, false}, {false, false, false}, {false, true, false}};
+				// is the location a city?
+				isCity = new boolean[]{true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true};
 				// road capacity, start location for road, end location for road
 				locations = new int[][]{{2, 0, 5}, {2, 0, 1}, {1, 1, 2}, {1, 1, 3}, {1, 1, 4}, {2, 2, 6}, {2, 3, 6}, {1, 4, 7}, {1, 5, 7}, {1, 6, 8}, {1, 7, 9}, {2, 8, 12}, {1, 8, 11}, {1, 9, 11}, {2, 10, 13}, {2, 11, 14}, {2, 9, 12}, {2, 13, 14}, {2, 14, 15}, {2, 12, 15}};
 				// true if the road is a naval only route
@@ -115,6 +138,8 @@ public class Scenario {
 				capitalDistances = new int[][]{{0, 5}, {1, 5}, {2, 5}, {2, 5}, {2, 4}, {1, 4}, {3, 4}, {2, 3}, {4, 3}, {3, 2}, {5, 3}, {5, 2}, {4, 1}, {6, 2}, {6, 1}, {5, 0}};
 				// is red capital, is blue capital, is port
 				locationProperties = new boolean[][]{{true, false, false}, {false, false, false}, {false, false, false}, {false, false, false}, {false, false, false}, {false, false, false}, {false, false, false}, {false, false, false}, {false, false, false}, {false, false, false}, {false, false, false}, {false, false, false}, {false, false, false}, {false, false, false}, {false, false, false}, {false, true, false}};
+				// is the location a city?
+				isCity = new boolean[]{true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true};
 				// road capacity, start location for road, end location for road
 				locations = new int[][]{{2, 0, 5}, {2, 0, 1}, {1, 1, 2}, {1, 1, 3}, {1, 1, 4}, {2, 2, 6}, {2, 3, 6}, {1, 4, 7}, {1, 5, 7}, {1, 6, 8}, {1, 7, 9}, {2, 8, 12}, {1, 8, 11}, {1, 9, 11}, {2, 10, 13}, {2, 11, 14}, {2, 9, 12}, {2, 13, 14}, {2, 14, 15}, {2, 12, 15}};
 				// true if the road is a naval only route
@@ -143,7 +168,8 @@ public class Scenario {
 
 	/*
 	 Method: killSwitch
-	 Parameters: none
+	 Input Parameters: none
+	 Output Parameters: none
     
 	 Variables are set to default values at the end of the lifecycle of the game 
 	 state or when a player opts to return to scenario selection mid game.
@@ -160,7 +186,8 @@ public class Scenario {
 
 	/*
 	 Method: setMapParameters
-	 Parameters: none
+	 Input Parameters: none
+	 Output Parameters: none
     
 	 Information regarding the locations present in the chosen scenario and the 
 	 roads which connect them are translated to structures to be used in user
@@ -173,51 +200,22 @@ public class Scenario {
 
 		// for each of the cities
 		for (int i = 0; i < listOfNodes.length; i++) {
-			int supply = (int) (4 * random.nextDouble()); // determine the supply level
-
-//			// determine node properties
-			boolean isCity = true;
-//			boolean redCapital = false;
-//			boolean blueCapital = false;
-//			boolean isPort = false;
-//			// add properties to the node based on scenario parameters
-//			// indicate capital and if node is port
-//			switch (names[i]) {
-//				case "Roma":
-//					blueCapital = true;
-//					isPort = true;
-//					break;
-//				case "Brindis":
-//					redCapital = true;
-//					isPort = true;
-//					break;
-//				case "Senigalia":
-//					isPort = true;
-//					break;
-//				case "Dyrrhachulum":
-//					isPort = true;
-//					break;
-//			}
+			int supply = (int) (4 * random.nextDouble()); // determine the supply level randomly
 			// initialize each of the new nodes based on the scenario data
-			listOfNodes[i] = new Node(i, locationProperties[i][0], locationProperties[i][1], capitalDistances[i][0], capitalDistances[i][1], names[i], supply, isCity, locationProperties[i][2]);
+			listOfNodes[i] = new Node(i, locationProperties[i][0], locationProperties[i][1], capitalDistances[i][0], capitalDistances[i][1], names[i], supply, isCity[i], locationProperties[i][2]);
 		}
 
 		// for each of the roads
 		for (int j = 0; j < listOfRoads.length; j++) {
-			// determine which roads should be registered as naval only
-//			boolean isNaval = false;
-//			if (j == 0 || j == 12) {
-//				isNaval = true;
-//			}
-			// initialize each of the new roads
-			//JOptionPane.showMessageDialog(null, "New road created between "+ names[locations[j][1]] + " and "+ names[locations[j][2]] + " with capacity " + locations[j][0]);
+			// initialize the road object based on scenario data
 			listOfRoads[j] = new Road(j, locations[j][0], listOfNodes[locations[j][1]], listOfNodes[locations[j][2]], isNavalRoute[j]);
 		}
 	}
 
 	/*
 	 Method: setPlayers
-	 Parameters: none
+	 Input Parameters: none
+	 Output Paramaeters: none
     
 	 Based on user selection, players are assigned to either computer or player
 	 control and to their selected faction, be it red or blue player
@@ -248,49 +246,14 @@ public class Scenario {
 
 	/*
 	 Method: setCombatUnits
-	 Parameters: none
+	 Input Parameters: none
+	 Output Parameters: none
     
 	 Combat units are constructed, assigned to a player, and placed on the map based
 	 on the parameters outlined in the scenario.
 	 */
 	private void setCombatUnits() {
-//		int temp; // temporary storage of the random unit placement value
-//		unitLocations = new ArrayList<Integer>() { // list of all start locations
-//			{
-//				add(13);
-//				add(5);
-//				add(8);
-//				add(10);
-//				add(12);
-//				add(11);
-//			}
-//		};
-//
-//		// select two random starting points for the small armies
-//		for (int i = 0; i < 2; i++) {
-//			do {
-//				temp = random.nextInt(13);
-//			} while (unitLocations.contains(temp));
-//			unitLocations.add(temp);
-//		}
-//
-//		// initialize the combat units as per scenario parameters
-//		listOfUnits.add(new CombatUnit(false, 0, 20, 0, listOfNodes[unitLocations.get(0)], bluePlayer));
-//		listOfUnits.add(new CombatUnit(false, 1, 10, 0, listOfNodes[unitLocations.get(1)], bluePlayer));
-//		listOfUnits.add(new CombatUnit(false, 2, 5, 0, listOfNodes[unitLocations.get(6)], bluePlayer));
-//		listOfUnits.add(new CombatUnit(true, 3, 5, 0, listOfNodes[unitLocations.get(2)], bluePlayer));
-//		listOfUnits.add(new CombatUnit(false, 4, 10, 0, listOfNodes[unitLocations.get(3)], redPlayer));
-//		listOfUnits.add(new CombatUnit(false, 5, 10, 0, listOfNodes[unitLocations.get(4)], redPlayer));
-//		listOfUnits.add(new CombatUnit(false, 6, 5, 0, listOfNodes[unitLocations.get(7)], redPlayer));
-//		listOfUnits.add(new CombatUnit(true, 7, 5, 0, listOfNodes[unitLocations.get(5)], redPlayer));
-//		// add the units to their respective players
-//		for (int i = 0; i < 4; i++) {
-//			bluePlayer.combatUnits.add(listOfUnits.get(i));
-//		}
-//		for (int i = 4; i < 8; i++) {
-//			redPlayer.combatUnits.add(listOfUnits.get(i));
-//		}
-
+		// remove supplies where units have been places
 		for (CombatUnit unit : listOfUnits) {
 			unit.location.removeSupplies();
 		}
@@ -305,14 +268,16 @@ public class Scenario {
 		bluePlayer.setUpRumours();
 		bluePlayer.generateRumourList();
 
+		// establish the starting political power levels
 		redPlayer.AdjustPoliticalPower();
 		bluePlayer.AdjustPoliticalPower();
 	}
 
 	/*
 	 Method: findRoad
-	 Parameters: Node locationA -> the possible start location of the road to be found
+	 Input Parameters: Node locationA -> the possible start location of the road to be found
 	 Node locationB -> the possible end location of the road to be found
+	 Output Parameters: Road found -> the road object found in the search
     
 	 This method allows for the roads to be searched through based on a supposed
 	 start and end location. The found road is returned.
@@ -334,16 +299,24 @@ public class Scenario {
 		return found;
 	}
 
+	/*
+	 Method: findMaxDistance
+	 Input Parameters: int playerID -> the player to be evaluated
+	 Output Parameters: int maxCheck -> the largest distance from capital found in search
+
+	 This method searches the the listOfNodes in the scenario for the largest
+	 possible distance from capital for use in political power calculation.
+	 */
 	public static int findMaxDistance(int playerID) {
-		int maxCheck = 0;
-		if (Scenario.redPlayer.playerID == playerID) {
-			for (Node location : Scenario.listOfNodes) {
-				if (location.distanceFromCapitalRed > maxCheck) {
+		int maxCheck = 0; // initialize the maximum value found
+		if (Scenario.redPlayer.playerID == playerID) { // if the player is red player
+			for (Node location : Scenario.listOfNodes) { // search all locations in Scenario
+				if (location.distanceFromCapitalRed > maxCheck) { // if the distance is the largest seen, store it
 					maxCheck = location.distanceFromCapitalRed;
 				}
 			}
-			return maxCheck;
-		} else {
+			return maxCheck; // return the largest found
+		} else { // repeat for blue player
 			for (Node location : Scenario.listOfNodes) {
 				if (location.distanceFromCapitalBlue > maxCheck) {
 					maxCheck = location.distanceFromCapitalBlue;
