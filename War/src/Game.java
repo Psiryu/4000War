@@ -181,10 +181,10 @@ public class Game {
             // indicate that red player is the winner
             if (Scenario.redPlayer.politicalPower > Scenario.bluePlayer.politicalPower) {
                 Global.gameSummary = "Red Player Wins!";
-                Global.gameSummary2 = "There are no more turns remaining"
-                        + "or time ran out... Red player"
-                        + "wins because their political"
-                        + "power is greater than Blue's";
+                Global.gameSummary2 = " There are no more turns remaining"
+                        + " or time ran out... Red player"
+                        + " wins because their political"
+                        + " power is greater than Blue's.";
 
                 Global.intGameOver = 1;
                 return;
@@ -192,10 +192,10 @@ public class Game {
                 // if blue player's political power is greater than red players
                 // indicate that blue player is the winner
                 Global.gameSummary = "Blue Player Wins!";
-                Global.gameSummary2 = "There are no more turns remaining "
-                        + "or time ran out... Blue player "
-                        + "wins because their political "
-                        + "power is greater than Red's.";
+                Global.gameSummary2 = " There are no more turns remaining"
+                        + " or time ran out... Blue player"
+                        + " wins because their political"
+                        + " power is greater than Red's.";
                 Global.intGameOver = 1;
                 return;
 
@@ -203,7 +203,7 @@ public class Game {
                 // if red has the larger remaining army, then red wins
                 if (aggregateRedSize > aggregateBlueSize) {
                     Global.gameSummary = "Red Player Wins!";
-                    Global.gameSummary2 = "There are no more turns remaining \n"
+                    Global.gameSummary2 = "There are no more turns remaining "
                             + "or time ran out... Red player "
                             + "wins because their political "
                             + "power is equal than Blue's "
@@ -226,7 +226,7 @@ public class Game {
                 } else {
                     // if they have equal army sizes, declare a tie
                     Global.gameSummary = "Tie Game!";
-                    Global.gameSummary2 = "There are no more turns remaining \n"
+                    Global.gameSummary2 = "There are no more turns remaining "
                             + "or time ran out... Both "
                             + "players have equal army size "
                             + "and political power.";
