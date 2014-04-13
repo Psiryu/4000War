@@ -97,11 +97,13 @@ public class Rumour {
 
         calculatedFog = (double) fogSum / maximum;
 
+	//JOptionPane.showMessageDialog(null, "A fog value was found of " + calculatedFog);
+	
         return calculatedFog;
     }
 
     public ArrayList<ArrayList<Integer>> playerRumourSummary() {
-        ArrayList<Integer> temp = new ArrayList<Integer>();
+        ArrayList<Integer> temp;
         ArrayList<ArrayList<Integer>> assembled = new ArrayList<ArrayList<Integer>>();
 
         for (Node listOfNode : Scenario.listOfNodes) {
@@ -113,8 +115,9 @@ public class Rumour {
     }
 
     private ArrayList<Integer> reportRumour(int nodeID) {
-        ArrayList<Integer> rumourList = new ArrayList<Integer>();
-        Node currentNode = Scenario.listOfNodes[nodeID];
+	Node currentNode = Scenario.listOfNodes[nodeID];
+	//JOptionPane.showMessageDialog(null, "Starting evaluation on  node " + currentNode.name);
+        ArrayList<Integer> rumourList = new ArrayList<Integer>();        
         ArrayList<Integer> units = nodeOccupancy(nodeID);
         double fogUpdate = playerFogValueUpdate();
         double mapEffect = (1.0 - fogUpdate) * 9;
@@ -126,6 +129,8 @@ public class Rumour {
         int report = 99;
 
         rumourList.add(currentNode.id);
+	
+	//JOptionPane.showMessageDialog(null, "Evaluating node " + currentNode.name);
 
         for (int i = 0; i < units.size(); i++) {
             do {
@@ -177,40 +182,39 @@ public class Rumour {
                 if (mean == 2) {
                     report = 0;
                     rumourList.add(0);
-                    JOptionPane.showMessageDialog(null, "At " + currentNode.name + ", rumour size " + report);
+                    //JOptionPane.showMessageDialog(null, "At " + currentNode.name + ", rumour size " + report);
                 } else if (mean == 1) {
                     report = 0;
                     rumourList.add(0);
-                    JOptionPane.showMessageDialog(null, "At " + currentNode.name + ", rumour size " + report);
+                    //JOptionPane.showMessageDialog(null, "At " + currentNode.name + ", rumour size " + report);
                 } else if (mean == 0) {
                     report = 2;
                     rumourList.add(2);
-                    JOptionPane.showMessageDialog(null, "At " + currentNode.name + ", rumour size " + report);
+                    //JOptionPane.showMessageDialog(null, "At " + currentNode.name + ", rumour size " + report);
                 } else {
                     report = 1;
                     rumourList.add(1);
-                    JOptionPane.showMessageDialog(null, "At " + currentNode.name + ", rumour size " + report);
+                    //JOptionPane.showMessageDialog(null, "At " + currentNode.name + ", rumour size " + report);
                 }
             } else if (rumour >= 0.065 && rumour < 0.4) {
                 if (mean == 2) {
                     report = 1;
                     rumourList.add(1);
-                    JOptionPane.showMessageDialog(null, "At " + currentNode.name + ", rumour size " + report);
+                    //JOptionPane.showMessageDialog(null, "At " + currentNode.name + ", rumour size " + report);
                 } else if (mean == 1) {
                     report = 2;
                     rumourList.add(2);
-                    JOptionPane.showMessageDialog(null, "At " + currentNode.name + ", rumour size " + report);
+                    //JOptionPane.showMessageDialog(null, "At " + currentNode.name + ", rumour size " + report);
                 } else if (mean == 0) {
                     report = 1;
                     rumourList.add(1);
-                    JOptionPane.showMessageDialog(null, "At " + currentNode.name + ", rumour size " + report);
+                    //JOptionPane.showMessageDialog(null, "At " + currentNode.name + ", rumour size " + report);
                 } else {
                     report = 0;
                     rumourList.add(0);
-                    JOptionPane.showMessageDialog(null, "At " + currentNode.name + ", rumour size " + report);
+                    //JOptionPane.showMessageDialog(null, "At " + currentNode.name + ", rumour size " + report);
                 }
             } else if (rumour < 0.065) {
-                report = mean;
                 rumourList.add(mean);
             }
             //JOptionPane.showMessageDialog(null, "Rumour at: " + currentNode.name + " With weight: " + rumour + ", Mean: " + mean + ", Report: " + report);
@@ -241,9 +245,9 @@ public class Rumour {
 
         // determine the player to be used
         if (currentPlayer.playerID == Scenario.redPlayer.playerID) {
-            currentOpponent = Scenario.redPlayer;
-        } else {
             currentOpponent = Scenario.bluePlayer;
+        } else {
+            currentOpponent = Scenario.redPlayer;
         }
 
         for (int i = 0; i < currentOpponent.combatUnits.size(); i++) {
@@ -258,6 +262,7 @@ public class Rumour {
                 if (currentOpponent.combatUnits.get(i).isFleet) {
                     scaledSize = 3;
                 }
+		//JOptionPane.showMessageDialog(null, "Unit detected at "+ currentNode.name);
                 units.add(scaledSize);
                 units.add(currentOpponent.combatUnits.get(i).timeStationary);
             }
