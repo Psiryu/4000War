@@ -1,15 +1,22 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
+ * Player Class
  *
- * @author Fearless Jay
+ * Description: This class represents the workings of the Player object. The
+ * Player object represents the user and the faction they are playing as in the
+ * game. As such, variables pertaining to the Player allow for tracking of unit
+ * roster, capital, political power level, and enemy intelligence.
+ *
+ * Usage: Player objects are constructed in Scenario.setPlayers(). Subsequent
+ * use of the object is used throughout the project. Major changes in this class
+ * will require a project-wide review.
+ *
+ * Maintenance notes: Additional parameters can be added to the parameter list
+ * and the constructor, so long as the construction statements in
+ * Scenario.setPlayers() are also modified.
  */
 public class Player extends Game {
 
@@ -23,11 +30,20 @@ public class Player extends Game {
 	protected String playerName; // name of the player as per the scenario and chosen faction
 	protected int totalInitialArmy; // inital size of all units, sum
 	protected int totalCurrentArmy; // current size of all units, sum
-	protected int totalDistanceMax;
-	protected Rumour rumours;
-	protected ArrayList<ArrayList<Integer>> enemyIntelligence;
+	protected int totalDistanceMax; // maximum possible distance a unit can have from capital
+	protected Rumour rumours; // Rumour object to record enemy intelligence operations
+	protected ArrayList<ArrayList<Integer>> enemyIntelligence; // storage of enemey intelligence
 
-	// Constuctor of the player object
+	/*
+	 Method: Player
+	 Input Parameters: boolean _isComp -> true if the player is AI
+	 int id -> unique identifier for the player
+	 String _playerName -> the word representation of the player
+	 Output Parameters: none
+
+	 This is the constructor for the player object. Object parameters are established
+	 based on the input parameters.
+	 */
 	public Player(boolean _isComp, int id, String _playerName) {
 		// obtain the information for the player parameters
 		playerID = id;
@@ -36,14 +52,29 @@ public class Player extends Game {
 		playerName = _playerName;
 	}
 
+	/*
+	 Method: setUpRumours
+	 Input Parameters: none
+	 Output Parameters: none
+
+	 Method called to at the start of a game. This initializes the rumour object.
+	 */
 	public void setUpRumours() {
 		rumours = new Rumour(playerID);
 	}
 
+	/*
+	 Method: generateRumourList
+	 Input Parameters: none
+	 Output Parameters: none
+
+	 This method first establishes the Rumour object's awareness of the units
+	 currently in play then obtains the enemy intelligence list.
+	 */
 	public void generateRumourList() {
 		String report = "";
-		rumours.updateUnitRegistry();
-		enemyIntelligence = rumours.playerRumourSummary();
+		rumours.updateUnitRegistry(); // update unit awareness
+		enemyIntelligence = rumours.playerRumourSummary(); // obtain the list of rumoured units
 //		for (ArrayList<Integer> nodal : enemyIntelligence) {
 //			if (nodal.size() > 1) {
 //				report += playerName+" ";
@@ -60,12 +91,14 @@ public class Player extends Game {
 //		}
 	}
 
-	// Method to get political power level
-	public int getPoliticalPower() {
-		return politicalPower;
-	}
+	/*
+	 Method: setPoliticalPower
+	 Input Parameters: double x -> the value that political power is to be set to
+	 Output Parameters: none
 
-	// Method to set the political power level
+	 This method captures the new political power level, registers the current
+	 state, then obtains the statistics pertaining to a political power decrease.
+	 */
 	private void setPoliticalPower(double x) {
 		politicalPowerPreviousState = politicalPower; // store the previous state
 		politicalPower = (int) x; // update the current level
@@ -76,38 +109,51 @@ public class Player extends Game {
 		}
 	}
 
-	// Method to get the political power decrease
+	/*
+	 Method: getPoliticalPowerDecrease
+	 Input Parameters: none
+	 Output Parameters: int politicalPowerDecrease -> the decrease in political power
+
+	 Method to return the last registered political power decrease.
+	 */
 	public int getPoliticalPowerDecrease() {
 		return politicalPowerDecrease;
 	}
 
-	// Method to get if the player is a computer
-	public boolean getIsComp() {
-		return isComp;
-	}
+	/*
+	 Method: AdjustPoliticalPower
+	 Input Parameters: none 
+	 Output Parameters: none
 
-	// Method to calculate the current political power level
+	 This method captures the state of a faction at the end of a turn and adjusts
+	 the political power level correctly.
+	 */
 	public void AdjustPoliticalPower() {
 		double calculatedPoliticalPower = 0; // temporary value to store the calculated current state
 
-		totalDistanceMax = Scenario.findMaxDistance(playerID);
+		totalDistanceMax = Scenario.findMaxDistance(playerID); // obtain the maximum possible distance a unit can be from capital
 
-		setCurrentArmyLevel();
+		setCurrentArmyLevel(); // calibrate the statistics pertaining to current unit roster level
 
-		// store the current total distance and cap at 20
+		// store the current total distance
 		int totalDistance = getAggDistance();
 
-        // store the current number of game turns and cap at 30
 		// calculate the current level of political power
-		calculatedPoliticalPower = 100 - (20 - ((totalDistance / ((double) totalDistanceMax * (double) combatUnits.size())) * 20))
+		calculatedPoliticalPower = 100
+			- (20 - ((totalDistance / ((double) totalDistanceMax * (double) combatUnits.size())) * 20))
 			- (50 - ((double) totalCurrentArmy / (double) totalInitialArmy) * 50)
 			- ((Game.turnCount / Game.maxTurnCount) * 30);
 		setPoliticalPower(calculatedPoliticalPower);
-
-		//JOptionPane.showMessageDialog(null, "Total distance: " + totalDistance + "Current Army: " + totalCurrentArmy / totalInitialArmy + "Turn Count: " + Game.turnCount);
 	}
 
-	// Method to calculate the total dispersion of a faction's units
+	/*
+	 Method: getAggDistance
+	 Input Parameters: none
+	 Output Parameters: int calculatedDistance -> the sum of capital distances for all players
+
+	 This method provided the AdjustPoliticalPower method with information about
+	 how far the faction's units are spread across the map. 
+	 */
 	private int getAggDistance() {
 		int calculatedDistance = 0; // temporary storage of caculation
 
@@ -120,12 +166,18 @@ public class Player extends Game {
 			}
 		}
 
-        //JOptionPane.showMessageDialog(null, "Agg Distance "+calculatedDistance);
 		// set the total distance based on calculation
 		return calculatedDistance;
 	}
 
-	// Method to set the initial army size
+	/*
+	 Method: setInitialArmyLevel
+	 Input Parameters: none
+	 Output Parameters: none
+
+	 This method is called to at the start of a game to establish the initial
+	 unit roster and the current unit roster.
+	 */
 	public void setInitialArmyLevel() {
 		int sumSize = 0; // temporary storage of the sum of all unit sizes
 
@@ -139,7 +191,14 @@ public class Player extends Game {
 		totalCurrentArmy = sumSize;
 	}
 
-	// Method to set the ongoing army size
+	/*
+	 Method: setCurrentArmyLevel
+	 Input Parameters: none
+	 Output Parameters: none
+	
+	 This method captures the overall size of the faction's unit roster as it
+	 is at the end of a turn.
+	 */
 	public void setCurrentArmyLevel() {
 		int sumSize = 0; // temporary storage of the sum of all unit sizes
 
@@ -151,5 +210,4 @@ public class Player extends Game {
 		// set the current army size based on calculation
 		totalCurrentArmy = sumSize;
 	}
-
 }
