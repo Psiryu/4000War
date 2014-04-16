@@ -249,11 +249,11 @@ public class Game {
 					return;
 				}
 			}
-		} else if (Scenario.redPlayer.combatUnits.size() == 1) {
+		} else if (Scenario.redPlayer.combatUnits.size() <= 1) {
             // case 2: one of the players has one unit remaining
 			// if the red player has one unit remaining
 			// and if the blue player has one unit remaining
-			if ((Scenario.bluePlayer.combatUnits.size() == 1)) {
+			if ((Scenario.bluePlayer.combatUnits.size() <= 1)) {
                 // if both remaining units are fleets
 				// delare a tie
 				if (Scenario.bluePlayer.combatUnits.get(0).isFleet && Scenario.redPlayer.combatUnits.get(0).isFleet) {
@@ -275,7 +275,7 @@ public class Game {
 				Global.intGameOver = 1;
 				return;
 			}
-		} else if ((Scenario.bluePlayer.combatUnits.size() == 1)) {
+		} else if ((Scenario.bluePlayer.combatUnits.size() <= 1)) {
             // if blue player has only a fleet remaining
 			// declare red the victor
 			if (Scenario.bluePlayer.combatUnits.get(0).isFleet) {
