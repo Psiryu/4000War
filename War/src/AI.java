@@ -103,7 +103,7 @@ public class AI {
                                                 for(Node node : Scenario.listOfNodes) {
                                                     if(node.id == road.locationB.id) {
                                                         //checks if fog of war at this node has any values
-                                                        if(robots.enemyIntelligence.get(node.id).size() > 1) {
+                                                        if(robots.enemyIntelligence.get(robots.enemyIntelligence.indexOf(node.id)).size() > 1) {
                                                             weighting+=10;
                                                         }
                                                     }
@@ -113,7 +113,7 @@ public class AI {
                                                 for(Node node : Scenario.listOfNodes) {
                                                     if(node.id == road.locationB.id) {
                                                         //checks if fog of war at this node has any values
-                                                        if(robots.enemyIntelligence.get(node.id).size() > 1) {
+                                                        if(robots.enemyIntelligence.get(robots.enemyIntelligence.indexOf(node.id)).size() > 1) {
                                                             weighting+=10;
                                                         }
                                                     }
