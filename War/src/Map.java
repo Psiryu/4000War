@@ -1997,35 +1997,69 @@ public class Map extends javax.swing.JFrame {
     }
 
     private void EnemiesHere() {
-        String enemies = "";
-        int first = 0;
-        ArrayList<Integer> intel;
-        if (Global.curPlayer == 0) {
-            intel = Scenario.redPlayer.enemyIntelligence.get(nodeSelected);
-        } else {
-            intel = Scenario.bluePlayer.enemyIntelligence.get(nodeSelected);
-        }
-
-        if (intel.size() == 1) {
-            enemies = "none known to be here";
-        } else {
-            //intel.remove(0);
-            for (int fog : intel) {
-                if (first == 0) {
-                    first++;
-                } else {
-                    if (fog == 3) {
-                        enemies += (" " + ConvertSize(5, 1));
-                    } else if (fog == 2) {
-                        enemies += (" " + ConvertSize(15, 0));
-                    } else if (fog == 1) {
-                        enemies += (" " + ConvertSize(10, 0));
-                    } else if (fog == 0) {
-                        enemies += (" " + ConvertSize(5, 0));
-                    }
-                }
-            }
-        }
+        String enemies = ""; // storage of output text
+	ArrayList<ArrayList<Integer>> intel; // storage of intel list
+	boolean first, check; // list check variables for the node id and if the node id matched the selected node
+	
+	if (Global.curPlayer == 0){ // obtain the correct intel list
+		intel = Scenario.redPlayer.enemyIntelligence;
+	} else {
+		intel = Scenario.bluePlayer.enemyIntelligence;
+	}
+	
+	for (ArrayList<Integer> nodal : intel){ // for each nodal intelligence list
+		first = true; // if the first entry seen in the below loop is the first entry
+		check = false; // if the first entry matched the id of the node selected
+		for (Integer value : nodal){ // for each value in the intel list
+			if (first){ // if it is the first value
+				if (value == nodeSelected){ // if the node matches the selected node
+					check = true; // verify that this is true
+				}
+				first = false; // toggle the first flag
+			} else { // if the entry is not the first
+				if (check){ // if the first entry matches the node selected
+					// report the value rumoured to be there
+					if (value == 3) {
+						enemies += (" " + ConvertSize(5, 1));
+					} else if (value == 2) {
+						enemies += (" " + ConvertSize(15, 0));
+					} else if (value == 1) {
+					    enemies += (" " + ConvertSize(10, 0));
+					} else if (value == 0) {
+					    enemies += (" " + ConvertSize(5, 0));
+					}
+				}
+			}
+		}		
+	}
+//        int first = 0;
+//        ArrayList<Integer> intel;
+//        if (Global.curPlayer == 0) {
+//            intel = Scenario.redPlayer.enemyIntelligence.get(Scenario.redPlayer.enemyIntelligence.indexOf(nodeSelected));
+//        } else {
+//            intel = Scenario.bluePlayer.enemyIntelligence.get(Scenario.bluePlayer.enemyIntelligence.indexOf(nodeSelected));
+//        }
+//
+//        if (intel.size() == 1) {
+//            enemies = "none known to be here";
+//        } else {
+//            //intel.remove(0);
+//            for (int fog : intel) {
+//                if (first == 0) {
+//                    first++;
+//                } else {
+//                    if (fog == 3) {
+//                        enemies += (" " + ConvertSize(5, 1));
+//                    } else if (fog == 2) {
+//                        enemies += (" " + ConvertSize(15, 0));
+//                    } else if (fog == 1) {
+//                        enemies += (" " + ConvertSize(10, 0));
+//                    } else if (fog == 0) {
+//                        enemies += (" " + ConvertSize(5, 0));
+//                    }
+//                }
+//            }
+//        }
 
         labelInfo6.setText("Enemies here: " + enemies);
     }
