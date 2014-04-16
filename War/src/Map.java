@@ -1878,6 +1878,7 @@ public class Map extends javax.swing.JFrame {
                 }
 
                 ImageIcon img2 = new ImageIcon(img);
+                
 
                 switch (i) {
                     case 0:
@@ -1931,8 +1932,9 @@ public class Map extends javax.swing.JFrame {
                 }
 
             //increments i, which keeps track of indexing
-            i++;
+            
             }
+            i++;
         }
     }
     
