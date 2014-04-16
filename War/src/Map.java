@@ -257,7 +257,7 @@ public class Map extends javax.swing.JFrame {
         labelScenario.setText("text");
         frameFloatingInfo.getContentPane().add(labelScenario, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 80, -1, -1));
 
-        labelPoliticalPower.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        labelPoliticalPower.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         labelPoliticalPower.setText("text");
         frameFloatingInfo.getContentPane().add(labelPoliticalPower, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 100, -1, -1));
 
@@ -277,9 +277,7 @@ public class Map extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(204, 255, 255));
-        setMaximumSize(new java.awt.Dimension(865, 588));
         setMinimumSize(new java.awt.Dimension(865, 588));
-        setPreferredSize(new java.awt.Dimension(865, 588));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
