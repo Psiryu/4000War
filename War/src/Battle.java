@@ -66,7 +66,7 @@ public class Battle {
 
         /*POINT TO WHERE THE COLLISION IS ON THE MAP*/
         /*UI CONTROL*/
-        int yesNo;
+        int yesNo =2;
 
         if(IsPreemptive(node,redCombatUnit.get(0).faction.playerID))
         {
@@ -356,7 +356,7 @@ public class Battle {
                 MapEvent.successfullFlee(attackers, Scenario.findRoad(node, attackerPreviousLocation.get(0)), attackerIntendedLocation.get(0).id);
                 
                 
-                if (isCowards == "red")
+                if (isCowards .equals("red"))
                 {
                     JOptionPane.showMessageDialog(null,Global.redPreEmptiveToString + Global.bluePreEmptiveToString
                             + "Red flees battle while Blue moves to " + node.name);
@@ -374,7 +374,7 @@ public class Battle {
                 { 
                     /*attackers fall in battle*/
                     /*COWARDS WIN and end up heading towards their intened position*/
-                    if (isCowards == "red") 
+                    if (isCowards .equals("red")) 
                     {
                         /*if cowards is red then blue loses their armies*/
                         
@@ -413,7 +413,7 @@ public class Battle {
                 {
                     /*ATTACKERS WIN AT TAKE POSITION*/
 
-                    if(isCowards == "red")
+                    if(isCowards .equals("red"))
                     {
                         MapEvent.completeCombat(cowards, false, attackers, true, node);
                         
@@ -443,7 +443,7 @@ public class Battle {
                     {
                         /*ATTACKERS WIN AT TAKE POSITION*/
 
-                        if(isCowards == "red")
+                        if(isCowards .equals("red"))
                         {
                             /*Red team (Cowards) armies will die and Blue will take position*/
                             
@@ -467,7 +467,7 @@ public class Battle {
                     else 
                     {
                         /*COWARDS WIN and end up heading towards their intened position*/
-                        if (isCowards == "red") 
+                        if (isCowards .equals("red")) 
                         {
                             MapEvent.completeCombat(cowards, true, attackers, false, node);
                             
@@ -499,7 +499,7 @@ public class Battle {
                 {
                     /*COWARDS WIN and end up heading towards their intened position */
 
-                    if(isCowards == "red")
+                    if(isCowards .equals("red"))
                     {
                         /*Attacker Blue dies*/
                         MapEvent.completeCombat(cowards, true, attackers, false, node);
@@ -524,7 +524,7 @@ public class Battle {
                 {
                     /*Cowards are defenders*/
                     /*ATTACKERS WIN AT TAKE POSITION*/
-                    if(isCowards == "red")
+                    if(isCowards .equals("red"))
                     {       
                         /*Red Combat Unit will fall and blue will move into position*/
  
@@ -556,7 +556,7 @@ public class Battle {
                     if (randNum.nextDouble() > .5) 
                     {
                         /*ATTACKERS WIN AT TAKE POSITION*/
-                        if(isCowards == "red")
+                        if(isCowards .equals("red"))
                         {       
                             /*Red Combat Unit will fall and blue will move into position*/
                             /*Coward Red Dies*/
@@ -583,7 +583,7 @@ public class Battle {
                     else 
                     {
                         /*COWARDS WIN and end up heading towards their intened position THE SAME POSITION AS NODE*/
-                        if(isCowards == "red")
+                        if(isCowards .equals("red"))
                         {
                             /*Attacker Blue dies*/
                             MapEvent.completeCombat(cowards, true, attackers, false, node);
@@ -631,7 +631,7 @@ public class Battle {
                 if (adjacentRoadsToNode.size() == 0) {
                     /*THEY DIE*/
                     
-                    if (isCowards == "red")
+                    if (isCowards .equals("red"))
                     {
                         MapEvent.completeCombat(cowards, false, attackers, true, node);
                         
@@ -670,7 +670,7 @@ public class Battle {
                    MapEvent.successfullFlee(attackers,Scenario.findRoad(node, attackerPreviousLocation.get(0)) , node.id);
 
 
-                    if (isCowards == "red")
+                    if (isCowards .equals("red"))
                     {
                         JOptionPane.showMessageDialog(null,Global.redPreEmptiveToString + Global.bluePreEmptiveToString+ "Red flees from their position!!!\n"+
                         "\nBlue proceeds to "+ node.name+" and no battle is taken place");
@@ -690,7 +690,7 @@ public class Battle {
                 if (aggregateCowardsBattleStrength > aggregateAttackersBattleStrength) 
                 {
                     /*COWARDS WIN and end up heading towards their intened position*/
-                    if (isCowards == "red")
+                    if (isCowards .equals("red"))
                     {
                         /*RED (Cowards) UNIT WINS They Proceed their intended spot*/
                         
@@ -720,7 +720,7 @@ public class Battle {
                 else if (aggregateCowardsBattleStrength < aggregateAttackersBattleStrength) 
                 {
                     /*ATTACKERS WIN AND REMAIN AT THEIR POSITION*/
-                    if(isCowards == "red")
+                    if(isCowards .equals("red"))
                     {
                         /*Blue Wins and moves to node*/
                         /*Red Combat Unit dies*/
@@ -753,7 +753,7 @@ public class Battle {
                     if (randNum.nextDouble() > .5) 
                     {
                         /*ATTACKERS WIN AND moves to node*/
-                        if(isCowards == "red")
+                        if(isCowards .equals("red"))
                         {
                             /*Blue Wins and remains at their postion*/
                             /*Red Combat Unit dies*/
@@ -781,7 +781,7 @@ public class Battle {
                     else 
                     {
                         /*COWARDS WIN and end up heading towards their intened position*/
-                        if (isCowards == "red")
+                        if (isCowards .equals("red"))
                         {
                             /*RED (Cowards) UNIT WINS They Proceed their intended spot*/
 
@@ -813,7 +813,7 @@ public class Battle {
             else 
             {
                 /*BOTH TEAMS REMAIN AT THEIR ORIGNAL POSTION*/
-                if (isCowards == "red")
+                if (isCowards .equals("red"))
                 {
                 
                     MapEvent.successfullFlee(cowards, Scenario.findRoad(node, cowardsPreviousLocation.get(0)), cowardsPreviousLocation.get(0).id);
@@ -912,7 +912,7 @@ public class Battle {
                     MapEvent.successfullFlee(attackers, Scenario.findRoad(attackersDesiredNode.get(0), attackersPreviousNode.get(0)), attackersDesiredNode.get(0).id);
                     MapEvent.successfullFlee(cowards, Scenario.findRoad(cowardsDesiredNode.get(0), cowardsPreviousNode.get(0)), cowardsDesiredNode.get(0).id);
  
-            if(isCowards == "red")
+            if(isCowards .equals("red"))
             {
                 JOptionPane.showMessageDialog(null, Global.redPreEmptiveToString + Global.bluePreEmptiveToString
                         + "Red Combat Units decide to retreat "
@@ -930,7 +930,7 @@ public class Battle {
             if (aggregateCowardsStrength < aggregateAttackerStrength) 
             {
                 /*Attackers win and move thier desired location*/
-                if(isCowards =="red")
+                if(isCowards.equals("red"))
                 {
                     /*Red Combat Army Falls in battle Blue Moves into position*/
                     MapEvent.completeCombat(cowards, false, attackers, true, attackersDesiredNode.get(0));
@@ -957,7 +957,7 @@ public class Battle {
             else if (aggregateCowardsStrength > aggregateAttackerStrength) 
             {
                 /*cowards win and move to their desired location*/
-                if(isCowards =="red")
+                if(isCowards .equals("red"))
                 {
                     /*red team defeats blue and moves to desired lovation*/
                     MapEvent.completeCombat(cowards, true, attackers, false, cowardsDesiredNode.get(0));
@@ -986,7 +986,7 @@ public class Battle {
                 {
                     /*cowards win*/
                     /*cowards win and move to their desired location*/
-                    if(isCowards =="red")
+                    if(isCowards .equals("red"))
                     {
                         /*red team defeats blue and moves to desired lovation*/
                         MapEvent.completeCombat(cowards, true, attackers, false, cowardsDesiredNode.get(0));
@@ -1013,7 +1013,7 @@ public class Battle {
                 else 
                 {
                     /*attackers win*/
-                    if(isCowards =="red")
+                    if(isCowards .equals("red"))
                     {
                         /*Red Combat Army Falls in battle Blue Moves into position*/
                         MapEvent.completeCombat(cowards, false, attackers, true, attackersDesiredNode.get(0));
@@ -1049,8 +1049,6 @@ public class Battle {
 
         boolean redDecisionToFight = false;
         boolean blueDecisionToFight = false;
-        boolean preemptiveRed = false;
-        boolean preemptiveBlue = false;
         int yesNo;
         Object[] options = {"Battle", "Flee!"};
         
@@ -1356,7 +1354,7 @@ public class Battle {
             }
             else
             {
-                if (tieBreaker == "red")
+                if (tieBreaker .equals("red"))
                 {
                     returnStr = "Blue team with their "+ bluArmyCount +"caught up to Red's Army of"
                             + redArmyCount + "but Red\n"
@@ -1390,7 +1388,7 @@ public class Battle {
             }
             else
             {
-                if (tieBreaker == "red")
+                if (tieBreaker .equals("red"))
                 {
                     returnStr = "Red team with their "+ redArmyCount +"caught up to Blue's Army of"
                             + bluArmyCount + "but Blue\n"
@@ -1424,7 +1422,7 @@ public class Battle {
             }
             else
             {
-                if (tieBreaker == "red")
+                if (tieBreaker .equals("red"))
                 {
                    returnStr = "Blue Team arrives with " + bluArmyCount + ""
                         + "\nand Red Team arrives with"+ redArmyCount +
