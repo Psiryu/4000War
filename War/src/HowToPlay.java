@@ -1,18 +1,19 @@
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
-import javax.swing.JFrame;
-
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
 /**
+ * How To Play
  *
- * @author Prem
+ * Description: This is the "how to play" instructional screen of the
+ * learning tool. Clicking a radio button sets the text to equal instructions
+ * centered around the topic of the radio button.
+ *
+ * Maintenance notes: Simply add a new radio button for any new categories
+ * that wish to be added. (Note: A line to reset the text field to the top of
+ * the field must be added to each button)
  */
+
 public class HowToPlay extends javax.swing.JFrame {
 
     /**
@@ -162,6 +163,7 @@ public class HowToPlay extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonMenuActionPerformed
 
     private void radioBattlesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioBattlesActionPerformed
+        //sets the help text
         textHelp.setText("If a colision occurs between opposing enemy units, "
                 + "the units will set up camp and prepare for battle. It is"
                 + " your decision if you want your army units to commit to"
@@ -176,6 +178,7 @@ public class HowToPlay extends javax.swing.JFrame {
                 + "of both teams, and the type of battle (if one side is defending"
                 + " inside an annexed node or if the collision has occured"
                 + " on road).");
+        //resets the text field to the top
         textHelp.setCaretPosition(0);
     }//GEN-LAST:event_radioBattlesActionPerformed
 
@@ -188,6 +191,7 @@ public class HowToPlay extends javax.swing.JFrame {
                 "followed by which team (represented as 'red' or 'blue') " +
                 "in that scenario you want to fight alongside." +
                 "\n\n   ");
+        //resets the text field to the top
         textHelp.setCaretPosition(0);
     }//GEN-LAST:event_radioBasicsActionPerformed
 
@@ -216,6 +220,7 @@ public class HowToPlay extends javax.swing.JFrame {
                 + " limit before the game has ended. If the timer runs out, "
                 + "a winner will be determined via political power and army "
                 + "units remaining.");
+        //resets the text field to the top
         textHelp.setCaretPosition(0);
     }//GEN-LAST:event_radioVictoryActionPerformed
 
@@ -249,6 +254,7 @@ public class HowToPlay extends javax.swing.JFrame {
                 "     White: The node you have highlighted will turn white " +
                 "as an easy way to keep track of which node you are presently " +
                 "looking at the information of.");
+        //resets the text field to the top
         textHelp.setCaretPosition(0);
     }//GEN-LAST:event_radioMapNodesActionPerformed
 
@@ -274,6 +280,7 @@ public class HowToPlay extends javax.swing.JFrame {
                 "is, and your current political power level). It also contains" +
                 " a list of all actions you are commiting each turn, as a " +
                 "general reminder for you.");
+        //resets the text field to the top
         textHelp.setCaretPosition(0);
     }//GEN-LAST:event_radioMapActionPerformed
 
@@ -294,7 +301,12 @@ public class HowToPlay extends javax.swing.JFrame {
                 + "be used by naval unit - although these pathways cannot be "
                 + "used during Winter. Naval units can travel along any pathway"
                 + " on-land, and can also ferry small sized army units accross "
-                + "the pathways between port towns. Your army unit movements "
+                + "the pathways between port towns. The lines between nodes "
+                + "represent these roads. A black line is a general road that "
+                + "any unit can travel. A red line represents a more difficult "
+                + "road, which means not all unit sizes can travel along it. "
+                + "Lastly, light blue lines represent navy-only pathways. "
+                + "Your army unit movements "
                 + "will happen at the same tme as the opponent's units, "
                 + "so plan accordingly.\n\n"
                 + "     Merging: you can choose to merge together two "
@@ -319,6 +331,7 @@ public class HowToPlay extends javax.swing.JFrame {
                 + "to be found by enemy spies, and you will lose poliical"
                 + " power (political power is explained in the 'victory' section)"
                 + " for every army you do not use each turn.");
+        //resets the text field to the top
         textHelp.setCaretPosition(0);
     }//GEN-LAST:event_radioActionsActionPerformed
 

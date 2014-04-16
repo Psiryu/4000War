@@ -111,7 +111,7 @@ public class AI {
 
                                             } else if(road.locationB.id == killBots.location.id) {
                                                 for(Node node : Scenario.listOfNodes) {
-                                                    if(node.id == road.locationB.id) {
+                                                    if(node.id == road.locationA.id) {
                                                         //checks if fog of war at this node has any values
                                                         if(robots.enemyIntelligence.get(robots.enemyIntelligence.indexOf(node.id)).size() > 1) {
                                                             weighting+=10;
@@ -135,6 +135,7 @@ public class AI {
             }
         }
         
+        //completes the listed merge actions if any merges were declared
         if(merge1.isEmpty() == false) {
             int i = 0;
             for(CombatUnit unit : merge1) {
@@ -229,17 +230,21 @@ public class AI {
         int dest; //destination tracker
             
         for(CombatUnit killBots : robotLegion) {
+            //ensures all arrays are clear
             roads.clear();
             weights.clear();
             ferryRoad.clear();
             ferryDestination.clear();
             idToFerry.clear();
             
+            //for every road in the scenario
             for(Road road : Scenario.listOfRoads) {
+                //if the army unit is located on this road of the loop
                 if(road.locationA == killBots.location || road.locationB == killBots.location) {
                     //first checks if it's a naval path
                     if(road.isNaval == true && killBots.isFleet == true && Global.season!=0) {
                         int weight = 0; int newLocation;
+                        //sets the destination locaton
                         if(road.locationA == killBots.location)
                             newLocation = road.locationB.id;
                         else
@@ -247,50 +252,76 @@ public class AI {
                         //assigns weighting for current node
                         int increment = weight;
 
+                        //determines the wighting for if the merge should take place
                         if(Scenario.listOfNodes[newLocation].isCapitalBlue || Scenario.listOfNodes[newLocation].isCapitalRed)
-                            weight += 10;
-                        if(robots.enemyIntelligence.get(newLocation).size() > 1)
-                            weight += 40;
-                        
+                            weight += 20;
+                        if(robots.enemyIntelligence.get(robots.enemyIntelligence.indexOf(newLocation)).size() > 1)
+                            weight += 50;
+                        //if no weight change has occured, increment for a sense
+                        //of randomness
                         if(weight == increment)
-                            weight+= 20;
+                            weight+= 30;
                         
+                        //a second loop of all roads, for each adjacent node to
+                        //the destination of the previous loop
                         for(Road road2 : Scenario.listOfRoads) {
-                            if(road.locationA.id == newLocation || road.locationB.id == newLocation) {
-                                
+                            //if the road within the loop is the destination
+                            if(road2.locationA.id == newLocation || road2.locationB.id == newLocation) {
+                                //sets the next location for another loop
                                 int nextLocation;
-                                if(road.locationA.id == newLocation)
+                                if(road2.locationA.id == newLocation)
                                     nextLocation = road.locationB.id;
                                 else
                                     nextLocation = road.locationA.id;
                                 //assigns weighting for current node
                                 increment = weight;
 
+                                //adds the cumulative weighting of this node
                                 if(Scenario.listOfNodes[nextLocation].isCapitalBlue || Scenario.listOfNodes[nextLocation].isCapitalRed)
                                     weight += 10;
-                                if(robots.enemyIntelligence.get(nextLocation).size() > 1)
+                                if(robots.enemyIntelligence.get(robots.enemyIntelligence.indexOf(nextLocation)).size() > 1)
                                     weight += 40;
 
                                 if(weight == increment)
                                     weight+= 20;
                                 
+                                //another loop for nodes adjacent to the adjacent node
+                                //(essentially the AI is now looking three spots away
+                                //from the starting location of the army.
                                 for(Road road3 : Scenario.listOfRoads) {
-                                    if(road.locationA == killBots.location || road.locationB == killBots.location) {
-                                        int finalLocation;
-                                        if(road.locationA.id == nextLocation)
-                                            finalLocation = road.locationB.id;
+                                    if(road3.locationA.id == nextLocation || road3.locationB.id == nextLocation) {
+                                        int thirdLocation;
+                                        if(road3.locationA.id == nextLocation)
+                                            thirdLocation = road.locationB.id;
                                         else
-                                            finalLocation = road.locationA.id;
+                                            thirdLocation = road.locationA.id;
                                         //assigns weighting for current node
                                         increment = weight;
 
-                                        if(Scenario.listOfNodes[finalLocation].isCapitalBlue || Scenario.listOfNodes[finalLocation].isCapitalRed)
-                                            weight += 10;
-                                        if(robots.enemyIntelligence.get(finalLocation).size() > 1)
-                                            weight += 40;
+                                        if(Scenario.listOfNodes[thirdLocation].isCapitalBlue || Scenario.listOfNodes[thirdLocation].isCapitalRed)
+                                            weight += 5;
+                                        if(robots.enemyIntelligence.get(robots.enemyIntelligence.indexOf(thirdLocation)).size() > 1)
+                                            weight += 30;
 
                                         if(weight == increment)
-                                            weight+= 20;
+                                            weight+= 10;
+                                        
+                                        for(Road road4 : Scenario.listOfRoads) {
+                                            if(road4.locationA.id == thirdLocation || road.locationB.id == thirdLocation) {
+                                                int finalLocation;
+                                                if(road4.locationA.id == thirdLocation)
+                                                    finalLocation = road.locationB.id;
+                                                else
+                                                    finalLocation = road.locationA.id;
+                                                //assigns weighting for current node
+                                                increment = weight;
+                                                if(robots.enemyIntelligence.get(robots.enemyIntelligence.indexOf(finalLocation)).size() > 1)
+                                                    weight += 20;
+
+                                                if(weight == increment)
+                                                    weight+= 5;
+                                            }
+                                        }
                                     }
                                 }
                             }
@@ -311,18 +342,26 @@ public class AI {
                         
                         //checks if the ai can ferry a small army            
                         
+                        //for each road
                         for(Road roads2 : Scenario.listOfRoads) {
+                            //checks if the army is on this road, and is a naval path
                             if(roads2.locationA.id == killBots.location.id ||
                                     roads2.locationB.id == killBots.location.id &&
                                     roads2.isNaval == true) 
+                                //for each army unit (again)
                                 for(CombatUnit killBots2 : robotLegion) {
+                                    //if army unit is a small army and at the present node
+                                    //and is not another naval unit
                                     if(killBots2.size < 6 &&
-                                            killBots2.location.id == killBots.location.id) {
+                                            killBots2.location.id == killBots.location.id
+                                            && killBots2.isFleet == false) {
+                                        //sends the destination node
                                         if(roads2.locationA.id == killBots.location.id)
                                             dest = roads2.locationB.id;
                                         else
                                             dest = roads2.locationA.id;
 
+                                        //adds the fleet, road, and small army to arrays
                                         ferryRoad.add(roads2);
                                         ferryDestination.add(dest);
                                         idToFerry.add(killBots2);
@@ -408,11 +447,14 @@ public class AI {
                 }
             }
          
+            //if there are no possible ferrying movements
             if(ferryRoad.isEmpty() == true) {
                 //checks which weighting is the highest
                 int indexer = 0;
                 int greatest = 0; int index = 0;
+                //ensures the weight array isn't empty
                 if(weights.isEmpty() == false) {
+                    //determines the highest weight
                     for(int highest : weights) {
                         if(highest>greatest) {
                             greatest = highest;
@@ -421,16 +463,19 @@ public class AI {
                         indexer++;
                     }
 
+                    //submits the movement to FinalizeMovement for processing
                     if(roads.get(index).locationA.id == killBots.location.id)
                         FinalizeMovement(killBots, roads.get(index), roads.get(index).locationA.id);
                     else
                         FinalizeMovement(killBots, roads.get(index), roads.get(index).locationB.id);
                 }
+            //else ifthere are possible ferrying movements
             } else {
                 //creates a random number generator
                 Random randomizer = new Random();
                 //randomizes the number twice, to ensure randomness
                 int random = randomizer.nextInt(10);
+                //if random is greater than 3, use the highest weighted movement
                 if(random>3) {
                     if(weights.isEmpty() == false) {
                         //checks which weighting is the highest
@@ -449,14 +494,18 @@ public class AI {
                         else
                             FinalizeMovement(killBots, roads.get(index), roads.get(index).locationB.id);
                     }
+                //else, if less than 3, use a ferrying movement
                 } else {
+                    //double checks there is a ferrying movement
                     if(ferryRoad.isEmpty() == false) {
                         int upper = ferryRoad.size();
+                        //upper ensures the randomizer will not go out of bounds
                         if(upper >1)
                             random = randomizer.nextInt((upper-1));
                         else
                             random = 0;
                         
+                        //submits to FinalizeFerryMovement for processing
                         if(roads.get(random).locationA.id == killBots.location.id)
                             FinalizeFerryMovement(killBots, idToFerry.get(random),ferryRoad.get(random), ferryRoad.get(random).locationA.id);
                         else
@@ -470,10 +519,19 @@ public class AI {
     
     //this method finalizes the movement to send to MapEvents
     private static void FinalizeMovement(CombatUnit killBots, Road road, int location) {
-        if(road.locationA.id == location)
-            MapEvent.addMovement(killBots.cUnitID, road, road.locationB.id);
-        else
-            MapEvent.addMovement(killBots.cUnitID, road, road.locationA.id);
+        //creates a random number generator
+        Random randomizer = new Random();
+        //randomness generated
+        int random = randomizer.nextInt(10);
+                
+        //if random number is greater than 2, the movement occurs
+        if(random >2) {
+            if(road.locationA.id == location)
+                MapEvent.addMovement(killBots.cUnitID, road, road.locationB.id);
+            else
+                MapEvent.addMovement(killBots.cUnitID, road, road.locationA.id);
+        }
+        //else, no movement will happen (for randomness' sake)
     }
     //finalizes ferrying movement
     private static void FinalizeFerryMovement(CombatUnit killBots, 

@@ -3,16 +3,22 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import javax.swing.JScrollPane;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * Game Over
+ *
+ * Description: This is the "game over" screen that displays the victor
+ * of a scenario. It is simply a label and a text area that are populated
+ * by a variable within Global.
+ *
+ * Usage: this screen is called to from the Map.java for a scenario. It
+ * requires no other resources, and the only other external reference is that
+ * it returns the user to the Main Menu when they are done here. 
+ * 
+ * Maintenance notes: none required here, unless more information than "who
+ * won" and "why" are desired, or graphical changes.
  */
 
-/**
- *
- * @author Prem
- */
+
 public class GameOver extends javax.swing.JFrame {
 
     /**
@@ -25,6 +31,7 @@ public class GameOver extends javax.swing.JFrame {
         Dimension dimensions = Toolkit.getDefaultToolkit().getScreenSize();
         this.setLocation(dimensions.width/2-this.getSize().width/2, dimensions.height/2-this.getSize().height/2);
         
+        //sets the textboxes to contain who won and why
         labelWinner.setText(Global.gameSummary);
         textWhy.setText(Global.gameSummary2);
     }

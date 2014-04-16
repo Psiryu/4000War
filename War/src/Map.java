@@ -1,4 +1,4 @@
-
+//list of library imports required
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.MouseInfo;
@@ -14,15 +14,62 @@ import javax.swing.JMenuItem;
 import javax.swing.Timer;
 
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor..
- */
 /**
+ * Map Class
  *
- * @author Prem
+ * Description: This is the source code of the map front end. It controls all
+ * ui level interaction (save for battle prompt) - such as movement and player
+ * controls - of the map interface.
+ * Method "Action" initiates all events that occur when a node is clicked,
+ * GameStart initializes the map (primarily graphical elements, such as
+ * text for labels or setting the initial node coloring, 
+ * ObtainArmies populates a rectangular array with all armies at the selected 
+ * node, ArmiesHere generates user text for which armies they control at the 
+ * selected node, OpenPopup populates the popup menu that appears when a node
+ * is clicked with actions the user can perform, InitializeMovement initializes
+ * movement by determining all movable armies and adding them to the popup
+ * menu, and calls to MoveTo to actually process movements and end locations.
+ * DividingArmies controls all aspects of dividing any army in half, while
+ * BeginMergingArmies determines which armies can be merged together - which
+ * in turn calls to MergeArmy which determines which armies said army can merge
+ * with and processes the request. ConvertSize converts an army's size to plain
+ * text for the front end - using single letters. ConvertFullSize outputs
+ * the full English words for the army sizes for the front end. ClearMenuInfo
+ * clears all text located beneath the map, and ClearPopupMenu clears the
+ * popup menu that appears when a node is clicked. SetColours, coupled with
+ * SetDefaultColours controls which
+ * node colors are to be set for standard node colours, SetCurrentColour
+ * alters the selected node to become a unique colour. SetPlayerNodeColour and
+ * SetEnemyColours set the player controlled colours and fog of war colours
+ * respectively (for armies contained on each node). Lastly, GameOver is
+ * called whenever an end-of-game is detected, and wraps up the game and calls
+ * to GameOver.java, closing this class in the process.
+ *
+ * Usage: The map controls all UI elements. Nodes are controlled via a
+ * primary method named "Action". All nodes simply designate the public
+ * variable "nodeSelected" and call to the node method. From Action, it is
+ * determined if the player controls any armies on the selected node, or has
+ * any fog of war intelligence on the selected location, and triggers all
+ * available actions. Action will call for a controlled and enemy check, which
+ * in turn triggers node coloration changes, and calls to a method named
+ * "OpenPopup", which populates and displays a popup menu. It will determine
+ * if any movements, mergers, or divisions can occur, adding only actions
+ * that can be performed.
+ *
+ * Maintenance notes: Node locations will need to be adjusted for new scenarios.
+ * Simply move, delete, or add new nodes (copy and paste, while maintaining
+ * correct node id locations based on the scenario) on the wysiwyg editor.
+ * Array of node id's will need to be adjusted for new total amounts of nodes
+ * in the methods "SetPlayerNodeColour," "SetEnemyNodeColours", and
+ * "SetDefaultColours".  Simply alter the switch statement within each method
+ * to contain the same number of cases as nodes available. For example, as this
+ * scenario has 16 nodes, the cases range from 0 to 15. (remember, indexes
+ * begin at 0).
+ *      IMPORTANT: remember, it is important that node id's and positions on 
+ * the map corelate. Node's must be arranged with the same id's and labels as
+ * they are listed within Scenario.java for the desired scenario.
  */
+
 public class Map extends javax.swing.JFrame {
 
     //variable for keeping track of the current players' turns;
@@ -927,6 +974,7 @@ public class Map extends javax.swing.JFrame {
                 //The action is to send current armyToMove to MoveTo method.
                 JMenuItem menuItemMove = new JMenuItem(armySize);
                     menuItemMove.setFont(new Font("Segoe UI",Font.PLAIN,18));
+                //sets the action listener to call to MoveTo, sending the desired army
                 menuItemMove.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent event) {
@@ -965,6 +1013,9 @@ public class Map extends javax.swing.JFrame {
                     final String listText = (ConvertFullSize(army[0][1], army[0][3])
                             + "army unit will move from " + roads.locationA.name + " to "
                             + roads.locationB.name);
+                    //creates an action listener that calles to MapEvent, to
+                    //add the movement to the queue. Then adds the item log
+                    //to the map sidescreen textfield.
                     menuItemMove.addActionListener(new ActionListener() {
                         @Override
                         public void actionPerformed(ActionEvent event) {
@@ -984,13 +1035,13 @@ public class Map extends javax.swing.JFrame {
                                 Logger.getLogger(Map.class.getName()).log(Level.SEVERE, null, ex);
                             }
                             SetColours();
-
+                            //clears the popup menu
                             ClearPopupMenu();
                         }
                     });
                     //finally, adds this item to the popup menu.
                     popupMenu.add(menuItemMove);
-                    //next if statement checks for fleet-only pathways
+                //next if statement checks for fleet-only pathways
                 } else if (roads.capacity == 0 && army[0][3] == 1) {
                     //ensures the season is not winter
                     if (Global.season != 0) {
@@ -1000,10 +1051,14 @@ public class Map extends javax.swing.JFrame {
                         //creates the menu item for this road
                         JMenuItem menuItemMove = new JMenuItem(movingTo);
                             menuItemMove.setFont(new Font("Segoe UI",Font.PLAIN,18));
+                        //sets variables declared final
                         final Road roads2 = roads;
                         final String listText = (ConvertFullSize(army[0][1], army[0][3])
                                 + "army unit will move from " + roads.locationA.name + " to "
                                 + roads.locationB.name);
+                        //creates an action listener that calles to MapEvent, to
+                        //add the movement to the queue. Then adds the item log
+                         //to the map sidescreen textfield.
                         menuItemMove.addActionListener(new ActionListener() {
                             @Override
                             public void actionPerformed(ActionEvent event) {
@@ -1047,6 +1102,9 @@ public class Map extends javax.swing.JFrame {
                                 final String listText2 = (ConvertFullSize(army[0][1], army[0][3])
                                         + "army unit will ferry a small army from " + roads.locationA.name + " to "
                                         + roads.locationB.name);
+                                //creates an action listener that calles to MapEvent, to
+                                //add the ferrying movement to the queue. Then adds the item log
+                                //to the map sidescreen textfield.
                                 menuItemMove2.addActionListener(new ActionListener() {
                                     @Override
                                     public void actionPerformed(ActionEvent event) {
@@ -1078,6 +1136,7 @@ public class Map extends javax.swing.JFrame {
 
                     }
                 }
+                //else it checks if location B of this road is the selected node
             } else if (roads.locationB.id == army[0][2]) {
                 if (roads.capacity >= army[0][1]) {
                     //adds locationB name to a final string
@@ -1089,6 +1148,9 @@ public class Map extends javax.swing.JFrame {
                     final String listText = (ConvertFullSize(army[0][1], army[0][3])
                             + "army unit will move from " + roads.locationB.name + " to "
                             + roads.locationA.name);
+                    //creates an action listener that calles to MapEvent, to
+                    //add the movement to the queue. Then adds the item log
+                    //to the map sidescreen textfield.
                     menuItemMove.addActionListener(new ActionListener() {
                         @Override
                         public void actionPerformed(ActionEvent event) {
@@ -1114,6 +1176,7 @@ public class Map extends javax.swing.JFrame {
                     });
                     //finally, adds this item to the popup menu.
                     popupMenu.add(menuItemMove);
+                    //checks if this is a naval-only road
                 } else if (roads.capacity == 0 && army[0][3] == 1) {
                     //ensures the season is not winter
                     if (Global.season != 0) {
@@ -1126,6 +1189,9 @@ public class Map extends javax.swing.JFrame {
                         final String listText = (ConvertFullSize(army[0][1], army[0][3])
                                 + "army unit will move from " + roads.locationB.name + " to "
                                 + roads.locationA.name);
+                        //creates an action listener that calles to MapEvent, to
+                    //add the movement to the queue. Then adds the item log
+                    //to the map sidescreen textfield.
                         menuItemMove.addActionListener(new ActionListener() {
                             @Override
                             public void actionPerformed(ActionEvent event) {
@@ -1169,6 +1235,9 @@ public class Map extends javax.swing.JFrame {
                                 final String listText2 = (ConvertFullSize(army[0][1], army[0][3])
                                         + "army unit will ferry a small army from " + roads.locationB.name + " to "
                                         + roads.locationA.name);
+                                //creates an action listener that calles to MapEvent, to
+                                 //add the movement to the queue. Then adds the item log
+                                //to the map sidescreen textfield.
                                 menuItemMove2.addActionListener(new ActionListener() {
                                     @Override
                                     public void actionPerformed(ActionEvent event) {
@@ -1200,8 +1269,10 @@ public class Map extends javax.swing.JFrame {
 
                     }
                 }
-            }
+            } //now it creates the option to have an army maintain position
             if (roads.locationA.id == army[0][2] && returnSet == false) {
+                //returnSet becomes true, to establish that this list item
+                //has already been created and added to the popup menu
                 returnSet = true;
                 //for keeping an army at the current node (to cancel a move)
                 final String movingTo = roads.locationA.name;
@@ -1211,6 +1282,9 @@ public class Map extends javax.swing.JFrame {
                 final Road roads2 = roads;
                 final String listText = (ConvertFullSize(army[0][1], army[0][3])
                         + "army unit will remain at " + roads.locationA.name);
+                //creates an action listener that calles to MapEvent, to
+                //add the movement to the queue. Then adds the item log
+                //to the map sidescreen textfield.
                 menuItemMove.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent event) {
@@ -1236,6 +1310,7 @@ public class Map extends javax.swing.JFrame {
                 });
                 //finally, adds this item to the popup menu.
                 popupMenu.add(menuItemMove);
+            //now it checks if location B of this road is the selected node
             } else if (roads.locationB.id == army[0][2] && returnSet == false) {
                 returnSet = true;
                 //for keeping an army at the current node (to cancel a move)
@@ -1283,6 +1358,7 @@ public class Map extends javax.swing.JFrame {
     }
 
     private void DividingArmies(final int[][] army) {
+        //ensures popupmenu has been cleared
         ClearPopupMenu();
         //indexer
         int i = 0;
@@ -1354,11 +1430,17 @@ public class Map extends javax.swing.JFrame {
         //first, it re checks which armies are at this node
         //then it adds a new menu item for each medium or small army so long
         //as there are at least two of that size. x is a secondary indexer.
+        //Initial if statement to determine who's turn it is.
         if (Global.curPlayer == 0) {
+            //for each red army, if curPlayer is 0 (red)
             for (CombatUnit army : Scenario.redPlayer.combatUnits) {
+                //determines if the army unit is at the selected node
                 if (army.location.id == nodeSelected) {
+                    //creates a second loop of all armies, to find a match
                     for (CombatUnit army2 : Scenario.redPlayer.combatUnits) {
+                        //determines if the size ranges match and are smaller than large
                         if (army2.size < 11 && army2.size == army.size) {
+                            //ensures armies are on the same location, and not the same unit
                             if (army2.location.id == nodeSelected && army2.cUnitID != army.cUnitID) {
                                 //ensures fleets cannot be merged
                                 if (army.isFleet == true) {
@@ -1390,7 +1472,8 @@ public class Map extends javax.swing.JFrame {
                     }
                 }
             }
-
+        //all actions are the same as previous if statement, but swapped to be
+            //for blue team if curPlayer is 1 (blue)
         } else if (Global.curPlayer == 1) {
             for (CombatUnit army : Scenario.bluePlayer.combatUnits) {
                 //if(army.location.id == nodeSelected) {
@@ -1438,17 +1521,23 @@ public class Map extends javax.swing.JFrame {
         //clears the popup menu
         ClearPopupMenu();
 
+        //check to ensure fleets are not attempting to merge
         int isFleet = 0;
+        //performs actions for if curPlayer is 0 (red team's turn)
         if (Global.curPlayer == 0) {
+            //for each army red player controls)
             for (final CombatUnit army : Scenario.redPlayer.combatUnits) {
+                //if the army unit is on the selected node
                 if (army.location.id == nodeSelected) {
+                    //ensures sizes are the same and not the same unit id
                     if (army.cUnitID != indexer2 && army.size == size) {
-                        //creates the menu item for this army to merge
+                        //double checks the second army is not a fleet
                         if (army.isFleet == true) {
                             isFleet = 1;
                         } else {
                             isFleet = 0;
                         }
+                        //if not fleet, create the menu item for merging
                         if (isFleet == 0) {
                             //creates the menu item for this army to merge
                             final int indexer = indexer2;
@@ -1496,6 +1585,7 @@ public class Map extends javax.swing.JFrame {
                     }
                 }
             }
+            //the same actions as the initial part of this if statement, but for blue team
         } else if (Global.curPlayer == 1) {
             for (final CombatUnit army : Scenario.bluePlayer.combatUnits) {
                 if (army.location.id == nodeSelected) {
@@ -2032,6 +2122,10 @@ public class Map extends javax.swing.JFrame {
 			}
 		}		
 	}
+        
+        //sets text for no fog of war values
+        if(enemies.equals(""))
+            enemies = "none known to be here";
 //        int first = 0;
 //        ArrayList<Integer> intel;
 //        if (Global.curPlayer == 0) {
