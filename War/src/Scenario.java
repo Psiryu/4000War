@@ -92,8 +92,8 @@ public class Scenario {
 				listOfUnits.add(new CombatUnit(false, 1, 15, 0, listOfNodes[0], redPlayer));
 				redPlayer.combatUnits.add(listOfUnits.get(0));
 				redPlayer.combatUnits.add(listOfUnits.get(1));
-				listOfUnits.add(new CombatUnit(false, 0, 20, 0, listOfNodes[6], bluePlayer));
-				listOfUnits.add(new CombatUnit(false, 1, 15, 0, listOfNodes[15], bluePlayer));
+				listOfUnits.add(new CombatUnit(false, 2, 20, 0, listOfNodes[6], bluePlayer));
+				listOfUnits.add(new CombatUnit(false, 3, 15, 0, listOfNodes[15], bluePlayer));
 				bluePlayer.combatUnits.add(listOfUnits.get(2));
 				bluePlayer.combatUnits.add(listOfUnits.get(3));
 

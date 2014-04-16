@@ -75,20 +75,20 @@ public class Player extends Game {
 		String report = "";
 		rumours.updateUnitRegistry(); // update unit awareness
 		enemyIntelligence = rumours.playerRumourSummary(); // obtain the list of rumoured units
-//		for (ArrayList<Integer> nodal : enemyIntelligence) {
-//			if (nodal.size() > 1) {
-//				report += playerName+" ";
-//				for (Integer value : nodal) {
-//					if (nodal.indexOf(value) == 0) {
-//						report += Scenario.listOfNodes[value].name;
-//					} else {
-//						report += " With " + value;
-//					}
-//				}
-//				JOptionPane.showMessageDialog(null, report);
-//				report = "";
-//			}
-//		}
+		for (ArrayList<Integer> nodal : enemyIntelligence) {
+			if (nodal.size() > 1) {
+				report += playerName+" ";
+				for (Integer value : nodal) {
+					if (nodal.indexOf(value) == 0) {
+						report += Scenario.listOfNodes[value].name + " ID: " + value;
+					} else {
+						report += " With " + value;
+					}
+				}
+				JOptionPane.showMessageDialog(null, report);
+				report = "";
+			}
+		}
 	}
 
 	/*
