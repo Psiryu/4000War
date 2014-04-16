@@ -102,9 +102,14 @@ public class AI {
                                                 for(Node node : Scenario.listOfNodes) {
                                                     if(node.id == road.locationB.id) {
                                                         //checks if fog of war at this node has any values
-                                                        if(robots.enemyIntelligence.get(robots.enemyIntelligence.indexOf(node.id)).size() > 1) {
-                                                            weighting+=10;
-                                                        }
+							for (ArrayList<Integer> nodal : robots.enemyIntelligence){
+								if (nodal.get(0)==node.id && nodal.size()>1){
+									weighting+=10;
+								}
+							}
+//                                                        if(robots.enemyIntelligence.get(robots.enemyIntelligence.indexOf(node.id)).size() > 1) {
+//                                                            weighting+=10;
+//                                                        }
                                                     }
                                                 }
 
@@ -112,9 +117,14 @@ public class AI {
                                                 for(Node node : Scenario.listOfNodes) {
                                                     if(node.id == road.locationA.id) {
                                                         //checks if fog of war at this node has any values
-                                                        if(robots.enemyIntelligence.get(robots.enemyIntelligence.indexOf(node.id)).size() > 1) {
-                                                            weighting+=10;
-                                                        }
+							for (ArrayList<Integer> nodal : robots.enemyIntelligence){
+								if (nodal.get(0)==node.id && nodal.size()>1){
+									weighting+=10;
+								}
+							}
+//                                                        if(robots.enemyIntelligence.get(robots.enemyIntelligence.indexOf(node.id)).size() > 1) {
+//                                                            weighting+=10;
+//                                                        }
                                                     }
                                                 }
                                             }
@@ -254,8 +264,13 @@ public class AI {
                         //determines the wighting for if the merge should take place
                         if(Scenario.listOfNodes[newLocation].isCapitalBlue || Scenario.listOfNodes[newLocation].isCapitalRed)
                             weight += 20;
-                        if(robots.enemyIntelligence.get(robots.enemyIntelligence.indexOf(newLocation)).size() > 1)
-                            weight += 50;
+			for (ArrayList<Integer> nodal : robots.enemyIntelligence){
+				if (nodal.get(0)==newLocation && nodal.size()>1){
+					weight+=50;
+				}
+			}
+//                        if(robots.enemyIntelligence.get(robots.enemyIntelligence.indexOf(newLocation)).size() > 1)
+//                            weight += 50;
                         //if no weight change has occured, increment for a sense
                         //of randomness
                         if(weight == increment)
@@ -278,8 +293,13 @@ public class AI {
                                 //adds the cumulative weighting of this node
                                 if(Scenario.listOfNodes[nextLocation].isCapitalBlue || Scenario.listOfNodes[nextLocation].isCapitalRed)
                                     weight += 10;
-                                if(robots.enemyIntelligence.get(robots.enemyIntelligence.indexOf(nextLocation)).size() > 1)
-                                    weight += 40;
+				for (ArrayList<Integer> nodal : robots.enemyIntelligence){
+					if (nodal.get(0)==nextLocation && nodal.size()>1){
+						weight+=40;
+					}
+				}
+//                                if(robots.enemyIntelligence.get(robots.enemyIntelligence.indexOf(nextLocation)).size() > 1)
+//                                    weight += 40;
 
                                 if(weight == increment)
                                     weight+= 20;
@@ -299,8 +319,13 @@ public class AI {
 
                                         if(Scenario.listOfNodes[thirdLocation].isCapitalBlue || Scenario.listOfNodes[thirdLocation].isCapitalRed)
                                             weight += 5;
-                                        if(robots.enemyIntelligence.get(robots.enemyIntelligence.indexOf(thirdLocation)).size() > 1)
-                                            weight += 30;
+					for (ArrayList<Integer> nodal : robots.enemyIntelligence){
+						if (nodal.get(0)==thirdLocation && nodal.size()>1){
+							weight+=30;
+						}
+					}
+//                                        if(robots.enemyIntelligence.get(robots.enemyIntelligence.indexOf(thirdLocation)).size() > 1)
+//                                            weight += 30;
 
                                         if(weight == increment)
                                             weight+= 10;
@@ -314,8 +339,13 @@ public class AI {
                                                     finalLocation = road.locationA.id;
                                                 //assigns weighting for current node
                                                 increment = weight;
-                                                if(robots.enemyIntelligence.get(robots.enemyIntelligence.indexOf(finalLocation)).size() > 1)
-                                                    weight += 20;
+						for (ArrayList<Integer> nodal : robots.enemyIntelligence){
+							if (nodal.get(0)==finalLocation && nodal.size()>1){
+								weight+=10;
+							}
+						}
+//                                                if(robots.enemyIntelligence.get(robots.enemyIntelligence.indexOf(finalLocation)).size() > 1)
+//                                                    weight += 20;
 
                                                 if(weight == increment)
                                                     weight+= 5;
@@ -381,8 +411,13 @@ public class AI {
 
                         if(Scenario.listOfNodes[newLocation].isCapitalBlue || Scenario.listOfNodes[newLocation].isCapitalRed)
                             weight += 15;
-                        if(robots.enemyIntelligence.get(newLocation).size() > 1)
-                            weight += 50;
+			for (ArrayList<Integer> nodal : robots.enemyIntelligence){
+				if (nodal.get(0)==newLocation && nodal.size()>1){
+					weight+=50;
+				}
+			}
+//                        if(robots.enemyIntelligence.get(newLocation).size() > 1)
+//                            weight += 50;
                         
                         if(weight == increment)
                             weight+= 30;
@@ -400,8 +435,15 @@ public class AI {
 
                                 if(Scenario.listOfNodes[nextLocation].isCapitalBlue || Scenario.listOfNodes[nextLocation].isCapitalRed)
                                     weight += 10;
-                                if(robots.enemyIntelligence.get(nextLocation).size() > 1)
-                                    weight += 40;
+				
+				for (ArrayList<Integer> nodal : robots.enemyIntelligence){
+					if (nodal.get(0)==nextLocation && nodal.size()>1){
+						weight+=10;
+					}
+							
+				}
+//                                if(robots.enemyIntelligence.get(nextLocation).size() > 1)
+//                                    weight += 40;
 
                                 if(weight == increment)
                                     weight+= 20;
@@ -418,8 +460,13 @@ public class AI {
 
                                         if(Scenario.listOfNodes[finalLocation].isCapitalBlue || Scenario.listOfNodes[finalLocation].isCapitalRed)
                                             weight += 5;
-                                        if(robots.enemyIntelligence.get(finalLocation).size() > 1)
-                                            weight += 30;
+					for (ArrayList<Integer> nodal : robots.enemyIntelligence){
+						if (nodal.get(0)==finalLocation && nodal.size()>1){
+							weight+=30;
+						}
+					}
+//                                        if(robots.enemyIntelligence.get(finalLocation).size() > 1)
+//                                            weight += 30;
 
                                         if(weight == increment)
                                             weight+= 10;
