@@ -1879,8 +1879,9 @@ public class Map extends javax.swing.JFrame {
 
                 ImageIcon img2 = new ImageIcon(img);
                 
+		int value = intel.get(0);
 
-                switch (i) {
+                switch (value) {
                     case 0:
                         nodePlaceholder0.setIcon(img2);
                         break;
