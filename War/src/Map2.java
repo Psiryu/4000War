@@ -2562,6 +2562,7 @@ public class Map2 extends javax.swing.JFrame {
         //button for quitting current scenario and returning to main menu
         Scenario.killSwitch();
 
+        Game.turnCount = 0;
         ClearPopupMenu();
         ClearMenuInfo();
 
