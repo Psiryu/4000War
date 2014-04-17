@@ -62,7 +62,7 @@
           <Rectangle value="[860, 390, 0, 0]"/>
         </Property>
         <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-          <Dimension value="[425, 300]"/>
+          <Dimension value="[420, 295]"/>
         </Property>
         <Property name="name" type="java.lang.String" value="" noResource="true"/>
         <Property name="resizable" type="boolean" value="false"/>
@@ -261,7 +261,10 @@
       <Color blue="ff" green="ff" red="cc" type="rgb"/>
     </Property>
     <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-      <Dimension value="[865, 588]"/>
+      <Dimension value="[860, 580]"/>
+    </Property>
+    <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+      <Dimension value="[860, 580]"/>
     </Property>
     <Property name="resizable" type="boolean" value="false"/>
   </Properties>

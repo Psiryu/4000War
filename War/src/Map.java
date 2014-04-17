@@ -200,7 +200,7 @@ public class Map extends javax.swing.JFrame {
 
         frameFloatingInfo.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         frameFloatingInfo.setBounds(new java.awt.Rectangle(860, 390, 0, 0));
-        frameFloatingInfo.setMinimumSize(new java.awt.Dimension(425, 300));
+        frameFloatingInfo.setMinimumSize(new java.awt.Dimension(420, 295));
         frameFloatingInfo.setName(""); // NOI18N
         frameFloatingInfo.setResizable(false);
         frameFloatingInfo.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -277,7 +277,8 @@ public class Map extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(204, 255, 255));
-        setMinimumSize(new java.awt.Dimension(865, 588));
+        setMinimumSize(new java.awt.Dimension(860, 580));
+        setPreferredSize(new java.awt.Dimension(860, 580));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
