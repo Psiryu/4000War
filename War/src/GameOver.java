@@ -54,8 +54,8 @@ public class GameOver extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBounds(new java.awt.Rectangle(100, 100, 0, 0));
         setMaximumSize(new java.awt.Dimension(605, 515));
-        setMinimumSize(new java.awt.Dimension(605, 515));
-        setPreferredSize(new java.awt.Dimension(605, 520));
+        setMinimumSize(new java.awt.Dimension(600, 515));
+        setPreferredSize(new java.awt.Dimension(600, 520));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 

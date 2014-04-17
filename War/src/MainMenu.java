@@ -50,7 +50,6 @@ public class MainMenu extends javax.swing.JFrame {
         buttonEnd = new javax.swing.JButton();
         buttonHowTo = new javax.swing.JButton();
         labelBackgroundImage = new javax.swing.JLabel();
-        butonX = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(204, 204, 204));
@@ -146,16 +145,6 @@ public class MainMenu extends javax.swing.JFrame {
         labelBackgroundImage.setPreferredSize(new java.awt.Dimension(440, 450));
         getContentPane().add(labelBackgroundImage, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 620, 500));
 
-        butonX.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/X.png"))); // NOI18N
-        butonX.setBorderPainted(false);
-        butonX.setContentAreaFilled(false);
-        butonX.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                butonXActionPerformed(evt);
-            }
-        });
-        getContentPane().add(butonX, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 0, 20, -1));
-
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -211,10 +200,6 @@ public class MainMenu extends javax.swing.JFrame {
         Map.class.getMethods();
     }//GEN-LAST:event_buttonHowToActionPerformed
 
-    private void butonXActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butonXActionPerformed
-        System.exit(0);
-    }//GEN-LAST:event_butonXActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -252,7 +237,6 @@ public class MainMenu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton butonX;
     private javax.swing.JButton buttonEnd;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton buttonHowTo;
