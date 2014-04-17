@@ -265,7 +265,8 @@ public class Game {
 					Global.intGameOver = 1;
 					return;
 				}
-			} else if (Scenario.redPlayer.combatUnits.get(0).isFleet) {
+			} else if(!Scenario.redPlayer.combatUnits.isEmpty()) {
+                            if (Scenario.redPlayer.combatUnits.get(0).isFleet) {
                 // if the red player has a fleet, and blue player has standard unit
 				// blue player wins
 				Global.gameSummary = "Blue Player Wins!";
@@ -274,6 +275,7 @@ public class Game {
 
 				Global.intGameOver = 1;
 				return;
+                            }
 			}
 		} else if ((Scenario.bluePlayer.combatUnits.size() <= 1)) {
             // if blue player has only a fleet remaining
