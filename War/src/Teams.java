@@ -156,9 +156,14 @@ public class Teams extends javax.swing.JFrame {
         scenario.Initialize(0);
         Global.mapEvent = new MapEvent();
         
-        //show the map and hide this window
-        //new Map().setVisible(true);
-        new Map().setVisible(true);
+        //show the map based on scenario and hide this window
+        if(Global.intScenario == 1)
+            new Map().setVisible(true);
+        else if(Global.intScenario == 2)
+            new Map2().setVisible(true);
+        else if(Global.intScenario == 3)
+            new Map3().setVisible(true);
+        
         Teams.this.dispose();
     }//GEN-LAST:event_buttonBeginActionPerformed
 

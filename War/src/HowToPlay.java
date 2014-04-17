@@ -8,6 +8,8 @@ import java.awt.Toolkit;
  * Description: This is the "how to play" instructional screen of the
  * learning tool. Clicking a radio button sets the text to equal instructions
  * centered around the topic of the radio button.
+ * 
+ * Usage: this form is called to by MainMenu.java
  *
  * Maintenance notes: Simply add a new radio button for any new categories
  * that wish to be added. (Note: A line to reset the text field to the top of

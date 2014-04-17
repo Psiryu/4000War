@@ -75,7 +75,7 @@ import javax.swing.Timer;
  * they are listed within Scenario.java for the desired scenario.
  */
 
-public class Map extends javax.swing.JFrame {
+public class Map2 extends javax.swing.JFrame {
 
     //variable for keeping track of the current players' turns;
     public int x, y;
@@ -90,7 +90,7 @@ public class Map extends javax.swing.JFrame {
     /**
      * Creates new form Map
      */
-    public Map() {
+    public Map2() {
         
         initComponents();
 
@@ -283,7 +283,6 @@ public class Map extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(204, 255, 255));
         setMinimumSize(new java.awt.Dimension(860, 580));
-        setPreferredSize(new java.awt.Dimension(860, 580));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 

@@ -9,6 +9,9 @@ import java.awt.Toolkit;
  * begins. It is simply a splash screen that allows the player to select
  * a scenario, or to go to the How To Play screen.
  *
+ * Usage: this form is the initial form of the application. It loads at start-
+ * up. It is called to from all other UI forms (Map, Team, HowToPlay, GameOver)
+ * 
  * Maintenance notes: add new scenario buttons for each new scenario created.
  * Simply move the button in line with the rest, resizing them as needed.
  * The background image of this window (and of ALL windows, for that matter, is
