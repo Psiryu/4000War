@@ -79,8 +79,6 @@ public class Battle {
         else
         {
             Global.redPreEmptiveToString ="";
-            /*PRRRRRRRRRRRRRRRRRREEEEEEEEEEEEEEEEEEEEEMMMMMM*/
-            /*you question box is here*/
             if (Global.opponent == true) /*PVP*/
             {
                 yesNo = JOptionPane.showOptionDialog(null, ("Red Team... Would you like to battle on " + node.name + " ?"), "Battle?",
@@ -124,8 +122,6 @@ public class Battle {
         else
         {
             Global.bluePreEmptiveToString = "";
-            /*PRRRRRRRRRRRRRRRRRREEEEEEEEEEEEEEEEEEEEEMMMMMM*/
-            /*you question box is here*/
             if (Global.opponent == true) /*PVP*/
             {
                 yesNo = JOptionPane.showOptionDialog(null, ("Blue... Would you like to battle on " + node.name + " ?"), "Battle?",
@@ -398,16 +394,6 @@ public class Battle {
                                     aggregateCowardsBattleStrength,attackers,
                                     cowards,null,false,true));
                     }
-
-                    /*Move Cowards into desired location*/
-                   /* for (int i = 0; i < cowards.size(); i++) 
-                    {
-                        MapEvent.addMovement(cowards.get(i).cUnitID, null, cowardsPreviousLocation.get(i).id);
-                    }*/
-                    
-                    
-
-
                 } 
                 else if (aggregateCowardsBattleStrength < aggregateAttackersBattleStrength) 
                 {
@@ -739,7 +725,6 @@ public class Battle {
                         /*Blue Combat Unit dies*/
                         
                         MapEvent.completeCombat(attackers, true, cowards, false, node);
-
                         
                         JOptionPane.showMessageDialog(null,Global.redPreEmptiveToString + Global.bluePreEmptiveToString
                                 + battleStatus(node,aggregateAttackersBattleStrength,
@@ -1067,8 +1052,6 @@ public class Battle {
         else
         {
             Global.redPreEmptiveToString = "";
-            /*PRRRRRRRRRRRRRRRRRREEEEEEEEEEEEEEEEEEEEEMMMMMM*/
-            /*you question box is here*/
             if (Global.opponent == true) /*PVP*/
             {
                 yesNo = JOptionPane.showOptionDialog(null, ("Red Team... Would you like to battle on the road between" +
@@ -1117,8 +1100,6 @@ public class Battle {
         else
         {
             Global.bluePreEmptiveToString = "";
-            /*PRRRRRRRRRRRRRRRRRREEEEEEEEEEEEEEEEEEEEEMMMMMM*/
-            /*you question box is here*/
             if (Global.opponent == true) /*PVP*/
             {
                 yesNo = JOptionPane.showOptionDialog(null, ("Blue Team... Would you like to battle on the road between" +
@@ -1204,19 +1185,19 @@ public class Battle {
             ArrayList<CombatUnit> bluCombatUnit, String tieBreaker,
             boolean redFlee, boolean bluFlee)
     {
-        String returnStr = "";
+        String returnStr = ""; /* used as primary return string*/
         
-        int redSmallCount=0;
+        int redSmallCount=0;  /*integer count of red armies*/
         int redMedCount=0; 
         int redLargeCount=0;
         
-        String redArmyCount ="";
+        String redArmyCount =""; /* sub string to be placed in returnStr*/
         
-        int bluSmallCount=0;
+        int bluSmallCount=0; /*integer count of blue armies*/
         int bluMedCount=0; 
         int bluLargeCount=0;
         
-        String bluArmyCount = "";
+        String bluArmyCount = ""; /* sub string to be placed in returnStr*/
         
         /*COUNTING THE ARMIES INVOLVED IN THE BATTLE*/
         
@@ -1316,26 +1297,30 @@ public class Battle {
             bluArmyCount = bluLargeCount+ " Large Combat Unit(s) ";
         }
         
+        /* a substring generator for declaring magnitude of vicory */
         
         String magnitudeOfVictory ="";
         if (Math.abs(bluBatStr - redBatStr)>35)
         {
-            magnitudeOfVictory = " Decimated ";
+            magnitudeOfVictory = " decimated ";
         }
         else if (Math.abs(bluBatStr - redBatStr)>25)
         {
-            magnitudeOfVictory = " Crushed ";
+            magnitudeOfVictory = " crushed ";
         }
         else if (Math.abs(bluBatStr - redBatStr)>15)
         {
-            magnitudeOfVictory = " Defeated ";
+            magnitudeOfVictory = " defeated ";
         }
         else
         {
-            magnitudeOfVictory = " Overcame ";
+            magnitudeOfVictory = " overcame ";
         }
         
-    
+        
+        /*here is where we put together all the substrings into one prime string to be returned to the calling program*/
+        
+        
         if (redFlee)
         {
             if(redBatStr > bluBatStr)
@@ -1378,12 +1363,12 @@ public class Battle {
                         ", \nRed's army caught up to Blue's army with thier\n"
                         + redArmyCount +".\n"
                         + "But Blue team turned arount and "+magnitudeOfVictory
-                        + "them. \nThen they moved to "+ node.name;
+                        + " them. \nThen they moved to "+ node.name;
             }
             else if (redBatStr > bluBatStr)
             {
                 returnStr = "While chasing the Blue Army, Red's army caught up with their\n"
-                        + redArmyCount + "\nand" +magnitudeOfVictory+ "Blue's Army that consisted of"
+                        + redArmyCount + "\nand" +magnitudeOfVictory+ "Blue's Army that consisted of "
                         + bluArmyCount + ".\nThen they proceeded to "+node.name;
             }
             else
