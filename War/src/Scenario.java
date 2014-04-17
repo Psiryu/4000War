@@ -69,11 +69,11 @@ public class Scenario {
 		switch (_scenarioID) { // perform correct scenario operations, each case capturing the selection
 			case 0:
 				// strings for each location name
-				names = new String[]{"Rome", "Aquileia", "Mursa", "Cibalea", "Salona", "Brundisium", "Sirmium", "Dyrrachium", "Singidunum", "Thessalonica", "Ratiaria", "Sardica", "Heralea", "Marcianopolis", "Adrianople", "Constantinople"};
+				names = new String[]{"Rome", "Aquileia", "Mursa", "Cibalea", "Salona", "Brundisium", "Sirmium", "Dyrrachium", "Singidunum", "Thessalonica", "Ratiaria", "Sardica", "Heraclea", "Marcianopolis", "Adrianople", "Constantinople"};
 				// distance from red capital, distance from blue capital
 				capitalDistances = new int[][]{{0, 5}, {1, 5}, {2, 5}, {2, 5}, {2, 4}, {1, 4}, {3, 4}, {2, 3}, {4, 3}, {3, 2}, {5, 3}, {5, 2}, {4, 1}, {6, 2}, {6, 1}, {5, 0}};
 				// is red capital, is blue capital, is port
-				locationProperties = new boolean[][]{{true, false, false}, {false, false, false}, {false, false, false}, {false, false, false}, {false, false, false}, {false, false, false}, {false, false, false}, {false, false, false}, {false, false, false}, {false, false, false}, {false, false, false}, {false, false, false}, {false, false, false}, {false, false, false}, {false, false, false}, {false, true, false}};
+				locationProperties = new boolean[][]{{true, false, false}, {false, false, false}, {false, false, false}, {false, false, false}, {false, false, false}, {false, false, true}, {false, false, false}, {false, false, true}, {false, false, false}, {false, false, false}, {false, false, false}, {false, false, false}, {false, false, false}, {false, false, false}, {false, false, false}, {false, true, false}};
 				// is the location a city?
 				isCity = new boolean[]{true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true};
 				// road capacity, start location for road, end location for road
@@ -101,11 +101,11 @@ public class Scenario {
 				break;
 			case 1:
 				// strings for each location name
-				names = new String[]{"Rome", "Aquileia", "Mursa", "Cibalea", "Salona", "Brundisium", "Sirmium", "Dyrrachium", "Singidunum", "Thessalonica", "Ratiaria", "Sardica", "Heralea", "Marcianopolis", "Adrianople", "Constantinople"};
+				names = new String[]{"Rome", "Aquileia", "Mursa", "Cibalea", "Salona", "Brundisium", "Sirmium", "Dyrrachium", "Singidunum", "Thessalonica", "Ratiaria", "Sardica", "Heraclea", "Marcianopolis", "Adrianople", "Constantinople"};
 				// distance from red capital, distance from blue capital
 				capitalDistances = new int[][]{{0, 5}, {1, 5}, {2, 5}, {2, 5}, {2, 4}, {1, 4}, {3, 4}, {2, 3}, {4, 3}, {3, 2}, {5, 3}, {5, 2}, {4, 1}, {6, 2}, {6, 1}, {5, 0}};
 				// is red capital, is blue capital, is port
-				locationProperties = new boolean[][]{{true, false, false}, {false, false, false}, {false, false, false}, {false, false, false}, {false, false, false}, {false, false, false}, {false, false, false}, {false, false, false}, {false, false, false}, {false, false, false}, {false, false, false}, {false, false, false}, {false, false, false}, {false, false, false}, {false, false, false}, {false, true, false}};
+				locationProperties = new boolean[][]{{true, false, false}, {false, false, false}, {false, false, false}, {false, false, false}, {false, false, false}, {false, false, true}, {false, false, false}, {false, false, true}, {false, false, false}, {false, false, false}, {false, false, false}, {false, false, false}, {false, false, false}, {false, false, false}, {false, false, false}, {false, true, false}};
 				// is the location a city?
 				isCity = new boolean[]{true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true};
 				// road capacity, start location for road, end location for road
@@ -133,11 +133,11 @@ public class Scenario {
 				break;
 			case 2:
 				// strings for each location name
-				names = new String[]{"Rome", "Aquileia", "Mursa", "Cibalea", "Salona", "Brundisium", "Sirmium", "Dyrrachium", "Singidunum", "Thessalonica", "Ratiaria", "Sardica", "Heralea", "Marcianopolis", "Adrianople", "Constantinople"};
+				names = new String[]{"Rome", "Aquileia", "Mursa", "Cibalea", "Salona", "Brundisium", "Sirmium", "Dyrrachium", "Singidunum", "Thessalonica", "Ratiaria", "Sardica", "Heraclea", "Marcianopolis", "Adrianople", "Constantinople"};
 				// distance from red capital, distance from blue capital
 				capitalDistances = new int[][]{{0, 5}, {1, 5}, {2, 5}, {2, 5}, {2, 4}, {1, 4}, {3, 4}, {2, 3}, {4, 3}, {3, 2}, {5, 3}, {5, 2}, {4, 1}, {6, 2}, {6, 1}, {5, 0}};
 				// is red capital, is blue capital, is port
-				locationProperties = new boolean[][]{{true, false, false}, {false, false, false}, {false, false, false}, {false, false, false}, {false, false, false}, {false, false, false}, {false, false, false}, {false, false, false}, {false, false, false}, {false, false, false}, {false, false, false}, {false, false, false}, {false, false, false}, {false, false, false}, {false, false, false}, {false, true, false}};
+				locationProperties = new boolean[][]{{true, false, false}, {false, false, false}, {false, false, false}, {false, false, false}, {false, false, false}, {false, false, true}, {false, false, false}, {false, false, true}, {false, false, false}, {false, false, false}, {false, false, false}, {false, false, false}, {false, false, false}, {false, false, false}, {false, false, false}, {false, true, false}};
 				// is the location a city?
 				isCity = new boolean[]{true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true};
 				// road capacity, start location for road, end location for road
