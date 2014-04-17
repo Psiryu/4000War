@@ -321,7 +321,7 @@ public class AI {
                                     weight += 20;
 				for (ArrayList<Integer> nodal : robots.enemyIntelligence){
 					if (nodal.get(0)==nextLocation && nodal.size()>1){
-						weight+=35;
+						weight+=30;
 					}
 				}
 //                                if(robots.enemyIntelligence.get(robots.enemyIntelligence.indexOf(nextLocation)).size() > 1)
