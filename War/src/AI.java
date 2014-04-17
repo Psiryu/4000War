@@ -2,16 +2,42 @@
 import java.util.ArrayList;
 import java.util.Random;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * Artificial Intelligence
+ *
+ * Description: The AI is a non-learning artificial intelligence designed
+ * to combat a human player in a controlled but randomized manner. The AI
+ * is designed with perceptrons in mind for weighted action values, with an
+ * element of randomness included in order to ensure no two matches against
+ * and AI lead to the same movements and results. Division occurs within its own
+ * method, while merging is divided into two methods, and movement into three.
+ * The constructor of the AI initiates all actions.
+ * It first populates controlled array lists, to be used in each method,
+ * containing the army units the AI will represent (whether it be Red or Blue
+ * team). It then calls to BeginMerge, which manages mergers. Then, it will
+ * re-establish the array lists - in case any mergers occur. It will proceed
+ * to execute the division method, and once again re-establish the array lists
+ * to ensure the accuracy of the list. Finally, it calls to Moves, which
+ * initiates the movement algorithm. This is where perceptrons kick in.
+ * Movement first cycles through each combat unit within the array list, and
+ * will determine which possible movements that unit can make. It then adds
+ * a weight to that node with a set of condition checks (namely, if an enemy
+ * unit is believed to be on a node, if a node is a capital city, or if a node
+ * is fully clean of all suspicion). It will proceed to check each node around
+ * the target node, increasing the weighted value as needed, and will do this
+ * for two more layers of adjacent nodes. It will then determine if any ferrying
+ * movements are possible. Once it has calculated all weights, it will determine
+ * which movement has the highest weighting, and then will randomly determine
+ * if it shall execute the highest weighted movement, the highest weighted
+ * ferrying movement, or not move that army unit at all.
+ * 
+ * Usage: the AI is only called to from the Map.java files.
+ *
+ * Maintenance notes: follow instances of the variable "weight" within the methods, to
+ * change the weighting associated with different conditions, or for where to add new
+ * condition checks.
  */
 
-/**
- *
- * @author Prem
- */
 //constructor
 public class AI {
     public static void AI() {
@@ -263,7 +289,7 @@ public class AI {
 
                         //determines the wighting for if the merge should take place
                         if(Scenario.listOfNodes[newLocation].isCapitalBlue || Scenario.listOfNodes[newLocation].isCapitalRed)
-                            weight += 20;
+                            weight += 30;
 			for (ArrayList<Integer> nodal : robots.enemyIntelligence){
 				if (nodal.get(0)==newLocation && nodal.size()>1){
 					weight+=50;
@@ -274,7 +300,7 @@ public class AI {
                         //if no weight change has occured, increment for a sense
                         //of randomness
                         if(weight == increment)
-                            weight+= 30;
+                            weight+= 20;
                         
                         //a second loop of all roads, for each adjacent node to
                         //the destination of the previous loop
@@ -292,17 +318,17 @@ public class AI {
 
                                 //adds the cumulative weighting of this node
                                 if(Scenario.listOfNodes[nextLocation].isCapitalBlue || Scenario.listOfNodes[nextLocation].isCapitalRed)
-                                    weight += 10;
+                                    weight += 20;
 				for (ArrayList<Integer> nodal : robots.enemyIntelligence){
 					if (nodal.get(0)==nextLocation && nodal.size()>1){
-						weight+=40;
+						weight+=35;
 					}
 				}
 //                                if(robots.enemyIntelligence.get(robots.enemyIntelligence.indexOf(nextLocation)).size() > 1)
 //                                    weight += 40;
 
                                 if(weight == increment)
-                                    weight+= 20;
+                                    weight+= 10;
                                 
                                 //another loop for nodes adjacent to the adjacent node
                                 //(essentially the AI is now looking three spots away
@@ -318,17 +344,17 @@ public class AI {
                                         increment = weight;
 
                                         if(Scenario.listOfNodes[thirdLocation].isCapitalBlue || Scenario.listOfNodes[thirdLocation].isCapitalRed)
-                                            weight += 5;
+                                            weight += 10;
 					for (ArrayList<Integer> nodal : robots.enemyIntelligence){
 						if (nodal.get(0)==thirdLocation && nodal.size()>1){
-							weight+=30;
+							weight+=20;
 						}
 					}
 //                                        if(robots.enemyIntelligence.get(robots.enemyIntelligence.indexOf(thirdLocation)).size() > 1)
 //                                            weight += 30;
 
                                         if(weight == increment)
-                                            weight+= 10;
+                                            weight+= 5;
                                         
                                         for(Road road4 : Scenario.listOfRoads) {
                                             if(road4.locationA.id == thirdLocation || road.locationB.id == thirdLocation) {
