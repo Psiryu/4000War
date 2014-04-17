@@ -595,11 +595,15 @@ public class Map extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /*
+	 Method: GameStart
+	 Input Parameters: none.
+    
+	 this method applies values that are required at the very start of the
+         game for player 1. (essentially "finish turn" button aftereffects
+         that need to happen for th every first turn).
+	 */
     public final void GameStart() {
-        //this method applies values that are required at the very start of the
-        //game for player 1. (essentially "finish turn" button aftereffects
-        //that need to happen for th every first turn).
-
         //sets a label that informs you whom you are versing.
         if ((Global.opponent) == true) {
             labelOpponent.setText("Against Player");
@@ -692,12 +696,17 @@ public class Map extends javax.swing.JFrame {
         SetColours();
     }
 
-    public void TimerDone() {
 
-    }
-
-//Action will control all node-based actions. Dimmed public because no need
-//for hidden values, and allows information to be passed more easily
+    /*
+	 Method: Action
+	 Input Parameters: none.
+    
+	 Action will control all node-based actions. Dimmed public because no need
+         for hidden values, and allows information to be passed more easily.
+         This method sets all front-end changes that need to occur when
+         a node is clicked, or calls to the methods that will cause the front-
+         end changes to occur. It then calls to have the popup menu created.
+	 */
     public void Action() {
         //obtains the x and y coordinates of the mouse
         x = MouseInfo.getPointerInfo().getLocation().x;
@@ -779,11 +788,15 @@ public class Map extends javax.swing.JFrame {
 
     }
 
+        /*
+	 Method: ObtainArmies
+	 Input Parameters: a rectangular array of units controlled.
+    
+	 This method creates a list to use to keep track of armies.
+         First portion of rectangular array represents the differnt armies
+         within the list. Second portion is [id, size, location, fleet bool].
+	 */
     public int[][] ObtainArmies(int[][] listArmy) {
-        //creates list to use to keep track of armies.
-        //first portion of rectangular array represents the differnt armies
-        //within the list. Second portion is [id, size, location, fleet bool].  
-
         int i = 0;
 
         //first sets player 1's armies (red team), then does the same
@@ -830,6 +843,14 @@ public class Map extends javax.swing.JFrame {
         return listArmy;
     }
 
+        /*
+	 Method: ArmiesHere
+	 Input Parameters: rectangular array containing all controlled units.
+    
+	 This method determines if the current player controls any units
+         on the node selected, displaying the results on the front end
+         and setting a public variable to true if any exist.
+	 */
     public void ArmiesHere(int[][] armies) {
         //creates a string for user display
         String sizes = "";
@@ -886,6 +907,13 @@ public class Map extends javax.swing.JFrame {
         }
     }
 
+        /*
+	 Method: OpenPopup
+	 Input Parameters: rectangular array containing all controlled troops.
+    
+	 This method will establish which actions the player can perform, and
+         adds them to a popup menu if the actions are possible.
+	 */
     private void OpenPopup(final int[][] armies) {
         //first clears the popup menu (in case another node was clicked
         //while the menu was still active. Then displays and repopulates it.
@@ -951,6 +979,13 @@ public class Map extends javax.swing.JFrame {
 
     }
 
+        /*
+	 Method: InitializeMovement
+	 Input Parameters: rectangular array of all units controlled.
+    
+	 This method will determine which army units the user controls
+         in the present node that can be moved and adds them to the popup menu.
+	 */
     private void InitializeMovement(final int[][] armies) {
         //clears menu and readds new items (armies at the node)
         ClearPopupMenu();
@@ -997,6 +1032,13 @@ public class Map extends javax.swing.JFrame {
 
     }
 
+        /*
+	 Method: MoveTo
+	 Input Parameters: rectangular array of an army unit to move.
+    
+	 This method will determine where the input army unit can move to,
+         populating the results into the popup menu.
+	 */
     private void MoveTo(final int[][] army) {
         ClearPopupMenu();
         Boolean returnSet = false;
@@ -1361,6 +1403,14 @@ public class Map extends javax.swing.JFrame {
 
     }
 
+      /*
+	 Method: DividingArmies
+	 Input Parameters: rectangular array of all army units.
+    
+	 This method will determine which army units are at the selected
+         node and are capable of being divided, populating the results
+         into the popup menu.
+	 */
     private void DividingArmies(final int[][] army) {
         //ensures popupmenu has been cleared
         ClearPopupMenu();
@@ -1428,6 +1478,13 @@ public class Map extends javax.swing.JFrame {
 
     }
 
+      /*
+	 Method: BeginMergingArmies
+	 Input Parameters: rectangular array of all army units.
+    
+	 This method will determine which army units can be merged together,
+         adding them to a popup menu.
+	 */
     private void BeginMergingArmies(final int[][] armies) {
         ClearPopupMenu();
         int isFleet = 0;
@@ -1521,6 +1578,13 @@ public class Map extends javax.swing.JFrame {
 
     }
 
+      /*
+	 Method: MoveTo
+	 Input Parameters: id of army to merge and its size.
+    
+	 This method will determine which army units the selected army unit
+         can merge with, adding the results to a popup menu.
+	 */
     private void MergeArmy(int indexer2, int size) {
         //clears the popup menu
         ClearPopupMenu();
@@ -1654,7 +1718,13 @@ public class Map extends javax.swing.JFrame {
         popupMenu.setVisible(true);
     }
 
-    //converts the army size integer into a single character.
+      /*
+	 Method: ConvertSize
+	 Input Parameters: size of the army and an int to check if it's a fleet
+    
+	 This method will output a single English letter based on the size of
+         the army unit inputted.
+	 */
     private String ConvertSize(int armieSize, int isFleet) {
         //creates a string for output
         String size;
@@ -1677,7 +1747,13 @@ public class Map extends javax.swing.JFrame {
         return size;
     }
 
-    //converts the army size integer into real words.
+    /*
+	 Method: ConvertFullSize
+	 Input Parameters: size of the army and an int to check if it's a fleet
+    
+	 This method will output a full English word based on the size of
+         the army unit inputted.
+	 */
     private String ConvertFullSize(int armieSize, int isFleet) {
         //creates a string for output
         String size;
@@ -1700,11 +1776,15 @@ public class Map extends javax.swing.JFrame {
         return size;
     }
 
-    private void ClearMenuInfo() {
-        /* This method clears all of the visible information presented to
+    /*
+	 Method: ClearMenuInfo
+	 Input Parameters: none.
+    
+	 This method clears all of the visible information presented to
          the player, to end their turn and ensure the next player is
-         not given any of their information.                   */
-
+         not given any of their information. 
+	 */
+    private void ClearMenuInfo() {
         //empties the text in the info panel
         labelInfo1.setText("");
         labelInfo2.setText("");
@@ -1714,6 +1794,12 @@ public class Map extends javax.swing.JFrame {
         labelInfo6.setText("");
     }
 
+        /*
+	 Method: ClearPopupMenu
+	 Input Parameters: none.
+    
+	 This method clears the popup menu and hides it from view
+	 */
     public void ClearPopupMenu() {
         //empties and hides the popup menu.
         popupMenu.setVisible(false);
@@ -1721,6 +1807,13 @@ public class Map extends javax.swing.JFrame {
         popupMenu.add(menuItemClose);
     }
 
+        /*
+	 Method: SetDefaultColours
+	 Input Parameters: none.
+    
+	 This method will set the node colours of all nodes based on the node
+         type (location are dark grey, port is light blue, checkpoint is beige)
+	 */
     public void SetDefaultColours() throws IOException {
         //this method resets the node colours to default
         Image img;
@@ -1801,6 +1894,14 @@ public class Map extends javax.swing.JFrame {
         }
     }
 
+    /*
+	 Method: SetColours
+	 Input Parameters: none.
+    
+	 This method will determine which nodes the player controls army units
+         on, and gets the node id's of the locations to change to the player's.
+         It sends the node id's to change to SetPlayerNodeColour one at a time.
+	 */
     public void SetColours() {
         //this method sets the node colours at the start of each turn.
 
@@ -1833,7 +1934,12 @@ public class Map extends javax.swing.JFrame {
 
     }
 
-    //SetNodeColour houses the switch statement for setting a node colour
+    /*
+	 Method: SetPlayerNodeColour
+	 Input Parameters: id of node to change
+    
+	 receives a node id and changes the node to be the colour of the current player
+	 */
     private void SetPlayerNodeColour(int indexer) throws IOException {
         //creates the base image variable
         Image img;
@@ -1950,7 +2056,14 @@ public class Map extends javax.swing.JFrame {
             }
         }
     }
-
+    
+/*
+	 Method: SetEnemyColours
+	 Input Parameters: none.
+    
+	 This method will set the colour of all nodes the player believes an
+         enemy unit is located on (based on rumours) to the enemy's colour
+	 */
     private void SetEnemyColours() throws IOException {
         int i = 0;
         ArrayList<ArrayList<Integer>> intelList;
@@ -2033,6 +2146,12 @@ public class Map extends javax.swing.JFrame {
         }
     }
     
+    /*
+	 Method: SetcurrentColour
+	 Input Parameters: none.
+    
+	 This method will set the node selected to have a white colour
+	 */
     private void SetCurrentColour() throws IOException {
         //sets the node selected to a white background
         Image img;
@@ -2090,6 +2209,13 @@ public class Map extends javax.swing.JFrame {
         }
     }
 
+    /*
+	 Method: SetDefaultColours
+	 Input Parameters: none.
+    
+	 This method scans through the rumours list to determine if an enemy
+         is present on this node. Sets frontend text based on the results.
+	 */
     private void EnemiesHere() {
         String enemies = ""; // storage of output text
 	ArrayList<ArrayList<Integer>> intel; // storage of intel list
@@ -2130,35 +2256,6 @@ public class Map extends javax.swing.JFrame {
         //sets text for no fog of war values
         if(enemies.equals(""))
             enemies = "none known to be here";
-//        int first = 0;
-//        ArrayList<Integer> intel;
-//        if (Global.curPlayer == 0) {
-//            intel = Scenario.redPlayer.enemyIntelligence.get(Scenario.redPlayer.enemyIntelligence.indexOf(nodeSelected));
-//        } else {
-//            intel = Scenario.bluePlayer.enemyIntelligence.get(Scenario.bluePlayer.enemyIntelligence.indexOf(nodeSelected));
-//        }
-//
-//        if (intel.size() == 1) {
-//            enemies = "none known to be here";
-//        } else {
-//            //intel.remove(0);
-//            for (int fog : intel) {
-//                if (first == 0) {
-//                    first++;
-//                } else {
-//                    if (fog == 3) {
-//                        enemies += (" " + ConvertSize(5, 1));
-//                    } else if (fog == 2) {
-//                        enemies += (" " + ConvertSize(15, 0));
-//                    } else if (fog == 1) {
-//                        enemies += (" " + ConvertSize(10, 0));
-//                    } else if (fog == 0) {
-//                        enemies += (" " + ConvertSize(5, 0));
-//                    }
-//                }
-//            }
-//        }
-
         labelInfo6.setText("Enemies here: " + enemies);
     }
 
@@ -2455,6 +2552,13 @@ public class Map extends javax.swing.JFrame {
 
     }
 
+    /*
+	 Method: GameOver
+	 Input Parameters: none.
+    
+	 This method will be called if a game has ended, closing the map, calling
+         the scenario killswitch and loading the gameover screen.
+	 */
     public void GameOver() {
         //button for quitting current scenario and returning to main menu
         Scenario.killSwitch();

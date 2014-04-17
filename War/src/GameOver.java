@@ -44,7 +44,7 @@ public class GameOver extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
+        buttonMenu = new javax.swing.JButton();
         labelGameOver = new javax.swing.JLabel();
         labelWinner = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -59,16 +59,16 @@ public class GameOver extends javax.swing.JFrame {
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jButton1.setText("Main Menu");
-        jButton1.setBorderPainted(false);
-        jButton1.setContentAreaFilled(false);
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        buttonMenu.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        buttonMenu.setText("Main Menu");
+        buttonMenu.setBorderPainted(false);
+        buttonMenu.setContentAreaFilled(false);
+        buttonMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                buttonMenuActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 410, 530, 50));
+        getContentPane().add(buttonMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 410, 530, 50));
 
         labelGameOver.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         labelGameOver.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -105,13 +105,13 @@ public class GameOver extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void buttonMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonMenuActionPerformed
         //button for quitting current scenario and returning to main menu
         Scenario.killSwitch();
 
         new MainMenu().setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_buttonMenuActionPerformed
 
     /**
      * @param args the command line arguments
@@ -149,7 +149,7 @@ public class GameOver extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton buttonMenu;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel labelBackground;
     private javax.swing.JLabel labelGameOver;

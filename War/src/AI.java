@@ -79,9 +79,18 @@ public class AI {
         Moves(robotLegion, robots);
     }
     
-    //this method handles merging armies. It checks if an two units are able
-    //to be merged, then adds weighting based on fog of war values of the nodes
-    //surrounding the node the units are on
+    /*
+	 Method: BeginMerging
+	 Input Parameters: ArrayList of all controlled combat units, the player
+         object of the player the AI is controlling.
+    
+	 This method establishes which combat units controlled can be merged
+         together and assigns a weighting to the potential merger. 
+         It checks if an two units are able
+         to be merged, then adds weighting based on fog of war values of the nodes
+         surrounding the node the units are on
+         It then sends a selected potential merger to the Merging method.
+	 */
     private static void BeginMerging(ArrayList<CombatUnit> robotLegion, Player robots) {
         //MERGE RANDOMLY OR IF AN ENEMY IS AT AN ADJACENT NODE
 
@@ -180,7 +189,14 @@ public class AI {
         }
     }
     
-    //manages the merge
+    /*
+	 Method: Merging
+	 Input Parameters: a weight value, two combat units to merge
+    
+	 This method will randomly decide if a proposed merger should occur or
+         not. If it elects to proceed with the merger, the combat unit id's
+         are set to MapEvent
+	 */
     private static void Merging(int weighting, CombatUnit killBots, CombatUnit killBots2) {
         //creates a random number generator
         Random randomizer = new Random();
@@ -205,7 +221,15 @@ public class AI {
         
     }
     
-    //this method handles dividing armies
+    /*
+	 Method: Dividing
+	 Input Parameters: ArrayList of all controlled combat units.
+    
+	 This method determines which combat units controlled can be divided,
+         assigns weightings on if it should divide or not, then adds a level
+         of randomness and determines if said unit will divide. If it does,
+         it sends the unit id to MapEvent.
+	 */
     private static void Dividing(ArrayList<CombatUnit> robotLegion) {
         int weight; //counter that adds weighting
         
@@ -254,7 +278,16 @@ public class AI {
         }
     }
     
-    //this method determines the possible movements    
+    /*
+	 Method: Moves
+	 Input Parameters: ArrayList of all controlled combat units, and player object for
+         which player the AI is to control.
+    
+	 This method establishes which movements each army unit can perform, assigns weighted
+         values to each movement (or ferrying movement), and determines which movement
+         has the highest weighted value. Sends the highest weight and movement to
+         the method FinalizeMovement or FinalizeFerryMovement
+	 */
     private static void Moves(ArrayList<CombatUnit> robotLegion, Player robots) {
         ArrayList<Road> roads = new ArrayList<Road>();
         ArrayList<Integer> weights = new ArrayList<Integer>();
@@ -589,7 +622,13 @@ public class AI {
         }
     }
     
-    //this method finalizes the movement to send to MapEvents
+    /*
+	 Method: FinalizeMovement
+	 Input Parameters: a CombatUnit to move, the road it will take, and the end location desired
+    
+	 This method will randomely determine if the desired movement will actually
+         happen or not, and, if it does, sends the movement to MapEvent
+	 */
     private static void FinalizeMovement(CombatUnit killBots, Road road, int location) {
         //creates a random number generator
         Random randomizer = new Random();
@@ -605,15 +644,23 @@ public class AI {
         }
         //else, no movement will happen (for randomness' sake)
     }
-    //finalizes ferrying movement
+    
+     /*
+	 Method: FinalizeFerryMovement
+	 Input Parameters: a CombatUnit to move, naval combat unit, the road it will take, 
+            and the end location desired
+    
+	 This method will randomely determine if the desired ferrying movement will actually
+         happen or not, and, if it does, sends the movements to MapEvent
+	 */
     private static void FinalizeFerryMovement(CombatUnit killBots, 
             CombatUnit killBoats, Road road, int location) {
         if(road.locationA.id == location) {
             MapEvent.addMovement(killBoats.cUnitID, road, road.locationB.id);
             MapEvent.addMovement(killBots.cUnitID, road, road.locationB.id);
         }else {
-            MapEvent.addMovement(killBoats.cUnitID, road, road.locationB.id);
-            MapEvent.addMovement(killBots.cUnitID, road, road.locationB.id);
+            MapEvent.addMovement(killBoats.cUnitID, road, road.locationA.id);
+            MapEvent.addMovement(killBots.cUnitID, road, road.locationA.id);
         }
     }
 }

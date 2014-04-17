@@ -166,7 +166,7 @@ public class HowToPlay extends javax.swing.JFrame {
 
     private void radioBattlesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioBattlesActionPerformed
         //sets the help text
-        textHelp.setText("If a colision occurs between opposing enemy units, "
+        textHelp.setText("If a collision occurs between opposing enemy units, "
                 + "the units will set up camp and prepare for battle. It is"
                 + " your decision if you want your army units to commit to"
                 + " the battle, or if they should attempt to flee. All units"
@@ -178,7 +178,7 @@ public class HowToPlay extends javax.swing.JFrame {
                 "     The victor of a battle is determined by the sizes of"
                 + " the units involved in the battle, the political power "
                 + "of both teams, and the type of battle (if one side is defending"
-                + " inside an annexed node or if the collision has occured"
+                + " inside an annexed node or if the collision has occurred"
                 + " on road).");
         //resets the text field to the top
         textHelp.setCaretPosition(0);
@@ -204,10 +204,10 @@ public class HowToPlay extends javax.swing.JFrame {
                 + "     Political power: your political power is a meter"
                 + " outlining the level of political support your faction"
                 + " of the civil war posseses. Political power is "
-                + "determined by how many army unis you control and of what size, "
+                + "determined by how many army units you control and of what size, "
                 + "how many turns into the scenario have passed, an army "
                 + "unit's distance from your capital city, if an army unit "
-                + "has peformed any actions or has remained stationary. If "
+                + "has performed any actions or has remained stationary. If "
                 + "your political power has dropped to 0, you have lost all "
                 + "political support and lose the match. \n\n"
                 + "     Remaining army sizes: if your controlled armies have"
@@ -243,7 +243,7 @@ public class HowToPlay extends javax.swing.JFrame {
                 "     Light blue: This colour represents a port town. " +
                 "Port towns are useful as they contain special routes that" +
                 " only naval units can move between. Naval units can even " +
-                "ferry small sized army units accross these routes.\n\n" +
+                "ferry small sized army units across these routes.\n\n" +
                 "     Red: The node being coloured red means the red team has an " +
                 "army at this location. This is for the red team to see where" +
                 " their own troops are, or for the blue team to know which " +
@@ -264,7 +264,7 @@ public class HowToPlay extends javax.swing.JFrame {
         textHelp.setText("Once you have selected a team, you will be " +
                 "presented with the map screen. The map screen is where " +
                 "your time will primarily be spent, as it is the hub " +
-                "for controlling all movment and actions performed.\n\n" +
+                "for controlling all movement and actions performed.\n\n" +
                 "     The map screen consists of two windows: a map with an " +
                 "information bar beneath it, and an accompanying information " +
                 "window to the bottom right of the map. \n\n " +
@@ -273,14 +273,14 @@ public class HowToPlay extends javax.swing.JFrame {
                 "node you have selected from the map (the node " +
                 "type, which armies you possess at that location, any " +
                 "enemies your spies believe may be located there, the " +
-                "current weather, the amont of supplies available at the " +
+                "current weather, the amount of supplies available at the " +
                 "selected node, and - most importantly - the node's " +
                 "name and type).\n\n" +
                 "     The side window will contain general information " +
                 "for each player (the turn count, the time remaining, " +
-                "the scenario and opponents selected, who's turn it presently " +
+                "the scenario and opponents selected, whose turn it presently " +
                 "is, and your current political power level). It also contains" +
-                " a list of all actions you are commiting each turn, as a " +
+                " a list of all actions you are committing each turn, as a " +
                 "general reminder for you.");
         //resets the text field to the top
         textHelp.setCaretPosition(0);
@@ -302,14 +302,14 @@ public class HowToPlay extends javax.swing.JFrame {
                 + " while specific roads attached to port towns can only "
                 + "be used by naval unit - although these pathways cannot be "
                 + "used during Winter. Naval units can travel along any pathway"
-                + " on-land, and can also ferry small sized army units accross "
+                + " on-land, and can also ferry small sized army units across "
                 + "the pathways between port towns. The lines between nodes "
                 + "represent these roads. A black line is a general road that "
                 + "any unit can travel. A red line represents a more difficult "
                 + "road, which means not all unit sizes can travel along it. "
                 + "Lastly, light blue lines represent navy-only pathways. "
                 + "Your army unit movements "
-                + "will happen at the same tme as the opponent's units, "
+                + "will happen at the same time as the opponent's units, "
                 + "so plan accordingly.\n\n"
                 + "     Merging: you can choose to merge together two "
                 + "of your army units that are on the same location and "
@@ -330,7 +330,7 @@ public class HowToPlay extends javax.swing.JFrame {
                 + " annexed a node will gain a defensive bonus in battle, "
                 + "while the disadvantages are that stationary troops may"
                 + " be the victims of illnesses, that the unit is more likely "
-                + "to be found by enemy spies, and you will lose poliical"
+                + "to be found by enemy spies, and you will lose political"
                 + " power (political power is explained in the 'victory' section)"
                 + " for every army you do not use each turn.");
         //resets the text field to the top
