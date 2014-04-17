@@ -77,7 +77,7 @@ public class Scenario {
 				// is the location a city?
 				isCity = new boolean[]{true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true};
 				// road capacity, start location for road, end location for road
-				locations = new int[][]{{20, 0, 5}, {20, 0, 1}, {10, 1, 2}, {10, 1, 3}, {10, 1, 4}, {20, 2, 6}, {20, 3, 6}, {10, 4, 7}, {10, 5, 7}, {10, 6, 8}, {10, 7, 9}, {20, 8, 12}, {10, 8, 11}, {10, 9, 11}, {20, 10, 13}, {20, 11, 14}, {20, 9, 12}, {20, 13, 14}, {20, 14, 15}, {20, 12, 15}};
+				locations = new int[][]{{20, 0, 5}, {20, 0, 1}, {10, 1, 2}, {10, 1, 3}, {10, 1, 4}, {20, 2, 6}, {20, 3, 6}, {10, 4, 7}, {10, 5, 7}, {20, 6, 8}, {10, 7, 9}, {20, 8, 10}, {10, 8, 11}, {10, 9, 11}, {20, 10, 13}, {20, 11, 14}, {20, 9, 12}, {20, 13, 14}, {20, 14, 15}, {20, 12, 15}};
 				// true if the road is a naval only route
 				isNavalRoute = new boolean[]{false, false, false, false, false, false, false, false, true, false, false, false, false, false, false, false, false, false, false, false};
 
@@ -109,7 +109,7 @@ public class Scenario {
 				// is the location a city?
 				isCity = new boolean[]{true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true};
 				// road capacity, start location for road, end location for road
-				locations = new int[][]{{2, 0, 5}, {2, 0, 1}, {1, 1, 2}, {1, 1, 3}, {1, 1, 4}, {2, 2, 6}, {2, 3, 6}, {1, 4, 7}, {1, 5, 7}, {1, 6, 8}, {1, 7, 9}, {2, 8, 12}, {1, 8, 11}, {1, 9, 11}, {2, 10, 13}, {2, 11, 14}, {2, 9, 12}, {2, 13, 14}, {2, 14, 15}, {2, 12, 15}};
+				locations = new int[][]{{20, 0, 5}, {20, 0, 1}, {10, 1, 2}, {10, 1, 3}, {10, 1, 4}, {20, 2, 6}, {20, 3, 6}, {10, 4, 7}, {10, 5, 7}, {20, 6, 8}, {10, 7, 9}, {20, 8, 10}, {10, 8, 11}, {10, 9, 11}, {20, 10, 13}, {20, 11, 14}, {20, 9, 12}, {20, 13, 14}, {20, 14, 15}, {20, 12, 15}};
 				// true if the road is a naval only route
 				isNavalRoute = new boolean[]{false, false, false, false, false, false, false, false, true, false, false, false, false, false, false, false, false, false, false, false};
 
@@ -141,7 +141,7 @@ public class Scenario {
 				// is the location a city?
 				isCity = new boolean[]{true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true};
 				// road capacity, start location for road, end location for road
-				locations = new int[][]{{2, 0, 5}, {2, 0, 1}, {1, 1, 2}, {1, 1, 3}, {1, 1, 4}, {2, 2, 6}, {2, 3, 6}, {1, 4, 7}, {1, 5, 7}, {1, 6, 8}, {1, 7, 9}, {2, 8, 12}, {1, 8, 11}, {1, 9, 11}, {2, 10, 13}, {2, 11, 14}, {2, 9, 12}, {2, 13, 14}, {2, 14, 15}, {2, 12, 15}};
+				locations = new int[][]{{20, 0, 5}, {20, 0, 1}, {10, 1, 2}, {10, 1, 3}, {10, 1, 4}, {20, 2, 6}, {20, 3, 6}, {10, 4, 7}, {10, 5, 7}, {20, 6, 8}, {10, 7, 9}, {20, 8, 10}, {10, 8, 11}, {10, 9, 11}, {20, 10, 13}, {20, 11, 14}, {20, 9, 12}, {20, 13, 14}, {20, 14, 15}, {20, 12, 15}};
 				// true if the road is a naval only route
 				isNavalRoute = new boolean[]{false, false, false, false, false, false, false, false, true, false, false, false, false, false, false, false, false, false, false, false};
 
