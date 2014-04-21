@@ -637,10 +637,15 @@ public class AI {
                 
         //if random number is greater than 2, the movement occurs
         if(random >2) {
-            if(road.locationA.id == location)
-                MapEvent.addMovement(killBots.cUnitID, road, road.locationB.id);
-            else
-                MapEvent.addMovement(killBots.cUnitID, road, road.locationA.id);
+            //one final check to ensure the ai cannot make illegal moves, it checks
+            //if the road capacity is greater than or equal to the unit size
+            if(road.capacity >= killBots.size) {
+                //if road location a is the unit location, move to b. Else move to a.
+                if(road.locationA.id == location)
+                    MapEvent.addMovement(killBots.cUnitID, road, road.locationB.id);
+                else
+                    MapEvent.addMovement(killBots.cUnitID, road, road.locationA.id);
+            }
         }
         //else, no movement will happen (for randomness' sake)
     }
