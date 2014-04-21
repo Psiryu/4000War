@@ -191,7 +191,8 @@ public class Game {
 		}
 
 		// case 1: turn count or game timer meets limit
-		if (turnCount >= maxTurnCount || Global.timer == 0) {
+		if (turnCount >= maxTurnCount || Global.timer == 0) 
+                {
             // if red player's political power is greater than blue players
 			// indicate that red player is the winner
 			if (Scenario.redPlayer.politicalPower > Scenario.bluePlayer.politicalPower) {
@@ -249,48 +250,63 @@ public class Game {
 					return;
 				}
 			}
-		} else if (Scenario.redPlayer.combatUnits.size() <= 1) {
-            // case 2: one of the players has one unit remaining
-			// if the red player has one unit remaining
-			// and if the blue player has one unit remaining
-			if ((Scenario.bluePlayer.combatUnits.size() <= 1)) {
-                // if both remaining units are fleets
-				// delare a tie
-				if (Scenario.bluePlayer.combatUnits.get(0).isFleet && Scenario.redPlayer.combatUnits.get(0).isFleet) {
-					Global.gameSummary = "The game is tied!";
-					Global.gameSummary2 = "Both players have only one combat "
-						+ "unit left, and that combat unit "
-						+ "is a naval fleet unit.";
-
-					Global.intGameOver = 1;
-					return;
-				}
-			} else if(!Scenario.redPlayer.combatUnits.isEmpty()) {
-                            if (Scenario.redPlayer.combatUnits.get(0).isFleet) {
-                // if the red player has a fleet, and blue player has standard unit
-				// blue player wins
-				Global.gameSummary = "Blue Player Wins!";
-				Global.gameSummary2 = "Red has only one combat unit left, "
-					+ "and that unit is a naval fleet unit.";
-
-				Global.intGameOver = 1;
-				return;
+		} 
+                else if (Scenario.redPlayer.combatUnits.size() == 0)
+                {
+                    if (Scenario.bluePlayer.combatUnits.size() == 0)
+                    {
+                        Global.gameSummary = "Tie Game!";
+                        Global.gameSummary2 = "Both players have lost all of their units";
+                    }
+                    else
+                    {
+                        /*blue wins*/
+                        Global.gameSummary = "Blue Player Wins!";
+                        Global.gameSummary2 = "Red team has no more units left";
+                    }
+                }
+                else if(Scenario.bluePlayer.combatUnits.size() == 0)
+                {
+                    /*red wins*/
+                    Global.gameSummary = "Red Player Wins!";
+                    Global.gameSummary2 = "Blue team has no more units left";
+                }
+                else if (Scenario.redPlayer.combatUnits.size() == 1)
+                {
+                    if (Scenario.redPlayer.combatUnits.get(0).isFleet)
+                    {
+                        if (Scenario.bluePlayer.combatUnits.size() == 1)
+                        {
+                            if(Scenario.bluePlayer.combatUnits.get(0).isFleet)
+                            {
+                                Global.gameSummary = "Tie Game!";
+                                Global.gameSummary2 = "Both players have only naval units left";
                             }
-			}
-		} else if ((Scenario.bluePlayer.combatUnits.size() <= 1)) {
-            // if blue player has only a fleet remaining
-			// declare red the victor
-			if (Scenario.bluePlayer.combatUnits.get(0).isFleet) {
-				Global.gameSummary = "Red Player Wins!";
-				Global.gameSummary2 = "Blue has only one combat unit left, "
-					+ "and that unit is a naval fleet unit.";
-
-				Global.intGameOver = 1;
-				return;
-			}
-		} else {
+                        }
+                        else
+                        {
+                            /*blue wins*/
+                            Global.gameSummary = "Blue Player Wins!";
+                            Global.gameSummary2 = "Red team has no more non-naval units left";
+                            
+                        }
+                    }
+                }
+                else if (Scenario.bluePlayer.combatUnits.size() == 1)
+                        {
+                            if(Scenario.bluePlayer.combatUnits.get(0).isFleet)
+                            {
+                                /*red wins*/
+                                Global.gameSummary = "Red Player Wins!";
+                                Global.gameSummary2 = "Blue team has no more non-naval units left";
+                            }
+                        }
+                
+                
+                
+                else 
+                {
 			return;
 		}
-		return;
 	}
 }
