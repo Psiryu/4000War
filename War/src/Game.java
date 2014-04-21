@@ -251,25 +251,28 @@ public class Game {
 				}
 			}
 		} 
-                else if (Scenario.redPlayer.combatUnits.size() == 0)
+                else if (Scenario.redPlayer.combatUnits.isEmpty())
                 {
-                    if (Scenario.bluePlayer.combatUnits.size() == 0)
+                    if (Scenario.bluePlayer.combatUnits.isEmpty())
                     {
                         Global.gameSummary = "Tie Game!";
                         Global.gameSummary2 = "Both players have lost all of their units";
+                        Global.intGameOver = 1;
                     }
                     else
                     {
                         /*blue wins*/
                         Global.gameSummary = "Blue Player Wins!";
                         Global.gameSummary2 = "Red team has no more units left";
+                        Global.intGameOver = 1;
                     }
                 }
-                else if(Scenario.bluePlayer.combatUnits.size() == 0)
+                else if(Scenario.bluePlayer.combatUnits.isEmpty())
                 {
                     /*red wins*/
                     Global.gameSummary = "Red Player Wins!";
                     Global.gameSummary2 = "Blue team has no more units left";
+                    Global.intGameOver = 1;
                 }
                 else if (Scenario.redPlayer.combatUnits.size() == 1)
                 {
@@ -281,6 +284,7 @@ public class Game {
                             {
                                 Global.gameSummary = "Tie Game!";
                                 Global.gameSummary2 = "Both players have only naval units left";
+                                Global.intGameOver = 1;
                             }
                         }
                         else
@@ -288,6 +292,7 @@ public class Game {
                             /*blue wins*/
                             Global.gameSummary = "Blue Player Wins!";
                             Global.gameSummary2 = "Red team has no more non-naval units left";
+                            Global.intGameOver = 1;
                             
                         }
                     }
@@ -299,6 +304,7 @@ public class Game {
                                 /*red wins*/
                                 Global.gameSummary = "Red Player Wins!";
                                 Global.gameSummary2 = "Blue team has no more non-naval units left";
+                                Global.intGameOver = 1;
                             }
                         }
                 
