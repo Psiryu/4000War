@@ -3,16 +3,6 @@ import java.util.ArrayList;
 import java.util.Random;
 import javax.swing.JOptionPane;
 
-
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-/**
- *
- * @author Fearless Jay
- */
 public class Battle {
 
     // Placeholders for combat units partaking in battle
@@ -1204,18 +1194,27 @@ public class Battle {
         }
     }
 
+    /*
+    Method: IsPreemptive
+    Input Parameters: Node location -> the location which to check for a rumour
+	int playerID -> the id belonging to the player to point to the correct rumour list
+    Output Paramters: Boolean result -> true if a rumour was found, therefore a preemptive attack
+    
+    This method is used to determine if a player engaged an enemy based on their
+    intelligence.
+    */
     private boolean IsPreemptive(Node location, int playerID) {
-        if (Scenario.redPlayer.playerID == playerID) {
-            for (ArrayList<Integer> nodeValues : Scenario.redPlayer.enemyIntelligence) {
-                if (nodeValues.get(0) == location.id) {
-                    if (nodeValues.size() > 1) {
+        if (Scenario.redPlayer.playerID == playerID) { // if the player is red player
+            for (ArrayList<Integer> nodeValues : Scenario.redPlayer.enemyIntelligence) { // for each list in the intelligence list
+                if (nodeValues.get(0) == location.id) { // if the id in the rumour list	 matches the comparison location
+                    if (nodeValues.size() > 1) { // if there are rumours in the list, return outcome
                         return true;
                     } else {
                         return false;
                     }
                 }
             }
-        } else {
+        } else { // repeat for blue player
             for (ArrayList<Integer> nodeValues : Scenario.bluePlayer.enemyIntelligence) {
                 if (nodeValues.get(0) == location.id) {
                     if (nodeValues.size() > 1) {
