@@ -1,1 +1,0 @@
-Images are stored here both as a backup and so we can keep track of which images are used. Actual project images are stored within the "src" folder of the project.

@@ -1,2 +1,0 @@
-Player 1 is Red
-Player 2 is Blue
