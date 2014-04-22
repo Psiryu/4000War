@@ -1306,7 +1306,7 @@ public class Battle {
             {
                 bluSmallCount++;
             }
-            else if (redCombatUnit.get(i).size <11)
+            else if (bluCombatUnit.get(i).size <11)
             {
                 bluMedCount++;
             }
