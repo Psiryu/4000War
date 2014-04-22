@@ -1204,13 +1204,12 @@ public class Battle {
     intelligence.
     */
     private boolean IsPreemptive(Node location, int playerID) {
+	    boolean result = false;
         if (Scenario.redPlayer.playerID == playerID) { // if the player is red player
             for (ArrayList<Integer> nodeValues : Scenario.redPlayer.enemyIntelligence) { // for each list in the intelligence list
                 if (nodeValues.get(0) == location.id) { // if the id in the rumour list	 matches the comparison location
                     if (nodeValues.size() > 1) { // if there are rumours in the list, return outcome
-                        return true;
-                    } else {
-                        return false;
+                        result = true;
                     }
                 }
             }
@@ -1218,15 +1217,13 @@ public class Battle {
             for (ArrayList<Integer> nodeValues : Scenario.bluePlayer.enemyIntelligence) {
                 if (nodeValues.get(0) == location.id) {
                     if (nodeValues.size() > 1) {
-                        return true;
-                    } else {
-                        return false;
+                        result = true;
                     }
                 }
             }
         }
 
-        return false;
+        return result;
     }
     
     public String battleStatus(Node node, int redBatStr,

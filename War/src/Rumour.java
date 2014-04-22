@@ -140,7 +140,6 @@ public class Rumour {
 	 3 - fleet unit
 	 */
 	private ArrayList<Integer> reportRumour(int nodeID) {
-		Node currentNode = Scenario.listOfNodes[nodeID]; // obtain the node by ID
 		ArrayList<Integer> rumourList = new ArrayList<Integer>(); // intitialize rumour list
 		ArrayList<Integer> units = nodeOccupancy(nodeID); // obtain a list of units based on result from nodeOccupancy
 		double fogUpdate = playerFogValueUpdate(); // obtain the present fog value for the player from playerFogUpdate
@@ -151,7 +150,7 @@ public class Rumour {
 		int mean; // value representing the 0 sigma, or the true nodal value
 		double rumour; // the value obtained by sampling a distribution for the rumoured value
 
-		rumourList.add(currentNode.id); // store the node ID at the start of the list
+		rumourList.add(nodeID); // store the node ID at the start of the list
 
 		for (int i = 0; i < units.size(); i++) { // for each of the units on the node
 			do { // sample a gaussian distribution for a value x such that 0<x<1
