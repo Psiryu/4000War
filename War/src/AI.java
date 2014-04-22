@@ -328,8 +328,6 @@ public class AI {
 					weight+=50;
 				}
 			}
-//                        if(robots.enemyIntelligence.get(robots.enemyIntelligence.indexOf(newLocation)).size() > 1)
-//                            weight += 50;
                         //if no weight change has occured, increment for a sense
                         //of randomness
                         if(weight == increment)
@@ -357,8 +355,6 @@ public class AI {
 						weight+=30;
 					}
 				}
-//                                if(robots.enemyIntelligence.get(robots.enemyIntelligence.indexOf(nextLocation)).size() > 1)
-//                                    weight += 40;
 
                                 if(weight == increment)
                                     weight+= 10;
@@ -383,8 +379,6 @@ public class AI {
 							weight+=20;
 						}
 					}
-//                                        if(robots.enemyIntelligence.get(robots.enemyIntelligence.indexOf(thirdLocation)).size() > 1)
-//                                            weight += 30;
 
                                         if(weight == increment)
                                             weight+= 5;
@@ -403,8 +397,6 @@ public class AI {
 								weight+=10;
 							}
 						}
-//                                                if(robots.enemyIntelligence.get(robots.enemyIntelligence.indexOf(finalLocation)).size() > 1)
-//                                                    weight += 20;
 
                                                 if(weight == increment)
                                                     weight+= 5;
